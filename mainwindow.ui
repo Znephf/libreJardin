@@ -5041,6 +5041,8 @@ p, li { white-space: pre-wrap; }
     <addaction name="actionCacher_le_fond"/>
     <addaction name="actionAfficher_le_fond"/>
     <addaction name="actionOuvrir_fiche_culture"/>
+    <addaction name="actionAfficher_grille"/>
+    <addaction name="actionCacher_la_grille"/>
    </widget>
    <widget class="QMenu" name="menuAide">
     <property name="title">
@@ -5103,6 +5105,8 @@ p, li { white-space: pre-wrap; }
    <addaction name="separator"/>
    <addaction name="actionSelectionner_tout"/>
    <addaction name="actionDeselectionner_tout"/>
+   <addaction name="actionAfficher_grille"/>
+   <addaction name="actionCacher_la_grille"/>
    <addaction name="separator"/>
    <addaction name="actionBringToFront"/>
    <addaction name="actionBringToBack"/>
@@ -5415,6 +5419,33 @@ p, li { white-space: pre-wrap; }
    </property>
    <property name="text">
     <string>Imprimer le plan</string>
+   </property>
+  </action>
+  <action name="actionAfficher_grille">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="supervision.qrc">
+     <normaloff>:/images/1474942892_Grid.png</normaloff>:/images/1474942892_Grid.png</iconset>
+   </property>
+   <property name="text">
+    <string>Afficher la grille</string>
+   </property>
+  </action>
+  <action name="actionCacher_la_grille">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="supervision.qrc">
+     <normaloff>:/images/noGrid.png</normaloff>:/images/noGrid.png</iconset>
+   </property>
+   <property name="text">
+    <string>Cacher la grille</string>
    </property>
   </action>
  </widget>

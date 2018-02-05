@@ -242,6 +242,7 @@ MainWindow::MainWindow(QWidget *parent) :
   pixmap->setPixFile(fileName2);
   insererFond(0,0,fileName2,7); //ecriture des valeurs dans tableBackground
   //dessin de la grille (taille,transparence)
+  setGrille(0);
   dessine_grille(50,0.3);
 
   /***********************************************************************************/
@@ -398,7 +399,9 @@ void MainWindow::mousePressEvent(QMouseEvent *event)
 
 void MainWindow::dessine_grille(const int espace,const qreal &Opacite)
 {
-   int space=espace; //espacement de la grille
+  if(getGrille()==0)
+  {
+    int space=espace; //espacement de la grille
    //définition du nombre de carrés selon la taille de la scene
    int pasH=(scene->sceneRect().width()/space)+1;
    int pasV=(scene->sceneRect().height()/space)+1;
@@ -414,6 +417,7 @@ void MainWindow::dessine_grille(const int espace,const qreal &Opacite)
            scene->addItem(case1);
          }
      }
+  }
 }
 
 void MainWindow::on_comboBox_AnneeEnCours_currentIndexChanged(const QString &arg1)
@@ -3184,9 +3188,21 @@ void MainWindow::on_lineEdit_valeur_rotation_familles_2_textChanged(const QStrin
 }
 
 /***************************************************************************************/
+//AFFICHAGE DE LA GRILLE
 
 
+void MainWindow::on_actionAfficher_grille_triggered()
+{ //AFFICHER LA GRILLE
+   setGrille(0);
+   ui->actionAfficher_grille->setChecked(true);
+   ui->actionCacher_la_grille->setChecked(false);
+   tableau_vers_items();
+}
 
-
-
-
+void MainWindow::on_actionCacher_la_grille_triggered()
+{ //CACHER LA GRILLE
+   setGrille(1);
+   ui->actionAfficher_grille->setChecked(false);
+   ui->actionCacher_la_grille->setChecked(true);
+   tableau_vers_items();
+}

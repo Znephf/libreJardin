@@ -32,5 +32,7 @@
         <file>images/icones/utilisation.png</file>
         <file>images/printer.png</file>
         <file>images/util.png</file>
+        <file>images/1474942892_Grid.png</file>
+        <file>images/noGrid.png</file>
     </qresource>
 </RCC>
