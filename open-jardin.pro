@@ -37,4 +37,5 @@ FORMS    += mainwindow.ui \
 RESOURCES += \
     supervision.qrc
 
-
+TRANSLATIONS = open-jardin_fr.ts \
+               open-jardin_en.ts
