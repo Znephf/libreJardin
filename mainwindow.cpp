@@ -58,7 +58,7 @@
 #include <QPrinter>
 #include <QPrintDialog>
 #include <QPainter>
-
+#include <QCoreApplication>
 //xml
 #include <QDomDocument>
 
@@ -75,6 +75,12 @@ MainWindow::MainWindow(QWidget *parent) :
   //connexion à la base de données
   QString fileName = QDir::homePath()+"/openjardin/jardin.sqli";     //emplacement de la base de données utilisée
   QString fileName_usr = "/usr/share/openjardin/jardin.sqli";        //emplacement base de données copiées à l'installation
+ // translator
+    QString locale = QLocale::system().name();
+    QTranslator translator;
+    translator.load(QString("open-jardin_") + locale);
+  //  translator.load("open-jardin_en"); only in english
+    qApp->installTranslator(&translator);
 
   //test existance du fichier de la base dans homePath()/openjardin pour la première utilisation
 
