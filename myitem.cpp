@@ -125,6 +125,7 @@ void MyItem::mousePressEvent(QGraphicsSceneMouseEvent *event)
         }
       else  //mode modification plan
         {
+           scene()->clearSelection();
            setOldX(pos().x()-(m_width/2));
            setOldY(pos().y()-(m_height/2));
            setSelected(true);
@@ -267,6 +268,17 @@ void MyItem::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 void MyItem::hoverEnterEvent(QGraphicsSceneHoverEvent *event)
 {
     setToolTip(getComment());
+}
+void MyItem::hoverMoveEvent(QGraphicsSceneHoverEvent *event)
+{
+    if(getMode() != 1 &&
+       getMode() != 2)
+    {
+        if(event->pos().x()<(m_width/2)-10 && event->pos().y()<(m_height/2)-10)
+            setCursor(Qt::OpenHandCursor);
+        else
+            setCursor(Qt::SizeFDiagCursor);
+    }
 }
 
 void MyItem::setTexte(const QString text)

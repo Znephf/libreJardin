@@ -135,7 +135,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
 
   // stylesheets
-  ui->pushButton_Enregistrer_modif_item->setStyleSheet("background-color : #ffff00");
+ // ui->pushButton_Enregistrer_modif_item->setStyleSheet("background-color : #ffff00");
   ui->pushButton_Affiches_fiche->setStyleSheet("background-color : #ffff00");
 
   qApp->setPalette(this->style()->standardPalette());
