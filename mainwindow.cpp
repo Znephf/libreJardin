@@ -279,11 +279,11 @@ void MainWindow::createConnection(QString fileName)
       db.setDatabaseName(fileName);
       if (!db.open())
         {
-            qDebug() << "connection database erreur ";
+            qDebug() << "connection database erreur "<< fileName;
         }
       else
         {
-            qDebug() << "database open ";
+            qDebug() << "database open "<< fileName;
         }
   }
 
@@ -1021,8 +1021,9 @@ void MainWindow::on_actionOuvrir_triggered()
                   if(basenode.isElement())
                     {
                        QDomElement base = basenode.toElement();
-                       ui->lineEdit_config_nom_base->setText(base.attribute("fichier"));
-                       qDebug() << "boucle base";
+                      QString fichierBase=base.attribute("fichier");
+                       // ui->lineEdit_config_nom_base->setText();
+                       qDebug() << "Chemin base : " + fichierBase ;
                      }
 
                   // écriture dans le tableau de l'objet fond d'écran
@@ -1078,8 +1079,8 @@ void MainWindow::on_actionOuvrir_triggered()
 
 void MainWindow::on_lineEdit_config_nom_base_textChanged(const QString &arg1)
 { // changement du nom de la base de données suite à lecture du fichier de configuration XML
-  createConnection(arg1);
-  init_base();
+ // createConnection(arg1);
+ // init_base();
 }
 
 
