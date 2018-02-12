@@ -157,7 +157,6 @@ private slots:
 
   void createConnection(QString fileName);
 
-  void on_lineEdit_config_nom_base_textChanged(const QString &arg1);
   void init_base();
 
   void on_pushButton_print_clicked();
@@ -189,6 +188,8 @@ private slots:
   void on_actionAfficher_grille_triggered();
 
   void on_actionCacher_la_grille_triggered();
+
+  void on_lineEdit_Nom_item_textChanged(const QString &arg1);
 
 protected:
     QPoint mousePressPt;

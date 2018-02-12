@@ -585,6 +585,16 @@
              </widget>
             </item>
             <item>
+             <widget class="QPushButton" name="pushButton_Enregistrer_modif_item">
+              <property name="toolTip">
+               <string>Enregistrer la modification de désignation</string>
+              </property>
+              <property name="text">
+               <string>Enregistrer</string>
+              </property>
+             </widget>
+            </item>
+            <item>
              <widget class="QPushButton" name="pushButton_Affiches_fiche">
               <property name="maximumSize">
                <size>
@@ -608,13 +618,6 @@
               <property name="icon">
                <iconset resource="supervision.qrc">
                 <normaloff>:/images/printer.png</normaloff>:/images/printer.png</iconset>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QPushButton" name="pushButton_Enregistrer_modif_item">
-              <property name="text">
-               <string>Enregistrer</string>
               </property>
              </widget>
             </item>
@@ -1853,7 +1856,7 @@
               </font>
              </property>
              <property name="currentIndex">
-              <number>3</number>
+              <number>4</number>
              </property>
              <widget class="QWidget" name="tab_4">
               <attribute name="title">

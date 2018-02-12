@@ -18,7 +18,6 @@ TEMPLATE = app
 SOURCES += main.cpp\
     myitem.cpp \
     #test.cpp
-    mybutton.cpp \
     database.cpp \
     planning_item.cpp \
     mygrilleitem.cpp \
@@ -26,7 +25,6 @@ SOURCES += main.cpp\
 
 HEADERS  += mainwindow.h \
     myitem.h \
-    mybutton.h \
     database.h \
     planning_item.h \
     mygrilleitem.h

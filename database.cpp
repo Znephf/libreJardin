@@ -43,6 +43,7 @@
 #include <QtSql>
 #include <QtWidgets>
 #include <QDebug>
+#include <QMessageBox>
 
 Database::Database(const int &IdItem,const int&IdCulture, const QString &fileName, QWidget *parent) :
   QDialog(parent),
@@ -161,8 +162,11 @@ void Database::on_pushButton_validerData_clicked()
     qDebug() << nom_plante <<" id "<<id_plante;
     }
   else
+    {
     qDebug() <<"erreur query :" <<  query.lastError().text() <<"  " <<query.lastError().databaseText()<<query.driver();
-
+    QMessageBox msgBox;
+    msgBox.setText("ERREUR D'ÉCRITURE - vérifier les champs");
+     }
   QString str1  = ui->dateEdit->date().toString("yyyy.MM.dd");
   QString str2 =  id_plante;
   QString str3  = ui->plainTextEdit_commentaires->document()->toPlainText();
@@ -173,7 +177,12 @@ void Database::on_pushButton_validerData_clicked()
       "values('"+ui->lineEditDesignation->text()+"',"+ui->lineEditIdParcelle->text()+",'"+str1+"',"+str2+",'"+str3+"',"+str4+","+str5+",'"+str6+"')";
   query.exec(str);
     if (!query.isActive())
+      {
      qDebug() <<"erreur query :" <<  query.lastError().text() <<"  " <<query.lastError().databaseText()<<query.driver();
+     QMessageBox::information(this, tr("Erreur d'enregistrement"),
+                 tr("Veuillez vérifier que tous les champs soient bien remplis"));
+
+      }
     else
      qDebug() << "enregistrement terminé";
     QSqlQueryModel *model = new QSqlQueryModel;
@@ -213,6 +222,8 @@ void Database::on_tableViewCultures_clicked(const QModelIndex &index)
  else
    {
       qDebug() <<"erreur query :" <<  query.lastError().text() <<"  " <<query.lastError().databaseText()<<query.driver();
+      QMessageBox::information(this, tr("Erreur d'enregistrement"),
+                  tr("Veuillez vérifier que tous les champs soient bien remplis"));
    }
  ui->comboBox_etat_culture->setCurrentIndex(str4.toInt()-1);
  ui->plainTextEdit_commentaires->setPlainText(str3);
@@ -306,8 +317,11 @@ void Database::on_pushButton_modifier_clicked()
     qDebug() << nom_plante <<" id "<<id_plante;
     }
   else
+    {
     qDebug() <<"erreur query :" <<  query.lastError().text() <<"  " <<query.lastError().databaseText()<<query.driver();
-
+    QMessageBox::information(this, tr("Erreur d'enregistrement"),
+                tr("Veuillez vérifier que tous les champs soient bien remplis"));
+     }
   QString str1  = ui->dateEdit->date().toString("yyyy.MM.dd");
   QString str =   ui->lineEditDesignation->text();
   QString str2 =  id_plante;
@@ -324,8 +338,12 @@ void Database::on_pushButton_modifier_clicked()
     qDebug() <<"PREPARE: " << query.lastQuery().toUtf8();
 
       if (!query.isActive())
+        {
        qDebug() <<"erreur query :" <<  query.lastError().text() <<"  " <<query.lastError().databaseText()<<query.driver();
-      else
+       QMessageBox::information(this, tr("Erreur d'enregistrement"),
+                   tr("Veuillez vérifier que tous les champs soient bien remplis"));
+        }
+       else
        qDebug() << "enregistrement terminé";
 
       QSqlQueryModel *model = new QSqlQueryModel;
@@ -351,8 +369,11 @@ void Database::on_pushButton_modifier_tache_clicked()
     qDebug() << nom_type_tache <<" id "<<id_type_tache;
     }
   else
+   {
     qDebug() <<"erreur query :" <<  query.lastError().text() <<"  " <<query.lastError().databaseText()<<query.driver();
-
+    QMessageBox::information(this, tr("Erreur d'enregistrement"),
+                tr("Veuillez vérifier que tous les champs soient bien remplis"));
+     }
   qDebug() <<"modifier: " << query.lastQuery().toUtf8();
   QString str1  = ui->dateEdit_tache->date().toString("yyyy.MM.dd"); //date tache
   QString str =   ui->lineEdit_designation_tache->text();//designation tache
@@ -366,8 +387,12 @@ void Database::on_pushButton_modifier_tache_clicked()
   qDebug() <<"PREPARE: " << query.lastQuery().toUtf8();
 
       if (!query.isActive())
+        {
        qDebug() <<"erreur query :" <<  query.lastError().text() <<"  " <<query.lastError().databaseText()<<query.driver();
-      else
+       QMessageBox::information(this, tr("Erreur d'enregistrement"),
+                   tr("Veuillez vérifier que tous les champs soient bien remplis"));
+        }
+       else
        qDebug() << "enregistrement terminé";
       QSqlQueryModel *modelObs = new QSqlQueryModel;
       modelObs->setQuery("SELECT id, designation, date,type , commentaires,id_culture FROM observations ");
@@ -393,8 +418,11 @@ void Database::on_pushButton_creer_tache_clicked()
     qDebug() << nom_type_tache <<" id "<<id_type_tache;
     }
   else
+    {
     qDebug() <<"erreur query :" <<  query.lastError().text() <<"  " <<query.lastError().databaseText()<<query.driver();
-
+    QMessageBox::information(this, tr("Erreur d'enregistrement"),
+                    tr("Veuillez vérifier que tous les champs soient bien remplis"));
+    }
   qDebug() <<"modifier: " << query.lastQuery().toUtf8();
   QString str1  = ui->dateEdit_tache->date().toString("yyyy.MM.dd"); //date tache
   QString str =   ui->lineEdit_designation_tache->text();//designation tache
@@ -408,8 +436,12 @@ void Database::on_pushButton_creer_tache_clicked()
     qDebug() <<"VALIDER: " << query.lastQuery().toUtf8();
 
       if (!query.isActive())
+        {
        qDebug() <<"erreur query :" <<  query.lastError().text() <<"  " <<query.lastError().databaseText()<<query.driver();
-      else
+       QMessageBox::information(this, tr("Erreur d'enregistrement"),
+                   tr("Veuillez vérifier que tous les champs soient bien remplis"));
+        }
+       else
        qDebug() << "enregistrement terminé";
       QSqlQueryModel *modelObs = new QSqlQueryModel;
       modelObs->setQuery("SELECT id, designation, date,type , commentaires,id_culture FROM observations where id_culture= "+str5);
@@ -445,8 +477,11 @@ void Database::on_tableView_taches_clicked(const QModelIndex &index)
     ui->comboBox_type_tache->setCurrentIndex(ui->comboBox_type_tache->findText(resultat));
     }
   else
+    {
     qDebug() <<"erreur query :" <<  query.lastError().text() <<"  " <<query.lastError().databaseText()<<query.driver();
-
+    QMessageBox::information(this, tr("Erreur d'enregistrement"),
+                tr("Veuillez vérifier que tous les champs soient bien remplis"));
+     }
 
 }
 

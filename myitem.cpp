@@ -32,7 +32,6 @@
 **
 **
 ****************************************************************************/
-
 #include "myitem.h"
 #include "mainwindow.h"
 #include <QMessageBox>
@@ -74,23 +73,24 @@ void MyItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QW
    QPen pen(penColor, 1);
    painter->setPen(pen);
    painter->setOpacity(m_opacity);
-     if(typeShape==1)//rectangle
-       {
-         painter->drawRect(QRectF(-m_width/2,-m_height/2,m_width,m_height));
-       }
-     if(typeShape==2)//roundedrectangle
-       {
-         painter->drawRoundedRect(QRectF(-m_width/2,-m_height/2,m_width,m_height), 10, 10);
-       }
-     if(typeShape==3)//circle
-       {
-         painter->drawEllipse(QRectF(-m_width/2,-m_height/2,m_width,m_height));  //à verifier
-       }
-     if(typeShape==4)//image pixmap
-       {
-        QImage pixm(pixmapfileName);
-         painter->drawImage(QRectF(-m_width/2,-m_height/2,m_width,m_height),pixm);  //test pixmap
-       }
+
+   switch (typeShape)
+      {
+              case MyItem::Rectangle:
+                      painter->drawRect(QRectF(-m_width/2,-m_height/2,m_width,m_height));
+                      break;
+              case MyItem::RoundedRectangle:
+                      painter->drawRoundedRect(QRectF(-m_width/2,-m_height/2,m_width,m_height), 10, 10);
+                      break;
+              case MyItem::Circle:
+                      painter->drawEllipse(QRectF(-m_width/2,-m_height/2,m_width,m_height));  //à verifier
+                      break;
+              case MyItem::Image:
+                      QImage pixm(pixmapfileName);
+                      painter->drawImage(QRectF(-m_width/2,-m_height/2,m_width,m_height),pixm);  //test pixmap
+                      break;
+      }
+
      painter->drawText(rect, Qt::AlignCenter, getNom());
 }
 
@@ -271,13 +271,18 @@ void MyItem::hoverEnterEvent(QGraphicsSceneHoverEvent *event)
 }
 void MyItem::hoverMoveEvent(QGraphicsSceneHoverEvent *event)
 {
-    if(getMode() != 1 &&
+
+  if(getMode() != 1 &&
        getMode() != 2)
     {
         if(event->pos().x()<(m_width/2)-10 && event->pos().y()<(m_height/2)-10)
             setCursor(Qt::OpenHandCursor);
         else
             setCursor(Qt::SizeFDiagCursor);
+    }
+  else
+    {
+       setCursor(Qt::ArrowCursor);
     }
 }
 

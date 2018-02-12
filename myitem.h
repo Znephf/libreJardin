@@ -13,15 +13,21 @@
 class MyItem :public QGraphicsItem
 {
 public:
+         enum TypeShape {
+                  Rectangle = 1,
+                  RoundedRectangle,
+                  Circle,
+                  Image
+          };
 
   MyItem(qreal wid,qreal hgt);
 
-    QRectF boundingRect() const;
+    QRectF boundingRect() const override;
 
     // overriding paint()
     void paint(QPainter * painter,
                const QStyleOptionGraphicsItem * option,
-               QWidget * widget);
+               QWidget * widget)override;
     QPainterPath shape()const override;
 
     void setColor(const QColor &color)
@@ -143,11 +149,11 @@ public:
 protected:
     // overriding mouse events
     QPoint mousePressPt;
-    void mousePressEvent(QGraphicsSceneMouseEvent *event);
-    void mouseReleaseEvent(QGraphicsSceneMouseEvent *event);
-    void mouseMoveEvent(QGraphicsSceneMouseEvent *event);
-    void hoverEnterEvent(QGraphicsSceneHoverEvent *event);
-    void hoverMoveEvent(QGraphicsSceneHoverEvent *event);
+    void mousePressEvent(QGraphicsSceneMouseEvent *event) override;
+    void mouseReleaseEvent(QGraphicsSceneMouseEvent *event) override;
+    void mouseMoveEvent(QGraphicsSceneMouseEvent *event) override;
+    void hoverEnterEvent(QGraphicsSceneHoverEvent *event) override;
+    void hoverMoveEvent(QGraphicsSceneHoverEvent *event) override;
 private:
     int m_itemId;
     int typeAction;

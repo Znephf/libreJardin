@@ -63,14 +63,13 @@
 #include <QDomDocument>
 
 #include "myitem.h"
-#include "mybutton.h"
+//#include "mybutton.h"
 #include "mygrilleitem.h"
 
 MainWindow::MainWindow(QWidget *parent) :
   QMainWindow(parent),
   ui(new Ui::MainWindow)
 {
-
   mode_modifier=false;
   //connexion à la base de données
   QString fileName = QDir::homePath()+"/openjardin/jardin.sqli";     //emplacement de la base de données utilisée
@@ -183,8 +182,9 @@ MainWindow::MainWindow(QWidget *parent) :
   QString strDate = "01/01/"+year;
   QDate date = QDate::fromString(strDate ,"dd/MM/yyyy");
   int jour=date.dayOfWeek();
-  qDebug() << "date "<<currentDate<<" strDate "<<strDate<<" jour"<<jour;
+//  qDebug() << "date "<<currentDate<<" strDate "<<strDate<<" jour"<<jour;
   ui->comboBox_AnneeEnCours->setCurrentText(year);
+  ui->comboBox_AnneeEnCours_2->setCurrentText(year);
   affiche_rotation(year.toInt());
 
   /*******************************************************************************/
@@ -251,7 +251,7 @@ MainWindow::MainWindow(QWidget *parent) :
   setGrille(0);
   dessine_grille(50,0.3);
 
-  /***********************************************************************************/
+
 
   // synchronisation des deux graphicsviews du planning
   connect(ui->graphicsView_planning->verticalScrollBar(), SIGNAL(valueChanged(int)),ui->graphicsView_Planning2->verticalScrollBar(),SLOT(setValue(int)));
@@ -261,8 +261,9 @@ MainWindow::MainWindow(QWidget *parent) :
   affiche_planning(jour);
   //cacher l'onglets "objets" qui contient les tables des objets
   ui->tabWidget_taches->removeTab(4);
-}
 
+}
+/***********************************************************************************/
 
 MainWindow::~MainWindow()
 {
@@ -859,7 +860,7 @@ void MainWindow::on_actionSauver_triggered()
      if (ui->tableObjets->item(i,1)->text()=="xx" && i<ui->tableObjets->rowCount())
        {
          ui->tableObjets->removeRow(i);
-         qDebug() << "remove ok"<< i;
+        // qDebug() << "remove ok"<< i;
        }
     }
   // vérification des cellules du tableau du background
@@ -1077,16 +1078,8 @@ void MainWindow::on_actionOuvrir_triggered()
 
 /**********************************************************/
 
-void MainWindow::on_lineEdit_config_nom_base_textChanged(const QString &arg1)
-{ // changement du nom de la base de données suite à lecture du fichier de configuration XML
- // createConnection(arg1);
- // init_base();
-}
-
 
 //VARIANTE D'OBJET CREE PixmapItem
-
-
 void PixmapItem::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
     setCursor(Qt::ClosedHandCursor);
@@ -1111,7 +1104,7 @@ void PixmapItem::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 void PixmapItem::hoverEnterEvent(QGraphicsSceneHoverEvent *event)
 {
     setCursor(Qt::OpenHandCursor);
-    qDebug() << "hover event mouse";
+    //qDebug() << "hover event mouse";
     setToolTip(getComment());
     event->accept();
 }
@@ -1195,7 +1188,7 @@ void MainWindow::on_actionAjouterRectangle_triggered()
   item->setNom("Parcelle "+ui->lineEdit_ItemId->text());
   item->setEtat(1);
   item->setMode(0);
-  item->setTypeShape(1);// type de shape 1 rectangle - 2 rectangle  rounded - 3 circle
+  item->setTypeShape(MyItem::Rectangle);
   scene->addItem(item);
   QPointF zero = ui->graphicsView->mapFromScene(QPointF(0,0));
   ui->graphicsView->horizontalScrollBar()->setValue(zero.x());
@@ -1217,7 +1210,7 @@ void MainWindow::on_actionAjouter_Rectangle_arrondi_triggered()
   item->setTexte(" ");
   item->setEtat(1);
   item->setMode(0);
-  item->setTypeShape(2);// type de shape 1 rectangle - 2 rectangle  rounded - 3 circle
+  item->setTypeShape(MyItem::RoundedRectangle);
   scene->addItem(item);
   QPointF zero = ui->graphicsView->mapFromScene(QPointF(0,0));
   ui->graphicsView->horizontalScrollBar()->setValue(zero.x());
@@ -1240,7 +1233,7 @@ void MainWindow::on_actionAjouterCercle_triggered()
   item->setTexte("");
   item->setEtat(1);
   item->setMode(0);
-  item->setTypeShape(3);// type de shape 1 rectangle - 2 rectangle  rounded - 3 circle
+  item->setTypeShape(MyItem::Circle);
   scene->addItem(item);
   QPointF zero = ui->graphicsView->mapFromScene(QPointF(0,0));
   ui->graphicsView->horizontalScrollBar()->setValue(zero.x());
@@ -1269,7 +1262,7 @@ void MainWindow::on_actionAjouterImage_triggered()
         item->setTexte(" ");
         item->setEtat(1);
         item->setMode(0);
-        item->setTypeShape(4);//4=image
+        item->setTypeShape(MyItem::Image);
         scene->addItem(item);
         qDebug() << "Fichier de l'image: " + item->getPixFile();
       }
@@ -1289,7 +1282,7 @@ void MainWindow::ajouter_vignette_horiz_rotation(QString titre,int ligne,int wid
   item2->setPos(sizeW2/2,ligne-(sizeH2/2)-1);
   item2->setNom(titre);
   item2->setEtat(1);
-  item2->setTypeShape(1);// type de shape 1 rectangle - 2 rectangle  rounded - 3 circle
+  item2->setTypeShape(MyItem::Rectangle);
   item2->setMode(1);//mode utilisation
   scene_rotation2->addItem(item2);// bandeau parcelles
 
@@ -1311,7 +1304,7 @@ void MainWindow::ajouter_vignette_rotation(int culture, QString titre,int ligne,
   item->setNom(titre);
   item->setEtat(1);
   item->setMode(1); //déplacements imossibles
-  item->setTypeShape(1);// type de shape 1 rectangle - 2 rectangle  rounded - 3 circle
+  item->setTypeShape(MyItem::Rectangle);
   scene_rotation->addItem(item);//bandeau central
 }
 void MainWindow::ajouter_vignette_haut_rotation(QString titre,int ligne,int colonne,int nbCases,QColor couleur)
@@ -1329,8 +1322,7 @@ void MainWindow::ajouter_vignette_haut_rotation(QString titre,int ligne,int colo
    item->setNom(titre);
    item->setEtat(1);
    item->setMode(2); //déplacements possibles
-   item->setTypeShape(1);// type de shape 1 rectangle - 2 rectangle  rounded - 3 circle
-
+   item->setTypeShape(MyItem::Rectangle);
    scene_rotation3->addItem(item); // bandeau haut horizontal
 }
 void MainWindow::ajouter_repere_haut_rotation(QString titre,int ligne,int colonne,int nbCases,QColor couleur)
@@ -1350,7 +1342,7 @@ void MainWindow::ajouter_repere_haut_rotation(QString titre,int ligne,int colonn
    item->setNom(titre);
    item->setEtat(1);
    item->setMode(2); //déplacements possibles
-   item->setTypeShape(1);// type de shape 1 rectangle - 2 rectangle  rounded - 3 circle
+   item->setTypeShape(MyItem::Rectangle);
    scene_rotation->addItem(item);; // bandeau haut horizontal
 }
 void MainWindow::ajouter_repere_jour_rotation(QString titre,int colonne,int ligne,int width,int height,QColor couleur)
@@ -1377,7 +1369,7 @@ void MainWindow::ajouter_vignette_horizontale(QString titre,int ligne,int width,
   item2->setPos(sizeW2/2,ligne-(sizeH2/2)-1);
   item2->setNom(titre);
   item2->setEtat(1);
-  item2->setTypeShape(1);// type de shape 1 rectangle - 2 rectangle  rounded - 3 circle
+  item2->setTypeShape(MyItem::Rectangle);
   item2->setMode(1);//mode utilisation
   scene_planning2->addItem(item2);
 
@@ -1393,7 +1385,7 @@ void MainWindow::ajouter_vignette_verticale(QString titre,int colonne,int width,
   item->setPos(colonne-(sizeW/2)-1,20+sizeH/2);
   item->setNom(titre);
   item->setEtat(1);
-  item->setTypeShape(1);// type de shape 1 rectangle - 2 rectangle  rounded - 3 circle
+  item->setTypeShape(MyItem::Rectangle);
   item->setMode(1);//mode utilisation
   scene_planning3->addItem(item);
 
@@ -1416,7 +1408,7 @@ void MainWindow::ajouter_vignette_planning(int culture,QString titre,int ligne,i
   item->setNom(titre);
   item->setEtat(1);
   item->setMode(2); //déplacements possibles
-  item->setTypeShape(1);// type de shape 1 rectangle - 2 rectangle  rounded - 3 circle
+  item->setTypeShape(MyItem::Rectangle);
   scene_planning->addItem(item);
 }
 
@@ -1430,7 +1422,8 @@ void MainWindow::ajouter_vignette_mois(QString titre,int colonne,int nb_jours,QC
   item->setPos(colonne+(sizeW/2),sizeH/2);
   item->setNom(titre);
   item->setEtat(1);
-  item->setTypeShape(1);// type de shape 1 rectangle - 2 rectangle  rounded - 3 circle
+
+  item->setTypeShape(MyItem::Rectangle);
   item->setMode(1);//mode utilisation
   scene_planning3->addItem(item);
 }
@@ -1585,7 +1578,7 @@ void MainWindow::items_vers_tableau()
    QString strDate = "01/01/"+year;
    QDate date = QDate::fromString(strDate ,"dd/MM/yyyy");
    int jour=date.dayOfWeek();
-   qDebug() << "date "<<currentDate<<" strDate "<<strDate<<" jour"<<jour;
+ //  qDebug() << "date "<<currentDate<<" strDate "<<strDate<<" jour"<<jour;
    ui->comboBox_AnneeEnCours->setCurrentText(year);
    affiche_rotation(year.toInt());
    affiche_planning(jour); //mise à jour de la page planning
@@ -1890,8 +1883,8 @@ QString MainWindow::Choisir_le_fichier()
 
 void MainWindow::switchcall(QString selection)
 {// changement de la combobox type d'action non utilisé
-  if(selection!="")
-     qDebug() << "selection" << selection;
+  if(selection!=""){}
+   //  qDebug() << "selection" << selection;
 }
 
 
@@ -1910,10 +1903,10 @@ void MainWindow::on_actionBringToFront_triggered()
   foreach (QGraphicsItem *item, overlapItems)
     {
       zValue = item->zValue() + 0.1;
-      qDebug() << zValue;
+     // qDebug() << zValue;
      }
   selectedItem->setZValue(zValue);
-qDebug() << "bring to front";
+//qDebug() << "bring to front";
 }
 
 void MainWindow::on_actionBringToBack_triggered()
@@ -1928,10 +1921,10 @@ void MainWindow::on_actionBringToBack_triggered()
   foreach (QGraphicsItem *item, overlapItems)
     {
           zValue = item->zValue() - 0.1;
-          qDebug() << zValue;
+          //qDebug() << zValue;
      }
   selectedItem->setZValue(zValue);
-qDebug() << "bring to back";
+//qDebug() << "bring to back";
 
 }
 /**********************affichage fond d'écran***************************/
@@ -2121,6 +2114,10 @@ void MainWindow::on_pushButton_Affiches_fiche_clicked()
      }
 }
 
+void MainWindow::on_lineEdit_Nom_item_textChanged(const QString &arg1)
+{
+   on_pushButton_Enregistrer_modif_item_clicked();
+}
 
 void MainWindow::on_pushButton_Enregistrer_modif_item_clicked()
 {
@@ -2134,6 +2131,7 @@ void MainWindow::on_pushButton_Enregistrer_modif_item_clicked()
            item->setTexte(ui->textEdit_plan_commentaires->document()->toPlainText());
          }
      }
+  items_vers_tableau();
 }
 
 
@@ -2409,11 +2407,13 @@ void MainWindow::on_tableView_plantes_clicked(const QModelIndex &index)
   if ( query.first() )
     {
     resultat = query.value(0).toString();
-    qDebug() << resultat;
+   // qDebug() << resultat;
     ui->comboBox_especes_de_plantes->setCurrentIndex(ui->comboBox_especes_de_plantes->findText(resultat));
     }
   else
-    qDebug() <<"erreur query :" <<  query.lastError().text() <<"  " <<query.lastError().databaseText()<<query.driver();
+    {
+      qDebug() <<"erreur query :" <<  query.lastError().text() <<"  " <<query.lastError().databaseText()<<query.driver();
+    }
 
   ui->textEdit_commentaires_plantes->setText(str3);
   ui->lineEdit_Id_plantes->setText(id_plante);
@@ -2432,7 +2432,7 @@ void MainWindow::on_comboBox_especes_de_plantes_currentIndexChanged(const QStrin
   if ( query.first() )
     {
     resultat = query.value(0).toString();
-    qDebug() << resultat <<" nom "<<arg1;
+   // qDebug() << resultat <<" nom "<<arg1;
 
     for(int index=0;index<ui->tableView_especes->model()->rowCount();index++)
       {
@@ -2496,7 +2496,7 @@ void MainWindow::on_pushButton_enregistrer_plantes_clicked()
   if ( query.first() )
     {
     id_espece = query.value(0).toString();
-    qDebug() << nom_espece <<" id "<<id_espece;
+   // qDebug() << nom_espece <<" id "<<id_espece;
     }
   else
     qDebug() <<"erreur query :" <<  query.lastError().text() <<"  " <<query.lastError().databaseText()<<query.driver();
@@ -2624,7 +2624,7 @@ void MainWindow::on_tableView_especes_clicked(const QModelIndex &index)
   if ( query.first() )
     {
     resultat = query.value(0).toString();
-    qDebug() << resultat;
+   // qDebug() << resultat;
     for(int index=0;index<ui->tableView_familles->model()->rowCount();index++)
       {
         QString id= ui->tableView_familles->model()->data(ui->tableView_familles->model()->index(index,0)).toString();
@@ -2662,7 +2662,7 @@ void MainWindow::on_pushButton_enregistrer_especes_clicked()
   if ( query.first() )
     {
     id_famille = query.value(0).toString();
-    qDebug() << nom_famille <<" id "<<id_famille;
+   // qDebug() << nom_famille <<" id "<<id_famille;
     }
   else
     qDebug() <<"erreur query :" <<  query.lastError().text() <<"  " <<query.lastError().databaseText()<<query.driver();
@@ -2705,7 +2705,7 @@ void MainWindow::on_pushButton_Modifier_especes_clicked()
   if ( query.first() )
     {
     id_famille = query.value(0).toString();
-    qDebug() << nom_famille <<" id "<<id_famille;
+   // qDebug() << nom_famille <<" id "<<id_famille;
     }
   else
     qDebug() <<"erreur query :" <<  query.lastError().text() <<"  " <<query.lastError().databaseText()<<query.driver();
@@ -3213,3 +3213,5 @@ void MainWindow::on_actionCacher_la_grille_triggered()
    ui->actionCacher_la_grille->setChecked(true);
    tableau_vers_items();
 }
+
+
