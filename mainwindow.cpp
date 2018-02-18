@@ -1023,8 +1023,8 @@ void MainWindow::on_actionOuvrir_triggered()
                     {
                        QDomElement base = basenode.toElement();
                       QString fichierBase=base.attribute("fichier");
-                       // ui->lineEdit_config_nom_base->setText();
-                       qDebug() << "Chemin base : " + fichierBase ;
+                      // ui->lineEdit_config_nom_base->setText();
+
                      }
 
                   // écriture dans le tableau de l'objet fond d'écran
@@ -2116,7 +2116,8 @@ void MainWindow::on_pushButton_Affiches_fiche_clicked()
 
 void MainWindow::on_lineEdit_Nom_item_textChanged(const QString &arg1)
 {
-   on_pushButton_Enregistrer_modif_item_clicked();
+   // on_pushButton_Enregistrer_modif_item_clicked();
+   //ui->pushButton_Enregistrer_modif_item->setStyleSheet("background-color : #ffff00");
 }
 
 void MainWindow::on_pushButton_Enregistrer_modif_item_clicked()
@@ -2127,11 +2128,12 @@ void MainWindow::on_pushButton_Enregistrer_modif_item_clicked()
        if(itemList[i]->isSelected())
          {
            MyItem* item = dynamic_cast<MyItem*> (itemList[i]);
-           item->setNom(ui->lineEdit_Nom_item->text());
-           item->setTexte(ui->textEdit_plan_commentaires->document()->toPlainText());
+           item->setNom(apos(ui->lineEdit_Nom_item->text()));
+           item->setTexte(apos(ui->textEdit_plan_commentaires->document()->toPlainText()));
          }
      }
   items_vers_tableau();
+
 }
 
 
@@ -2583,24 +2585,37 @@ void MainWindow::on_pushButton_Nouveau_plantes_clicked()
 
 void MainWindow::on_pushButton_supprimer_plantes_clicked()
 {
-   QString strId=ui->lineEdit_Id_plantes->text();
-   QString str="delete from plantes where id="+ strId;
-    QSqlQuery query;
-   query.exec(str);
-   qDebug() <<"delete: " << query.lastQuery().toUtf8();
+    QMessageBox msgBox;
+    msgBox.setInformativeText("Voulez-vous supprimer cette plante ?");
+    msgBox.setStandardButtons(QMessageBox::Ok | QMessageBox::Cancel);
+    msgBox.setDefaultButton(QMessageBox::Ok);
+    msgBox.setIcon(QMessageBox::Question);
+    int ret = msgBox.exec();
+    switch (ret)
+      {
+       case QMessageBox::Ok:
+        QString strId=ui->lineEdit_Id_plantes->text();
+        QString str="delete from plantes where id="+ strId;
+        QSqlQuery query;
+        query.exec(str);
 
-     if (!query.isActive())
-      qDebug() <<"erreur query :" <<  query.lastError().text() <<"  " <<query.lastError().databaseText()<<query.driver();
-     else
-      qDebug() << "suppression terminée";
-     QSqlQueryModel *model3 = new QSqlQueryModel;
-     model3->setQuery("SELECT id, designation,type_lune, nom_latin,espece,commentaires,semis_printemps,semis_ete,semis_automne FROM plantes");
-     model3->setHeaderData(0, Qt::Vertical, QObject::tr("id"));
-     model3->setHeaderData(1, Qt::Vertical, QObject::tr("designation"));
-     model3->setHeaderData(1, Qt::Vertical, QObject::tr("espece"));
-     ui->tableView_plantes->setModel(model3);
-     on_pushButton_Nouveau_plantes_clicked();
-     init_base();
+         if (!query.isActive())
+          qDebug() <<"erreur query :" <<  query.lastError().text() <<"  " <<query.lastError().databaseText()<<query.driver();
+         else
+          qDebug() << "suppression terminée";
+
+         QSqlQueryModel *model3 = new QSqlQueryModel;
+         model3->setQuery("SELECT id, designation,type_lune, nom_latin,espece,commentaires,semis_printemps,semis_ete,semis_automne FROM plantes");
+         model3->setHeaderData(0, Qt::Vertical, QObject::tr("id"));
+         model3->setHeaderData(1, Qt::Vertical, QObject::tr("designation"));
+         model3->setHeaderData(1, Qt::Vertical, QObject::tr("espece"));
+         ui->tableView_plantes->setModel(model3);
+         on_pushButton_Nouveau_plantes_clicked();
+         init_base();
+
+        break;
+      }
+
 }
 
 /**********************************fiche especes*****************************/
@@ -2685,14 +2700,13 @@ void MainWindow::on_pushButton_enregistrer_especes_clicked()
     else
      qDebug() << "enregistrement terminé";
 
-    QSqlQueryModel *model1 = new QSqlQueryModel;
-    model1->setQuery("SELECT id, designation, famille ,positif,negatif,commentaires, compost, rotation_ans,rotation_familles FROM especes");
-    model1->setHeaderData(0, Qt::Vertical, QObject::tr("id"));
-    model1->setHeaderData(1, Qt::Vertical, QObject::tr("designation"));
-    model1->setHeaderData(1, Qt::Vertical, QObject::tr("famille"));
-    ui->tableView_especes->setModel(model1);
-
-init_base();
+   QSqlQueryModel *model1 = new QSqlQueryModel;
+   model1->setQuery("SELECT id, designation, famille ,positif,negatif,commentaires, compost, rotation_ans,rotation_familles FROM especes");
+   model1->setHeaderData(0, Qt::Vertical, QObject::tr("id"));
+   model1->setHeaderData(1, Qt::Vertical, QObject::tr("designation"));
+   model1->setHeaderData(1, Qt::Vertical, QObject::tr("famille"));
+   ui->tableView_especes->setModel(model1);
+   init_base();
 }
 
 void MainWindow::on_pushButton_Modifier_especes_clicked()
@@ -2730,14 +2744,13 @@ void MainWindow::on_pushButton_Modifier_especes_clicked()
     else
      qDebug() << "enregistrement terminé";
 
-    QSqlQueryModel *model1 = new QSqlQueryModel;
-    model1->setQuery("SELECT id, designation, famille,positif,negatif, commentaires, compost, rotation_ans,rotation_familles FROM especes");
-    model1->setHeaderData(0, Qt::Vertical, QObject::tr("id"));
-    model1->setHeaderData(1, Qt::Vertical, QObject::tr("designation"));
-    model1->setHeaderData(1, Qt::Vertical, QObject::tr("famille"));
-    ui->tableView_especes->setModel(model1);
-
-    init_base();
+   QSqlQueryModel *model1 = new QSqlQueryModel;
+   model1->setQuery("SELECT id, designation, famille,positif,negatif, commentaires, compost, rotation_ans,rotation_familles FROM especes");
+   model1->setHeaderData(0, Qt::Vertical, QObject::tr("id"));
+   model1->setHeaderData(1, Qt::Vertical, QObject::tr("designation"));
+   model1->setHeaderData(1, Qt::Vertical, QObject::tr("famille"));
+   ui->tableView_especes->setModel(model1);
+   init_base();
 }
 
 void MainWindow::on_pushButton_Nouveau_especes_clicked()
@@ -2751,6 +2764,40 @@ void MainWindow::on_pushButton_Nouveau_especes_clicked()
     ui->comboBox_rotation_compost->setCurrentIndex(0);
     ui->comboBox_rotation_annees->setCurrentIndex(0);
     ui->lineEdit_valeur_rotation_familles->setText("0000000000000000000000");
+}
+void MainWindow::on_pushButton_Supprimer_especes_clicked()
+{
+    QMessageBox msgBox;
+    msgBox.setInformativeText("Voulez-vous supprimer cette espèce ?");
+    msgBox.setStandardButtons(QMessageBox::Ok | QMessageBox::Cancel);
+    msgBox.setDefaultButton(QMessageBox::Ok);
+    msgBox.setIcon(QMessageBox::Question);
+    int ret = msgBox.exec();
+    switch (ret)
+      {
+       case QMessageBox::Ok:
+        QString strId=ui->lineEdit_Id_especes->text();
+        QString str="delete from especes where id="+ strId;
+        QSqlQuery query;
+        query.exec(str);
+        qDebug() <<"delete: " << query.lastQuery().toUtf8();
+
+         if (!query.isActive())
+          qDebug() <<"erreur query :" <<  query.lastError().text() <<"  " <<query.lastError().databaseText()<<query.driver();
+         else
+          qDebug() << "suppression terminée";
+       QSqlQueryModel *model1 = new QSqlQueryModel;
+       model1->setQuery("SELECT id, designation, famille,positif,negatif, commentaires, compost, rotation_ans,rotation_familles FROM especes");
+       model1->setHeaderData(0, Qt::Vertical, QObject::tr("id"));
+       model1->setHeaderData(1, Qt::Vertical, QObject::tr("designation"));
+       model1->setHeaderData(1, Qt::Vertical, QObject::tr("famille"));
+       ui->tableView_especes->setModel(model1);
+       on_pushButton_Nouveau_especes_clicked();
+       init_base();
+
+       break;
+      }
+
 }
 
 /***********************************fiche familles***************************/
@@ -2775,7 +2822,6 @@ void MainWindow::on_pushButton_enregistrer_familles_clicked()
     model3->setQuery("SELECT id, designation FROM familles");
     model3->setHeaderData(0, Qt::Vertical, QObject::tr("id"));
     model3->setHeaderData(1, Qt::Vertical, QObject::tr("designation"));
-
     ui->tableView_familles->setModel(model3);
     init_base();
 }
@@ -2807,6 +2853,41 @@ void MainWindow::on_pushButton_Nouveau_familles_clicked()
 {
   ui->lineEdit_Designation_famille->setText("");
   ui->lineEdit_Id_familles->setText("");
+}
+
+void MainWindow::on_pushButton_Supprimer_familles_clicked()
+{
+    QMessageBox msgBox;
+    msgBox.setInformativeText("Voulez-vous supprimer cette famille ?");
+    msgBox.setStandardButtons(QMessageBox::Ok | QMessageBox::Cancel);
+    msgBox.setDefaultButton(QMessageBox::Ok);
+    msgBox.setIcon(QMessageBox::Question);
+    int ret = msgBox.exec();
+    switch (ret)
+      {
+       case QMessageBox::Ok:
+        QString strId=ui->lineEdit_Id_familles->text();
+        QString str="delete from familles where id="+ strId;
+        QSqlQuery query;
+        query.exec(str);
+        qDebug() <<"delete: " << query.lastQuery().toUtf8();
+
+         if (!query.isActive())
+            qDebug() <<"erreur query :" <<  query.lastError().text() <<"  " <<query.lastError().databaseText()<<query.driver();
+         else
+            qDebug() << "suppression terminée";
+        QSqlQueryModel *model3 = new QSqlQueryModel;
+        model3->setQuery("SELECT id, designation FROM familles");
+        model3->setHeaderData(0, Qt::Vertical, QObject::tr("id"));
+        model3->setHeaderData(1, Qt::Vertical, QObject::tr("designation"));
+        ui->tableView_familles->setModel(model3);
+        on_pushButton_Nouveau_familles_clicked();
+        init_base();
+
+        break;
+      }
+
+
 }
 
 /************************************fiche tâches***************************/
@@ -2871,6 +2952,40 @@ void MainWindow::on_tableView_taches_clicked(const QModelIndex &index)
   QString str =  ui->tableView_taches->model()->data(ui->tableView_taches->model()->index(row,1)).toString();
   ui->lineEdit_designation_taches->setText(str);
   ui->lineEdit_Id_taches->setText(id_tache);
+}
+
+void MainWindow::on_pushButton_Supprimer_operations_clicked()
+{
+    QMessageBox msgBox;
+    msgBox.setInformativeText("Voulez-vous supprimer cette opération ?");
+    msgBox.setStandardButtons(QMessageBox::Ok | QMessageBox::Cancel);
+    msgBox.setDefaultButton(QMessageBox::Ok);
+    msgBox.setIcon(QMessageBox::Question);
+    int ret = msgBox.exec();
+    switch (ret)
+      {
+       case QMessageBox::Ok:
+        QString strId=ui->lineEdit_Id_taches->text();
+        QString str="delete from taches where id="+ strId;
+        QSqlQuery query;
+        query.exec(str);
+        qDebug() <<"delete: " << query.lastQuery().toUtf8();
+
+         if (!query.isActive())
+          qDebug() <<"erreur query :" <<  query.lastError().text() <<"  " <<query.lastError().databaseText()<<query.driver();
+         else
+          qDebug() << "suppression terminée";
+       QSqlQueryModel *model4 = new QSqlQueryModel;
+       model4->setQuery("SELECT id, designation FROM taches");
+       model4->setHeaderData(0, Qt::Vertical, QObject::tr("id"));
+       model4->setHeaderData(1, Qt::Vertical, QObject::tr("designation"));
+       ui->tableView_taches->setModel(model4);
+       on_pushButton_Nouveau_operations_clicked();
+       init_base();
+
+        break;
+      }
+
 }
 
 /***************************TABLES DES SEMIS ET RECOLTE ********************/

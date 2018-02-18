@@ -1856,7 +1856,7 @@
               </font>
              </property>
              <property name="currentIndex">
-              <number>4</number>
+              <number>0</number>
              </property>
              <widget class="QWidget" name="tab_4">
               <attribute name="title">
@@ -2209,6 +2209,18 @@
                <layout class="QHBoxLayout" name="horizontalLayout_9">
                 <item>
                  <widget class="QPushButton" name="pushButton_Modifier_plantes">
+                  <property name="minimumSize">
+                   <size>
+                    <width>0</width>
+                    <height>25</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>16777215</width>
+                    <height>25</height>
+                   </size>
+                  </property>
                   <property name="text">
                    <string>Modifier</string>
                   </property>
@@ -2216,10 +2228,16 @@
                 </item>
                 <item>
                  <widget class="QPushButton" name="pushButton_supprimer_plantes">
+                  <property name="minimumSize">
+                   <size>
+                    <width>0</width>
+                    <height>25</height>
+                   </size>
+                  </property>
                   <property name="maximumSize">
                    <size>
                     <width>16777215</width>
-                    <height>16777214</height>
+                    <height>25</height>
                    </size>
                   </property>
                   <property name="text">
@@ -2229,6 +2247,18 @@
                 </item>
                 <item>
                  <widget class="QPushButton" name="pushButton_Nouveau_plantes">
+                  <property name="minimumSize">
+                   <size>
+                    <width>0</width>
+                    <height>25</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>16777215</width>
+                    <height>25</height>
+                   </size>
+                  </property>
                   <property name="text">
                    <string>Nouveau</string>
                   </property>
@@ -2236,6 +2266,18 @@
                 </item>
                 <item>
                  <widget class="QPushButton" name="pushButton_enregistrer_plantes">
+                  <property name="minimumSize">
+                   <size>
+                    <width>0</width>
+                    <height>25</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>16777215</width>
+                    <height>25</height>
+                   </size>
+                  </property>
                   <property name="text">
                    <string>Enregistrer</string>
                   </property>
@@ -3203,7 +3245,7 @@
                    </widget>
                   </item>
                   <item>
-                   <widget class="QPushButton" name="pushButton_Annuler_especes">
+                   <widget class="QPushButton" name="pushButton_Supprimer_especes">
                     <property name="maximumSize">
                      <size>
                       <width>100</width>
@@ -3211,7 +3253,7 @@
                      </size>
                     </property>
                     <property name="text">
-                     <string>Annuler</string>
+                     <string>Supprimer</string>
                     </property>
                    </widget>
                   </item>
@@ -3782,9 +3824,9 @@
                    </widget>
                   </item>
                   <item>
-                   <widget class="QPushButton" name="pushButton_Annuler_familles">
+                   <widget class="QPushButton" name="pushButton_Supprimer_familles">
                     <property name="text">
-                     <string>Annuler</string>
+                     <string>Supprimer</string>
                     </property>
                    </widget>
                   </item>
@@ -3910,7 +3952,7 @@
                    <string>jardin.sqli</string>
                   </property>
                   <property name="readOnly">
-                   <bool>false</bool>
+                   <bool>true</bool>
                   </property>
                  </widget>
                 </item>
@@ -4095,7 +4137,7 @@
                     </widget>
                    </item>
                    <item>
-                    <widget class="QPushButton" name="pushButton_Annuler_operations">
+                    <widget class="QPushButton" name="pushButton_Supprimer_operations">
                      <property name="minimumSize">
                       <size>
                        <width>0</width>
@@ -4109,7 +4151,7 @@
                       </size>
                      </property>
                      <property name="text">
-                      <string>Annuler</string>
+                      <string>Supprimer</string>
                      </property>
                     </widget>
                    </item>

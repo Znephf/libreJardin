@@ -61,8 +61,12 @@ Database::Database(const int &IdItem,const int&IdCulture, const QString &fileNam
   QDate dateDuJour;
   dateDuJour = dateDuJour.currentDate();
   ui->dateEdit->setDate(dateDuJour);
-  ui->dateEdit_fin_culture->setDate(dateDuJour);
   ui->dateEdit_tache->setDate(dateDuJour);
+  // mise à jour date de récolte selon durée prévisionnelle
+  QString str1  = ui->dateEdit->date().toString("yyyy.MM.dd");
+  QDate dateS = QDate::fromString(str1 ,"yyyy.MM.dd");
+  QDate dateR = dateS.addDays(ui->lineEdit_duree->text().toInt());
+  ui->dateEdit_fin_culture->setDate(dateR);
 
   createConnection();
   //remplissage combobox espèces type de plantes
@@ -164,17 +168,17 @@ void Database::on_pushButton_validerData_clicked()
   else
     {
     qDebug() <<"erreur query :" <<  query.lastError().text() <<"  " <<query.lastError().databaseText()<<query.driver();
-    QMessageBox msgBox;
-    msgBox.setText("ERREUR D'ÉCRITURE - vérifier les champs");
+    QMessageBox::information(this, tr("Erreur d'enregistrement"),
+                tr("Veuillez vérifier que tous les champs soient bien remplis"));
      }
   QString str1  = ui->dateEdit->date().toString("yyyy.MM.dd");
   QString str2 =  id_plante;
-  QString str3  = ui->plainTextEdit_commentaires->document()->toPlainText();
+  QString str3  = apos(ui->plainTextEdit_commentaires->document()->toPlainText());
   QString str4  = QString::number(ui->comboBox_etat_culture->currentIndex()+1);
   QString str5  = ui->lineEdit_duree->text();
   QString str6  = ui->dateEdit_fin_culture->date().toString("yyyy.MM.dd");
   QString str="insert into cultures (designation,parcelle,date_semis,type_plante,commentaires,etat,duree,date_recolte)"
-      "values('"+ui->lineEditDesignation->text()+"',"+ui->lineEditIdParcelle->text()+",'"+str1+"',"+str2+",'"+str3+"',"+str4+","+str5+",'"+str6+"')";
+      "values('"+apos(ui->lineEditDesignation->text())+"',"+ui->lineEditIdParcelle->text()+",'"+str1+"',"+str2+",'"+str3+"',"+str4+","+str5+",'"+str6+"')";
   query.exec(str);
     if (!query.isActive())
       {
@@ -323,9 +327,9 @@ void Database::on_pushButton_modifier_clicked()
                 tr("Veuillez vérifier que tous les champs soient bien remplis"));
      }
   QString str1  = ui->dateEdit->date().toString("yyyy.MM.dd");
-  QString str =   ui->lineEditDesignation->text();
+  QString str =   apos(ui->lineEditDesignation->text());
   QString str2 =  id_plante;
-  QString str3 =  ui->plainTextEdit_commentaires->document()->toPlainText();
+  QString str3 =  apos(ui->plainTextEdit_commentaires->document()->toPlainText());
   QString str4 =  ui->lineEdit_id_cultures->text();
   QString str5 =  ui->lineEditIdParcelle->text();
   QString str6 =  QString::number(ui->comboBox_etat_culture->currentIndex()+1);
@@ -376,9 +380,9 @@ void Database::on_pushButton_modifier_tache_clicked()
      }
   qDebug() <<"modifier: " << query.lastQuery().toUtf8();
   QString str1  = ui->dateEdit_tache->date().toString("yyyy.MM.dd"); //date tache
-  QString str =   ui->lineEdit_designation_tache->text();//designation tache
+  QString str =   apos(ui->lineEdit_designation_tache->text());//designation tache
   QString str2 =  id_type_tache; // id du type de tache
-  QString str3 =  ui->plainTextEdit_observations_taches->document()->toPlainText(); //observations
+  QString str3 =  apos(ui->plainTextEdit_observations_taches->document()->toPlainText()); //observations
   QString str4 =  ui->lineEdit_id_tache->text(); //id
   QString str5 =  ui->lineEdit_id_cultures->text(); // id culture
   QString strQuery="update observations set designation = '"+ str+"',date='"+str1+"',type= "+str2+",commentaires='"+str3+"',id_culture="+str5+" where id="+str4;
@@ -425,9 +429,9 @@ void Database::on_pushButton_creer_tache_clicked()
     }
   qDebug() <<"modifier: " << query.lastQuery().toUtf8();
   QString str1  = ui->dateEdit_tache->date().toString("yyyy.MM.dd"); //date tache
-  QString str =   ui->lineEdit_designation_tache->text();//designation tache
+  QString str =   apos(ui->lineEdit_designation_tache->text());//designation tache
   QString str2 =  id_type_tache; // id du type de tache
-  QString str3 =  ui->plainTextEdit_observations_taches->document()->toPlainText(); //observations
+  QString str3 =  apos(ui->plainTextEdit_observations_taches->document()->toPlainText()); //observations
   QString str4 =  ui->lineEdit_id_tache->text(); //id
   QString str5 =  ui->lineEdit_id_cultures->text(); // id culture
   QString strQ="insert into observations (designation, date,type , commentaires,id_culture)"
@@ -473,15 +477,12 @@ void Database::on_tableView_taches_clicked(const QModelIndex &index)
   if ( query.first() )
     {
     resultat = query.value(0).toString();
-    qDebug() << resultat;
     ui->comboBox_type_tache->setCurrentIndex(ui->comboBox_type_tache->findText(resultat));
     }
   else
     {
     qDebug() <<"erreur query :" <<  query.lastError().text() <<"  " <<query.lastError().databaseText()<<query.driver();
-    QMessageBox::information(this, tr("Erreur d'enregistrement"),
-                tr("Veuillez vérifier que tous les champs soient bien remplis"));
-     }
+    }
 
 }
 
@@ -666,3 +667,19 @@ void Database::on_pushButton_supprimer_tache_clicked()
 
 
 
+
+void Database::on_lineEdit_duree_textChanged(const QString &arg1)
+{
+    QString str1  = ui->dateEdit->date().toString("yyyy.MM.dd");
+    QDate dateS = QDate::fromString(str1 ,"yyyy.MM.dd");
+    QDate dateR = dateS.addDays(arg1.toInt());
+    ui->dateEdit_fin_culture->setDate(dateR);
+
+}
+
+QString Database::apos(QString texte)
+{
+  texte.replace(QString("'"), QString("''"));//remplacement des apostrophes
+  QString texteModif = texte.toUtf8()  ;//conversion
+  return texteModif;
+}

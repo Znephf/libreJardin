@@ -191,6 +191,14 @@ private slots:
 
   void on_lineEdit_Nom_item_textChanged(const QString &arg1);
 
+
+
+  void on_pushButton_Supprimer_especes_clicked();
+
+  void on_pushButton_Supprimer_familles_clicked();
+
+  void on_pushButton_Supprimer_operations_clicked();
+
 protected:
     QPoint mousePressPt;
     void mousePressEvent(QMouseEvent *event);
