@@ -35,6 +35,8 @@ public:
       {
         return m_grille;
       }
+public slots:
+
 
 private slots:
 
@@ -65,8 +67,6 @@ private slots:
   void on_actionAjouter_Rectangle_arrondi_triggered();
 
   void on_actionBringToFront_triggered();
-
-  void on_actionBringToBack_triggered();
 
   void on_pushButton_clicked();
 
@@ -113,7 +113,6 @@ private slots:
 
   void affiche_planning(const int day);
   void dessine_grille(const int espace,const qreal &Opacite);
-
   void ajouter_vignette_haut_rotation(const QString titre,const int ligne,const int colonne,const int nbCases,const QColor couleur);
   void ajouter_vignette_rotation(const int culture,const QString titre,const int ligne,const int colonne,const int nbCases,const QColor couleur);
   void ajouter_vignette_horiz_rotation(const QString titre,const int ligne,const int width,const int height,const QColor couleur);
@@ -183,15 +182,11 @@ private slots:
 
   void on_pushButton_supprimer_plantes_clicked();
 
-
-
   void on_actionAfficher_grille_triggered();
 
   void on_actionCacher_la_grille_triggered();
 
   void on_lineEdit_Nom_item_textChanged(const QString &arg1);
-
-
 
   void on_pushButton_Supprimer_especes_clicked();
 
@@ -199,10 +194,42 @@ private slots:
 
   void on_pushButton_Supprimer_operations_clicked();
 
+  QPolygon convertStrToPoly(const QString MyString);
+
+  void on_pushButton_recorPlan_clicked();
+
+  void on_pushButton_Polygone_clicked();
+
+  void on_pushButton_polyline_clicked();
+
+  void on_toolButton_DeleteVertex_P_clicked();
+
+  void on_toolButton_modifierPolygon_toggled(bool checked);
+
+  void on_toolButton_newPolygon_toggled(bool checked);
+
+  void on_comboBox_typeLigne_P_currentIndexChanged(int index);
+
+  void on_comboBox_epaisseurLignes_P_currentIndexChanged(const QString &arg1);
+
+  void on_toolButton_InsertRectangle_clicked();
+
+  void on_toolButton_InsertRoudedRectangle_clicked();
+
+  void on_toolButton_InsertCircle_clicked();
+
+  void on_toolButton_InsertImage_clicked();
+
+  void on_toolButton_DeleteObjet_clicked();
+
+  void on_toolButton_CouleurCrayon_clicked();
+
+  void on_toolButton_CouleurFond_clicked();
+
 protected:
     QPoint mousePressPt;
     void mousePressEvent(QMouseEvent *event);
-    void insererFond(int ObjetPosX,int ObjetPosY,QString fondfileName,int ObjetType);
+     void insererFond(int ObjetPosX,int ObjetPosY,QString fondfileName,int ObjetType);
     void Choisir_la_couleur(int nCell);
     QString Choisir_le_fichier();
 
@@ -219,6 +246,7 @@ private:
   bool mode_modifier;
   int m_id;
   int m_grille;//0 affiche - 1 cache
+  int m_mode;
 
   QSqlTableModel model1; //especes
   QSqlTableModel model2; //familles
@@ -284,6 +312,17 @@ public:
       {
         return m_pixmapId;
       }
+
+    void setNom(const QString nom)
+      {
+        itemNom = nom;
+      }
+
+    QString getNom()
+      {
+        return itemNom;
+      }
+
 protected:
     QPoint mousePressPt;
     void mousePressEvent(QGraphicsSceneMouseEvent *event);
@@ -299,6 +338,7 @@ private:
     int m_etat;
     int m_mode;
     int m_pixmapId;
+     QString itemNom;
 
 };
 /********************CLASS FONDITEM************************/

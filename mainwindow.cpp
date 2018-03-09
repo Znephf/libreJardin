@@ -1,4 +1,4 @@
-/****************************************************************************
+﻿/****************************************************************************
 **
 ** Copyright (C) 2017 openjardin.eu.
 ** Contact: https://openjardin.eu
@@ -63,8 +63,11 @@
 #include <QDomDocument>
 
 #include "myitem.h"
-//#include "mybutton.h"
 #include "mygrilleitem.h"
+#include "mypolygone.h"
+#include "mypolyline.h"
+#include "myvertex.h"
+#include "mygraphicsscene.h"
 
 MainWindow::MainWindow(QWidget *parent) :
   QMainWindow(parent),
@@ -103,9 +106,15 @@ MainWindow::MainWindow(QWidget *parent) :
 
   ui->setupUi(this);
   ui->lineEdit_config_nom_base->setText(fileName);
-  scene = new QGraphicsScene(this);
+
+ //initialisation des "QGraphicsScene"
+ // scene = new QGraphicsScene(this);
+  scene = new MyGraphicsScene(this);
   scene->setSceneRect(0, 0,1900, 1200);
   scene->setItemIndexMethod(QGraphicsScene::BspTreeIndex); // indexation des items de la scene
+
+  MyGraphicsScene* scene2 = dynamic_cast<MyGraphicsScene*> (scene);
+  scene2->setMode(MyGraphicsScene::Utilisation);
 
   scene_planning = new QGraphicsScene(this);
   scene_planning->setSceneRect(0, 0,5205, 1200);//5320
@@ -135,6 +144,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
   // stylesheets
  // ui->pushButton_Enregistrer_modif_item->setStyleSheet("background-color : #ffff00");
+  ui->pushButton_recorPlan->hide();
+  ui->pushButton_recorPlan->setStyleSheet("background-color : #ffff00; color: red");
   ui->pushButton_Affiches_fiche->setStyleSheet("background-color : #ffff00");
 
   qApp->setPalette(this->style()->standardPalette());
@@ -169,6 +180,7 @@ MainWindow::MainWindow(QWidget *parent) :
   colors << Qt::black << Qt::white << Qt::red << Qt::blue << Qt::yellow;
 
   ui->graphicsView->setScene(scene);
+  ui->graphicsView->setMouseTracking(true);
   ui->graphicsView_planning->setScene(scene_planning);
   ui->graphicsView_Planning2->setScene(scene_planning2);
   ui->graphicsView_planning3->setScene(scene_planning3);
@@ -176,6 +188,7 @@ MainWindow::MainWindow(QWidget *parent) :
   ui->graphicsView_rotation->setScene(scene_rotation);
   ui->graphicsView_rotation2->setScene(scene_rotation2);
   ui->graphicsView_rotation3->setScene(scene_rotation3);
+
 
   QDate currentDate= QDate::currentDate();
   QString year=QString::number(currentDate.year());
@@ -220,8 +233,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
   // positionnement des scrollbar en haut et à gauche
   ui->graphicsView->horizontalScrollBar()->setSliderPosition(1);
-
-  // si la selection de l'item change lancer la commande
+   // si la selection de l'item change lancer la commande
   connect(scene, SIGNAL(selectionChanged()),this, SLOT(Item_clicked()));
   connect(scene_planning, SIGNAL(selectionChanged()),this, SLOT(ItemPlanning_clicked()));
   // passer en mode utilisation
@@ -241,15 +253,20 @@ MainWindow::MainWindow(QWidget *parent) :
   double sizeW = pixmap->boundingRect().width();
   double sizeH = pixmap->boundingRect().height();
   scene->setSceneRect(0, 0, sizeW, sizeH);
+
+
+  pixmap->setPixFile(fileName2);
+  insererFond(0,0,fileName2,7); //ecriture des valeurs dans tableBackground
+
+  //dessin de la grille (taille,transparence)
+  setGrille(0);
+  dessine_grille(50,0.3);
+  m_mode=1;
+
   // positionnement des scrollbar en haut et à gauche
   QPointF zero = ui->graphicsView->mapFromScene(QPointF(0,0));
   ui->graphicsView->horizontalScrollBar()->setValue(zero.x());
   ui->graphicsView->verticalScrollBar()->setValue(zero.y());
-  pixmap->setPixFile(fileName2);
-  insererFond(0,0,fileName2,7); //ecriture des valeurs dans tableBackground
-  //dessin de la grille (taille,transparence)
-  setGrille(0);
-  dessine_grille(50,0.3);
 
 
 
@@ -260,7 +277,8 @@ MainWindow::MainWindow(QWidget *parent) :
   connect(ui->graphicsView_rotation->horizontalScrollBar(), SIGNAL(valueChanged(int)),ui->graphicsView_rotation3->horizontalScrollBar(),SLOT(setValue(int)));
   affiche_planning(jour);
   //cacher l'onglets "objets" qui contient les tables des objets
-  ui->tabWidget_taches->removeTab(4);
+//  ui->tabWidget_taches->removeTab(4);
+  ui->frame_ToolsCreate->hide();
 
 }
 /***********************************************************************************/
@@ -396,12 +414,36 @@ QString MainWindow::apos(QString texte)
   return texteModif;
 }
 
-/*******************************************************************************************/
+/*************************************************************************************************/
 void MainWindow::mousePressEvent(QMouseEvent *event)
 {
-    mousePressPt.setX(pos().x() - event->x());
+ /*   mousePressPt.setX(pos().x() - event->x());
     mousePressPt.setY(pos().y() - event->y());
+//    qDebug() << "mouse press event x"<< event->x()-15<<" y "<<event->y()-165;
+
+//if (ui->tabWidget->currentIndex()==0 && cursor().shape()==Qt::ArrowCursor)
+  if (m_mode==0 && cursor().shape()==Qt::ArrowCursor&&event->y()>165 && ui->toolButton_newPolygon->isChecked())
+    {  //création de polygones
+        MyVertex *item = new MyVertex(10,10);
+        item->setId(ui->lineEdit_ItemId->text().toInt());
+        item->setColor(QColor(Qt::yellow));
+        item->setPenColor(QColor(Qt::black));
+        item->setOpac(0.8); //opacité de l'item
+        item->setTypeShape(MyVertex::Rectangle);
+        item->setPos(event->x()-15,event->y()-165);
+        item->setNom(" ");
+        item->setTexte("xx");
+        item->setEtat(1);
+        item->setMode(0);
+       scene->addItem(item);
+       QPointF zero = ui->graphicsView->mapFromScene(QPointF(0,0));
+        ui->graphicsView->horizontalScrollBar()->setValue(zero.x());
+        ui->graphicsView->verticalScrollBar()->setValue(zero.y());
+
+     }*/
 }
+
+
 // **********************GRILLE **************************//
 
 void MainWindow::dessine_grille(const int espace,const qreal &Opacite)
@@ -426,6 +468,7 @@ void MainWindow::dessine_grille(const int espace,const qreal &Opacite)
      }
   }
 }
+
 
 void MainWindow::on_comboBox_AnneeEnCours_currentIndexChanged(const QString &arg1)
 { //le changement de l'année du combobox entraine l'affichage du planning calé au 1er janvier
@@ -835,7 +878,11 @@ void MainWindow::affiche_planning(int day)
 /*******************************************************************************/
 /*********************SAUVEGARDE DU TABLEAU DANS UN FICHIER XML*****************/
 /*******************************************************************************/
-
+void MainWindow::on_pushButton_recorPlan_clicked()
+{
+  on_actionSauver_triggered();
+  ui->pushButton_recorPlan->hide();
+}
 // sauver les données de la table dans un fichier XML
 void MainWindow::on_actionSauver_triggered()
 {
@@ -968,6 +1015,7 @@ void MainWindow::on_actionSauver_triggered()
             QTextStream stream(&file);
             stream << document.toString();
             file.close();
+            ui->pushButton_recorPlan->hide();
         }
 }
 /*****************************************************************************/
@@ -1195,7 +1243,7 @@ void MainWindow::on_actionAjouterRectangle_triggered()
   ui->graphicsView->verticalScrollBar()->setValue(zero.y());
   QList <QGraphicsItem*> itemList = scene->items();
   items_vers_tableau();
-
+ ui->pushButton_recorPlan->show();
 }
 void MainWindow::on_actionAjouter_Rectangle_arrondi_triggered()
 {
@@ -1217,6 +1265,7 @@ void MainWindow::on_actionAjouter_Rectangle_arrondi_triggered()
   ui->graphicsView->verticalScrollBar()->setValue(zero.y());
   QList <QGraphicsItem*> itemList = scene->items();
   items_vers_tableau();
+   ui->pushButton_recorPlan->show();
 }
 
 void MainWindow::on_actionAjouterCercle_triggered()
@@ -1240,6 +1289,7 @@ void MainWindow::on_actionAjouterCercle_triggered()
   ui->graphicsView->verticalScrollBar()->setValue(zero.y());
   QList <QGraphicsItem*> itemList = scene->items();
   items_vers_tableau();
+   ui->pushButton_recorPlan->show();
 }
 
 void MainWindow::on_actionAjouterImage_triggered()
@@ -1268,6 +1318,7 @@ void MainWindow::on_actionAjouterImage_triggered()
       }
 
     items_vers_tableau();
+     ui->pushButton_recorPlan->show();
 
 }
 /**************************************item rotation*********************************/
@@ -1497,11 +1548,10 @@ void MainWindow::items_vers_tableau()
         int valY = location.y();
         int sizeW = itemList[i]->boundingRect().width();
         int sizeH = itemList[i]->boundingRect().height();
-          MyItem* item = dynamic_cast<MyItem*> (itemList[i]);
-
 
     if(itemList[i]->type() == 65536) // MyItem
     {
+        MyItem* item = dynamic_cast<MyItem*> (itemList[i]);
         ui->tableObjets->setItem(i, 0,new QTableWidgetItem(QString::number(item->getId())));//Id
         ui->tableObjets->setItem(i, 1,new QTableWidgetItem(item->getNom()));
         ui->tableObjets->setItem(i, 2, new QTableWidgetItem(QString::number(itemList[i]->type())));//Type
@@ -1533,23 +1583,92 @@ void MainWindow::items_vers_tableau()
           }
         nbRow++;
       }
-    else
-      {
-       if(itemList[i]->type() == 7) //IMAGES
+
+    if(itemList[i]->type() == 65537) // MyPolygone
+    {
+        MyPolygone* item = dynamic_cast<MyPolygone*> (itemList[i]);
+        item->setModif(0);
+        ui->tableObjets->setItem(i, 0,new QTableWidgetItem(QString::number(item->getId())));//Id
+        ui->tableObjets->setItem(i, 1,new QTableWidgetItem(item->getNom()));
+        ui->tableObjets->setItem(i, 2, new QTableWidgetItem(QString::number(itemList[i]->type())));//Type
+        ui->tableObjets->setItem(i, 3,new QTableWidgetItem(QString::number(valX)));//PositionX
+        ui->tableObjets->setItem(i, 4,new QTableWidgetItem(QString::number(valY)));//PositionY
+        ui->tableObjets->setItem(i, 5,new QTableWidgetItem(QString::number(item->getWidthLine())));//épaisseur ligne
+        ui->tableObjets->setItem(i, 6,new QTableWidgetItem(QString::number(item->getTypeLine())));
+        QColor clr = item->getColor();
+        ui->tableObjets->setItem(i,7,new QTableWidgetItem(QString::number(clr.rgb())));//brush color
+        QColor clrPen = item->getPenColor();
+        ui->tableObjets->setItem(i,8,new QTableWidgetItem(QString::number(clrPen.rgb())));//pen color
+        int form = item->getTypeShape();
+        ui->tableObjets->setItem(i,9,new QTableWidgetItem(QString::number(form)));//type shape/forme
+        ui->tableObjets->setItem(i,10,new QTableWidgetItem(QString::number(item->getTypeAction())));//type action
+        ui->tableObjets->setItem(i,11,new QTableWidgetItem(item->getAction()));//action
+        ui->tableObjets->setItem(i,12,new QTableWidgetItem(item->getComment()));//commentaire
+        ui->tableObjets->setItem(i,13,new QTableWidgetItem(QString::number(item->getEtat())));//Etat
+        ui->tableObjets->setItem(i,14,new QTableWidgetItem(item->getTexte()));//texte
+        ui->tableObjets->setItem(i,15,new QTableWidgetItem(QString::number(item->getMode())));//Mode
+
+        ui->tableObjets->setItem(i, 16,new QTableWidgetItem(item->getStrPoly()));// chaine de tracé du polygone
+        // COPIE VERS tableWidget_parcelles
+        if(ui->tableObjets->item(i,9)->text().toInt()==5)
+          {
+          ui->tableWidget_parcelles->setRowCount(row_parcelles+1);
+          ui->tableWidget_parcelles->setItem(row_parcelles, 0,new QTableWidgetItem(QString::number(item->getId())));//Id
+          ui->tableWidget_parcelles->setItem(row_parcelles, 1,new QTableWidgetItem(item->getNom()));
+          row_parcelles++;
+          }
+        nbRow++;
+      }
+    if(itemList[i]->type() == 65539) // MyPolyline
+    {
+        MyPolyline* item = dynamic_cast<MyPolyline*> (itemList[i]);
+        ui->tableObjets->setItem(i, 0,new QTableWidgetItem(QString::number(item->getId())));//Id
+        ui->tableObjets->setItem(i, 1,new QTableWidgetItem(item->getNom()));
+        ui->tableObjets->setItem(i, 2, new QTableWidgetItem(QString::number(itemList[i]->type())));//Type
+        ui->tableObjets->setItem(i, 3,new QTableWidgetItem(QString::number(valX)));//PositionX
+        ui->tableObjets->setItem(i, 4,new QTableWidgetItem(QString::number(valY)));//PositionY
+        ui->tableObjets->setItem(i, 5,new QTableWidgetItem(QString::number(item->getWidth())));//épaisseur ligne
+        ui->tableObjets->setItem(i, 6,new QTableWidgetItem(QString::number(item->getTypeLine())));//type de ligne
+        QColor clr = item->getColor();
+        ui->tableObjets->setItem(i,7,new QTableWidgetItem(QString::number(clr.rgb())));//brush color
+        QColor clrPen = item->getPenColor();
+        ui->tableObjets->setItem(i,8,new QTableWidgetItem(QString::number(clrPen.rgb())));//pen color
+        int form = item->getTypeShape();
+        ui->tableObjets->setItem(i,9,new QTableWidgetItem(QString::number(form)));//type shape/forme
+        ui->tableObjets->setItem(i,10,new QTableWidgetItem(QString::number(item->getTypeAction())));//type action
+        ui->tableObjets->setItem(i,11,new QTableWidgetItem(item->getAction()));//action
+        ui->tableObjets->setItem(i,12,new QTableWidgetItem(item->getComment()));//commentaire
+        ui->tableObjets->setItem(i,13,new QTableWidgetItem(QString::number(item->getEtat())));//Etat
+        ui->tableObjets->setItem(i,14,new QTableWidgetItem(item->getTexte()));//texte
+        ui->tableObjets->setItem(i,15,new QTableWidgetItem(QString::number(item->getMode())));//Mode
+
+        ui->tableObjets->setItem(i, 16,new QTableWidgetItem(item->getStrPoly()));// chaine de tracé du polygone
+        // COPIE VERS tableWidget_parcelles
+        if(ui->tableObjets->item(i,9)->text().toInt()==5)
+          {
+          ui->tableWidget_parcelles->setRowCount(row_parcelles+1);
+          ui->tableWidget_parcelles->setItem(row_parcelles, 0,new QTableWidgetItem(QString::number(item->getId())));//Id
+          ui->tableWidget_parcelles->setItem(row_parcelles, 1,new QTableWidgetItem(item->getNom()));
+          row_parcelles++;
+          }
+        nbRow++;
+      }
+
+     if(itemList[i]->type() == 7) //IMAGES
         {
        //ecriture dans le tableau du chemin du fichier
          PixmapItem *as_pixmapitem;
          FondItem *as_fonditem;
           if((as_pixmapitem = dynamic_cast<PixmapItem*>(itemList[i])))
            {
-           ui->tableObjets->setItem(i, 0,new QTableWidgetItem(QString::number(item->getId())));//Id
-           ui->tableObjets->setItem(i, 1,new QTableWidgetItem(item->getNom()));
+           PixmapItem* pItem = dynamic_cast<PixmapItem*> (itemList[i]);
+           ui->tableObjets->setItem(i, 0,new QTableWidgetItem(QString::number(pItem->getId())));//Id
+           ui->tableObjets->setItem(i, 1,new QTableWidgetItem(pItem->getNom()));
            ui->tableObjets->setItem(i, 2, new QTableWidgetItem(QString::number(itemList[i]->type())));//Type
            ui->tableObjets->setItem(i, 3,new QTableWidgetItem(QString::number(valX)));//PositionX
            ui->tableObjets->setItem(i, 4,new QTableWidgetItem(QString::number(valY)));//PositionY
            ui->tableObjets->setItem(i, 5,new QTableWidgetItem(QString::number(sizeW)));//width
            ui->tableObjets->setItem(i, 6,new QTableWidgetItem(QString::number(sizeH)));//height
-           PixmapItem* pItem = dynamic_cast<PixmapItem*> (itemList[i]);
            ui->tableObjets->setItem(i,9,new QTableWidgetItem(QString::number(4)));//type shape/forme
            ui->tableObjets->setItem(i,14,new QTableWidgetItem(pItem->getTexte()));//texte
            ui->tableObjets->setItem(i,10,new QTableWidgetItem(QString::number(pItem->getTypeAction())));//type action
@@ -1564,13 +1683,14 @@ void MainWindow::items_vers_tableau()
            ui->tableObjets->setItem(i, 6,new QTableWidgetItem(QString::number(32)));//height
            nbRow++;
          }
-       else if((as_fonditem = dynamic_cast<FondItem*>(itemList[i])))
+      if((as_fonditem = dynamic_cast<FondItem*>(itemList[i])))
          {
            // ne rien faire car le fond est enregistré dans son tableau "tablebackground"
             ui->tableObjets->setRowCount(itemList.size()-1);
          }
-       }
+
      }
+
    }
    //recherche date courante et calage du planning et rotations
    QDate currentDate= QDate::currentDate();
@@ -1582,16 +1702,16 @@ void MainWindow::items_vers_tableau()
    ui->comboBox_AnneeEnCours->setCurrentText(year);
    affiche_rotation(year.toInt());
    affiche_planning(jour); //mise à jour de la page planning
-
    ui->lineEdit_ItemId->setText(QString::number(nbRow));
    ui->tableObjets->setRowCount(nbRow);
+
 }
 
 /*******Ajout d'objet dans la liste des items à partir du tableau********************/
 
 void MainWindow::tableau_vers_items()
 { //Ajout d'objet dans la liste des items à partir du tableau
-   scene->clear();
+  scene->clear();
 
   QString cellvalue;
   //insertion du fond d'écran
@@ -1601,7 +1721,7 @@ void MainWindow::tableau_vers_items()
     { //image
       QString fileName;
       QTableWidgetItem *filename = ui->tableBackground->item(0,3);
-       QPixmap pim(filename->text());
+      QPixmap pim(filename->text());
       FondItem *pixmap = new FondItem();
       pixmap->setPixmap(pim);
       scene->addItem(pixmap);
@@ -1609,13 +1729,18 @@ void MainWindow::tableau_vers_items()
       double sizeW = pixmap->boundingRect().width();
       double sizeH = pixmap->boundingRect().height();
       scene->setSceneRect(0, 0, sizeW, sizeH);
+ /*   //positionnement des scrollbar
       QPointF zero = ui->graphicsView->mapFromScene(QPointF(0,0));
       ui->graphicsView->horizontalScrollBar()->setValue(zero.x());
-      ui->graphicsView->verticalScrollBar()->setValue(zero.y());
+      ui->graphicsView->verticalScrollBar()->setValue(zero.y());*/
+      // copie vers dessin
+      QPixmap pimd(filename->text());
+      FondItem *pixmapd = new FondItem();
+      pixmapd->setPixmap(pimd);
 
     }
   //dessin de la grille (taille,transparence)
-  dessine_grille(30,0.1);
+   dessine_grille(50,0.1);
   //insertion des objets
   // inverser les objets dans le tableau
  for(int i = ui->tableObjets->rowCount()-1; i >-1 ; i--)
@@ -1671,7 +1796,60 @@ void MainWindow::tableau_vers_items()
           item->setNom(ObjetNom);
           scene->addItem(item);
         }
-
+      if(cellvalue == "65537") //MyPolygone
+        {
+          QTableWidgetItem *filename = ui->tableObjets->item(i,16);
+          QTableWidgetItem *Couleur = ui->tableObjets->item(i,7);
+          QColor couleurfond=Couleur->text().toDouble();
+          QTableWidgetItem *CouleurPen = ui->tableObjets->item(i,8);
+          QColor couleurpen=CouleurPen->text().toDouble();
+          MyPolygone *item = new MyPolygone(convertStrToPoly(filename->text()));
+          QPen pen(Qt::blue, 1);
+          item->setColor(QColor(couleurfond));
+          item->setPenColor(QColor(Qt::black));
+          item->setWidthLine(ObjetWidth);
+          item->setTypeLine(Objetheight);//type de ligne
+          item->setOpac(0.8);
+          item->setPos(ObjetPosX,ObjetPosY);
+          item->setTexte(ObjetTexte);
+          item->setTypeAction(TypeAction->text().toInt());
+          item->setAction(Action->text());
+          item->setTypeShape(TypeShape->text().toInt());// type de shape 1 rectangle - 2 rectangle  rounded - 3 circle - 5 polygon
+          item->setComment(ObjetComment);
+          item->setPenColor(QColor(couleurpen));
+          item->setStrPoly(filename->text());
+          item->setEtat(ObjetEtat->text().toInt());
+          item->setMode(ObjetMode->text().toInt());
+          item->setId(ObjetId);
+          item->setNom(ObjetNom);
+          scene->addItem(item);
+        }
+      if(cellvalue == "65539") //MyPolyline
+        {
+          QTableWidgetItem *filename = ui->tableObjets->item(i,16);
+          QTableWidgetItem *Couleur = ui->tableObjets->item(i,7);
+          QColor couleurfond=Couleur->text().toDouble();
+          QTableWidgetItem *CouleurPen = ui->tableObjets->item(i,8);
+          QColor couleurpen=CouleurPen->text().toDouble();
+          MyPolyline *item = new MyPolyline(convertStrToPoly(filename->text()));
+          item->setColor(QColor(couleurfond));
+          item->setPenColor(QColor(couleurpen));
+          item->setWidth(ObjetWidth);
+          item->setTypeLine(Objetheight);//type de ligne
+          item->setOpac(0.8);
+          item->setPos(ObjetPosX,ObjetPosY);
+          item->setTexte(ObjetTexte);
+          item->setTypeAction(TypeAction->text().toInt());
+          item->setAction(Action->text());
+          item->setTypeShape(TypeShape->text().toInt());// type de shape 1 rectangle - 2 rectangle  rounded - 3 circle - 5 polygon
+          item->setComment(ObjetComment);
+          item->setStrPoly(filename->text());
+          item->setEtat(ObjetEtat->text().toInt());
+          item->setMode(ObjetMode->text().toInt());
+          item->setId(ObjetId);
+          item->setNom(ObjetNom);
+          scene->addItem(item);
+        }
       if(cellvalue == "7")
         { //image
           QString fileName;
@@ -1748,23 +1926,40 @@ void MainWindow::on_actionChoisir_la_couleur_triggered()
          QColor color =  dialog->currentColor();
          QVariant variant = color;
          QString rgb= variant.toString();
+         ui->label_couleurPolyline_P_background->setText(rgb);
+         ui->label_couleurPolyline_P_background->setStyleSheet("QLabel { background-color : "+rgb+"}");
        }
 
    QList <QGraphicsItem*> itemList = scene->items();
     for(int i=0; i<itemList.size(); i++)
       {
-        if(itemList[i]->isSelected() &&  itemList[i]->type() == 65536)
+        if(itemList[i]->isSelected())
           {
-             QColor color =  dialog->currentColor();
-             QVariant variant = color;
-             QString rgb= variant.toString();
-             MyItem* item = dynamic_cast<MyItem*> (itemList[i]);
-             item->setColor(color);
-             ui->tableObjets->setItem(i, 7,new QTableWidgetItem(QString::number(color.rgb())));//brush
-           }
+            if(itemList[i]->type() == 65536)
+              {
+                 QColor color =  dialog->currentColor();
+                 QVariant variant = color;
+                 QString rgb= variant.toString();
+                 MyItem* item = dynamic_cast<MyItem*> (itemList[i]);
+                 item->setColor(color);
+                 ui->tableObjets->setItem(i, 7,new QTableWidgetItem(QString::number(color.rgb())));//brush
+              }
+            if(itemList[i]->type() == 65537)
+              {
+                 QColor color =  dialog->currentColor();
+                 QVariant variant = color;
+                 QString rgb= variant.toString();
+                 MyPolygone* item = dynamic_cast<MyPolygone*> (itemList[i]);
+                 item->setColor(color);
+                 ui->tableObjets->setItem(i, 7,new QTableWidgetItem(QString::number(color.rgb())));//brush
+              }
+
+          }
       }
      items_vers_tableau();//ajout des items de la scene au tableau
      delete dialog;
+     ui->pushButton_recorPlan->show();
+     scene->update();
 }
 
 void MainWindow::on_actionChoisir_le_type_de_crayon_triggered()
@@ -1778,22 +1973,47 @@ void MainWindow::on_actionChoisir_le_type_de_crayon_triggered()
          QColor color =  dialog->currentColor();
          QVariant variant = color;
          QString rgb= variant.toString();
+         ui->label_couleurPolyline_Pen->setText(rgb);
+         ui->label_couleurPolyline_Pen->setStyleSheet("QLabel { background-color : "+rgb+"}");
        }
   QList <QGraphicsItem*> itemList = scene->items();
     for(int i=0; i<itemList.size(); i++)
       {
-        if(itemList[i]->isSelected() &&  itemList[i]->type() == 65536)
+        if(itemList[i]->isSelected())
           {
-             QColor color =  dialog->currentColor();
-             QVariant variant = color;
-             QString rgb= variant.toString();
-             MyItem* item = dynamic_cast<MyItem*> (itemList[i]);
-             item->setPenColor(color);
-             ui->tableObjets->setItem(i, 8,new QTableWidgetItem(QString::number(color.rgb())));//brush
+            if(itemList[i]->type() == 65536)
+              {
+                 QColor color =  dialog->currentColor();
+                 QVariant variant = color;
+                 QString rgb= variant.toString();
+                 MyItem* item = dynamic_cast<MyItem*> (itemList[i]);
+                 item->setPenColor(color);
+                 ui->tableObjets->setItem(i, 8,new QTableWidgetItem(QString::number(color.rgb())));//brush
+              }
+            if(itemList[i]->type() == 65537)
+              {
+                 QColor color =  dialog->currentColor();
+                 QVariant variant = color;
+                 QString rgb= variant.toString();
+                 MyPolygone* item = dynamic_cast<MyPolygone*> (itemList[i]);
+                 item->setPenColor(color);
+                 ui->tableObjets->setItem(i, 8,new QTableWidgetItem(QString::number(color.rgb())));//brush
+              }
+            if(itemList[i]->type() == 65539)
+              {
+                 QColor color =  dialog->currentColor();
+                 QVariant variant = color;
+                 QString rgb= variant.toString();
+                 MyPolyline* item = dynamic_cast<MyPolyline*> (itemList[i]);
+                 item->setPenColor(color);
+                 ui->tableObjets->setItem(i, 8,new QTableWidgetItem(QString::number(color.rgb())));
+              }
           }
       }
      items_vers_tableau();//ajout des items de la scene au tableau
      delete dialog;
+     ui->pushButton_recorPlan->show();
+     scene->update();
 }
 
 /*******************************AUTRES ACTIONS*********************************************/
@@ -1838,17 +2058,36 @@ void MainWindow::on_actionSupprimer_triggered()
 */
   //l'objet est supprimé de l'espace graphique mais non éliminé de la liste pour conserver
   // la cohérence de l'indentation des nouveaux objets
-        for(int i=0; i<itemList.size(); i++)
+
+  for(int i=0; i<itemList.size(); i++)
         {
-          if(itemList[i]->hasFocus())
+          if(itemList[i]->isSelected())
             {
+              if(itemList[i]->type() == 65536) // MyItem
+                {
                   MyItem* item = dynamic_cast<MyItem*> (itemList[i]);
                   item->setX(-1);
                   item->setY(-1);
                   item->setSizeShape(1,1);
-                  items_vers_tableau();//ajout des items de la scene au tableau
+                  item->hide();
+
+                }
+              if(itemList[i]->type() == 65537) // MyPolygone
+                {
+                  MyPolygone* item = dynamic_cast<MyPolygone*> (itemList[i]);
+                  item->setStrPoly("0,0");
+                  item->hide();
+                }
+              if(itemList[i]->type() == 65539) // MyPolyline
+                {
+                  MyPolyline* item = dynamic_cast<MyPolyline*> (itemList[i]);
+                  item->setStrPoly("0,0");
+                  item->hide();
+                }
+              items_vers_tableau();//ajout des items de la scene au tableau
             }
         }
+   ui->pushButton_recorPlan->show();
 }
 
 void MainWindow::on_actionDeselectionner_tout_triggered()
@@ -1864,7 +2103,7 @@ void MainWindow::on_actionDeselectionner_tout_triggered()
           {
            MyItem* item = dynamic_cast<MyItem*> (itemList[i]);
            item->setPenColor(QColor(Qt::red));
-           }
+          }
          }
      }
 }
@@ -1909,24 +2148,6 @@ void MainWindow::on_actionBringToFront_triggered()
 //qDebug() << "bring to front";
 }
 
-void MainWindow::on_actionBringToBack_triggered()
-{
-  if (scene->selectedItems().isEmpty())
-      return;
-
-  QGraphicsItem *selectedItem = scene->selectedItems().first();
-  QList<QGraphicsItem *> overlapItems = selectedItem->collidingItems();
-
-  qreal zValue = 0;
-  foreach (QGraphicsItem *item, overlapItems)
-    {
-          zValue = item->zValue() - 0.1;
-          //qDebug() << zValue;
-     }
-  selectedItem->setZValue(zValue);
-//qDebug() << "bring to back";
-
-}
 /**********************affichage fond d'écran***************************/
 
 void MainWindow::on_actionCacher_le_fond_triggered()
@@ -1990,6 +2211,11 @@ void MainWindow::on_actionQuitter_triggered()
 
 void MainWindow::on_actionModification_plan_triggered()
 {
+  m_mode=0;
+  MyGraphicsScene* scene2 = dynamic_cast<MyGraphicsScene*> (scene);
+  scene2->setMode(MyGraphicsScene::Modification);
+
+//  scene->setMode(MyGraphicsScene::Modification);
     ui->actionUtilisation->setChecked(false);
     ui->actionModification_plan->setChecked(true);
     QList <QGraphicsItem*> itemList = scene->items();
@@ -2000,6 +2226,16 @@ void MainWindow::on_actionModification_plan_triggered()
              MyItem* item = dynamic_cast<MyItem*> (itemList[i]);
              item->setMode(0);
             }
+          if(itemList[i]->type() == 65537) // MyPolygone
+            {
+             MyPolygone* Pitem = dynamic_cast<MyPolygone*> (itemList[i]);
+             Pitem->setMode(0);
+            }
+          if(itemList[i]->type() == 65539) // MyPolyline
+            {
+             MyPolyline* Poline = dynamic_cast<MyPolyline*> (itemList[i]);
+             Poline->setMode(0);
+            }
        }
       ui->actionAjouterRectangle->setEnabled(true);
       ui->actionAjouterCercle->setEnabled(true);
@@ -2008,22 +2244,26 @@ void MainWindow::on_actionModification_plan_triggered()
       ui->actionAjouter_Rectangle_arrondi->setEnabled(true);
       ui->actionChoisir_la_couleur->setEnabled(true);
       ui->actionChoisir_le_type_de_crayon->setEnabled(true);
-      ui->actionBringToBack->setEnabled(true);
       ui->actionBringToFront->setEnabled(true);
-      ui->actionColler->setEnabled(true);
-      ui->actionCopier->setEnabled(true);
-      ui->actionCouper->setEnabled(true);
       ui->actionDeselectionner_tout->setEnabled(true);
       ui->actionFondEcran->setEnabled(true);
       ui->actionSelectionner_tout->setEnabled(true);
       ui->actionSupprimer->setEnabled(true);
       ui->actionModifier->setEnabled(true);
-
+      ui->toolButton_modifierPolygon->setEnabled(true);
+      ui->toolButton_newPolygon->setEnabled(true);
+      ui->toolButton_DeleteVertex_P->setDisabled(true);
+      ui->pushButton_Polygone->setDisabled(true);
+      ui->pushButton_polyline->setDisabled(true);
+      ui->frame_ToolsCreate->show();
 
 }
 
 void MainWindow::on_actionUtilisation_triggered()
 {
+  m_mode=1;
+  MyGraphicsScene* scene2 = dynamic_cast<MyGraphicsScene*> (scene);
+  scene2->setMode(MyGraphicsScene::Utilisation);
   ui->actionUtilisation->setChecked(true);
   ui->actionModification_plan->setChecked(false);
   QList <QGraphicsItem*> itemList = scene->items();
@@ -2034,6 +2274,16 @@ void MainWindow::on_actionUtilisation_triggered()
            MyItem* item = dynamic_cast<MyItem*> (itemList[i]);
            item->setMode(1);
           }
+        if(itemList[i]->type() == 65537) // MyPolygone
+          {
+           MyPolygone* Pitem = dynamic_cast<MyPolygone*> (itemList[i]);
+           Pitem->setMode(1);
+          }
+        if(itemList[i]->type() == 65539) // MyPolyline
+          {
+           MyPolyline* Poline = dynamic_cast<MyPolyline*> (itemList[i]);
+           Poline->setMode(1);
+          }
      }
     ui->actionAjouterRectangle->setDisabled(true);
     ui->actionAjouterCercle->setDisabled(true);
@@ -2042,16 +2292,18 @@ void MainWindow::on_actionUtilisation_triggered()
     ui->actionAjouter_Rectangle_arrondi->setDisabled(true);
     ui->actionChoisir_la_couleur->setDisabled(true);
     ui->actionChoisir_le_type_de_crayon->setDisabled(true);
-    ui->actionBringToBack->setDisabled(true);
     ui->actionBringToFront->setDisabled(true);
-    ui->actionColler->setDisabled(true);
-    ui->actionCopier->setDisabled(true);
-    ui->actionCouper->setDisabled(true);
     ui->actionDeselectionner_tout->setDisabled(true);
     ui->actionFondEcran->setDisabled(true);
     ui->actionSelectionner_tout->setDisabled(true);
     ui->actionSupprimer->setDisabled(true);
     ui->actionModifier->setDisabled(true);
+    ui->toolButton_modifierPolygon->setDisabled(true);
+    ui->toolButton_newPolygon->setDisabled(true);
+    ui->toolButton_DeleteVertex_P->setDisabled(true);
+    ui->pushButton_Polygone->setDisabled(true);
+    ui->pushButton_polyline->setDisabled(true);
+    ui->frame_ToolsCreate->hide();
   }
 
 /********************************************************************************/
@@ -2061,20 +2313,44 @@ void MainWindow::on_actionUtilisation_triggered()
 void MainWindow::Item_clicked()
 { //si l'item est sélectionné (selection changed)
   QList <QGraphicsItem*> itemList = scene->items();
-  int retourIdItem;
   for(int i=0; i<itemList.size(); i++)
      {
        if(itemList[i]->isSelected())
          {
-           MyItem* item = dynamic_cast<MyItem*> (itemList[i]);
-           retourIdItem=item->getId();
-           //lance_action(retourIdItem);
-           ui->lineEdit_Id_Item->setText(QString::number(retourIdItem));
-           ui->lineEdit_Nom_item->setText(item->getNom());
-           ui->textEdit_plan_commentaires->setText(item->getTexte());
+           if(itemList[i]->type() == 65536) // MyItem
+             {
+               MyItem* item = dynamic_cast<MyItem*> (itemList[i]);
+               ui->lineEdit_Id_Item->setText(QString::number(item->getId()));
+               ui->lineEdit_Nom_item->setText(item->getNom());
+               ui->textEdit_plan_commentaires->setText(item->getTexte());
+               if(item->getTypeShape()==(MyItem::Rectangle))
+                   ui->lineEdit_Id_Item->setText(QString::number(item->getId()));
+               if(item->getTypeShape()==(MyItem::RoundedRectangle))
+                  ui->lineEdit_Id_Item->setText("-1"); //équipement
+               if(item->getTypeShape()==(MyItem::Circle))
+                  ui->lineEdit_Id_Item->setText(QString::number(item->getId()));
+             }
+           if(itemList[i]->type() == 65537) // MyPolygone
+             {
+               MyPolygone* item = dynamic_cast<MyPolygone*> (itemList[i]);
+               ui->lineEdit_Id_Item->setText(QString::number(item->getId()));
+               ui->lineEdit_Nom_item->setText(item->getNom());
+               ui->textEdit_plan_commentaires->setText(item->getTexte());
+
+             }
+           if(itemList[i]->type() == 65539) // MyPolyline
+             {
+               MyPolyline* item = dynamic_cast<MyPolyline*> (itemList[i]);
+           //    ui->lineEdit_Id_Item->setText(QString::number(item->getId()));
+               ui->lineEdit_Id_Item->setText("-1");
+               ui->lineEdit_Nom_item->setText(item->getNom());
+               ui->textEdit_plan_commentaires->setText(item->getTexte());
+
+             }
          }
      }
 }
+
 
 void MainWindow::ItemPlanning_clicked()
 { //si l'item est sélectionné (scene_planning selection changed)
@@ -2102,6 +2378,7 @@ void MainWindow::ItemPlanning_clicked()
      }
 }
 
+/**********************************************************************/
 
 void MainWindow::on_pushButton_Affiches_fiche_clicked()
 {
@@ -2127,12 +2404,28 @@ void MainWindow::on_pushButton_Enregistrer_modif_item_clicked()
      {
        if(itemList[i]->isSelected())
          {
-           MyItem* item = dynamic_cast<MyItem*> (itemList[i]);
-           item->setNom(apos(ui->lineEdit_Nom_item->text()));
-           item->setTexte(apos(ui->textEdit_plan_commentaires->document()->toPlainText()));
+           if(itemList[i]->type() == 65536) // MyItem
+             {
+               MyItem* item = dynamic_cast<MyItem*> (itemList[i]);
+               item->setNom(apos(ui->lineEdit_Nom_item->text()));
+               item->setTexte(apos(ui->textEdit_plan_commentaires->document()->toPlainText()));
+             }
+           if(itemList[i]->type() == 65537) // MyPolygone
+             {
+               MyPolygone* item = dynamic_cast<MyPolygone*> (itemList[i]);
+               item->setNom(apos(ui->lineEdit_Nom_item->text()));
+               item->setTexte(apos(ui->textEdit_plan_commentaires->document()->toPlainText()));
+             }
+           if(itemList[i]->type() == 65539) // MyPolyline
+             {
+               MyPolyline* item = dynamic_cast<MyPolyline*> (itemList[i]);
+               item->setNom(apos(ui->lineEdit_Nom_item->text()));
+               item->setTexte(apos(ui->textEdit_plan_commentaires->document()->toPlainText()));
+             }
          }
      }
   items_vers_tableau();
+  scene->update();
 
 }
 
@@ -3330,3 +3623,454 @@ void MainWindow::on_actionCacher_la_grille_triggered()
 }
 
 
+/*****************************DESSIN DES POLYGONES****************************/
+
+QPolygon MainWindow::convertStrToPoly(const QString MyString)
+{
+  //conversion d'une chaine de caractères avec séparateur des QPoints avec ; en QPolygon
+
+   QStringList liste = MyString.split(';', QString::SkipEmptyParts);
+   QPolygon poly(liste.count());
+   for (int i=0;i<liste.count();i++)
+     {
+        QString valeur_point= liste[i];
+        QStringList liste_point = valeur_point.split(',', QString::SkipEmptyParts);
+        QString strX=liste_point[0];
+        QString strY=liste_point[1];
+        int x=strX.toInt();
+        int y=strY.toInt();
+        poly.setPoint(i,x,y);
+      }
+   return poly;
+}
+
+
+void MainWindow::on_pushButton_Polygone_clicked()
+{
+  //validation du polygone
+   QString strPolygon="";
+   QList <QGraphicsItem*> itemList = scene->items();
+   ui->tableObjets->setRowCount(itemList.size());
+   QPolygon poly;
+   int drap1=0;
+   int initValX;
+   int initValY;
+   for(int i=itemList.size()-1;i>=0; i--)
+      {
+         QPointF location = itemList[i]->pos();
+         int valX = location.x();
+         int valY = location.y();
+
+         if(valX!=0 && valY!=0)
+           {
+             if(itemList[i]->type()==65538)
+              {
+                if(drap1==0)
+                   {
+                     initValX=itemList[i]->pos().x();
+                     initValY=itemList[i]->pos().y();
+                   }
+                drap1++;
+                valX = location.x()-initValX;
+                valY = location.y()-initValY;
+                poly << QPoint(valX,valY);
+                strPolygon=(strPolygon+QString::number(valX)+","+QString::number(valY)+";" );
+              }
+          }
+      }
+   if(ui->toolButton_modifierPolygon->isChecked())
+     {
+
+       for(int i=0; i<itemList.size(); i++)
+          {
+           if(itemList[i]->type()==65537)
+           {
+               MyPolygone* item = dynamic_cast<MyPolygone*> (itemList[i]);
+               if(item->getModif()==1)
+                 {
+                  item->setStrPoly(strPolygon);
+                  item->setPoly(convertStrToPoly(strPolygon));
+                  item->setPos(QPoint(initValX,initValY));
+                  item->setModif(0);
+                  ui->toolButton_modifierPolygon->setChecked(false);
+                 }
+           }
+         }
+     }
+   else
+     {
+    MyPolygone *polygon = new MyPolygone(convertStrToPoly(strPolygon));
+    polygon->setPos(QPoint(initValX,initValY));
+    polygon->setColor(QColor(Qt::yellow));
+    polygon->setPenColor(QColor(ui->label_couleurPolyline_Pen->text()));
+    polygon->setColor(QColor(ui->label_couleurPolyline_P_background->text()));
+    polygon->setWidthLine(ui->comboBox_epaisseurLignes_P->currentText().toInt());
+    polygon->setTypeLine(ui->comboBox_typeLigne_P->currentIndex()+1);
+    polygon->setOpac(0.8); //opacité de l'item
+    polygon->setId(ui->lineEdit_ItemId->text().toInt());// valeur id en dernière position dans la table
+    polygon->setTexte("Parcelle");
+    polygon->setNom("Parcelle "+ui->lineEdit_ItemId->text());
+    polygon->setEtat(1);
+    polygon->setMode(0);
+    polygon->setModif(0);
+    polygon->setTypeShape(5); //polygone
+    polygon->setStrPoly(strPolygon);
+    polygon->setPoly(convertStrToPoly(strPolygon));
+    scene->addItem(polygon);
+    strPolygon="";
+     }
+
+    //suppression des items vertex
+    for(int i=itemList.size()-1;i>=0; i--)
+       {
+        QPointF location = itemList[i]->pos();
+        int valX = location.x();
+        int valY = location.y();
+        if(valX!=0 && valY!=0)
+           {
+            if(itemList[i]->type() == 65538) //vertex
+               scene->removeItem(itemList[i]);
+           }
+       }
+    ui->toolButton_newPolygon->setChecked(false);
+    ui->pushButton_recorPlan->show();
+    ui->pushButton_Polygone->setDisabled(true);
+    ui->pushButton_polyline->setDisabled(true);
+
+    items_vers_tableau();
+    tableau_vers_items();
+    MyGraphicsScene* scene2 = dynamic_cast<MyGraphicsScene*> (scene);
+    scene2->setMode(MyGraphicsScene::Utilisation);
+}
+
+void MainWindow::on_pushButton_polyline_clicked()
+{
+  //validation du polyline
+   QString strPolygon="";
+   QList <QGraphicsItem*> itemList = scene->items();
+   ui->tableObjets->setRowCount(itemList.size());
+   QPolygon poly;
+   int drap1=0;
+   int initValX;
+   int initValY;
+   for(int i=itemList.size()-1;i>=0; i--)
+      {
+         QPointF location = itemList[i]->pos();
+         int valX = location.x();
+         int valY = location.y();
+
+         if(valX!=0 && valY!=0)
+           {
+             if(itemList[i]->type()==65538)
+              {
+                if(drap1==0)
+                   {
+                     initValX=itemList[i]->pos().x();
+                     initValY=itemList[i]->pos().y();
+                   }
+                drap1++;
+                valX = location.x()-initValX;
+                valY = location.y()-initValY;
+                poly << QPoint(valX,valY);
+                strPolygon=(strPolygon+QString::number(valX)+","+QString::number(valY)+";" );
+              }
+          }
+      }
+    if(ui->toolButton_modifierPolygon->isChecked())
+      {
+          for(int i=0; i<itemList.size(); i++)
+           {
+            if(itemList[i]->type()==65539)
+            {
+                MyPolyline* item = dynamic_cast<MyPolyline*> (itemList[i]);
+                if(item->getModif()==1)
+                  {
+                    item->setStrPoly(strPolygon);
+                    item->setPoly(convertStrToPoly(strPolygon));
+                    item->setPos(QPoint(initValX,initValY));
+                    item->setModif(0);
+                    ui->toolButton_modifierPolygon->setChecked(false);
+                  }
+            }
+          }
+      }
+    else
+      {
+          MyPolyline *polyline = new MyPolyline(convertStrToPoly(strPolygon));
+          polyline->setPos(QPoint(initValX,initValY));
+          polyline->setPenColor(QColor(ui->label_couleurPolyline_Pen->text()));
+          polyline->setColor(QColor(ui->label_couleurPolyline_P_background->text()));
+          polyline->setWidth(ui->comboBox_epaisseurLignes_P->currentText().toInt());
+          polyline->setTypeLine(ui->comboBox_typeLigne_P->currentIndex()+1);
+          polyline->setOpac(0.8); //opacité de l'item
+          polyline->setId(ui->lineEdit_ItemId->text().toInt());// valeur id en dernière position dans la table
+          polyline->setTexte("ligne");
+          polyline->setNom("ligne ");
+          polyline->setEtat(1);
+          polyline->setMode(0);
+          polyline->setTypeShape(6); //polyline
+          polyline->setStrPoly(strPolygon);
+          polyline->setPoly(convertStrToPoly(strPolygon));
+          scene->addItem(polyline);
+          strPolygon="";
+      }
+
+   //suppression des items vertex
+    for(int i=itemList.size()-1;i>=0; i--)
+       {
+        QPointF location = itemList[i]->pos();
+        int valX = location.x();
+        int valY = location.y();
+        if(valX!=0 && valY!=0)
+           {
+            if(itemList[i]->type() == 65538) //vertex
+               scene->removeItem(itemList[i]);
+           }
+       }
+    ui->toolButton_newPolygon->setChecked(false);
+    ui->pushButton_Polygone->setDisabled(true);
+    ui->pushButton_polyline->setDisabled(true);
+    ui->pushButton_recorPlan->show();
+
+    items_vers_tableau();
+    tableau_vers_items();
+    MyGraphicsScene* scene2 = dynamic_cast<MyGraphicsScene*> (scene);
+    scene2->setMode(MyGraphicsScene::Utilisation);
+}
+
+void MainWindow::on_toolButton_DeleteVertex_P_clicked()
+{
+  QList <QGraphicsItem*> itemList = scene->items();
+  for(int i=0; i<itemList.size(); i++)
+        {
+          if(itemList[i]->isSelected())
+            {
+              if(itemList[i]->type() == 65538) // MyVertex
+                {
+                   scene->removeItem(itemList[i]);
+                }
+            }
+        }
+}
+
+
+void MainWindow::on_toolButton_modifierPolygon_toggled(bool checked)
+{  //passer en mode modification du polygone selectionné
+  scene->update();
+  if(ui->toolButton_modifierPolygon->isChecked() && m_mode==0)
+    {
+    QList <QGraphicsItem*> itemList = scene->items();
+    for(int i=0; i<itemList.size(); i++)
+          {
+            if(itemList[i]->isSelected())
+              {
+                if(itemList[i]->type() == 65537) // MyPolygon
+                  {//passer en mode modification du polygone
+                    MyPolygone* item = dynamic_cast<MyPolygone*> (itemList[i]);
+                    item->setModif(1); //drapeau de modification du polygone
+                    QList <QPoint> ListVertex = item->getPoly().toList();
+                    for(int i=0; i<ListVertex.size(); i++)
+                      {
+                        MyVertex *itemV = new MyVertex(10,10);
+                        QPoint posVertex=ListVertex[i];
+                        int valX = posVertex.x()+item->pos().x();
+                        int valY = posVertex.y()+item->pos().y();
+                        itemV->setColor(QColor(Qt::yellow));
+                        itemV->setPenColor(QColor(Qt::black));
+                        itemV->setOpac(0.8); //opacité de l'item
+                        itemV->setTypeShape(MyVertex::Rectangle);
+                        itemV->setPos(valX,valY);
+                        itemV->setNom(" ");
+                        itemV->setTexte("xx");
+                        itemV->setEtat(1);
+                        itemV->setMode(0);
+                        scene->addItem(itemV);
+                      }
+                   }
+                if(itemList[i]->type() == 65539) // MyPolyline
+                  {
+                    //passer en mode modification du polyline
+                    MyPolyline* item = dynamic_cast<MyPolyline*> (itemList[i]);
+                    item->setModif(1); //drapeau de modification du polygone
+                    QList <QPoint> ListVertex = item->getPoly().toList();
+                    for(int i=0; i<ListVertex.size(); i++)
+                      {
+                        MyVertex *itemV = new MyVertex(10,10);
+                        QPoint posVertex=ListVertex[i];
+                        int valX = posVertex.x()+item->pos().x();
+                        int valY = posVertex.y()+item->pos().y();
+                        itemV->setColor(QColor(Qt::yellow));
+                        itemV->setPenColor(QColor(Qt::black));
+                        itemV->setOpac(0.8); //opacité de l'item
+                        itemV->setTypeShape(MyVertex::Rectangle);
+                        itemV->setPos(valX,valY);
+                        itemV->setNom(" ");
+                        itemV->setTexte("xx");
+                        itemV->setEtat(1);
+                        itemV->setMode(0);
+                        scene->addItem(itemV);
+                      }
+
+                  }
+              }
+          }
+    ui->toolButton_DeleteVertex_P->setEnabled(true);
+    ui->pushButton_Polygone->setEnabled(true);
+    ui->pushButton_polyline->setEnabled(true);
+    }
+  else
+    {
+      // quitter le mode modification du polygone
+      QList <QGraphicsItem*> itemList = scene->items();
+      for(int i=0; i<itemList.size(); i++)
+            {
+              if(itemList[i]->type() == 65537) // MyPolygon
+                {//quitter le mode modification du polygone
+                      MyPolygone* item = dynamic_cast<MyPolygone*> (itemList[i]);
+                      if(item->getMode()==1)
+                        {
+                          item->setModif(0); //drapeau de fin de modification du polygone
+                        }
+                }
+            }
+     //suppression des items vertex
+      for(int i=itemList.size()-1;i>=0; i--)
+         {
+          QPointF location = itemList[i]->pos();
+          int valX = location.x();
+          int valY = location.y();
+          if(valX!=0 && valY!=0)
+             {
+              if(itemList[i]->type() == 65538) //vertex
+                 scene->removeItem(itemList[i]);
+             }
+         }
+      ui->toolButton_DeleteVertex_P->setDisabled(true);
+      ui->pushButton_Polygone->setDisabled(true);
+      ui->pushButton_polyline->setDisabled(true);
+    }
+
+  MyGraphicsScene* scene2 = dynamic_cast<MyGraphicsScene*> (scene);
+  scene2->setMode(MyGraphicsScene::Utilisation);
+}
+
+
+void MainWindow::on_toolButton_newPolygon_toggled(bool checked)
+{
+   MyGraphicsScene* scene2 = dynamic_cast<MyGraphicsScene*> (scene);
+
+  if(ui->toolButton_newPolygon->isChecked() && m_mode==0)
+    {
+      ui->toolButton_DeleteVertex_P->setEnabled(true);
+      ui->pushButton_Polygone->setEnabled(true);
+      ui->pushButton_polyline->setEnabled(true);
+      scene2->setMode(MyGraphicsScene::InsertPolygon);
+
+    }
+    else
+    {
+      ui->toolButton_DeleteVertex_P->setDisabled(true);
+      ui->pushButton_Polygone->setDisabled(true);
+      ui->pushButton_polyline->setDisabled(true);
+      scene2->setMode(MyGraphicsScene::Modification);
+     }
+}
+
+void MainWindow::on_comboBox_epaisseurLignes_P_currentIndexChanged(const QString &arg1)
+{
+  QList <QGraphicsItem*> itemList = scene->items();
+    for(int i=0; i<itemList.size(); i++)
+      {
+        if(itemList[i]->isSelected())
+          {
+            if(itemList[i]->type() == 65536)
+              {
+             MyItem* item = dynamic_cast<MyItem*> (itemList[i]);
+             item->setWidthLine(arg1.toInt());
+          //   ui->tableObjets->setItem(i, 5,new QTableWidgetItem(QString::number(arg1.toInt())));
+              }
+            if(itemList[i]->type() == 65537)
+              {
+             MyPolygone* item = dynamic_cast<MyPolygone*> (itemList[i]);
+             item->setWidthLine(arg1.toInt());
+             ui->tableObjets->setItem(i, 5,new QTableWidgetItem(QString::number(arg1.toInt())));
+              }
+            if(itemList[i]->type() == 65539)
+              {
+             MyPolyline* item = dynamic_cast<MyPolyline*> (itemList[i]);
+             item->setWidth(arg1.toInt());
+             ui->tableObjets->setItem(i, 5,new QTableWidgetItem(QString::number(arg1.toInt())));
+              }
+          }
+      }
+     items_vers_tableau();//ajout des items de la scene au tableau
+     ui->pushButton_recorPlan->show();
+     scene->update();
+}
+
+void MainWindow::on_comboBox_typeLigne_P_currentIndexChanged(int index)
+{
+  QList <QGraphicsItem*> itemList = scene->items();
+    for(int i=0; i<itemList.size(); i++)
+      {
+        if(itemList[i]->isSelected())
+          {
+            if(itemList[i]->type() == 65536)
+              {
+             MyItem* item = dynamic_cast<MyItem*> (itemList[i]);
+             item->setTypeLine(index+1);
+//             ui->tableObjets->setItem(i, 6,new QTableWidgetItem(QString::number(index+1)));
+              }
+            if(itemList[i]->type() == 65537)
+              {
+             MyPolygone* item = dynamic_cast<MyPolygone*> (itemList[i]);
+             item->setTypeLine(index+1);
+             ui->tableObjets->setItem(i, 6,new QTableWidgetItem(QString::number(index+1)));
+              }
+            if(itemList[i]->type() == 65539)
+              {
+             MyPolyline* item = dynamic_cast<MyPolyline*> (itemList[i]);
+             item->setTypeLine(index+1);
+             ui->tableObjets->setItem(i, 6,new QTableWidgetItem(QString::number(index+1)));
+              }
+          }
+      }
+     items_vers_tableau();//ajout des items de la scene au tableau
+     ui->pushButton_recorPlan->show();
+     scene->update();
+}
+
+void MainWindow::on_toolButton_InsertRectangle_clicked()
+{
+    on_actionAjouterRectangle_triggered();
+}
+
+void MainWindow::on_toolButton_InsertRoudedRectangle_clicked()
+{
+    on_actionAjouter_Rectangle_arrondi_triggered();
+}
+
+void MainWindow::on_toolButton_InsertCircle_clicked()
+{
+    on_actionAjouterCercle_triggered();
+}
+
+void MainWindow::on_toolButton_InsertImage_clicked()
+{
+    on_actionAjouterImage_triggered();
+}
+
+void MainWindow::on_toolButton_DeleteObjet_clicked()
+{
+    on_actionSupprimer_triggered();
+}
+
+void MainWindow::on_toolButton_CouleurCrayon_clicked()
+{
+    on_actionChoisir_le_type_de_crayon_triggered();
+}
+
+void MainWindow::on_toolButton_CouleurFond_clicked()
+{
+    on_actionChoisir_la_couleur_triggered();
+}

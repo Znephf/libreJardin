@@ -34,6 +34,7 @@
 ****************************************************************************/
 #include "myitem.h"
 #include "mainwindow.h"
+#include "mygraphicsscene.h"
 #include <QMessageBox>
 #include <QGraphicsSceneMouseEvent>
 #include <QDebug>
@@ -41,12 +42,15 @@
 #include <QKeyEvent>
 #include <QGraphicsSceneHoverEvent>
 #include <QtWidgets>
- MyItem::MyItem(qreal wid,qreal hgt)
+
+MyItem::MyItem(qreal wid,qreal hgt)
 {
    m_width=wid;m_height=hgt; //initialisation des valeurs largeur - hauteur
    brushColor = Qt::blue;
    penColor = Qt::black;
    m_opacity=1.0; //transparence
+   m_typeLine   = 1;
+   m_widthLine  = 1;
    setFlag(QGraphicsItem::ItemIsFocusable);
    setFlag(QGraphicsPathItem::ItemIsMovable);
    setFlag(QGraphicsItem::ItemIsSelectable);
@@ -70,7 +74,7 @@ void MyItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QW
    Q_UNUSED(option);
    Q_UNUSED(widget);
    painter->setBrush(brushColor);
-   QPen pen(penColor, 1);
+   QPen pen(penColor);
    painter->setPen(pen);
    painter->setOpacity(m_opacity);
 
@@ -90,7 +94,6 @@ void MyItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QW
                       painter->drawImage(QRectF(-m_width/2,-m_height/2,m_width,m_height),pixm);  //test pixmap
                       break;
       }
-
      painter->drawText(rect, Qt::AlignCenter, getNom());
 }
 

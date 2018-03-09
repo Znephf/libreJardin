@@ -1,5 +1,5 @@
-#ifndef MYITEM_H
-#define MYITEM_H
+#ifndef MYVERTEX_H
+#define MYVERTEX_H
 
 #include <QPainter>
 #include <QGraphicsItem>
@@ -9,8 +9,7 @@
 #include <QRectF>
 #include <QPainterPath>
 
-// class for customization
-class MyItem :public QGraphicsItem
+class MyVertex :public QGraphicsItem
 {
 public:
   enum TypeShape {
@@ -19,8 +18,10 @@ public:
                     Circle,
                     Image
             };
+  enum { Type = UserType + 2}; //65538
+  // userType = 65536 valeur par défaut
 
-  MyItem(qreal wid,qreal hgt);
+  MyVertex(qreal wid,qreal hgt);
 
     QRectF boundingRect() const override;
 
@@ -29,6 +30,10 @@ public:
                const QStyleOptionGraphicsItem * option,
                QWidget * widget)override;
     QPainterPath shape()const override;
+    int type() const
+      {  // type d'item
+          return Type;
+      }
 
     void setColor(const QColor &color)
       {
@@ -46,16 +51,6 @@ public:
     QColor getPenColor()
       {
         return penColor;
-      }
-
-    void setMyPen(const QPen &MyPen)
-      {
-        m_pen = MyPen;
-      }
-
-    QPen getMyPen()
-      {
-        return m_pen;
       }
 
     void setTypeShape(const int &type)
@@ -143,24 +138,7 @@ public:
       return m_opacity;
     }
 
-    void setTypeLine(const int &typeLine)
-      {
-        m_typeLine = typeLine;
-      }
 
-    int getTypeLine()
-      {
-        return m_typeLine;
-      }
-    void setWidthLine(const int &widthLine)
-      {
-        m_widthLine = widthLine;
-      }
-
-    int getWidthLine()
-      {
-        return m_widthLine;
-      }
 
     void setTypeAction(int typeAction);
     int getTypeAction();
@@ -186,13 +164,9 @@ protected:
 private:
     int m_itemId;
     int typeAction;
-    int m_typeLine;
-    int m_widthLine;
-    Qt::PenStyle m_penStyle;
     QString action;
     QColor brushColor;
     QColor penColor;
-    QPen m_pen;
     qreal m_opacity;
     qreal m_width;
     qreal m_height;
@@ -207,4 +181,4 @@ private:
     int m_mode;//0 modification - 1 utilisation
 };
 
-#endif // MYITEM_H
+#endif // MYVERTEX_H
