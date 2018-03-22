@@ -226,6 +226,16 @@ private slots:
 
   void on_toolButton_CouleurFond_clicked();
 
+  void zoomGraphicsView(int ratio);
+
+  void on_pushButton_zoomIn_clicked();
+
+  void on_pushButton_ZoomOut_clicked();
+
+  void on_pushButton_fleche_clicked();
+
+  void on_pushButton_Deplace_clicked();
+
 protected:
     QPoint mousePressPt;
     void mousePressEvent(QMouseEvent *event);
@@ -247,6 +257,7 @@ private:
   int m_id;
   int m_grille;//0 affiche - 1 cache
   int m_mode;
+  qreal   m_ZoomRatio;
 
   QSqlTableModel model1; //especes
   QSqlTableModel model2; //familles

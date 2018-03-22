@@ -277,9 +277,10 @@ MainWindow::MainWindow(QWidget *parent) :
   connect(ui->graphicsView_rotation->horizontalScrollBar(), SIGNAL(valueChanged(int)),ui->graphicsView_rotation3->horizontalScrollBar(),SLOT(setValue(int)));
   affiche_planning(jour);
   //cacher l'onglets "objets" qui contient les tables des objets
-//  ui->tabWidget_taches->removeTab(4);
+  ui->tabWidget_taches->removeTab(4);
   ui->frame_ToolsCreate->hide();
-
+  m_ZoomRatio=1; //variable du facteur de zoom (actual size =1 )
+ //  ui->graphicsView->setDragMode(QGraphicsView::ScrollHandDrag);
 }
 /***********************************************************************************/
 
@@ -417,7 +418,8 @@ QString MainWindow::apos(QString texte)
 /*************************************************************************************************/
 void MainWindow::mousePressEvent(QMouseEvent *event)
 {
- /*   mousePressPt.setX(pos().x() - event->x());
+ Q_UNUSED(event);
+  /*   mousePressPt.setX(pos().x() - event->x());
     mousePressPt.setY(pos().y() - event->y());
 //    qDebug() << "mouse press event x"<< event->x()-15<<" y "<<event->y()-165;
 
@@ -441,6 +443,9 @@ void MainWindow::mousePressEvent(QMouseEvent *event)
         ui->graphicsView->verticalScrollBar()->setValue(zero.y());
 
      }*/
+
+
+
 }
 
 
@@ -2196,7 +2201,7 @@ void MainWindow::on_actionA_propos_de_triggered()
               tr("Ce programme est utilisé pour gérer graphiquement les plantations d'un potager.\n"
                  "il utilise des fichier XML pour la configuration des plans\n"
                  "et une base sqlite pour les données de culture\n"
-                 "version 2017.001 license GNU GPL version 3"));
+                 "version 1.03.02 license GNU GPL version 3"));
 }
 
 void MainWindow::on_actionQuitter_triggered()
@@ -2393,7 +2398,8 @@ void MainWindow::on_pushButton_Affiches_fiche_clicked()
 
 void MainWindow::on_lineEdit_Nom_item_textChanged(const QString &arg1)
 {
-   // on_pushButton_Enregistrer_modif_item_clicked();
+  Q_UNUSED(arg1);
+  // on_pushButton_Enregistrer_modif_item_clicked();
    //ui->pushButton_Enregistrer_modif_item->setStyleSheet("background-color : #ffff00");
 }
 
@@ -3653,8 +3659,8 @@ void MainWindow::on_pushButton_Polygone_clicked()
    ui->tableObjets->setRowCount(itemList.size());
    QPolygon poly;
    int drap1=0;
-   int initValX;
-   int initValY;
+   int initValX=0;
+   int initValY=0;
    for(int i=itemList.size()-1;i>=0; i--)
       {
          QPointF location = itemList[i]->pos();
@@ -3751,8 +3757,8 @@ void MainWindow::on_pushButton_polyline_clicked()
    ui->tableObjets->setRowCount(itemList.size());
    QPolygon poly;
    int drap1=0;
-   int initValX;
-   int initValY;
+   int initValX=0;
+   int initValY=0;
    for(int i=itemList.size()-1;i>=0; i--)
       {
          QPointF location = itemList[i]->pos();
@@ -3856,6 +3862,7 @@ void MainWindow::on_toolButton_DeleteVertex_P_clicked()
 
 void MainWindow::on_toolButton_modifierPolygon_toggled(bool checked)
 {  //passer en mode modification du polygone selectionné
+  Q_UNUSED(checked);
   scene->update();
   if(ui->toolButton_modifierPolygon->isChecked() && m_mode==0)
     {
@@ -3957,7 +3964,8 @@ void MainWindow::on_toolButton_modifierPolygon_toggled(bool checked)
 
 void MainWindow::on_toolButton_newPolygon_toggled(bool checked)
 {
-   MyGraphicsScene* scene2 = dynamic_cast<MyGraphicsScene*> (scene);
+  Q_UNUSED(checked);
+  MyGraphicsScene* scene2 = dynamic_cast<MyGraphicsScene*> (scene);
 
   if(ui->toolButton_newPolygon->isChecked() && m_mode==0)
     {
@@ -4073,4 +4081,43 @@ void MainWindow::on_toolButton_CouleurCrayon_clicked()
 void MainWindow::on_toolButton_CouleurFond_clicked()
 {
     on_actionChoisir_la_couleur_triggered();
+}
+
+/*********************ZOOM*************************/
+
+void MainWindow::on_pushButton_zoomIn_clicked()
+{
+   zoomGraphicsView(2);
+}
+
+void MainWindow::on_pushButton_ZoomOut_clicked()
+{
+    zoomGraphicsView(3);
+}
+
+void MainWindow::zoomGraphicsView(int ratio)
+{ // valeur ratio in-> 2  out-> 3)
+   if(ratio==3 && m_ZoomRatio > 0.5 )
+     {
+       m_ZoomRatio=m_ZoomRatio*0.8;
+       ui->graphicsView->scale(0.8,0.8);
+     }
+   if(ratio==2 && m_ZoomRatio<3)
+     {
+       m_ZoomRatio=m_ZoomRatio*1.25;
+       ui->graphicsView->scale(1.25,1.25);
+     }
+   ui->label_zoom->setText(QString::number(m_ZoomRatio,'f',2));
+}
+/**************deplacement graphicsView*******************/
+
+void MainWindow::on_pushButton_fleche_clicked()
+{
+    ui->graphicsView->setDragMode(QGraphicsView::NoDrag);
+    ui->graphicsView->setCursor(Qt::ArrowCursor);
+}
+
+void MainWindow::on_pushButton_Deplace_clicked()
+{
+    ui->graphicsView->setDragMode(QGraphicsView::ScrollHandDrag);
 }

@@ -42,5 +42,9 @@
         <file>images/polynew.png</file>
         <file>images/polylinemodifier.png</file>
         <file>images/deleteVertex.png</file>
+        <file>images/icones/fleche.png</file>
+        <file>images/icones/deplace.png</file>
+        <file>images/zoomin.png</file>
+        <file>images/zoomout.png</file>
     </qresource>
 </RCC>

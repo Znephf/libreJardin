@@ -19,6 +19,7 @@
   : QGraphicsScene(parent)
 {
    setMode(MyGraphicsScene::InsertPolygon);
+
 }
 
 
@@ -43,6 +44,10 @@ void MyGraphicsScene::mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent)
          addItem(item);
       }
     }
+  if(mouseEvent->button() == Qt::MiddleButton)
+    {
+
+    }
     QGraphicsScene::mousePressEvent(mouseEvent);
 }
 
@@ -55,7 +60,11 @@ void MyGraphicsScene::mouseMoveEvent(QGraphicsSceneMouseEvent *mouseEvent)
 
 void MyGraphicsScene::mouseReleaseEvent(QGraphicsSceneMouseEvent *mouseEvent)
 {
+  if(mouseEvent->button() == Qt::MiddleButton)
+    {
 
+
+    }
     QGraphicsScene::mouseReleaseEvent(mouseEvent);
 }
 
