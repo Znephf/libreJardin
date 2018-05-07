@@ -73,7 +73,7 @@ MainWindow::MainWindow(QWidget *parent) :
   QMainWindow(parent),
   ui(new Ui::MainWindow)
 {
-  mode_modifier=false;
+   mode_modifier=false;
   //connexion à la base de données
   QString fileName = QDir::homePath()+"/openjardin/jardin.sqli";     //emplacement de la base de données utilisée
   QString fileName_usr = "/usr/share/openjardin/jardin.sqli";        //emplacement base de données copiées à l'installation
@@ -106,6 +106,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
   ui->setupUi(this);
   ui->lineEdit_config_nom_base->setText(fileName);
+
 
  //initialisation des "QGraphicsScene"
  // scene = new QGraphicsScene(this);
@@ -2879,6 +2880,9 @@ void MainWindow::on_pushButton_Nouveau_plantes_clicked()
   ui->comboBox_especes_de_plantes->setCurrentIndex(0);
   ui->textEdit_commentaires_plantes->setText("");
   ui->lineEdit_Id_plantes->setText("");
+  ui->lineEdit_nom_latin->setText("");
+  ui->textEdit_plante_positif->setText("");
+  ui->textEdit_plante_negatif->setText("");
 }
 
 
