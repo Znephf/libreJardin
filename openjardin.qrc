@@ -46,5 +46,7 @@
         <file>images/icones/deplace.png</file>
         <file>images/zoomin.png</file>
         <file>images/zoomout.png</file>
+        <file>images/planner_hide.png</file>
+        <file>images/planner_Valider.png</file>
     </qresource>
 </RCC>

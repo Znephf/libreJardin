@@ -299,7 +299,7 @@
                   <widget class="QComboBox" name="comboBox_etat_culture">
                    <item>
                     <property name="text">
-                     <string>Parcelle en culture</string>
+                     <string>Parcelle en culture </string>
                     </property>
                    </item>
                    <item>

@@ -236,6 +236,20 @@ private slots:
 
   void on_pushButton_Deplace_clicked();
 
+  void on_pushButton_newdatabase_clicked();
+
+  void on_pushButton_changeDataBase_clicked();
+
+  void on_pushButton_enregistrerDataBase_clicked();
+
+  void on_comboBox_Etat_currentIndexChanged(int index);
+
+  void on_pushButton_import_clicked();
+
+  void on_pushButton_NewdatabaseFull_clicked();
+
+  void on_pushButton_export_clicked();
+
 protected:
     QPoint mousePressPt;
     void mousePressEvent(QMouseEvent *event);

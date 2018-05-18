@@ -203,7 +203,7 @@ private:
     QString itemComment;
     int typeShape;
     QString pixmapfileName;
-    int m_etat;
+    int m_etat;// 0 item caché et non utilisé - 1 affiché
     int m_mode;//0 modification - 1 utilisation
 };
 

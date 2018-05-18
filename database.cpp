@@ -356,6 +356,8 @@ void Database::on_pushButton_modifier_clicked()
       model->setHeaderData(1, Qt::Vertical, QObject::tr("designation"));
       model->setHeaderData(3, Qt::Vertical, QObject::tr("parcelle"));
       ui->tableViewCultures->setModel(model);
+
+
 }
 
 /*************** base de données des taches et observations*************************/

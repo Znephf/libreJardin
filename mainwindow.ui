@@ -25,7 +25,7 @@
    </font>
   </property>
   <property name="windowTitle">
-   <string>Open Jardin version 1.03 - 002</string>
+   <string>Open Jardin version 1.04 - 001</string>
   </property>
   <property name="windowIcon">
    <iconset resource="openjardin.qrc">
@@ -580,7 +580,7 @@
                  <widget class="QLineEdit" name="lineEdit_Nom_item">
                   <property name="minimumSize">
                    <size>
-                    <width>350</width>
+                    <width>300</width>
                     <height>25</height>
                    </size>
                   </property>
@@ -643,12 +643,58 @@
                  </widget>
                 </item>
                 <item>
+                 <widget class="QToolButton" name="toolButton_etatPlanning">
+                  <property name="toolTip">
+                   <string extracomment="Affichage dans le planning">Indique si la parcelle est affichée dans le planning</string>
+                  </property>
+                  <property name="text">
+                   <string>...</string>
+                  </property>
+                  <property name="icon">
+                   <iconset resource="openjardin.qrc">
+                    <normaloff>:/images/planner_Valider.png</normaloff>:/images/planner_Valider.png</iconset>
+                  </property>
+                  <property name="iconSize">
+                   <size>
+                    <width>20</width>
+                    <height>20</height>
+                   </size>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QComboBox" name="comboBox_Etat">
+                  <property name="minimumSize">
+                   <size>
+                    <width>100</width>
+                    <height>0</height>
+                   </size>
+                  </property>
+                  <property name="toolTip">
+                   <string>Afficher ou non la parcelle dans le planning</string>
+                  </property>
+                  <item>
+                   <property name="text">
+                    <string>Afficher dans le planning</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>Ne pas afficher</string>
+                   </property>
+                  </item>
+                 </widget>
+                </item>
+                <item>
                  <widget class="QPushButton" name="pushButton_Affiches_fiche">
                   <property name="maximumSize">
                    <size>
                     <width>16777215</width>
                     <height>30</height>
                    </size>
+                  </property>
+                  <property name="toolTip">
+                   <string>Afficher la fiche culture correspondante à la parcelle</string>
                   </property>
                   <property name="text">
                    <string>afficher fiche culture</string>
@@ -667,7 +713,7 @@
                    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Imprimer le plan du terrain actuel&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                   </property>
                   <property name="text">
-                   <string>Imprimer</string>
+                   <string/>
                   </property>
                   <property name="icon">
                    <iconset resource="openjardin.qrc">
@@ -683,6 +729,9 @@
                 </item>
                 <item>
                  <widget class="QPushButton" name="pushButton_recorPlan">
+                  <property name="toolTip">
+                   <string>Enregistrer le plan modifié</string>
+                  </property>
                   <property name="text">
                    <string>Enregistrer le plan modifé</string>
                   </property>
@@ -907,6 +956,9 @@
                   </item>
                   <item>
                    <widget class="QToolButton" name="toolButton_CouleurCrayon">
+                    <property name="toolTip">
+                     <string>Choisir la couleur des lignes et caractères</string>
+                    </property>
                     <property name="text">
                      <string>...</string>
                     </property>
@@ -974,6 +1026,9 @@
                   </item>
                   <item>
                    <widget class="QToolButton" name="toolButton_CouleurFond">
+                    <property name="toolTip">
+                     <string>Choisir la couleur de la parcelle</string>
+                    </property>
                     <property name="text">
                      <string>...</string>
                     </property>
@@ -1343,6 +1398,9 @@
                      </item>
                      <item row="4" column="0">
                       <widget class="QToolButton" name="toolButton_InsertImage">
+                       <property name="toolTip">
+                        <string>Ajouter une image dans le plan</string>
+                       </property>
                        <property name="text">
                         <string>...</string>
                        </property>
@@ -1782,6 +1840,9 @@
                   </item>
                   <item>
                    <widget class="QPushButton" name="pushButton_ouvrir_fiche_culture">
+                    <property name="toolTip">
+                     <string>Ouvrir la fiche culture de la parcelle sélectionnée</string>
+                    </property>
                     <property name="text">
                      <string>Ouvrir la fiche culture</string>
                     </property>
@@ -1864,6 +1925,9 @@
                       </item>
                       <item>
                        <widget class="QPushButton" name="pushButton_validerDates">
+                        <property name="toolTip">
+                         <string>Valider les dates modifiées à partir du planning</string>
+                        </property>
                         <property name="text">
                          <string>Valider dates</string>
                         </property>
@@ -2352,6 +2416,9 @@
                    <width>80</width>
                    <height>25</height>
                   </rect>
+                 </property>
+                 <property name="toolTip">
+                  <string>Actualiser l'affichage des parcelles</string>
                  </property>
                  <property name="text">
                   <string>Actualiser</string>
@@ -4891,19 +4958,22 @@
                     <item row="0" column="0">
                      <widget class="QLabel" name="label_23">
                       <property name="text">
-                       <string>Nom du fichier de configuration (.XML)</string>
+                       <string>Nom du fichier de configuration actif (.XML)</string>
                       </property>
                      </widget>
                     </item>
                     <item row="1" column="0">
                      <widget class="QLabel" name="label_26">
                       <property name="text">
-                       <string>Nom du fichier de la base de données  (.SQLI)</string>
+                       <string>Nom du fichier de la base de données  active(.SQLI)</string>
                       </property>
                      </widget>
                     </item>
                     <item row="1" column="1">
                      <widget class="QLineEdit" name="lineEdit_config_nom_base">
+                      <property name="toolTip">
+                       <string>Modifié uniquement en changeant de base de donnée active</string>
+                      </property>
                       <property name="text">
                        <string>jardin.sqli</string>
                       </property>
@@ -4930,11 +5000,17 @@
                   <widget class="QFrame" name="frame">
                    <property name="geometry">
                     <rect>
-                     <x>20</x>
-                     <y>130</y>
-                     <width>741</width>
-                     <height>301</height>
+                     <x>10</x>
+                     <y>350</y>
+                     <width>751</width>
+                     <height>300</height>
                     </rect>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>16777215</width>
+                     <height>300</height>
+                    </size>
                    </property>
                    <property name="frameShape">
                     <enum>QFrame::Box</enum>
@@ -4946,7 +5022,7 @@
                     <property name="geometry">
                      <rect>
                       <x>10</x>
-                      <y>30</y>
+                      <y>10</y>
                       <width>301</width>
                       <height>30</height>
                      </rect>
@@ -4968,34 +5044,11 @@
                      <string>Liste des types de tâches et observations</string>
                     </property>
                    </widget>
-                   <widget class="QLabel" name="label_31">
-                    <property name="geometry">
-                     <rect>
-                      <x>0</x>
-                      <y>10</y>
-                      <width>741</width>
-                      <height>20</height>
-                     </rect>
-                    </property>
-                    <property name="font">
-                     <font>
-                      <pointsize>14</pointsize>
-                      <weight>75</weight>
-                      <bold>true</bold>
-                     </font>
-                    </property>
-                    <property name="text">
-                     <string>Paramétrage des tâches et observations</string>
-                    </property>
-                    <property name="alignment">
-                     <set>Qt::AlignCenter</set>
-                    </property>
-                   </widget>
                    <widget class="QTableView" name="tableView_taches">
                     <property name="geometry">
                      <rect>
                       <x>10</x>
-                      <y>60</y>
+                      <y>40</y>
                       <width>251</width>
                       <height>231</height>
                      </rect>
@@ -5017,7 +5070,7 @@
                     <property name="geometry">
                      <rect>
                       <x>270</x>
-                      <y>60</y>
+                      <y>40</y>
                       <width>462</width>
                       <height>111</height>
                      </rect>
@@ -5039,32 +5092,6 @@
                        </property>
                        <property name="text">
                         <string>Désignation</string>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="0" column="2">
-                      <widget class="QLineEdit" name="lineEdit_Id_taches">
-                       <property name="minimumSize">
-                        <size>
-                         <width>30</width>
-                         <height>0</height>
-                        </size>
-                       </property>
-                       <property name="maximumSize">
-                        <size>
-                         <width>30</width>
-                         <height>16777215</height>
-                        </size>
-                       </property>
-                       <property name="readOnly">
-                        <bool>true</bool>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="0" column="0" colspan="2">
-                      <widget class="QLabel" name="label_11">
-                       <property name="text">
-                        <string>Enregistrement N°</string>
                        </property>
                       </widget>
                      </item>
@@ -5151,6 +5178,32 @@
                        </item>
                       </layout>
                      </item>
+                     <item row="0" column="0">
+                      <widget class="QLabel" name="label_11">
+                       <property name="text">
+                        <string>Enregistrement N°</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="0" column="1">
+                      <widget class="QLineEdit" name="lineEdit_Id_taches">
+                       <property name="minimumSize">
+                        <size>
+                         <width>30</width>
+                         <height>0</height>
+                        </size>
+                       </property>
+                       <property name="maximumSize">
+                        <size>
+                         <width>30</width>
+                         <height>16777215</height>
+                        </size>
+                       </property>
+                       <property name="readOnly">
+                        <bool>true</bool>
+                       </property>
+                      </widget>
+                     </item>
                     </layout>
                    </widget>
                   </widget>
@@ -5159,8 +5212,8 @@
                     <rect>
                      <x>770</x>
                      <y>30</y>
-                     <width>231</width>
-                     <height>241</height>
+                     <width>321</width>
+                     <height>581</height>
                     </rect>
                    </property>
                    <property name="readOnly">
@@ -5172,7 +5225,165 @@ Le fichier de la base de données (.sqli) qui est lié au fichier de configurati
 - les fiches cultures (associées aux parcelles)
 - les fiches plantes
 - les fiches espèces 
-- les fiches des familles de plantes</string>
+- les fiches des familles de plantes
+
+Choisir la base de données active:
+Vous pouvez choisir la base de données .sqli qui sera active, puis sauvegarder le nom de cette bae dans le fichier de configuration .xml en cickant sur le bouton &quot;enregistrer les paramètres dans le fichier xml&quot; pour que cette base soit active lors de l'ouverture du fichier de configuration.
+ 
+Création d'une nouvelle base de données:
+Vous pouvez soit créer : 
+- une base de donnée avec uniquement les tables sans données, 
+- une base de données avec les tables especes - familles -  taches préremplies, 
+-  une nouvelle base en important un fichier texte de sauvegarde de type  .sql qui comprend les tables et les données.
+
+Export de la base de donnée active:
+La base de données est sauvegardée sous un nouveau nom dans un fichier texte de requête sql de type .sql. ce fichier peut être importé en tant que nouvele base de données.</string>
+                   </property>
+                  </widget>
+                  <widget class="QWidget" name="layoutWidget">
+                   <property name="geometry">
+                    <rect>
+                     <x>10</x>
+                     <y>130</y>
+                     <width>751</width>
+                     <height>184</height>
+                    </rect>
+                   </property>
+                   <layout class="QHBoxLayout" name="horizontalLayout_25">
+                    <item>
+                     <layout class="QVBoxLayout" name="verticalLayout_11">
+                      <item>
+                       <widget class="QPushButton" name="pushButton_changeDataBase">
+                        <property name="enabled">
+                         <bool>true</bool>
+                        </property>
+                        <property name="text">
+                         <string>Choisir la base de données active</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QPushButton" name="pushButton_enregistrerDataBase">
+                        <property name="enabled">
+                         <bool>true</bool>
+                        </property>
+                        <property name="text">
+                         <string>Enregistrer les paramètres dans le fichier XML</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QPushButton" name="pushButton_newdatabase">
+                        <property name="enabled">
+                         <bool>true</bool>
+                        </property>
+                        <property name="text">
+                         <string>Créer une nouvelle base de données vide</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QPushButton" name="pushButton_NewdatabaseFull">
+                        <property name="text">
+                         <string>Créer une base avec les données de pré-remplie</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QPushButton" name="pushButton_import">
+                        <property name="text">
+                         <string>Créer une base de données et importer les données</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QPushButton" name="pushButton_export">
+                        <property name="enabled">
+                         <bool>true</bool>
+                        </property>
+                        <property name="text">
+                         <string>Exporter la base de données</string>
+                        </property>
+                       </widget>
+                      </item>
+                     </layout>
+                    </item>
+                    <item>
+                     <layout class="QVBoxLayout" name="verticalLayout_12">
+                      <item>
+                       <widget class="QLabel" name="label_55">
+                        <property name="text">
+                         <string>Messages :</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QPlainTextEdit" name="plainTextMessages"/>
+                      </item>
+                     </layout>
+                    </item>
+                   </layout>
+                  </widget>
+                  <widget class="QLabel" name="label_56">
+                   <property name="geometry">
+                    <rect>
+                     <x>770</x>
+                     <y>10</y>
+                     <width>121</width>
+                     <height>17</height>
+                    </rect>
+                   </property>
+                   <property name="font">
+                    <font>
+                     <weight>75</weight>
+                     <bold>true</bold>
+                    </font>
+                   </property>
+                   <property name="text">
+                    <string>Aide sur cette page</string>
+                   </property>
+                  </widget>
+                  <widget class="QLabel" name="label_57">
+                   <property name="geometry">
+                    <rect>
+                     <x>10</x>
+                     <y>110</y>
+                     <width>151</width>
+                     <height>17</height>
+                    </rect>
+                   </property>
+                   <property name="font">
+                    <font>
+                     <pointsize>12</pointsize>
+                     <weight>75</weight>
+                     <bold>true</bold>
+                    </font>
+                   </property>
+                   <property name="text">
+                    <string>Bases de données</string>
+                   </property>
+                  </widget>
+                  <widget class="QLabel" name="label_31">
+                   <property name="geometry">
+                    <rect>
+                     <x>10</x>
+                     <y>320</y>
+                     <width>741</width>
+                     <height>20</height>
+                    </rect>
+                   </property>
+                   <property name="font">
+                    <font>
+                     <pointsize>14</pointsize>
+                     <weight>75</weight>
+                     <bold>true</bold>
+                    </font>
+                   </property>
+                   <property name="text">
+                    <string>Paramétrage des tâches et observations</string>
+                   </property>
+                   <property name="alignment">
+                    <set>Qt::AlignCenter</set>
                    </property>
                   </widget>
                  </widget>
@@ -5300,7 +5511,7 @@ Le fichier de la base de données (.sqli) qui est lié au fichier de configurati
             <item>
              <widget class="QTabWidget" name="tabWidget_2">
               <property name="currentIndex">
-               <number>0</number>
+               <number>1</number>
               </property>
               <widget class="QWidget" name="tab_8">
                <attribute name="title">
@@ -5972,6 +6183,233 @@ la traduction &lt;http://www.gnu.org/licenses/why-not-lgpl.fr.html&gt;
                    </widget>
                   </item>
                  </layout>
+                </item>
+               </layout>
+              </widget>
+              <widget class="QWidget" name="tab_7">
+               <attribute name="title">
+                <string>openjardin.sql</string>
+               </attribute>
+               <layout class="QVBoxLayout" name="verticalLayout_17">
+                <item>
+                 <widget class="QPlainTextEdit" name="plainTextEdit_sql">
+                  <property name="plainText">
+                   <string>BEGIN TRANSACTION;
+CREATE TABLE `taches` (
+	`id`	INTEGER PRIMARY KEY AUTOINCREMENT,
+	`designation`	varchar(30)
+);
+INSERT INTO `taches` (id,designation) VALUES (1,'préparation du sol béchage');
+INSERT INTO `taches` (id,designation) VALUES (3,'amendement');
+INSERT INTO `taches` (id,designation) VALUES (5,'semis');
+INSERT INTO `taches` (id,designation) VALUES (6,'plantations');
+INSERT INTO `taches` (id,designation) VALUES (7,'désherbage');
+INSERT INTO `taches` (id,designation) VALUES (8,'récolte');
+INSERT INTO `taches` (id,designation) VALUES (9,'jachère');
+INSERT INTO `taches` (id,designation) VALUES (10,'paillage');
+INSERT INTO `taches` (id,designation) VALUES (11,'traitement');
+INSERT INTO `taches` (id,designation) VALUES (14,'maladie');
+CREATE TABLE &quot;plantes&quot; (
+	`id`	INTEGER PRIMARY KEY AUTOINCREMENT,
+	`designation`	varchar(40),
+	`type_lune`	integer,
+	`espece`	INTEGER,
+	`nom_latin`	varchar(50),
+	`commentaires`	varchar(200),
+	`semis_printemps`	varchar(24),
+	`semis_ete`	varchar(24),
+	`semis_automne`	varchar(24)
+);
+
+CREATE TABLE &quot;observations&quot; (
+	`id`	INTEGER PRIMARY KEY AUTOINCREMENT,
+	`designation`	varchar(40),
+	`date`	varchar(10),
+	`type`	INTEGER,
+	`commentaires`	INTEGER,
+	`id_culture`	INTEGER
+);
+CREATE TABLE &quot;lune&quot; (
+	`id`	INTEGER,
+	`designation`	varchar(30)
+);
+INSERT INTO `lune` (id,designation) VALUES (1,'feuilles');
+INSERT INTO `lune` (id,designation) VALUES (2,'fleurs');
+INSERT INTO `lune` (id,designation) VALUES (3,'racines');
+INSERT INTO `lune` (id,designation) VALUES (4,'fruits/graines');
+CREATE TABLE &quot;familles&quot; (
+	`id`	INTEGER PRIMARY KEY AUTOINCREMENT,
+	`designation`	varchar(30)
+);
+INSERT INTO `familles` (id,designation) VALUES (1,'Actinidiacées');
+INSERT INTO `familles` (id,designation) VALUES (2,'Amaranthacées');
+INSERT INTO `familles` (id,designation) VALUES (3,'Apiacées
+(Ombellifères)');
+INSERT INTO `familles` (id,designation) VALUES (4,'Astéracées (composées)');
+INSERT INTO `familles` (id,designation) VALUES (5,'Aizoaceae');
+INSERT INTO `familles` (id,designation) VALUES (6,'Basellacées');
+INSERT INTO `familles` (id,designation) VALUES (7,'Brassicacées
+(Crucifères)');
+INSERT INTO `familles` (id,designation) VALUES (8,'Chénopodiacées');
+INSERT INTO `familles` (id,designation) VALUES (9,'Convolvulacées');
+INSERT INTO `familles` (id,designation) VALUES (10,'Cucurbitacées');
+INSERT INTO `familles` (id,designation) VALUES (11,'Ericaceae');
+INSERT INTO `familles` (id,designation) VALUES (12,'Fabacées
+(Papilionacées)');
+INSERT INTO `familles` (id,designation) VALUES (13,'Grossulariacées');
+INSERT INTO `familles` (id,designation) VALUES (14,'Lamiacées (Labiées)');
+INSERT INTO `familles` (id,designation) VALUES (15,'Alliacées');
+INSERT INTO `familles` (id,designation) VALUES (16,'Asparagacées
+(Liliacées)');
+INSERT INTO `familles` (id,designation) VALUES (17,'Poacées
+(Graminées)');
+INSERT INTO `familles` (id,designation) VALUES (18,'Polygonacées');
+INSERT INTO `familles` (id,designation) VALUES (19,'Portulacacées');
+INSERT INTO `familles` (id,designation) VALUES (20,'Rosacées');
+INSERT INTO `familles` (id,designation) VALUES (21,'Solanacées');
+INSERT INTO `familles` (id,designation) VALUES (22,'Valérianacées');
+INSERT INTO `familles` (id,designation) VALUES (23,'Iridacée');
+INSERT INTO `familles` (id,designation) VALUES (24,'-');
+INSERT INTO `familles` (id,designation) VALUES (25,'Amaryllidacées');
+CREATE TABLE &quot;especes&quot; (
+	`id`	INTEGER PRIMARY KEY AUTOINCREMENT,
+	`designation`	varchar(30),
+	`famille`	INTEGER,
+	`positif`	varchar(200),
+	`negatif`	varchar(200),
+	`commentaires`	varchar(200),
+	`compost`	INTEGER,
+	`rotation_ans`	INTEGER,
+	`rotation_familles`	varchar(22)
+);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (1,'Ail',15,'carotte, fraisier, tomate','pois, haricot, chou','favorable aprés fabacées ou pomme de terre',1,6,'0000010000000000010000');
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (2,'Airelle',11,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (3,'Amaranthe',2,'','',NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (4,'Aneth',3,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (5,'Angélique',3,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (6,'Arroche',8,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (7,'Artichaut',3,'','','',3,6,'0000000000000000000000');
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (8,'Asperge',16,'persil, tomate','oignon','',0,0,'0000000000000000000000');
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (9,'Aubergine',21,'estragon, pois, thym','','souvent placé en tête de rotation',3,5,'0000010000000001000100');
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (10,'Bambou',17,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (11,'Baselle',6,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (12,'Basilic',14,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (13,'Bette',8,'','','',2,5,'1000001000000010000000');
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (14,'Betterave',2,'choux, céleris, laitues, oignons','haricots grimpants','',2,5,'0010100010010010000000');
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (15,'Blé',17,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (16,'Blette',8,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (17,'Brocoli',7,'fève, céleri, camomille, aneth, menthe, capucine, oignon, origan, pomme de terre, sauge, romarin','laitue, fraise, tomate',NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (18,'Cardon',3,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (19,'Carotte',3,'','','',2,6,'0000001000010100000000');
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (20,'Carvi',14,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (21,'Cassissier',13,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (22,'Céleri',3,'fève, choux, poireau, oignon, tomate','laitue, persil','',3,5,'0000001000010000000000');
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (23,'Céleri rave',3,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (24,'Cerfeuil',3,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (25,'Chayote',10,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (26,'Chicorée',4,'','','',2,5,'0000001000001000000000');
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (27,'Choux de Bruxelles',7,'fève, céleri, aneth, hysope, menthe, capucine, pomme de terre, sauge, romarin','fraise',NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (28,'Choux',7,'fève, betterave, céleri, camomille, aneth, hysope, menthe, capucine, oignon, origan, pomme de terre, sauge, romarin','vigne, fraise, tomate','',3,5,'0000001000000100000000');
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (29,'Ciboule',15,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (30,'Ciboulette',15,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (31,'Citrouille',10,'fève, maïs, menthe, capucine, radis','pomme de terre',NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (32,'Claytone',19,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (33,'Concombre',10,'fève, brocoli, céleri, laitue, pois, radis, tomate','rue, sauge','',3,5,'0000001000000001000100');
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (34,'Coriandre',3,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (35,'Cornichon',10,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (36,'Courge',10,'fève, maïs, menthe, capucine, radis','pomme de terre','',3,5,'0000000000000001000000');
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (37,'Courgette',10,'','','',3,3,'0000001000000001000100');
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (38,'Cresson',3,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (40,'Crosne du japon',14,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (41,'Echalote',15,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (42,'Endive',3,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (43,'Epinard',8,'aubergine, chou, céleri, oignon, pois, fraise','','',3,5,'0000001000000010000000');
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (44,'Estragon',4,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (45,'Fenouil',3,'','','',3,5,'0000000000010000000000');
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (46,'Fenouil grand',3,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (47,'Fèves',12,'betteraves, bourrache, choux, carotte, chou-fleur, maïs, oeillet d''Inde, courge, fraise, tomate','ciboulette, fenouil, ail, poireau',NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (48,'Cresson des Fontaines',7,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (49,'Fraisier',20,'','','',3,5,'0000001100000000100100');
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (50,'Framboisier',20,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (51,'Groseillier',13,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (52,'Haricot',12,'betteraves, bourrache, choux, carotte, chou-fleur, maïs, oeillet d''Inde, courge, fraise, tomate','ciboulette, fenouil, ail, poireau',NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (53,'Hysope',14,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (54,'Kiwi',1,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (55,'Laitue',4,'betterave, chou, trèfle, pois, radis, fraise','','',2,5,'0000000000000000000000');
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (56,'Lentille',12,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (57,'Livèche',3,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (58,'Maceron',3,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (59,'Mâche',22,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (60,'Mais doux',17,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (61,'Marjolaine',14,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (62,'Mélisse',14,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (63,'Melon',10,'maïs, tournesol','','',3,5,'0000000100000001000100');
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (64,'Menthe',14,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (65,'Moutarde',7,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (66,'Myrtille',11,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (67,'Navet',7,'','','',1,4,'0000001110010100000000');
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (68,'Oignon',15,'betterave, chou, carotte, laitue, pomme de terre, fraise, tomate','fève, haricot, pois','',1,7,'0000010000000000010000');
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (69,'Orge',17,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (70,'Origan',14,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (71,'Oseille',18,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (72,'Panais',3,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (73,'Pastèque',10,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (74,'Patate douce',9,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (75,'Pâtisson',10,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (76,'Persil',3,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (77,'Petits pois',12,'Les pois aiment la proximité du fenouil, des concombres, des laitues et des carottes.','','',2,0,'0000000000000000000000');
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (78,'Physalis',21,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (79,'Piment',21,'basilic, carotte, marjolaine, oignons, origan','fenouil','',3,5,'0000010000000001000100');
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (80,'Pois',12,'asperge, aubergine, carotte, céleri, concombres, laitue, radis, épinard, tomate, haricots, navets','','',1,5,'0000000000000000100000');
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (81,'Pissenlit',3,'',NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (82,'Poireau',25,'Carotte, céleri, endive, épinard, fraisier, mâche, œillet d''Inde, panais, tomate.','Ail, asperge, bette, betterave, brocoli, chou, chou de Bruxelles, chou-fleur, fève, haricot, oignon, persil, piment, pois, poivron, sauge.','Parasites : Anguillule, mouche de l''oignon, teigne du poireau, thrips, ver du poireau
+Maladies : Mildiou, oïdium, rouille',3,6,'0000010000000000010000');
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (83,'Poirée',8,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (84,'Pois chiche',12,'l''artichaut, le brocoli, la carotte, le céleri, le chou, le concombre, la courge, l''épinard, la laitue, le melon, la menthe, le navet, le panais, le radis','l''ail, de l''asperge, la ciboulette, l''aubergine, l''oignon, le persil, le piment, le poireau, la pomme de terre, la tomate.','Le pois chiche redoute plus particulièrement la bruche du pois. Les grains sont transformés en gruyère, car la larve de la bruche, à la tête brune et au corps blanc, voire jaunâtre, creuse des galeries dans les grains. ',0,0,'0000000000000000000000');
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (85,'Poivron',21,'','','',3,5,'0000010000000001000100');
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (86,'Pomme de terre',21,'ail, haricot, pois, fève, chou, maïs, laitue, oignon, pétunia, oeillet d''Inde, radis, potiron, courgettes','pomme, citrouille, tomate','',3,5,'0000000000000000000100');
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (87,'Potimarron',10,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (88,'Potiron',10,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (89,'Pourpier',19,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (90,'Quinoa',8,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (91,'Radis',7,'fève, chou, chou-fleur, concombre, laitue, pois, courge, tomate','vigne, hysope',NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (92,'Raifort',7,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (93,'Rapini',7,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (94,'Rhubarbe',18,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (95,'Romarin',14,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (96,'Ronce (mûres)',20,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (97,'Roquette',7,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (98,'Rutabaga',7,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (99,'Salsifis',3,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (100,'Sariette',14,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (101,'Sarrasin',18,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (102,'Sauge',14,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (103,'Scorsonère',3,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (104,'Seigle',17,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (105,'Sorgho',17,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (106,'Stevia',4,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (107,'Tétragone',5,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (108,'Thym',14,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (109,'Tomate',21,'asperge, basilic, carotte, oignon, persil, pois, sauge, poireaux, radis','fenouil, pomme de terre, chou','',3,5,'0000000000000001000100');
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (110,'Tomate cerise',21,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (111,'Topinambour',3,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (112,'Tournesol',3,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (113,'Safran',23,'','','',2,5,'0000000000000000010000');
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (114,'-',24,'','','',1,1,'0000000000000000000000');
+CREATE TABLE &quot;cultures&quot; (
+	`id`	INTEGER PRIMARY KEY AUTOINCREMENT,
+	`designation`	varchar(40),
+	`parcelle`	integer,
+	`date_semis`	varchar(10),
+	`type_plante`	integer,
+	`commentaires`	varchar(200),
+	`etat`	INTEGER,
+	`duree`	INTEGER,
+	`date_recolte`	varchar(10)
+);
+COMMIT;</string>
+                  </property>
+                 </widget>
                 </item>
                </layout>
               </widget>

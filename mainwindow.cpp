@@ -101,11 +101,11 @@ MainWindow::MainWindow(QWidget *parent) :
           QFile::copy("/usr/share/openjardin/notice_openJardin.pdf", path+"/notice_openJardin.pdf");
           QFile::copy("/usr/share/openjardin/jardin_exemple.xml",path+"/jardin_exemple.xml");
      }
-
+  ui->setupUi(this);
   createConnection(fileName);
 
-  ui->setupUi(this);
-  ui->lineEdit_config_nom_base->setText(fileName);
+
+ // ui->lineEdit_config_nom_base->setText(fileName);
 
 
  //initialisation des "QGraphicsScene"
@@ -146,7 +146,9 @@ MainWindow::MainWindow(QWidget *parent) :
   // stylesheets
  // ui->pushButton_Enregistrer_modif_item->setStyleSheet("background-color : #ffff00");
   ui->pushButton_recorPlan->hide();
+  ui->pushButton_enregistrerDataBase->hide();
   ui->pushButton_recorPlan->setStyleSheet("background-color : #ffff00; color: red");
+  ui->pushButton_enregistrerDataBase->setStyleSheet("background-color : #ffff00; color: red");
   ui->pushButton_Affiches_fiche->setStyleSheet("background-color : #ffff00");
 
   qApp->setPalette(this->style()->standardPalette());
@@ -277,9 +279,14 @@ MainWindow::MainWindow(QWidget *parent) :
   connect(ui->graphicsView_rotation->verticalScrollBar(), SIGNAL(valueChanged(int)),ui->graphicsView_rotation2->verticalScrollBar(),SLOT(setValue(int)));
   connect(ui->graphicsView_rotation->horizontalScrollBar(), SIGNAL(valueChanged(int)),ui->graphicsView_rotation3->horizontalScrollBar(),SLOT(setValue(int)));
   affiche_planning(jour);
+
   //cacher l'onglets "objets" qui contient les tables des objets
-  ui->tabWidget_taches->removeTab(4);
-  ui->frame_ToolsCreate->hide();
+   ui->tabWidget_taches->removeTab(4);
+  //cacher l'onglet plainTextEdit_sql
+   ui->tabWidget_2->removeTab(1);
+  // cacher les outils de dessin car affichage uniquement en mode dessin
+   ui->frame_ToolsCreate->hide();
+
   m_ZoomRatio=1; //variable du facteur de zoom (actual size =1 )
  //  ui->graphicsView->setDragMode(QGraphicsView::ScrollHandDrag);
 }
@@ -305,6 +312,9 @@ void MainWindow::createConnection(QString fileName)
       else
         {
             qDebug() << "database open "<< fileName;
+            ui->lineEdit_config_nom_base->setText(fileName);
+             ui->plainTextMessages->insertPlainText("Base de données ouverte :"+fileName+"\n");
+            init_base();
         }
   }
 
@@ -420,32 +430,6 @@ QString MainWindow::apos(QString texte)
 void MainWindow::mousePressEvent(QMouseEvent *event)
 {
  Q_UNUSED(event);
-  /*   mousePressPt.setX(pos().x() - event->x());
-    mousePressPt.setY(pos().y() - event->y());
-//    qDebug() << "mouse press event x"<< event->x()-15<<" y "<<event->y()-165;
-
-//if (ui->tabWidget->currentIndex()==0 && cursor().shape()==Qt::ArrowCursor)
-  if (m_mode==0 && cursor().shape()==Qt::ArrowCursor&&event->y()>165 && ui->toolButton_newPolygon->isChecked())
-    {  //création de polygones
-        MyVertex *item = new MyVertex(10,10);
-        item->setId(ui->lineEdit_ItemId->text().toInt());
-        item->setColor(QColor(Qt::yellow));
-        item->setPenColor(QColor(Qt::black));
-        item->setOpac(0.8); //opacité de l'item
-        item->setTypeShape(MyVertex::Rectangle);
-        item->setPos(event->x()-15,event->y()-165);
-        item->setNom(" ");
-        item->setTexte("xx");
-        item->setEtat(1);
-        item->setMode(0);
-       scene->addItem(item);
-       QPointF zero = ui->graphicsView->mapFromScene(QPointF(0,0));
-        ui->graphicsView->horizontalScrollBar()->setValue(zero.x());
-        ui->graphicsView->verticalScrollBar()->setValue(zero.y());
-
-     }*/
-
-
 
 }
 
@@ -625,6 +609,48 @@ void MainWindow::affiche_rotation(int year)
 
 
 }
+/****************************************************************/
+/*********************etat d'affichage dans le planning**********/
+/****************************************************************/
+void MainWindow::on_comboBox_Etat_currentIndexChanged(int index)
+{  // affichage ou non de la parcelle dans le planning
+  int etat = 1;
+   QList <QGraphicsItem*> itemList = scene->items();
+    if(ui->comboBox_Etat->currentIndex()==1)
+      {
+        etat=0;
+      }
+    else
+      {
+        etat=1;
+      }
+        for(int i=0; i<itemList.size(); i++)
+              {
+                if(itemList[i]->isSelected())
+                  {
+                    if(itemList[i]->type() == 65536) // MyItem
+                      {
+                        MyItem* item = dynamic_cast<MyItem*> (itemList[i]);
+                        item->setEtat(etat);
+
+                      }
+                    if(itemList[i]->type() == 65537) // MyPolygone
+                      {
+                        MyPolygone* item = dynamic_cast<MyPolygone*> (itemList[i]);
+                        item->setEtat(etat);
+                      }
+
+                    items_vers_tableau();//ajout des items de la scene au tableau
+                  }
+              }
+         ui->pushButton_recorPlan->show();
+
+  if(etat==1)
+    ui->toolButton_etatPlanning->setIcon(QIcon(":/images/planner_Valider.png"));
+  else
+    ui->toolButton_etatPlanning->setIcon(QIcon(":/images/planner_hide.png"));
+}
+
 
 /*********************************************************************************/
 /************************  dessin du tableau planning  ***************************/
@@ -1017,7 +1043,7 @@ void MainWindow::on_actionSauver_triggered()
             return;
         }
         else
-        {
+       {
             QTextStream stream(&file);
             stream << document.toString();
             file.close();
@@ -1077,8 +1103,7 @@ void MainWindow::on_actionOuvrir_triggered()
                     {
                        QDomElement base = basenode.toElement();
                       QString fichierBase=base.attribute("fichier");
-                      // ui->lineEdit_config_nom_base->setText();
-
+                      createConnection(fichierBase);
                      }
 
                   // écriture dans le tableau de l'objet fond d'écran
@@ -1580,7 +1605,7 @@ void MainWindow::items_vers_tableau()
         ui->tableObjets->setItem(i, 16,new QTableWidgetItem(""));// chemin du fichier vide
         ui->tableObjets->setItem(i, 16,new QTableWidgetItem(item->getPixFile()));//chemin du fichier
         // COPIE VERS tableWidget_parcelles
-        if(ui->tableObjets->item(i,9)->text().toInt()==1)
+        if(ui->tableObjets->item(i,9)->text().toInt()==1 && ui->tableObjets->item(i,13)->text().toInt()==1) //si item est une parcelle et etat=1
           {
           ui->tableWidget_parcelles->setRowCount(row_parcelles+1);
           ui->tableWidget_parcelles->setItem(row_parcelles, 0,new QTableWidgetItem(QString::number(item->getId())));//Id
@@ -2076,6 +2101,7 @@ void MainWindow::on_actionSupprimer_triggered()
                   item->setY(-1);
                   item->setSizeShape(1,1);
                   item->hide();
+                  item->setEtat(0);
 
                 }
               if(itemList[i]->type() == 65537) // MyPolygone
@@ -2083,12 +2109,14 @@ void MainWindow::on_actionSupprimer_triggered()
                   MyPolygone* item = dynamic_cast<MyPolygone*> (itemList[i]);
                   item->setStrPoly("0,0");
                   item->hide();
+                  item->setEtat(0);
                 }
               if(itemList[i]->type() == 65539) // MyPolyline
                 {
                   MyPolyline* item = dynamic_cast<MyPolyline*> (itemList[i]);
                   item->setStrPoly("0,0");
                   item->hide();
+                  item->setEtat(0);
                 }
               items_vers_tableau();//ajout des items de la scene au tableau
             }
@@ -2335,6 +2363,11 @@ void MainWindow::Item_clicked()
                   ui->lineEdit_Id_Item->setText("-1"); //équipement
                if(item->getTypeShape()==(MyItem::Circle))
                   ui->lineEdit_Id_Item->setText(QString::number(item->getId()));
+               int etat=item->getEtat();
+               if(etat==1)
+                 ui->toolButton_etatPlanning->setIcon(QIcon(":/images/planner_Valider.png"));
+               else
+                 ui->toolButton_etatPlanning->setIcon(QIcon(":/images/planner_hide.png"));
              }
            if(itemList[i]->type() == 65537) // MyPolygone
              {
@@ -2342,8 +2375,13 @@ void MainWindow::Item_clicked()
                ui->lineEdit_Id_Item->setText(QString::number(item->getId()));
                ui->lineEdit_Nom_item->setText(item->getNom());
                ui->textEdit_plan_commentaires->setText(item->getTexte());
-
+               int etat=item->getEtat();
+               if(etat==1)
+                 ui->toolButton_etatPlanning->setIcon(QIcon(":/images/planner_Valider.png"));
+               else
+                 ui->toolButton_etatPlanning->setIcon(QIcon(":/images/planner_hide.png"));
              }
+
            if(itemList[i]->type() == 65539) // MyPolyline
              {
                MyPolyline* item = dynamic_cast<MyPolyline*> (itemList[i]);
@@ -2354,9 +2392,9 @@ void MainWindow::Item_clicked()
 
              }
          }
-     }
-}
+    }
 
+}
 
 void MainWindow::ItemPlanning_clicked()
 { //si l'item est sélectionné (scene_planning selection changed)
@@ -4124,4 +4162,422 @@ void MainWindow::on_pushButton_fleche_clicked()
 void MainWindow::on_pushButton_Deplace_clicked()
 {
     ui->graphicsView->setDragMode(QGraphicsView::ScrollHandDrag);
+}
+/*******************************BASES DE DONNEES*************************************/
+
+void MainWindow::on_pushButton_newdatabase_clicked()
+{ // créer une nouvelle base de données vide
+     QString repertoire = QDir::homePath()+"/openjardin";
+     QString fileName =
+         QFileDialog::getSaveFileName(this, tr("Création d'une nouvelle base de données"),
+                                  repertoire,
+                                  tr("SQLI Files (*.sqli)"));
+     if (fileName.isEmpty())
+         return;
+
+     QFile file(fileName);
+     if (!file.open(QFile::WriteOnly | QFile::Text))
+     {
+       QMessageBox msgBox;
+       msgBox.setText("ERREUR D'ÉCRITURE");
+       return;
+     }
+     else
+     {
+         createConnection(fileName);
+          ui->pushButton_enregistrerDataBase->show();
+     }
+     QSqlQuery query;
+         query.exec("CREATE TABLE plantes (id	INTEGER PRIMARY KEY AUTOINCREMENT,designation varchar(40),type_lune integer,espece INTEGER,nom_latin varchar(50),commentaires varchar(200),semis_printemps varchar(24),semis_ete varchar(24),semis_automne varchar(24))");
+         query.exec("CREATE TABLE taches (  id INTEGER PRIMARY KEY AUTOINCREMENT,  designation varchar(30))");
+         query.exec("CREATE TABLE observations (  id INTEGER PRIMARY KEY AUTOINCREMENT,  designation varchar(40),  date varchar(10),  type INTEGER,  commentaires INTEGER,  id_culture INTEGER )");
+         query.exec("CREATE TABLE lune (  id INTEGER,  designation varchar(30) )");
+         query.exec("CREATE TABLE familles (  id INTEGER PRIMARY KEY AUTOINCREMENT,  designation varchar(30))");
+         query.exec("CREATE TABLE especes (  id INTEGER PRIMARY KEY AUTOINCREMENT,  designation varchar(30),  famille INTEGER,  positif varchar(200),  negatif varchar(200),  commentaires varchar(200),  compost INTEGER,  rotation_ans INTEGER,  rotation_familles varchar(22))");
+         query.exec("CREATE TABLE cultures (  id INTEGER PRIMARY KEY AUTOINCREMENT,  designation varchar(40),  parcelle integer,  date_semis varchar(10),  type_plante integer,  commentaires varchar(200),  etat INTEGER,  duree INTEGER,  date_recolte varchar(10) )");
+         qWarning()<<query.lastError();
+         if( query.lastError().isValid())
+           {
+                   ui->plainTextMessages->insertPlainText(query.lastError().databaseText()+" \n");
+           }
+         else
+           {
+                   ui->plainTextMessages->insertPlainText("création des tables effectuée \n");
+           }
+
+}
+
+void MainWindow::on_pushButton_changeDataBase_clicked()
+{ // changer la base de données active
+
+  QSqlQuery query;
+  QString repertoire = QDir::homePath()+"/openjardin/";
+
+     QString fileName =
+         QFileDialog::getOpenFileName(this, tr("Ouverture d'une base de données"),
+                                  repertoire,
+                                  tr("SQLI Files (*.sqli)"));
+     if (fileName.isEmpty())
+         return;
+
+    QFile file(fileName);
+     if (!file.open(QFile::ReadOnly| QFile::Text))
+     {
+       ui->plainTextMessages->insertPlainText("Erreur de lecture du fichier : "+fileName+"\n");
+       return;
+     }
+     else
+     {
+         ui->plainTextMessages->insertPlainText("Base de données ouverte :"+fileName+"\n");
+         createConnection(fileName);
+         ui->pushButton_enregistrerDataBase->show();
+     }
+}
+
+void MainWindow::on_pushButton_enregistrerDataBase_clicked()
+{ // enregistrer le fichier XML
+
+  on_actionSauver_triggered();
+  ui->pushButton_recorPlan->hide();
+  ui->pushButton_enregistrerDataBase->hide();
+}
+
+
+
+void MainWindow::on_pushButton_import_clicked()
+{  //  créer une base vide et importer les données dans cette base de données
+
+       ui->plainTextMessages->insertPlainText("Début de l'importation des données\n");
+       QString repertoire = QDir::homePath()+"/openjardin";
+       QString fileName =
+           QFileDialog::getSaveFileName(this, tr("Importer des données dans la base de données"),
+                                    repertoire,
+                                    tr("SQLI Files (*.sqli)"));
+       if (fileName.isEmpty())
+           return;
+
+       QFile file(fileName);
+       if (!file.open(QFile::WriteOnly | QFile::Text))
+       {
+         QMessageBox msgBox;
+         msgBox.setText("ERREUR D'ÉCRITURE");
+           return;
+       }
+       else
+       {
+           QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
+           db.setHostName("localhost");
+           db.setUserName("root");
+           db.setPassword("");
+           db.setDatabaseName(fileName);
+           if (!db.open())
+             {
+                 qDebug() << "connection database erreur "<< fileName;
+             }
+           else
+             {
+                 qDebug() << "database open "<< fileName;
+                 ui->plainTextMessages->insertPlainText("Base de données ouverte :"+fileName+"\n");
+             }
+
+       QSqlQuery query;
+       QString repertoire = QDir::homePath()+"/openjardin/";
+
+       QString fileNameImport =
+              QFileDialog::getOpenFileName(this, tr("Importer les données dans la base de données"),
+                                       repertoire,
+                                       tr("SQL Files (*.sql)"));
+          if (fileNameImport.isEmpty())
+              return;
+
+         QFile fileImport(fileNameImport);
+          if (!fileImport.open(QFile::ReadOnly| QFile::Text))
+          {
+            QMessageBox msgBox;
+            msgBox.setText("ERREUR DE LECTURE");
+              return;
+          }
+          else
+          {
+            //lecture du fichier .sql
+            QTextStream Str(&fileImport);
+            QString queryStr;
+            queryStr = Str.readAll();
+            fileImport.close();
+            ui->plainTextMessages->insertPlainText("Fichier importé :"+fileNameImport+"\n");
+           //Vérifier si le driver SQL supporte les Transactions
+           if(db.driver()->hasFeature(QSqlDriver::Transactions))
+             {
+               //Remplace les commentaires, tabulations et nouvelles lignes avec des espaces
+               queryStr = queryStr.replace(QRegularExpression("(\\/\\*(.|\\n)*?\\*\\/|^--.*\\n|\\t|\\n)", QRegularExpression::CaseInsensitiveOption|QRegularExpression::MultilineOption), " ");
+               //Supprimer les espaces inutiles
+               queryStr = queryStr.trimmed();
+
+               //Extraction des requêtes
+               QStringList qList = queryStr.split(';', QString::SkipEmptyParts);
+               //Initialise les expressions pour détecter les requêts spéciales(`begin transaction` and `commit`).
+               QRegularExpression re_transaction("\\bbegin.transaction.*", QRegularExpression::CaseInsensitiveOption);
+               QRegularExpression re_commit("\\bcommit.*", QRegularExpression::CaseInsensitiveOption);
+
+               bool isStartedWithTransaction = re_transaction.match(qList.at(0)).hasMatch();
+               if(!isStartedWithTransaction)
+                 db.transaction();
+               //Executer chaque requête individuellement
+               foreach(const QString &s, qList)
+                 {
+                 if(re_transaction.match(s).hasMatch())    //<== detection des requêtes spéciales
+                     db.transaction();
+                 else if(re_commit.match(s).hasMatch())    //<== detection des requêtes spéciales
+                     db.commit();
+                 else
+                   {
+                     query.exec(s);                        //<== executer les requêtes normales
+                     if(query.lastError().type() != QSqlError::NoError)
+                       {
+                         qDebug() << query.lastError().text();
+                         qDebug() <<s;
+                         db.rollback();                    //<== rollback la transaction s'il y a un probême
+                         ui->plainTextMessages->insertPlainText(query.lastError().databaseText()+" \n");
+                       }
+                    }
+                 }
+               ui->plainTextMessages->insertPlainText("Importation des données terminée \n");
+               ui->pushButton_enregistrerDataBase->show();
+               if(!isStartedWithTransaction)
+                 db.commit();
+           }
+           else {//si le driver sql ne support pas les transactions
+
+               //...il est nécessaire de supprimer les requêtes spéciales(`begin transaction` and `commit`)
+               queryStr = queryStr.replace(QRegularExpression("(\\bbegin.transaction.*;|\\bcommit.*;|\\/\\*(.|\\n)*?\\*\\/|^--.*\\n|\\t|\\n)", QRegularExpression::CaseInsensitiveOption|QRegularExpression::MultilineOption), " ");
+               queryStr = queryStr.trimmed();
+
+               //Executer chaque requête individuellement
+               QStringList qList = queryStr.split(';', QString::SkipEmptyParts);
+               foreach(const QString &s, qList) {
+                 query.exec(s);
+                 if(query.lastError().type() != QSqlError::NoError)
+                   {
+                      qDebug() << query.lastError().text();
+                      ui->plainTextMessages->insertPlainText(query.lastError().databaseText()+" \n");
+                   }
+                 else
+                   {
+
+                   }
+                 ui->plainTextMessages->insertPlainText("Importation des données terminée \n");
+               }
+       }
+     }
+    }
+}
+
+void MainWindow::on_pushButton_NewdatabaseFull_clicked()
+{ //  créer une base vide et importer les données dans cette base de données
+
+       ui->plainTextMessages->insertPlainText("Début de l'importation des données\n");
+       QString repertoire = QDir::homePath()+"/openjardin";
+       QString fileName =
+            QFileDialog::getSaveFileName(this, tr("Importer des données dans la base de données"),
+                                     repertoire,
+                                     tr("SQLI Files (*.sqli)"));
+        if (fileName.isEmpty())
+            return;
+
+        QFile file(fileName);
+        if (!file.open(QFile::WriteOnly | QFile::Text))
+        {
+          QMessageBox msgBox;
+          msgBox.setText("ERREUR D'ÉCRITURE");
+            return;
+        }
+        else
+        {
+            QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
+            db.setHostName("localhost");
+            db.setUserName("root");
+            db.setPassword("");
+            db.setDatabaseName(fileName);
+            if (!db.open())
+              {
+                  qDebug() << "connection database erreur "<< fileName;
+              }
+            else
+              {
+                  qDebug() << "database open "<< fileName;
+                  ui->plainTextMessages->insertPlainText("Base de données ouverte :"+fileName+"\n");
+              }
+
+            //lecture des données dans ui->plainTextEdit_sql
+              QSqlQuery query;
+              QString queryStr;
+              queryStr = ui->plainTextEdit_sql->document()->toPlainText();
+
+              ui->plainTextMessages->insertPlainText("Données importée dans la nouvelle base \n");
+            //Vérifier si le driver SQL supporte les Transactions
+            if(db.driver()->hasFeature(QSqlDriver::Transactions))
+              {
+                //Remplace les commentaires, tabulations et nouvelles lignes avec des espaces
+                queryStr = queryStr.replace(QRegularExpression("(\\/\\*(.|\\n)*?\\*\\/|^--.*\\n|\\t|\\n)", QRegularExpression::CaseInsensitiveOption|QRegularExpression::MultilineOption), " ");
+                //Supprimer les espaces inutiles
+                queryStr = queryStr.trimmed();
+
+                //Extraction des requêtes
+                QStringList qList = queryStr.split(';', QString::SkipEmptyParts);
+                //Initialise les expressions pour détecter les requêts spéciales(`begin transaction` and `commit`).
+                QRegularExpression re_transaction("\\bbegin.transaction.*", QRegularExpression::CaseInsensitiveOption);
+                QRegularExpression re_commit("\\bcommit.*", QRegularExpression::CaseInsensitiveOption);
+
+                bool isStartedWithTransaction = re_transaction.match(qList.at(0)).hasMatch();
+                if(!isStartedWithTransaction)
+                  db.transaction();
+                //Executer chaque requête individuellement
+                foreach(const QString &s, qList)
+                  {
+                  if(re_transaction.match(s).hasMatch())    //<== detection des requêtes spéciales
+                      db.transaction();
+                  else if(re_commit.match(s).hasMatch())    //<== detection des requêtes spéciales
+                      db.commit();
+                  else
+                    {
+                      query.exec(s);                        //<== executer les requêtes normales
+                      if(query.lastError().type() != QSqlError::NoError)
+                        {
+                          qDebug() << query.lastError().text();
+
+                          db.rollback();                    //<== rollback la transaction s'il y a un probême
+                          ui->plainTextMessages->insertPlainText(query.lastError().databaseText()+" \n");
+                        }
+                     }
+                  }
+                ui->plainTextMessages->insertPlainText("Importation des données terminée \n");
+                ui->pushButton_enregistrerDataBase->show();
+                if(!isStartedWithTransaction)
+                  db.commit();
+
+
+              }
+            else
+              {//si le driver sql ne support pas les transactions
+               //...il est nécessaire de supprimer les requêtes spéciales(`begin transaction` and `commit`)
+                queryStr = queryStr.replace(QRegularExpression("(\\bbegin.transaction.*;|\\bcommit.*;|\\/\\*(.|\\n)*?\\*\\/|^--.*\\n|\\t|\\n)", QRegularExpression::CaseInsensitiveOption|QRegularExpression::MultilineOption), " ");
+                queryStr = queryStr.trimmed();
+
+                //Executer chaque requête individuellement
+                QStringList qList = queryStr.split(';', QString::SkipEmptyParts);
+                foreach(const QString &s, qList) {
+                  query.exec(s);
+                  if(query.lastError().type() != QSqlError::NoError)
+                    {
+                       qDebug() << query.lastError().text();
+                       ui->plainTextMessages->insertPlainText(query.lastError().databaseText()+" \n");
+                    }
+                  else
+                    {
+
+                    }
+                  ui->plainTextMessages->insertPlainText("Importation des données terminée \n");
+                }
+              }
+           }
+
+}
+
+/**********************************EXPORT VERS UN FICHIER TEXTE DES REQUETTES SQL************************/
+void MainWindow::on_pushButton_export_clicked()
+{ // export des données dans un fichier de requêtes .sql
+
+     QString repertoire = QDir::homePath()+"/openjardin";
+     QString fileName =
+         QFileDialog::getSaveFileName(this, tr("Création d'un export de la base de données"),
+                                  repertoire,
+                                  tr("SQL Files (*.sql)"));
+     if (fileName.isEmpty())
+         return;
+
+      QFile file(fileName);
+    if (!file.open(QFile::WriteOnly | QFile::Text))
+    {
+      QMessageBox msgBox;
+      msgBox.setText("ERREUR D'ÉCRITURE");
+        return;
+    }
+    else
+    {
+    QTextStream stream(&file);
+    stream << "BEGIN TRANSACTION;\n";
+    QSqlQuery query;
+    QStringList tables;
+    query.exec("SELECT * FROM sqlite_master ");
+    int i2=0;
+    QString valeur_tables;
+ //requêtes CREATE des tables
+    while (query.next())
+    {
+      if(i2> 0)
+        {
+        if (query.value("type").toString() == "table")
+          {
+            tables << query.value("name").toString();
+          }
+        valeur_tables=query.value("sql").toString();
+        valeur_tables.replace(QString("\""), QString("`"));
+        valeur_tables.replace(QString("\n"), QString(""));
+        valeur_tables.replace(QString("\t"), QString(" "));
+        qDebug().noquote() << valeur_tables.toUtf8()<<";\n";;
+        stream << valeur_tables.toUtf8().constData()<<";\n";
+        }
+      i2++;
+    }
+//requêtes INSERT des données
+   QString values;
+   QString columns;
+   QString insert;
+   QSqlRecord record;
+
+   foreach (const QString& table, tables)
+    {
+        query.exec(QString("SELECT * FROM [%1]").arg(table));
+        while (query.next())
+        {
+            record = query.record();
+            columns="";
+            values="";
+            for (int i = 0; i < record.count(); i++)
+            {
+              if(columns=="")
+                  columns = record.fieldName(i);
+               else
+                  columns = columns+","+record.fieldName(i);
+
+              if(record.field(i).type()==QVariant::String)
+                {
+                if( values=="")
+                   values = "'"+apos(record.value(i).toString())+"'";
+                else
+                   values = values+" , "+"'"+apos(record.value(i).toString())+"'";
+                 }
+              else
+                {
+                  if( values=="")
+                    values = record.value(i).toString();
+                  else
+                    {
+                    if(record.value(i).toString()=="")
+                      values = values+" , "+"NULL";
+                    else
+                      values = values+" , "+record.value(i).toString();
+                    }
+                }
+             }
+           insert="INSERT INTO `"+table+"` ("+columns+") VALUES ("+values+");\n";
+
+   //        qDebug().noquote() <<insert.toUtf8().constData();
+           stream << insert;
+          }
+     }
+      stream << "COMMIT;";
+    file.close();
+    }
+
 }
