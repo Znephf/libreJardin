@@ -108,7 +108,8 @@
     </message>
     <message>
         <location filename="database.ui" line="302"/>
-        <source>Parcelle en culture</source>
+        <source>Parcelle en culture </source>
+        <oldsource>Parcelle en culture</oldsource>
         <translation>Plot of land in crop</translation>
     </message>
     <message>
@@ -163,10 +164,10 @@
         <location filename="database.cpp" line="229"/>
         <location filename="database.cpp" line="326"/>
         <location filename="database.cpp" line="347"/>
-        <location filename="database.cpp" line="378"/>
-        <location filename="database.cpp" line="396"/>
-        <location filename="database.cpp" line="427"/>
-        <location filename="database.cpp" line="445"/>
+        <location filename="database.cpp" line="380"/>
+        <location filename="database.cpp" line="398"/>
+        <location filename="database.cpp" line="429"/>
+        <location filename="database.cpp" line="447"/>
         <source>Erreur d&apos;enregistrement</source>
         <translation>Error of recording</translation>
     </message>
@@ -176,10 +177,10 @@
         <location filename="database.cpp" line="230"/>
         <location filename="database.cpp" line="327"/>
         <location filename="database.cpp" line="348"/>
-        <location filename="database.cpp" line="379"/>
-        <location filename="database.cpp" line="397"/>
-        <location filename="database.cpp" line="428"/>
-        <location filename="database.cpp" line="446"/>
+        <location filename="database.cpp" line="381"/>
+        <location filename="database.cpp" line="399"/>
+        <location filename="database.cpp" line="430"/>
+        <location filename="database.cpp" line="448"/>
         <source>Veuillez vérifier que tous les champs soient bien remplis</source>
         <translation>Please check that all fields are full</translation>
     </message>
@@ -207,14 +208,14 @@
         <translation>Designation</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="654"/>
+        <location filename="mainwindow.ui" line="700"/>
         <source>afficher fiche culture</source>
         <translation>Show crop sheet</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="6128"/>
-        <location filename="mainwindow.ui" line="6131"/>
-        <location filename="mainwindow.ui" line="6134"/>
+        <location filename="mainwindow.ui" line="6566"/>
+        <location filename="mainwindow.ui" line="6569"/>
+        <location filename="mainwindow.ui" line="6572"/>
         <source>Enregistrer</source>
         <translation>Record</translation>
     </message>
@@ -229,191 +230,192 @@
         <translation>validate designation</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="667"/>
+        <location filename="mainwindow.ui" line="713"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Imprimer le plan du terrain actuel&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;print actual map &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="670"/>
         <source>Imprimer</source>
-        <translation>Print</translation>
+        <translation type="vanished">Print</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="687"/>
+        <location filename="mainwindow.ui" line="736"/>
         <source>Enregistrer le plan modifé</source>
         <translation>save the modified map</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="827"/>
+        <location filename="mainwindow.ui" line="876"/>
         <source>Epaisseur</source>
         <translation>thickness</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="852"/>
+        <location filename="mainwindow.ui" line="901"/>
         <source>Définir l&apos;épaisseur de la ligne</source>
         <translation>set the line thickness</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="856"/>
-        <location filename="mainwindow.ui" line="1543"/>
+        <location filename="mainwindow.ui" line="905"/>
+        <location filename="mainwindow.ui" line="1601"/>
         <source>1</source>
         <translation>1</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="861"/>
+        <location filename="mainwindow.ui" line="910"/>
         <source>2</source>
         <translatorcomment>2</translatorcomment>
         <translation>2</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="866"/>
+        <location filename="mainwindow.ui" line="915"/>
         <source>3</source>
         <translation>3</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="871"/>
+        <location filename="mainwindow.ui" line="920"/>
         <source>4</source>
         <translation>4</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="876"/>
+        <location filename="mainwindow.ui" line="925"/>
         <source>5</source>
         <translation>5</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="881"/>
+        <location filename="mainwindow.ui" line="930"/>
         <source>6</source>
         <translation>6</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="886"/>
+        <location filename="mainwindow.ui" line="935"/>
         <source>7</source>
         <translation>7</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="891"/>
+        <location filename="mainwindow.ui" line="940"/>
         <source>8</source>
         <translation>8</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="896"/>
+        <location filename="mainwindow.ui" line="945"/>
         <source>9</source>
         <translation>9</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="901"/>
+        <location filename="mainwindow.ui" line="950"/>
         <source>10</source>
         <translation>10</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="911"/>
-        <location filename="mainwindow.ui" line="978"/>
-        <location filename="mainwindow.ui" line="1186"/>
-        <location filename="mainwindow.ui" line="1206"/>
-        <location filename="mainwindow.ui" line="1246"/>
-        <location filename="mainwindow.ui" line="1272"/>
-        <location filename="mainwindow.ui" line="1298"/>
-        <location filename="mainwindow.ui" line="1324"/>
-        <location filename="mainwindow.ui" line="1347"/>
-        <location filename="mainwindow.ui" line="1373"/>
+        <location filename="mainwindow.ui" line="651"/>
+        <location filename="mainwindow.ui" line="963"/>
+        <location filename="mainwindow.ui" line="1033"/>
+        <location filename="mainwindow.ui" line="1241"/>
+        <location filename="mainwindow.ui" line="1261"/>
+        <location filename="mainwindow.ui" line="1301"/>
+        <location filename="mainwindow.ui" line="1327"/>
+        <location filename="mainwindow.ui" line="1353"/>
+        <location filename="mainwindow.ui" line="1379"/>
+        <location filename="mainwindow.ui" line="1405"/>
+        <location filename="mainwindow.ui" line="1431"/>
         <source>...</source>
         <translation>...</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="944"/>
+        <location filename="mainwindow.ui" line="996"/>
         <source>Couleur Crayon</source>
         <translation>Pen color</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="969"/>
+        <location filename="mainwindow.ui" line="1021"/>
         <source>#0000ff</source>
         <translation>#0000ff</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1011"/>
+        <location filename="mainwindow.ui" line="1066"/>
         <source>Couleur fond</source>
         <translation>background color</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1036"/>
+        <location filename="mainwindow.ui" line="1091"/>
         <source>#00ff7f</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1045"/>
+        <location filename="mainwindow.ui" line="1100"/>
         <source>Définir le type de ligne</source>
         <translation>pen style</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1049"/>
+        <location filename="mainwindow.ui" line="1104"/>
         <source>ligne pleine</source>
         <translatorcomment>SolidLine</translatorcomment>
         <translation>ligne pleine</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1054"/>
+        <location filename="mainwindow.ui" line="1109"/>
         <source>tirets longs</source>
         <translation>DashLine</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1059"/>
+        <location filename="mainwindow.ui" line="1114"/>
         <source>tirets courts</source>
         <translation>DotLine</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1064"/>
+        <location filename="mainwindow.ui" line="1119"/>
         <source>axe</source>
         <translation>DashDotLine</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1075"/>
+        <location filename="mainwindow.ui" line="1130"/>
         <source>Valider Polygone</source>
         <translation>validate the polygon</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1085"/>
+        <location filename="mainwindow.ui" line="1140"/>
         <source>Valider Polyline</source>
         <translation>validate the polyline</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1183"/>
+        <location filename="mainwindow.ui" line="1238"/>
         <source>Supprimer le point d&apos;intersection</source>
         <translation>Delete the vertex</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1203"/>
+        <location filename="mainwindow.ui" line="1258"/>
         <source>Supprimer Objet</source>
         <translation>delete object</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1243"/>
+        <location filename="mainwindow.ui" line="1298"/>
         <source>Modifier le polygone</source>
         <translation>modify the polygon</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1266"/>
+        <location filename="mainwindow.ui" line="1321"/>
         <source>Créer un rectangle à bords arrondis</source>
         <translation>create a rounded rectangle </translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1233"/>
+        <location filename="mainwindow.ui" line="1288"/>
         <source>Création</source>
         <translation>Create</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1370"/>
+        <location filename="mainwindow.ui" line="1428"/>
         <source>Créer un cercle</source>
         <translation>create a circle</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1295"/>
+        <location filename="mainwindow.ui" line="1350"/>
         <source>Créer un polygone ou polyline</source>
         <translation>Create a polygon or polyline</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="28"/>
-        <source>Open Jardin version 1.03 - 002</source>
-        <translation>Open Jardin version 1.03 - 002</translation>
+        <source>Open Jardin version 1.04 - 001</source>
+        <oldsource>Open Jardin version 1.03 - 002</oldsource>
+        <translation>Open Jardin version 1.04 - 001</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="631"/>
@@ -421,353 +423,409 @@
         <translation>designation of the serlected plot of land</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="795"/>
+        <location filename="mainwindow.ui" line="648"/>
+        <source>Indique si la parcelle est affichée dans le planning</source>
+        <extracomment>Affichage dans le planning</extracomment>
+        <translation>Indicates if the plot of land is displayed in the schedule</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="674"/>
+        <source>Afficher ou non la parcelle dans le planning</source>
+        <translation>Show or not the plot of land in the schedule</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="678"/>
+        <source>Afficher dans le planning</source>
+        <translation>Show in the schedule</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="683"/>
+        <source>Ne pas afficher</source>
+        <translation>do not show</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="697"/>
+        <source>Afficher la fiche culture correspondante à la parcelle</source>
+        <translation>Display the corresponding crop sheet   the plot of land</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="733"/>
+        <source>Enregistrer le plan modifié</source>
+        <translation>Save the edited plan</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="844"/>
         <source>Observations sur la parcelle sélectionnée</source>
         <translation>observations for the selected parcel</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="963"/>
+        <location filename="mainwindow.ui" line="960"/>
+        <source>Choisir la couleur des lignes et caractères</source>
+        <translation>Choose the color of lines and characters</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="1015"/>
         <source>Couleur du trait de la parcelle ou ligne</source>
         <translation>line color of the parcel or line</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1030"/>
+        <location filename="mainwindow.ui" line="1085"/>
         <source>Couleur du fond de la parcelle</source>
         <translation>background color of the plot</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1072"/>
+        <location filename="mainwindow.ui" line="1127"/>
         <source>Valider le polygone créé à partir des clics de souris</source>
         <translation>Validate the polygon created from mouse clicks</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1082"/>
+        <location filename="mainwindow.ui" line="1137"/>
         <source>Valider le polyline créé à partir des clics de souris</source>
         <translation>Validate the polyline created from mouse clicks</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1321"/>
+        <location filename="mainwindow.ui" line="1376"/>
         <source>Créer un rectangle</source>
         <translation>create a rectangle</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1446"/>
+        <location filename="mainwindow.ui" line="1402"/>
+        <source>Ajouter une image dans le plan</source>
+        <translation>Add a picture in the plan</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="1504"/>
         <source>Zoom +</source>
         <translation>Zoom +</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1496"/>
+        <location filename="mainwindow.ui" line="1554"/>
         <source>Zoom -</source>
         <translation>Zoom -</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1523"/>
+        <location filename="mainwindow.ui" line="1581"/>
         <source>Zoom</source>
         <translation>Zoom</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1540"/>
+        <location filename="mainwindow.ui" line="1598"/>
         <source>Ratio du zoom</source>
         <translation>ratio of the zoom</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1558"/>
+        <location filename="mainwindow.ui" line="1616"/>
         <source>Déplacer</source>
         <translation>Mouve</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1571"/>
+        <location filename="mainwindow.ui" line="1629"/>
         <source>Ne pas déplacer le plan avec la souris</source>
         <translation>don&apos;t mouve the map with the mouse</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1597"/>
+        <location filename="mainwindow.ui" line="1655"/>
         <source>Déplacer le plan avec la souris</source>
         <translation>mouve the map with the mouse</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1658"/>
+        <location filename="mainwindow.ui" line="1716"/>
         <source>Plannning</source>
         <translation>Schedule</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1700"/>
-        <location filename="mainwindow.ui" line="2275"/>
+        <location filename="mainwindow.ui" line="1758"/>
+        <location filename="mainwindow.ui" line="2339"/>
         <source>2017</source>
         <translation>2017</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1705"/>
-        <location filename="mainwindow.ui" line="2280"/>
+        <location filename="mainwindow.ui" line="1763"/>
+        <location filename="mainwindow.ui" line="2344"/>
         <source>2018</source>
         <translation>2018</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1710"/>
-        <location filename="mainwindow.ui" line="2285"/>
+        <location filename="mainwindow.ui" line="1768"/>
+        <location filename="mainwindow.ui" line="2349"/>
         <source>2019</source>
         <translation>2019</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1715"/>
-        <location filename="mainwindow.ui" line="2290"/>
+        <location filename="mainwindow.ui" line="1773"/>
+        <location filename="mainwindow.ui" line="2354"/>
         <source>2020</source>
         <translation>2020</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1720"/>
-        <location filename="mainwindow.ui" line="2295"/>
+        <location filename="mainwindow.ui" line="1778"/>
+        <location filename="mainwindow.ui" line="2359"/>
         <source>2021</source>
         <translation>2021</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1725"/>
-        <location filename="mainwindow.ui" line="2300"/>
+        <location filename="mainwindow.ui" line="1783"/>
+        <location filename="mainwindow.ui" line="2364"/>
         <source>2022</source>
         <translation>2022</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1730"/>
-        <location filename="mainwindow.ui" line="2305"/>
+        <location filename="mainwindow.ui" line="1788"/>
+        <location filename="mainwindow.ui" line="2369"/>
         <source>2023</source>
         <translation>2023</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1735"/>
-        <location filename="mainwindow.ui" line="2310"/>
+        <location filename="mainwindow.ui" line="1793"/>
+        <location filename="mainwindow.ui" line="2374"/>
         <source>2024</source>
         <translation>2024</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1740"/>
-        <location filename="mainwindow.ui" line="2315"/>
+        <location filename="mainwindow.ui" line="1798"/>
+        <location filename="mainwindow.ui" line="2379"/>
         <source>2025</source>
         <translation>2025</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1745"/>
-        <location filename="mainwindow.ui" line="2320"/>
+        <location filename="mainwindow.ui" line="1803"/>
+        <location filename="mainwindow.ui" line="2384"/>
         <source>2026</source>
         <translation>2026</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1750"/>
-        <location filename="mainwindow.ui" line="2325"/>
+        <location filename="mainwindow.ui" line="1808"/>
+        <location filename="mainwindow.ui" line="2389"/>
         <source>2027</source>
         <translation>2027</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1755"/>
-        <location filename="mainwindow.ui" line="2330"/>
+        <location filename="mainwindow.ui" line="1813"/>
+        <location filename="mainwindow.ui" line="2394"/>
         <source>2028</source>
         <translation>2028</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1760"/>
-        <location filename="mainwindow.ui" line="2335"/>
+        <location filename="mainwindow.ui" line="1818"/>
+        <location filename="mainwindow.ui" line="2399"/>
         <source>2029</source>
         <translation>2029</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1765"/>
-        <location filename="mainwindow.ui" line="2340"/>
+        <location filename="mainwindow.ui" line="1823"/>
+        <location filename="mainwindow.ui" line="2404"/>
         <source>2030</source>
         <translation>2030</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1786"/>
+        <location filename="mainwindow.ui" line="1844"/>
+        <source>Ouvrir la fiche culture de la parcelle sélectionnée</source>
+        <translation>Open the crop sheet of the selected plot</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="1847"/>
         <source>Ouvrir la fiche culture</source>
         <translation>Open the crop sheet</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1804"/>
+        <location filename="mainwindow.ui" line="1865"/>
         <source>Date démarrage</source>
         <translation>Starting date</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1828"/>
+        <location filename="mainwindow.ui" line="1889"/>
         <source>Durée en jours</source>
         <translation>Duration in days</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1848"/>
+        <location filename="mainwindow.ui" line="1909"/>
         <source>Date récolte</source>
         <translation>Harvest date</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1868"/>
+        <location filename="mainwindow.ui" line="1929"/>
+        <source>Valider les dates modifiées à partir du planning</source>
+        <translation>Validate the modified dates from the schedule</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="1932"/>
         <source>Valider dates</source>
         <translation>validate date</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1942"/>
-        <location filename="mainwindow.ui" line="2441"/>
-        <location filename="mainwindow.ui" line="3822"/>
-        <location filename="mainwindow.ui" line="4464"/>
+        <location filename="mainwindow.ui" line="2006"/>
+        <location filename="mainwindow.ui" line="2508"/>
+        <location filename="mainwindow.ui" line="3889"/>
+        <location filename="mainwindow.ui" line="4531"/>
         <source>APIACEES</source>
         <translation>APIACEES</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1959"/>
-        <location filename="mainwindow.ui" line="2458"/>
-        <location filename="mainwindow.ui" line="3839"/>
-        <location filename="mainwindow.ui" line="4481"/>
+        <location filename="mainwindow.ui" line="2023"/>
+        <location filename="mainwindow.ui" line="2525"/>
+        <location filename="mainwindow.ui" line="3906"/>
+        <location filename="mainwindow.ui" line="4548"/>
         <source>ASTERACEES</source>
         <translation>ASTERACEES</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1976"/>
-        <location filename="mainwindow.ui" line="2475"/>
-        <location filename="mainwindow.ui" line="3856"/>
-        <location filename="mainwindow.ui" line="4498"/>
+        <location filename="mainwindow.ui" line="2040"/>
+        <location filename="mainwindow.ui" line="2542"/>
+        <location filename="mainwindow.ui" line="3923"/>
+        <location filename="mainwindow.ui" line="4565"/>
         <source>BRASSICACEES</source>
         <translation>BRASSICACEES</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1993"/>
-        <location filename="mainwindow.ui" line="2492"/>
-        <location filename="mainwindow.ui" line="3873"/>
-        <location filename="mainwindow.ui" line="4515"/>
+        <location filename="mainwindow.ui" line="2057"/>
+        <location filename="mainwindow.ui" line="2559"/>
+        <location filename="mainwindow.ui" line="3940"/>
+        <location filename="mainwindow.ui" line="4582"/>
         <source>CHENOPODACEES</source>
         <translation>CHENOPODIACEES</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2010"/>
-        <location filename="mainwindow.ui" line="2509"/>
-        <location filename="mainwindow.ui" line="3890"/>
-        <location filename="mainwindow.ui" line="4532"/>
+        <location filename="mainwindow.ui" line="2074"/>
+        <location filename="mainwindow.ui" line="2576"/>
+        <location filename="mainwindow.ui" line="3957"/>
+        <location filename="mainwindow.ui" line="4599"/>
         <source>CUCURBITACEES</source>
         <translation>CUCURBITACEES</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2027"/>
-        <location filename="mainwindow.ui" line="2526"/>
-        <location filename="mainwindow.ui" line="3907"/>
-        <location filename="mainwindow.ui" line="4549"/>
+        <location filename="mainwindow.ui" line="2091"/>
+        <location filename="mainwindow.ui" line="2593"/>
+        <location filename="mainwindow.ui" line="3974"/>
+        <location filename="mainwindow.ui" line="4616"/>
         <source>FABACEES</source>
         <translation>FABACEES</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2044"/>
-        <location filename="mainwindow.ui" line="2543"/>
-        <location filename="mainwindow.ui" line="3924"/>
-        <location filename="mainwindow.ui" line="4566"/>
+        <location filename="mainwindow.ui" line="2108"/>
+        <location filename="mainwindow.ui" line="2610"/>
+        <location filename="mainwindow.ui" line="3991"/>
+        <location filename="mainwindow.ui" line="4633"/>
         <source>ALLIACEES</source>
         <translation>ALLIACEES</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2061"/>
-        <location filename="mainwindow.ui" line="2560"/>
-        <location filename="mainwindow.ui" line="3941"/>
-        <location filename="mainwindow.ui" line="4583"/>
+        <location filename="mainwindow.ui" line="2125"/>
+        <location filename="mainwindow.ui" line="2627"/>
+        <location filename="mainwindow.ui" line="4008"/>
+        <location filename="mainwindow.ui" line="4650"/>
         <source>POACEES</source>
         <translation>POACEES</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2078"/>
-        <location filename="mainwindow.ui" line="2577"/>
-        <location filename="mainwindow.ui" line="3958"/>
-        <location filename="mainwindow.ui" line="4600"/>
+        <location filename="mainwindow.ui" line="2142"/>
+        <location filename="mainwindow.ui" line="2644"/>
+        <location filename="mainwindow.ui" line="4025"/>
+        <location filename="mainwindow.ui" line="4667"/>
         <source>SOLANACEES</source>
         <translation>SOLANACEES</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2095"/>
-        <location filename="mainwindow.ui" line="2594"/>
-        <location filename="mainwindow.ui" line="3975"/>
-        <location filename="mainwindow.ui" line="4617"/>
+        <location filename="mainwindow.ui" line="2159"/>
+        <location filename="mainwindow.ui" line="2661"/>
+        <location filename="mainwindow.ui" line="4042"/>
+        <location filename="mainwindow.ui" line="4684"/>
         <source>VALERIANACEES</source>
         <translation>VALERIANACEES</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2112"/>
-        <location filename="mainwindow.ui" line="2611"/>
-        <location filename="mainwindow.ui" line="3992"/>
-        <location filename="mainwindow.ui" line="4634"/>
+        <location filename="mainwindow.ui" line="2176"/>
+        <location filename="mainwindow.ui" line="2678"/>
+        <location filename="mainwindow.ui" line="4059"/>
+        <location filename="mainwindow.ui" line="4701"/>
         <source>AUTRES</source>
         <translation>OTHERS</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2226"/>
+        <location filename="mainwindow.ui" line="2290"/>
         <source>Rotation</source>
         <translation>Crop cropping</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2267"/>
+        <location filename="mainwindow.ui" line="2331"/>
         <source>Année de démarrage</source>
         <translation>Starting year</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2357"/>
+        <location filename="mainwindow.ui" line="2421"/>
+        <source>Actualiser l&apos;affichage des parcelles</source>
+        <translation>Refresh the display of plots</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="2424"/>
         <source>Actualiser</source>
         <translation>Update</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2373"/>
+        <location filename="mainwindow.ui" line="2440"/>
         <source>Date du jour</source>
         <translation>Current date</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2724"/>
+        <location filename="mainwindow.ui" line="2791"/>
         <source>Paramétrage</source>
         <translation>Setup</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2806"/>
+        <location filename="mainwindow.ui" line="2873"/>
         <source>Plantes</source>
         <translation>Plants</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2825"/>
+        <location filename="mainwindow.ui" line="2892"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#009300;&quot;&gt;Fiche des variétés de plantes&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#009300;&quot;&gt;Plants variety sheets&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2882"/>
+        <location filename="mainwindow.ui" line="2949"/>
         <source>Espèce</source>
         <translation>Species</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2892"/>
+        <location filename="mainwindow.ui" line="2959"/>
         <source>Type de plante</source>
         <translation>Kind plant</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2900"/>
+        <location filename="mainwindow.ui" line="2967"/>
         <source>Feuilles</source>
         <translation>Leaves</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2905"/>
+        <location filename="mainwindow.ui" line="2972"/>
         <source>Fleurs</source>
         <translation>Flowers</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2910"/>
+        <location filename="mainwindow.ui" line="2977"/>
         <source>Racines</source>
         <translation>Roots</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2915"/>
+        <location filename="mainwindow.ui" line="2982"/>
         <source>Fruits-graines</source>
         <translation>Fruits - seeds</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2948"/>
-        <location filename="mainwindow.ui" line="4137"/>
+        <location filename="mainwindow.ui" line="3015"/>
+        <location filename="mainwindow.ui" line="4204"/>
         <source>Famille</source>
         <translation>Family</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2964"/>
+        <location filename="mainwindow.ui" line="3031"/>
         <source>Désignation variété</source>
         <translation>Name of the variety</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2974"/>
-        <location filename="mainwindow.ui" line="4251"/>
-        <location filename="mainwindow.ui" line="4805"/>
-        <location filename="mainwindow.ui" line="5067"/>
+        <location filename="mainwindow.ui" line="3041"/>
+        <location filename="mainwindow.ui" line="4318"/>
+        <location filename="mainwindow.ui" line="4872"/>
+        <location filename="mainwindow.ui" line="5184"/>
         <source>Enregistrement N°</source>
         <translation>Record N°</translation>
     </message>
@@ -776,23 +834,23 @@
         <translation type="vanished">latin name</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="3033"/>
-        <location filename="mainwindow.ui" line="4258"/>
+        <location filename="mainwindow.ui" line="3100"/>
+        <location filename="mainwindow.ui" line="4325"/>
         <source>Commentaires</source>
         <translation>Comments</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="3062"/>
+        <location filename="mainwindow.ui" line="3129"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Associations &lt;span style=&quot; color:#0055ff;&quot;&gt;positives&lt;/span&gt; / &lt;span style=&quot; color:#ff0000;&quot;&gt;négatives&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Associations &lt;span style=&quot; color:#0055ff;&quot;&gt;positives&lt;/span&gt; / &lt;span style=&quot; color:#ff0000;&quot;&gt;negatives&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="3087"/>
+        <location filename="mainwindow.ui" line="3154"/>
         <source>Positif</source>
         <translation>Positive</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="3110"/>
+        <location filename="mainwindow.ui" line="3177"/>
         <source>Négatif</source>
         <translation>Negative</translation>
     </message>
@@ -801,211 +859,211 @@
         <translation type="vanished">Modify</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="3187"/>
-        <location filename="mainwindow.ui" line="4374"/>
-        <location filename="mainwindow.ui" line="4821"/>
-        <location filename="mainwindow.ui" line="5110"/>
-        <location filename="mainwindow.ui" line="6250"/>
+        <location filename="mainwindow.ui" line="3254"/>
+        <location filename="mainwindow.ui" line="4441"/>
+        <location filename="mainwindow.ui" line="4888"/>
+        <location filename="mainwindow.ui" line="5137"/>
+        <location filename="mainwindow.ui" line="6688"/>
         <source>Supprimer</source>
         <translation>Delete</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="4387"/>
-        <location filename="mainwindow.ui" line="4828"/>
-        <location filename="mainwindow.ui" line="6412"/>
+        <location filename="mainwindow.ui" line="4454"/>
+        <location filename="mainwindow.ui" line="4895"/>
+        <location filename="mainwindow.ui" line="6850"/>
         <source>Nouveau</source>
         <translation>New</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="3280"/>
-        <location filename="mainwindow.ui" line="3405"/>
-        <location filename="mainwindow.ui" line="3530"/>
+        <location filename="mainwindow.ui" line="3347"/>
+        <location filename="mainwindow.ui" line="3472"/>
+        <location filename="mainwindow.ui" line="3597"/>
         <source>semis</source>
         <translation>Seeding</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2984"/>
+        <location filename="mainwindow.ui" line="3051"/>
         <source>Nom scientifique</source>
         <translation>Scientific name</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="3168"/>
+        <location filename="mainwindow.ui" line="3235"/>
         <source>Enregister les modifications</source>
         <translation>Save changes</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="3206"/>
-        <location filename="mainwindow.ui" line="5129"/>
+        <location filename="mainwindow.ui" line="3273"/>
+        <location filename="mainwindow.ui" line="5156"/>
         <source>Fiche vierge</source>
         <translation>Blank form</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="3225"/>
+        <location filename="mainwindow.ui" line="3292"/>
         <source>Enregistrer une nouvelle fiche</source>
         <translation>Save new form</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="3285"/>
-        <location filename="mainwindow.ui" line="3410"/>
-        <location filename="mainwindow.ui" line="3535"/>
+        <location filename="mainwindow.ui" line="3352"/>
+        <location filename="mainwindow.ui" line="3477"/>
+        <location filename="mainwindow.ui" line="3602"/>
         <source>récolte</source>
         <translation>harvest</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="3290"/>
-        <location filename="mainwindow.ui" line="3415"/>
-        <location filename="mainwindow.ui" line="3540"/>
+        <location filename="mainwindow.ui" line="3357"/>
+        <location filename="mainwindow.ui" line="3482"/>
+        <location filename="mainwindow.ui" line="3607"/>
         <source>janvier</source>
         <translation>January</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="3295"/>
-        <location filename="mainwindow.ui" line="3420"/>
-        <location filename="mainwindow.ui" line="3545"/>
+        <location filename="mainwindow.ui" line="3362"/>
+        <location filename="mainwindow.ui" line="3487"/>
+        <location filename="mainwindow.ui" line="3612"/>
         <source>février</source>
         <translation>February</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="3300"/>
-        <location filename="mainwindow.ui" line="3425"/>
-        <location filename="mainwindow.ui" line="3550"/>
+        <location filename="mainwindow.ui" line="3367"/>
+        <location filename="mainwindow.ui" line="3492"/>
+        <location filename="mainwindow.ui" line="3617"/>
         <source>mars</source>
         <translation>March</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="3305"/>
-        <location filename="mainwindow.ui" line="3430"/>
-        <location filename="mainwindow.ui" line="3555"/>
+        <location filename="mainwindow.ui" line="3372"/>
+        <location filename="mainwindow.ui" line="3497"/>
+        <location filename="mainwindow.ui" line="3622"/>
         <source>avril</source>
         <translation>April</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="3310"/>
-        <location filename="mainwindow.ui" line="3435"/>
-        <location filename="mainwindow.ui" line="3560"/>
+        <location filename="mainwindow.ui" line="3377"/>
+        <location filename="mainwindow.ui" line="3502"/>
+        <location filename="mainwindow.ui" line="3627"/>
         <source>mai</source>
         <translation>May</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="3315"/>
-        <location filename="mainwindow.ui" line="3440"/>
-        <location filename="mainwindow.ui" line="3565"/>
+        <location filename="mainwindow.ui" line="3382"/>
+        <location filename="mainwindow.ui" line="3507"/>
+        <location filename="mainwindow.ui" line="3632"/>
         <source>juin</source>
         <translation>June</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="3320"/>
-        <location filename="mainwindow.ui" line="3445"/>
-        <location filename="mainwindow.ui" line="3570"/>
+        <location filename="mainwindow.ui" line="3387"/>
+        <location filename="mainwindow.ui" line="3512"/>
+        <location filename="mainwindow.ui" line="3637"/>
         <source>juillet</source>
         <translation>July</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="3325"/>
-        <location filename="mainwindow.ui" line="3450"/>
-        <location filename="mainwindow.ui" line="3575"/>
+        <location filename="mainwindow.ui" line="3392"/>
+        <location filename="mainwindow.ui" line="3517"/>
+        <location filename="mainwindow.ui" line="3642"/>
         <source>aout</source>
         <translation>August</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="3330"/>
-        <location filename="mainwindow.ui" line="3455"/>
-        <location filename="mainwindow.ui" line="3580"/>
+        <location filename="mainwindow.ui" line="3397"/>
+        <location filename="mainwindow.ui" line="3522"/>
+        <location filename="mainwindow.ui" line="3647"/>
         <source>septembre</source>
         <translation>september</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="3335"/>
-        <location filename="mainwindow.ui" line="3460"/>
-        <location filename="mainwindow.ui" line="3585"/>
+        <location filename="mainwindow.ui" line="3402"/>
+        <location filename="mainwindow.ui" line="3527"/>
+        <location filename="mainwindow.ui" line="3652"/>
         <source>octobre</source>
         <translation>October</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="3340"/>
-        <location filename="mainwindow.ui" line="3465"/>
-        <location filename="mainwindow.ui" line="3590"/>
+        <location filename="mainwindow.ui" line="3407"/>
+        <location filename="mainwindow.ui" line="3532"/>
+        <location filename="mainwindow.ui" line="3657"/>
         <source>novembre</source>
         <translation>November</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="3345"/>
-        <location filename="mainwindow.ui" line="3470"/>
-        <location filename="mainwindow.ui" line="3595"/>
+        <location filename="mainwindow.ui" line="3412"/>
+        <location filename="mainwindow.ui" line="3537"/>
+        <location filename="mainwindow.ui" line="3662"/>
         <source>décembre</source>
         <translation>December</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="3362"/>
+        <location filename="mainwindow.ui" line="3429"/>
         <source>ETE</source>
         <translation>SUMMER</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="3487"/>
+        <location filename="mainwindow.ui" line="3554"/>
         <source>PRINTEMPS</source>
         <translation>SPRING</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="3612"/>
+        <location filename="mainwindow.ui" line="3679"/>
         <source>AUTOMNE</source>
         <translation>AUTUMN</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="3643"/>
-        <location filename="mainwindow.ui" line="3671"/>
-        <location filename="mainwindow.ui" line="3699"/>
+        <location filename="mainwindow.ui" line="3710"/>
+        <location filename="mainwindow.ui" line="3738"/>
+        <location filename="mainwindow.ui" line="3766"/>
         <source>000000000000000000000000</source>
         <translation>000000000000000000000000</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="3722"/>
+        <location filename="mainwindow.ui" line="3789"/>
         <source>Périodes de semis et de récoltes</source>
         <translation>Seeding and harvests periods</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="3751"/>
+        <location filename="mainwindow.ui" line="3818"/>
         <source>LISTE DES FICHES DE PLANTES ENREGISTREES</source>
         <translation>List of sheets of plants recorded</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="3812"/>
-        <location filename="mainwindow.ui" line="4454"/>
+        <location filename="mainwindow.ui" line="3879"/>
+        <location filename="mainwindow.ui" line="4521"/>
         <source>FAVORABLE</source>
         <translation>POSITIVE</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="3817"/>
-        <location filename="mainwindow.ui" line="4459"/>
+        <location filename="mainwindow.ui" line="3884"/>
+        <location filename="mainwindow.ui" line="4526"/>
         <source>A EVITER</source>
         <translation>To avoid</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="4041"/>
+        <location filename="mainwindow.ui" line="4108"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#000000;&quot;&gt;(Rotation - Aspects &lt;/span&gt;&lt;span style=&quot; color:#00aa00;&quot;&gt;favorables&lt;/span&gt;&lt;span style=&quot; color:#000000;&quot;&gt; ou &lt;/span&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;défavorables&lt;/span&gt;&lt;span style=&quot; color:#000000;&quot;&gt; de la famille de la culture précédente)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#000000;&quot;&gt;(Aspects of the rotations &lt;/span&gt;&lt;span style=&quot; color:#00aa00;&quot;&gt;positive&lt;/span&gt;&lt;span style=&quot; color:#000000;&quot;&gt; ou &lt;/span&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;To avoid&lt;/span&gt;&lt;span style=&quot; color:#000000;&quot;&gt; of the previous culture family)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="4092"/>
+        <location filename="mainwindow.ui" line="4159"/>
         <source>Espèces</source>
         <translation>Species</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="4114"/>
+        <location filename="mainwindow.ui" line="4181"/>
         <source>Liste des espèces</source>
         <translation>List of the species</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="4130"/>
+        <location filename="mainwindow.ui" line="4197"/>
         <source>Apports en fumure/compost nécessaires</source>
         <translation>Necessary contributions in compost</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="4151"/>
+        <location filename="mainwindow.ui" line="4218"/>
         <source>FACTEURS DE ROTATION</source>
         <translation>Factors of crop rotation</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="4171"/>
+        <location filename="mainwindow.ui" line="4238"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;Associations négatives&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;Associations negatives&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
@@ -1014,157 +1072,155 @@
         <translation type="vanished">Cancel</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="4198"/>
-        <location filename="mainwindow.ui" line="4779"/>
-        <location filename="mainwindow.ui" line="5041"/>
+        <location filename="mainwindow.ui" line="4265"/>
+        <location filename="mainwindow.ui" line="4846"/>
+        <location filename="mainwindow.ui" line="5094"/>
         <source>Désignation</source>
         <translation>Designation</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="4234"/>
+        <location filename="mainwindow.ui" line="4301"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; color:#00aaff;&quot;&gt;Associations positives&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; color:#00aaff;&quot;&gt;Associations positives&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="4265"/>
+        <location filename="mainwindow.ui" line="4332"/>
         <source>Nb d&apos;années avant retour sur la parcelle : </source>
         <translation>Nb of years before return on the plot of land:</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="4273"/>
+        <location filename="mainwindow.ui" line="4340"/>
         <source>Peu d&apos;importance</source>
         <translation>low priority</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="4278"/>
+        <location filename="mainwindow.ui" line="4345"/>
         <source>1 an</source>
         <translation>1 year</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="4283"/>
+        <location filename="mainwindow.ui" line="4350"/>
         <source>2 ans</source>
         <translation>2 years</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="4288"/>
+        <location filename="mainwindow.ui" line="4355"/>
         <source>3 ans</source>
         <translation>3 years</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="4293"/>
+        <location filename="mainwindow.ui" line="4360"/>
         <source>4 ans</source>
         <translation>4 years</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="4298"/>
+        <location filename="mainwindow.ui" line="4365"/>
         <source>5 ans</source>
         <translation>5 years</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="4303"/>
+        <location filename="mainwindow.ui" line="4370"/>
         <source>6 ans</source>
         <translation>6 years</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="4308"/>
+        <location filename="mainwindow.ui" line="4375"/>
         <source>7 ans</source>
         <translation>7 years</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="4317"/>
+        <location filename="mainwindow.ui" line="4384"/>
         <source>Aucun</source>
         <translation>none</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="4322"/>
+        <location filename="mainwindow.ui" line="4389"/>
         <source>Faibles</source>
         <translation>Low</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="4327"/>
+        <location filename="mainwindow.ui" line="4394"/>
         <source>Moyens</source>
         <translation>average</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="4332"/>
+        <location filename="mainwindow.ui" line="4399"/>
         <source>Importants</source>
         <translation>Importants</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="4361"/>
-        <location filename="mainwindow.ui" line="4814"/>
+        <location filename="mainwindow.ui" line="4428"/>
+        <location filename="mainwindow.ui" line="4881"/>
         <source>Enregister modifications</source>
         <translation>Save changes</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="4400"/>
-        <location filename="mainwindow.ui" line="4835"/>
-        <location filename="mainwindow.ui" line="5148"/>
+        <location filename="mainwindow.ui" line="4467"/>
+        <location filename="mainwindow.ui" line="4902"/>
+        <location filename="mainwindow.ui" line="5175"/>
         <source>Enregistrer nouvelle fiche</source>
         <translation>Save new form</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="4677"/>
+        <location filename="mainwindow.ui" line="4744"/>
         <source>ROTATION DES CULTURES</source>
         <translation>Crops rotation</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="4706"/>
+        <location filename="mainwindow.ui" line="4773"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#000000;&quot;&gt;(Aspects &lt;/span&gt;&lt;span style=&quot; color:#00aa00;&quot;&gt;favorables&lt;/span&gt;&lt;span style=&quot; color:#000000;&quot;&gt; ou &lt;/span&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;défavorables&lt;/span&gt;&lt;span style=&quot; color:#000000;&quot;&gt; de la famille de la culture précédente)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#000000;&quot;&gt;(Aspects &lt;/span&gt;&lt;span style=&quot; color:#00aa00;&quot;&gt;positives&lt;/span&gt;&lt;span style=&quot; color:#000000;&quot;&gt; or &lt;/span&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;to avoid&lt;/span&gt;&lt;span style=&quot; color:#000000;&quot;&gt; of theprevious crop family )&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="4729"/>
+        <location filename="mainwindow.ui" line="4796"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#00aa00;&quot;&gt;FICHE DES ESPECES&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#00aa00;&quot;&gt;SPECIES SHEET&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="4738"/>
+        <location filename="mainwindow.ui" line="4805"/>
         <source>Familles</source>
         <translation>family</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="4760"/>
+        <location filename="mainwindow.ui" line="4827"/>
         <source>Liste des familles</source>
         <translation>List of family</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="4860"/>
+        <location filename="mainwindow.ui" line="4927"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#00aa00;&quot;&gt;FICHE DES FAMILLES&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#00aa00;&quot;&gt;FAMILY SHEET&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="4869"/>
+        <location filename="mainwindow.ui" line="4936"/>
         <source>Configuration</source>
         <translation>Configuration</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="4894"/>
         <source>Nom du fichier de configuration (.XML)</source>
-        <translation>Configuration file name (.XML)</translation>
+        <translation type="vanished">Configuration file name (.XML)</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="4901"/>
         <source>Nom du fichier de la base de données  (.SQLI)</source>
-        <translation>database file name (.SQLI)</translation>
+        <translation type="vanished">database file name (.SQLI)</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="4908"/>
+        <location filename="mainwindow.ui" line="4978"/>
         <source>jardin.sqli</source>
         <translation>jardin.sqli</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="4927"/>
+        <location filename="mainwindow.ui" line="4997"/>
         <source>NOMS DES FICHIERS EN COURS</source>
         <translation>CURRENT FILE NAME</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="5091"/>
+        <location filename="mainwindow.ui" line="5118"/>
         <source>Enregistrer modifications</source>
         <translation>Save changes</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="5318"/>
+        <location filename="mainwindow.ui" line="5529"/>
         <source>GNU GENERAL PUBLIC LICENSE
 Version 3, 29 June 2007
 Copyright © 2007 Free Software Foundation, Inc. &lt;https://fsf.org/&gt;
@@ -1433,7 +1489,7 @@ END OF TERMS AND CONDITIONS
 </translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="5460"/>
+        <location filename="mainwindow.ui" line="5671"/>
         <source>
 LICENCE PUBLIQUE GÉNÉRALE GNU
 Version 3, du 29 juin 2007.
@@ -2480,24 +2536,23 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;- plants family sheets&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="4968"/>
+        <location filename="mainwindow.ui" line="5044"/>
         <source>Liste des types de tâches et observations</source>
         <translation>List of the tasks and observations</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="4988"/>
+        <location filename="mainwindow.ui" line="5383"/>
         <source>Paramétrage des tâches et observations</source>
         <translation>Setup of the tasks and observations</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="5170"/>
         <source>Le fichier XML contient les données de configuration du plan du terrain avec les parcelles, les matériels et les plantations.
 Le fichier de la base de données (.sqli) qui est lié au fichier de configuration  contient :
 - les fiches cultures (associées aux parcelles)
 - les fiches plantes
 - les fiches espèces 
 - les fiches des familles de plantes</source>
-        <translation>The XML file contains terrain map configuration data with parcels, materials, and plantations. 
+        <translation type="vanished">The XML file contains terrain map configuration data with parcels, materials, and plantations. 
 The database file (.sqli) that is linked to the configuration file contains : 
 - crop sheets (associated with parcels) 
 - plant cards 
@@ -2505,23 +2560,23 @@ The database file (.sqli) that is linked to the configuration file contains :
 - plant family sheets</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="5181"/>
-        <location filename="mainwindow.ui" line="6018"/>
+        <location filename="mainwindow.ui" line="5392"/>
+        <location filename="mainwindow.ui" line="6456"/>
         <source>Objets</source>
         <translation>Objects</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="5219"/>
+        <location filename="mainwindow.ui" line="5430"/>
         <source>Mise à jour</source>
         <translation>Release</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="5297"/>
+        <location filename="mainwindow.ui" line="5508"/>
         <source>Licences</source>
         <translation>Licenses</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="5307"/>
+        <location filename="mainwindow.ui" line="5518"/>
         <source>License GNU GPL Version 3</source>
         <translation>License GNU GPL Version 3</translation>
     </message>
@@ -3834,76 +3889,611 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="6001"/>
+        <location filename="mainwindow.ui" line="6439"/>
         <source>Fichier</source>
         <translation>Files</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1419"/>
-        <location filename="mainwindow.ui" line="6010"/>
+        <location filename="mainwindow.ui" line="1477"/>
+        <location filename="mainwindow.ui" line="6448"/>
         <source>Edition</source>
         <translation>Edit</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="6041"/>
-        <location filename="mainwindow.ui" line="6334"/>
+        <location filename="mainwindow.ui" line="4961"/>
+        <source>Nom du fichier de configuration actif (.XML)</source>
+        <translation>Name of the active configuration file (.XML)</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="4968"/>
+        <source>Nom du fichier de la base de données  active(.SQLI)</source>
+        <translation>File name of the active database (.SQLI)</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="4975"/>
+        <source>Modifié uniquement en changeant de base de donnée active</source>
+        <translation>Modified only by changing the active database</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="5223"/>
+        <source>Le fichier XML contient les données de configuration du plan du terrain avec les parcelles, les matériels et les plantations.
+Le fichier de la base de données (.sqli) qui est lié au fichier de configuration  contient :
+- les fiches cultures (associées aux parcelles)
+- les fiches plantes
+- les fiches espèces 
+- les fiches des familles de plantes
+
+Choisir la base de données active:
+Vous pouvez choisir la base de données .sqli qui sera active, puis sauvegarder le nom de cette bae dans le fichier de configuration .xml en cickant sur le bouton &quot;enregistrer les paramètres dans le fichier xml&quot; pour que cette base soit active lors de l&apos;ouverture du fichier de configuration.
+ 
+Création d&apos;une nouvelle base de données:
+Vous pouvez soit créer : 
+- une base de donnée avec uniquement les tables sans données, 
+- une base de données avec les tables especes - familles -  taches préremplies, 
+-  une nouvelle base en important un fichier texte de sauvegarde de type  .sql qui comprend les tables et les données.
+
+Export de la base de donnée active:
+La base de données est sauvegardée sous un nouveau nom dans un fichier texte de requête sql de type .sql. ce fichier peut être importé en tant que nouvele base de données.</source>
+        <translation>The XML file contains terrain plan configuration data with parcels, materials, and plantations. 
+The database file (.sqli) that is linked to the configuration file contains : 
+- crop records (associated with parcels) 
+- plant sheets 
+- species sheets 
+- plant family sheets 
+
+Choose the active database: 
+You can choose the database .sqli that will be active, then save the name of this bae in the configuration file .xml by clicking on the button &apos;save the parameters in the xml file&apos; so that this base is active when opening the configuration file. 
+
+Creating a new database: 
+You can either create: 
+- a database with only tables without data, 
+- a database with tables species - families - pre-filled tasks, 
+- a new database by importing a backup text file d e .sql type that includes tables and data. 
+
+Exporting the active database: 
+The database is saved under a new name in a text file. Sqte sql of type .sql. this file can be imported as a new database.</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="5261"/>
+        <source>Choisir la base de données active</source>
+        <translation>Choose the active database</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="5271"/>
+        <source>Enregistrer les paramètres dans le fichier XML</source>
+        <translation>Save the parameters in the XML file</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="5281"/>
+        <source>Créer une nouvelle base de données vide</source>
+        <translation>Create a new empty database</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="5288"/>
+        <source>Créer une base avec les données de pré-remplie</source>
+        <translation>Create a database with pre-populated data</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="5295"/>
+        <source>Créer une base de données et importer les données</source>
+        <translation>Create a database and import the data</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="5305"/>
+        <source>Exporter la base de données</source>
+        <translation>Exporter la base de données</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="5316"/>
+        <source>Messages :</source>
+        <translation>Messages :</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="5343"/>
+        <source>Aide sur cette page</source>
+        <translation>Help on this page</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="5363"/>
+        <source>Bases de données</source>
+        <translation>Databases</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="6191"/>
+        <source>openjardin.sql</source>
+        <translation>openjardin.sql</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="6197"/>
+        <source>BEGIN TRANSACTION;
+CREATE TABLE `taches` (
+	`id`	INTEGER PRIMARY KEY AUTOINCREMENT,
+	`designation`	varchar(30)
+);
+INSERT INTO `taches` (id,designation) VALUES (1,&apos;préparation du sol béchage&apos;);
+INSERT INTO `taches` (id,designation) VALUES (3,&apos;amendement&apos;);
+INSERT INTO `taches` (id,designation) VALUES (5,&apos;semis&apos;);
+INSERT INTO `taches` (id,designation) VALUES (6,&apos;plantations&apos;);
+INSERT INTO `taches` (id,designation) VALUES (7,&apos;désherbage&apos;);
+INSERT INTO `taches` (id,designation) VALUES (8,&apos;récolte&apos;);
+INSERT INTO `taches` (id,designation) VALUES (9,&apos;jachère&apos;);
+INSERT INTO `taches` (id,designation) VALUES (10,&apos;paillage&apos;);
+INSERT INTO `taches` (id,designation) VALUES (11,&apos;traitement&apos;);
+INSERT INTO `taches` (id,designation) VALUES (14,&apos;maladie&apos;);
+CREATE TABLE &quot;plantes&quot; (
+	`id`	INTEGER PRIMARY KEY AUTOINCREMENT,
+	`designation`	varchar(40),
+	`type_lune`	integer,
+	`espece`	INTEGER,
+	`nom_latin`	varchar(50),
+	`commentaires`	varchar(200),
+	`semis_printemps`	varchar(24),
+	`semis_ete`	varchar(24),
+	`semis_automne`	varchar(24)
+);
+
+CREATE TABLE &quot;observations&quot; (
+	`id`	INTEGER PRIMARY KEY AUTOINCREMENT,
+	`designation`	varchar(40),
+	`date`	varchar(10),
+	`type`	INTEGER,
+	`commentaires`	INTEGER,
+	`id_culture`	INTEGER
+);
+CREATE TABLE &quot;lune&quot; (
+	`id`	INTEGER,
+	`designation`	varchar(30)
+);
+INSERT INTO `lune` (id,designation) VALUES (1,&apos;feuilles&apos;);
+INSERT INTO `lune` (id,designation) VALUES (2,&apos;fleurs&apos;);
+INSERT INTO `lune` (id,designation) VALUES (3,&apos;racines&apos;);
+INSERT INTO `lune` (id,designation) VALUES (4,&apos;fruits/graines&apos;);
+CREATE TABLE &quot;familles&quot; (
+	`id`	INTEGER PRIMARY KEY AUTOINCREMENT,
+	`designation`	varchar(30)
+);
+INSERT INTO `familles` (id,designation) VALUES (1,&apos;Actinidiacées&apos;);
+INSERT INTO `familles` (id,designation) VALUES (2,&apos;Amaranthacées&apos;);
+INSERT INTO `familles` (id,designation) VALUES (3,&apos;Apiacées
+(Ombellifères)&apos;);
+INSERT INTO `familles` (id,designation) VALUES (4,&apos;Astéracées (composées)&apos;);
+INSERT INTO `familles` (id,designation) VALUES (5,&apos;Aizoaceae&apos;);
+INSERT INTO `familles` (id,designation) VALUES (6,&apos;Basellacées&apos;);
+INSERT INTO `familles` (id,designation) VALUES (7,&apos;Brassicacées
+(Crucifères)&apos;);
+INSERT INTO `familles` (id,designation) VALUES (8,&apos;Chénopodiacées&apos;);
+INSERT INTO `familles` (id,designation) VALUES (9,&apos;Convolvulacées&apos;);
+INSERT INTO `familles` (id,designation) VALUES (10,&apos;Cucurbitacées&apos;);
+INSERT INTO `familles` (id,designation) VALUES (11,&apos;Ericaceae&apos;);
+INSERT INTO `familles` (id,designation) VALUES (12,&apos;Fabacées
+(Papilionacées)&apos;);
+INSERT INTO `familles` (id,designation) VALUES (13,&apos;Grossulariacées&apos;);
+INSERT INTO `familles` (id,designation) VALUES (14,&apos;Lamiacées (Labiées)&apos;);
+INSERT INTO `familles` (id,designation) VALUES (15,&apos;Alliacées&apos;);
+INSERT INTO `familles` (id,designation) VALUES (16,&apos;Asparagacées
+(Liliacées)&apos;);
+INSERT INTO `familles` (id,designation) VALUES (17,&apos;Poacées
+(Graminées)&apos;);
+INSERT INTO `familles` (id,designation) VALUES (18,&apos;Polygonacées&apos;);
+INSERT INTO `familles` (id,designation) VALUES (19,&apos;Portulacacées&apos;);
+INSERT INTO `familles` (id,designation) VALUES (20,&apos;Rosacées&apos;);
+INSERT INTO `familles` (id,designation) VALUES (21,&apos;Solanacées&apos;);
+INSERT INTO `familles` (id,designation) VALUES (22,&apos;Valérianacées&apos;);
+INSERT INTO `familles` (id,designation) VALUES (23,&apos;Iridacée&apos;);
+INSERT INTO `familles` (id,designation) VALUES (24,&apos;-&apos;);
+INSERT INTO `familles` (id,designation) VALUES (25,&apos;Amaryllidacées&apos;);
+CREATE TABLE &quot;especes&quot; (
+	`id`	INTEGER PRIMARY KEY AUTOINCREMENT,
+	`designation`	varchar(30),
+	`famille`	INTEGER,
+	`positif`	varchar(200),
+	`negatif`	varchar(200),
+	`commentaires`	varchar(200),
+	`compost`	INTEGER,
+	`rotation_ans`	INTEGER,
+	`rotation_familles`	varchar(22)
+);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (1,&apos;Ail&apos;,15,&apos;carotte, fraisier, tomate&apos;,&apos;pois, haricot, chou&apos;,&apos;favorable aprés fabacées ou pomme de terre&apos;,1,6,&apos;0000010000000000010000&apos;);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (2,&apos;Airelle&apos;,11,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (3,&apos;Amaranthe&apos;,2,&apos;&apos;,&apos;&apos;,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (4,&apos;Aneth&apos;,3,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (5,&apos;Angélique&apos;,3,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (6,&apos;Arroche&apos;,8,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (7,&apos;Artichaut&apos;,3,&apos;&apos;,&apos;&apos;,&apos;&apos;,3,6,&apos;0000000000000000000000&apos;);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (8,&apos;Asperge&apos;,16,&apos;persil, tomate&apos;,&apos;oignon&apos;,&apos;&apos;,0,0,&apos;0000000000000000000000&apos;);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (9,&apos;Aubergine&apos;,21,&apos;estragon, pois, thym&apos;,&apos;&apos;,&apos;souvent placé en tête de rotation&apos;,3,5,&apos;0000010000000001000100&apos;);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (10,&apos;Bambou&apos;,17,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (11,&apos;Baselle&apos;,6,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (12,&apos;Basilic&apos;,14,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (13,&apos;Bette&apos;,8,&apos;&apos;,&apos;&apos;,&apos;&apos;,2,5,&apos;1000001000000010000000&apos;);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (14,&apos;Betterave&apos;,2,&apos;choux, céleris, laitues, oignons&apos;,&apos;haricots grimpants&apos;,&apos;&apos;,2,5,&apos;0010100010010010000000&apos;);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (15,&apos;Blé&apos;,17,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (16,&apos;Blette&apos;,8,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (17,&apos;Brocoli&apos;,7,&apos;fève, céleri, camomille, aneth, menthe, capucine, oignon, origan, pomme de terre, sauge, romarin&apos;,&apos;laitue, fraise, tomate&apos;,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (18,&apos;Cardon&apos;,3,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (19,&apos;Carotte&apos;,3,&apos;&apos;,&apos;&apos;,&apos;&apos;,2,6,&apos;0000001000010100000000&apos;);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (20,&apos;Carvi&apos;,14,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (21,&apos;Cassissier&apos;,13,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (22,&apos;Céleri&apos;,3,&apos;fève, choux, poireau, oignon, tomate&apos;,&apos;laitue, persil&apos;,&apos;&apos;,3,5,&apos;0000001000010000000000&apos;);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (23,&apos;Céleri rave&apos;,3,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (24,&apos;Cerfeuil&apos;,3,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (25,&apos;Chayote&apos;,10,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (26,&apos;Chicorée&apos;,4,&apos;&apos;,&apos;&apos;,&apos;&apos;,2,5,&apos;0000001000001000000000&apos;);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (27,&apos;Choux de Bruxelles&apos;,7,&apos;fève, céleri, aneth, hysope, menthe, capucine, pomme de terre, sauge, romarin&apos;,&apos;fraise&apos;,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (28,&apos;Choux&apos;,7,&apos;fève, betterave, céleri, camomille, aneth, hysope, menthe, capucine, oignon, origan, pomme de terre, sauge, romarin&apos;,&apos;vigne, fraise, tomate&apos;,&apos;&apos;,3,5,&apos;0000001000000100000000&apos;);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (29,&apos;Ciboule&apos;,15,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (30,&apos;Ciboulette&apos;,15,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (31,&apos;Citrouille&apos;,10,&apos;fève, maïs, menthe, capucine, radis&apos;,&apos;pomme de terre&apos;,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (32,&apos;Claytone&apos;,19,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (33,&apos;Concombre&apos;,10,&apos;fève, brocoli, céleri, laitue, pois, radis, tomate&apos;,&apos;rue, sauge&apos;,&apos;&apos;,3,5,&apos;0000001000000001000100&apos;);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (34,&apos;Coriandre&apos;,3,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (35,&apos;Cornichon&apos;,10,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (36,&apos;Courge&apos;,10,&apos;fève, maïs, menthe, capucine, radis&apos;,&apos;pomme de terre&apos;,&apos;&apos;,3,5,&apos;0000000000000001000000&apos;);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (37,&apos;Courgette&apos;,10,&apos;&apos;,&apos;&apos;,&apos;&apos;,3,3,&apos;0000001000000001000100&apos;);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (38,&apos;Cresson&apos;,3,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (40,&apos;Crosne du japon&apos;,14,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (41,&apos;Echalote&apos;,15,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (42,&apos;Endive&apos;,3,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (43,&apos;Epinard&apos;,8,&apos;aubergine, chou, céleri, oignon, pois, fraise&apos;,&apos;&apos;,&apos;&apos;,3,5,&apos;0000001000000010000000&apos;);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (44,&apos;Estragon&apos;,4,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (45,&apos;Fenouil&apos;,3,&apos;&apos;,&apos;&apos;,&apos;&apos;,3,5,&apos;0000000000010000000000&apos;);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (46,&apos;Fenouil grand&apos;,3,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (47,&apos;Fèves&apos;,12,&apos;betteraves, bourrache, choux, carotte, chou-fleur, maïs, oeillet d&apos;&apos;Inde, courge, fraise, tomate&apos;,&apos;ciboulette, fenouil, ail, poireau&apos;,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (48,&apos;Cresson des Fontaines&apos;,7,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (49,&apos;Fraisier&apos;,20,&apos;&apos;,&apos;&apos;,&apos;&apos;,3,5,&apos;0000001100000000100100&apos;);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (50,&apos;Framboisier&apos;,20,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (51,&apos;Groseillier&apos;,13,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (52,&apos;Haricot&apos;,12,&apos;betteraves, bourrache, choux, carotte, chou-fleur, maïs, oeillet d&apos;&apos;Inde, courge, fraise, tomate&apos;,&apos;ciboulette, fenouil, ail, poireau&apos;,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (53,&apos;Hysope&apos;,14,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (54,&apos;Kiwi&apos;,1,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (55,&apos;Laitue&apos;,4,&apos;betterave, chou, trèfle, pois, radis, fraise&apos;,&apos;&apos;,&apos;&apos;,2,5,&apos;0000000000000000000000&apos;);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (56,&apos;Lentille&apos;,12,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (57,&apos;Livèche&apos;,3,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (58,&apos;Maceron&apos;,3,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (59,&apos;Mâche&apos;,22,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (60,&apos;Mais doux&apos;,17,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (61,&apos;Marjolaine&apos;,14,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (62,&apos;Mélisse&apos;,14,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (63,&apos;Melon&apos;,10,&apos;maïs, tournesol&apos;,&apos;&apos;,&apos;&apos;,3,5,&apos;0000000100000001000100&apos;);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (64,&apos;Menthe&apos;,14,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (65,&apos;Moutarde&apos;,7,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (66,&apos;Myrtille&apos;,11,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (67,&apos;Navet&apos;,7,&apos;&apos;,&apos;&apos;,&apos;&apos;,1,4,&apos;0000001110010100000000&apos;);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (68,&apos;Oignon&apos;,15,&apos;betterave, chou, carotte, laitue, pomme de terre, fraise, tomate&apos;,&apos;fève, haricot, pois&apos;,&apos;&apos;,1,7,&apos;0000010000000000010000&apos;);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (69,&apos;Orge&apos;,17,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (70,&apos;Origan&apos;,14,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (71,&apos;Oseille&apos;,18,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (72,&apos;Panais&apos;,3,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (73,&apos;Pastèque&apos;,10,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (74,&apos;Patate douce&apos;,9,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (75,&apos;Pâtisson&apos;,10,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (76,&apos;Persil&apos;,3,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (77,&apos;Petits pois&apos;,12,&apos;Les pois aiment la proximité du fenouil, des concombres, des laitues et des carottes.&apos;,&apos;&apos;,&apos;&apos;,2,0,&apos;0000000000000000000000&apos;);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (78,&apos;Physalis&apos;,21,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (79,&apos;Piment&apos;,21,&apos;basilic, carotte, marjolaine, oignons, origan&apos;,&apos;fenouil&apos;,&apos;&apos;,3,5,&apos;0000010000000001000100&apos;);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (80,&apos;Pois&apos;,12,&apos;asperge, aubergine, carotte, céleri, concombres, laitue, radis, épinard, tomate, haricots, navets&apos;,&apos;&apos;,&apos;&apos;,1,5,&apos;0000000000000000100000&apos;);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (81,&apos;Pissenlit&apos;,3,&apos;&apos;,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (82,&apos;Poireau&apos;,25,&apos;Carotte, céleri, endive, épinard, fraisier, mâche, œillet d&apos;&apos;Inde, panais, tomate.&apos;,&apos;Ail, asperge, bette, betterave, brocoli, chou, chou de Bruxelles, chou-fleur, fève, haricot, oignon, persil, piment, pois, poivron, sauge.&apos;,&apos;Parasites : Anguillule, mouche de l&apos;&apos;oignon, teigne du poireau, thrips, ver du poireau
+Maladies : Mildiou, oïdium, rouille&apos;,3,6,&apos;0000010000000000010000&apos;);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (83,&apos;Poirée&apos;,8,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (84,&apos;Pois chiche&apos;,12,&apos;l&apos;&apos;artichaut, le brocoli, la carotte, le céleri, le chou, le concombre, la courge, l&apos;&apos;épinard, la laitue, le melon, la menthe, le navet, le panais, le radis&apos;,&apos;l&apos;&apos;ail, de l&apos;&apos;asperge, la ciboulette, l&apos;&apos;aubergine, l&apos;&apos;oignon, le persil, le piment, le poireau, la pomme de terre, la tomate.&apos;,&apos;Le pois chiche redoute plus particulièrement la bruche du pois. Les grains sont transformés en gruyère, car la larve de la bruche, à la tête brune et au corps blanc, voire jaunâtre, creuse des galeries dans les grains. &apos;,0,0,&apos;0000000000000000000000&apos;);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (85,&apos;Poivron&apos;,21,&apos;&apos;,&apos;&apos;,&apos;&apos;,3,5,&apos;0000010000000001000100&apos;);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (86,&apos;Pomme de terre&apos;,21,&apos;ail, haricot, pois, fève, chou, maïs, laitue, oignon, pétunia, oeillet d&apos;&apos;Inde, radis, potiron, courgettes&apos;,&apos;pomme, citrouille, tomate&apos;,&apos;&apos;,3,5,&apos;0000000000000000000100&apos;);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (87,&apos;Potimarron&apos;,10,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (88,&apos;Potiron&apos;,10,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (89,&apos;Pourpier&apos;,19,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (90,&apos;Quinoa&apos;,8,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (91,&apos;Radis&apos;,7,&apos;fève, chou, chou-fleur, concombre, laitue, pois, courge, tomate&apos;,&apos;vigne, hysope&apos;,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (92,&apos;Raifort&apos;,7,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (93,&apos;Rapini&apos;,7,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (94,&apos;Rhubarbe&apos;,18,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (95,&apos;Romarin&apos;,14,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (96,&apos;Ronce (mûres)&apos;,20,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (97,&apos;Roquette&apos;,7,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (98,&apos;Rutabaga&apos;,7,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (99,&apos;Salsifis&apos;,3,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (100,&apos;Sariette&apos;,14,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (101,&apos;Sarrasin&apos;,18,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (102,&apos;Sauge&apos;,14,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (103,&apos;Scorsonère&apos;,3,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (104,&apos;Seigle&apos;,17,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (105,&apos;Sorgho&apos;,17,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (106,&apos;Stevia&apos;,4,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (107,&apos;Tétragone&apos;,5,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (108,&apos;Thym&apos;,14,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (109,&apos;Tomate&apos;,21,&apos;asperge, basilic, carotte, oignon, persil, pois, sauge, poireaux, radis&apos;,&apos;fenouil, pomme de terre, chou&apos;,&apos;&apos;,3,5,&apos;0000000000000001000100&apos;);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (110,&apos;Tomate cerise&apos;,21,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (111,&apos;Topinambour&apos;,3,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (112,&apos;Tournesol&apos;,3,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (113,&apos;Safran&apos;,23,&apos;&apos;,&apos;&apos;,&apos;&apos;,2,5,&apos;0000000000000000010000&apos;);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (114,&apos;-&apos;,24,&apos;&apos;,&apos;&apos;,&apos;&apos;,1,1,&apos;0000000000000000000000&apos;);
+CREATE TABLE &quot;cultures&quot; (
+	`id`	INTEGER PRIMARY KEY AUTOINCREMENT,
+	`designation`	varchar(40),
+	`parcelle`	integer,
+	`date_semis`	varchar(10),
+	`type_plante`	integer,
+	`commentaires`	varchar(200),
+	`etat`	INTEGER,
+	`duree`	INTEGER,
+	`date_recolte`	varchar(10)
+);
+COMMIT;</source>
+        <translation>BEGIN TRANSACTION;
+CREATE TABLE `taches` (
+	`id`	INTEGER PRIMARY KEY AUTOINCREMENT,
+	`designation`	varchar(30)
+);
+INSERT INTO `taches` (id,designation) VALUES (1,&apos;préparation du sol béchage&apos;);
+INSERT INTO `taches` (id,designation) VALUES (3,&apos;amendement&apos;);
+INSERT INTO `taches` (id,designation) VALUES (5,&apos;semis&apos;);
+INSERT INTO `taches` (id,designation) VALUES (6,&apos;plantations&apos;);
+INSERT INTO `taches` (id,designation) VALUES (7,&apos;désherbage&apos;);
+INSERT INTO `taches` (id,designation) VALUES (8,&apos;récolte&apos;);
+INSERT INTO `taches` (id,designation) VALUES (9,&apos;jachère&apos;);
+INSERT INTO `taches` (id,designation) VALUES (10,&apos;paillage&apos;);
+INSERT INTO `taches` (id,designation) VALUES (11,&apos;traitement&apos;);
+INSERT INTO `taches` (id,designation) VALUES (14,&apos;maladie&apos;);
+CREATE TABLE &quot;plantes&quot; (
+	`id`	INTEGER PRIMARY KEY AUTOINCREMENT,
+	`designation`	varchar(40),
+	`type_lune`	integer,
+	`espece`	INTEGER,
+	`nom_latin`	varchar(50),
+	`commentaires`	varchar(200),
+	`semis_printemps`	varchar(24),
+	`semis_ete`	varchar(24),
+	`semis_automne`	varchar(24)
+);
+
+CREATE TABLE &quot;observations&quot; (
+	`id`	INTEGER PRIMARY KEY AUTOINCREMENT,
+	`designation`	varchar(40),
+	`date`	varchar(10),
+	`type`	INTEGER,
+	`commentaires`	INTEGER,
+	`id_culture`	INTEGER
+);
+CREATE TABLE &quot;lune&quot; (
+	`id`	INTEGER,
+	`designation`	varchar(30)
+);
+INSERT INTO `lune` (id,designation) VALUES (1,&apos;feuilles&apos;);
+INSERT INTO `lune` (id,designation) VALUES (2,&apos;fleurs&apos;);
+INSERT INTO `lune` (id,designation) VALUES (3,&apos;racines&apos;);
+INSERT INTO `lune` (id,designation) VALUES (4,&apos;fruits/graines&apos;);
+CREATE TABLE &quot;familles&quot; (
+	`id`	INTEGER PRIMARY KEY AUTOINCREMENT,
+	`designation`	varchar(30)
+);
+INSERT INTO `familles` (id,designation) VALUES (1,&apos;Actinidiacées&apos;);
+INSERT INTO `familles` (id,designation) VALUES (2,&apos;Amaranthacées&apos;);
+INSERT INTO `familles` (id,designation) VALUES (3,&apos;Apiacées
+(Ombellifères)&apos;);
+INSERT INTO `familles` (id,designation) VALUES (4,&apos;Astéracées (composées)&apos;);
+INSERT INTO `familles` (id,designation) VALUES (5,&apos;Aizoaceae&apos;);
+INSERT INTO `familles` (id,designation) VALUES (6,&apos;Basellacées&apos;);
+INSERT INTO `familles` (id,designation) VALUES (7,&apos;Brassicacées
+(Crucifères)&apos;);
+INSERT INTO `familles` (id,designation) VALUES (8,&apos;Chénopodiacées&apos;);
+INSERT INTO `familles` (id,designation) VALUES (9,&apos;Convolvulacées&apos;);
+INSERT INTO `familles` (id,designation) VALUES (10,&apos;Cucurbitacées&apos;);
+INSERT INTO `familles` (id,designation) VALUES (11,&apos;Ericaceae&apos;);
+INSERT INTO `familles` (id,designation) VALUES (12,&apos;Fabacées
+(Papilionacées)&apos;);
+INSERT INTO `familles` (id,designation) VALUES (13,&apos;Grossulariacées&apos;);
+INSERT INTO `familles` (id,designation) VALUES (14,&apos;Lamiacées (Labiées)&apos;);
+INSERT INTO `familles` (id,designation) VALUES (15,&apos;Alliacées&apos;);
+INSERT INTO `familles` (id,designation) VALUES (16,&apos;Asparagacées
+(Liliacées)&apos;);
+INSERT INTO `familles` (id,designation) VALUES (17,&apos;Poacées
+(Graminées)&apos;);
+INSERT INTO `familles` (id,designation) VALUES (18,&apos;Polygonacées&apos;);
+INSERT INTO `familles` (id,designation) VALUES (19,&apos;Portulacacées&apos;);
+INSERT INTO `familles` (id,designation) VALUES (20,&apos;Rosacées&apos;);
+INSERT INTO `familles` (id,designation) VALUES (21,&apos;Solanacées&apos;);
+INSERT INTO `familles` (id,designation) VALUES (22,&apos;Valérianacées&apos;);
+INSERT INTO `familles` (id,designation) VALUES (23,&apos;Iridacée&apos;);
+INSERT INTO `familles` (id,designation) VALUES (24,&apos;-&apos;);
+INSERT INTO `familles` (id,designation) VALUES (25,&apos;Amaryllidacées&apos;);
+CREATE TABLE &quot;especes&quot; (
+	`id`	INTEGER PRIMARY KEY AUTOINCREMENT,
+	`designation`	varchar(30),
+	`famille`	INTEGER,
+	`positif`	varchar(200),
+	`negatif`	varchar(200),
+	`commentaires`	varchar(200),
+	`compost`	INTEGER,
+	`rotation_ans`	INTEGER,
+	`rotation_familles`	varchar(22)
+);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (1,&apos;Ail&apos;,15,&apos;carotte, fraisier, tomate&apos;,&apos;pois, haricot, chou&apos;,&apos;favorable aprés fabacées ou pomme de terre&apos;,1,6,&apos;0000010000000000010000&apos;);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (2,&apos;Airelle&apos;,11,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (3,&apos;Amaranthe&apos;,2,&apos;&apos;,&apos;&apos;,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (4,&apos;Aneth&apos;,3,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (5,&apos;Angélique&apos;,3,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (6,&apos;Arroche&apos;,8,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (7,&apos;Artichaut&apos;,3,&apos;&apos;,&apos;&apos;,&apos;&apos;,3,6,&apos;0000000000000000000000&apos;);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (8,&apos;Asperge&apos;,16,&apos;persil, tomate&apos;,&apos;oignon&apos;,&apos;&apos;,0,0,&apos;0000000000000000000000&apos;);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (9,&apos;Aubergine&apos;,21,&apos;estragon, pois, thym&apos;,&apos;&apos;,&apos;souvent placé en tête de rotation&apos;,3,5,&apos;0000010000000001000100&apos;);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (10,&apos;Bambou&apos;,17,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (11,&apos;Baselle&apos;,6,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (12,&apos;Basilic&apos;,14,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (13,&apos;Bette&apos;,8,&apos;&apos;,&apos;&apos;,&apos;&apos;,2,5,&apos;1000001000000010000000&apos;);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (14,&apos;Betterave&apos;,2,&apos;choux, céleris, laitues, oignons&apos;,&apos;haricots grimpants&apos;,&apos;&apos;,2,5,&apos;0010100010010010000000&apos;);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (15,&apos;Blé&apos;,17,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (16,&apos;Blette&apos;,8,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (17,&apos;Brocoli&apos;,7,&apos;fève, céleri, camomille, aneth, menthe, capucine, oignon, origan, pomme de terre, sauge, romarin&apos;,&apos;laitue, fraise, tomate&apos;,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (18,&apos;Cardon&apos;,3,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (19,&apos;Carotte&apos;,3,&apos;&apos;,&apos;&apos;,&apos;&apos;,2,6,&apos;0000001000010100000000&apos;);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (20,&apos;Carvi&apos;,14,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (21,&apos;Cassissier&apos;,13,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (22,&apos;Céleri&apos;,3,&apos;fève, choux, poireau, oignon, tomate&apos;,&apos;laitue, persil&apos;,&apos;&apos;,3,5,&apos;0000001000010000000000&apos;);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (23,&apos;Céleri rave&apos;,3,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (24,&apos;Cerfeuil&apos;,3,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (25,&apos;Chayote&apos;,10,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (26,&apos;Chicorée&apos;,4,&apos;&apos;,&apos;&apos;,&apos;&apos;,2,5,&apos;0000001000001000000000&apos;);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (27,&apos;Choux de Bruxelles&apos;,7,&apos;fève, céleri, aneth, hysope, menthe, capucine, pomme de terre, sauge, romarin&apos;,&apos;fraise&apos;,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (28,&apos;Choux&apos;,7,&apos;fève, betterave, céleri, camomille, aneth, hysope, menthe, capucine, oignon, origan, pomme de terre, sauge, romarin&apos;,&apos;vigne, fraise, tomate&apos;,&apos;&apos;,3,5,&apos;0000001000000100000000&apos;);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (29,&apos;Ciboule&apos;,15,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (30,&apos;Ciboulette&apos;,15,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (31,&apos;Citrouille&apos;,10,&apos;fève, maïs, menthe, capucine, radis&apos;,&apos;pomme de terre&apos;,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (32,&apos;Claytone&apos;,19,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (33,&apos;Concombre&apos;,10,&apos;fève, brocoli, céleri, laitue, pois, radis, tomate&apos;,&apos;rue, sauge&apos;,&apos;&apos;,3,5,&apos;0000001000000001000100&apos;);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (34,&apos;Coriandre&apos;,3,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (35,&apos;Cornichon&apos;,10,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (36,&apos;Courge&apos;,10,&apos;fève, maïs, menthe, capucine, radis&apos;,&apos;pomme de terre&apos;,&apos;&apos;,3,5,&apos;0000000000000001000000&apos;);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (37,&apos;Courgette&apos;,10,&apos;&apos;,&apos;&apos;,&apos;&apos;,3,3,&apos;0000001000000001000100&apos;);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (38,&apos;Cresson&apos;,3,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (40,&apos;Crosne du japon&apos;,14,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (41,&apos;Echalote&apos;,15,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (42,&apos;Endive&apos;,3,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (43,&apos;Epinard&apos;,8,&apos;aubergine, chou, céleri, oignon, pois, fraise&apos;,&apos;&apos;,&apos;&apos;,3,5,&apos;0000001000000010000000&apos;);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (44,&apos;Estragon&apos;,4,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (45,&apos;Fenouil&apos;,3,&apos;&apos;,&apos;&apos;,&apos;&apos;,3,5,&apos;0000000000010000000000&apos;);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (46,&apos;Fenouil grand&apos;,3,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (47,&apos;Fèves&apos;,12,&apos;betteraves, bourrache, choux, carotte, chou-fleur, maïs, oeillet d&apos;&apos;Inde, courge, fraise, tomate&apos;,&apos;ciboulette, fenouil, ail, poireau&apos;,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (48,&apos;Cresson des Fontaines&apos;,7,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (49,&apos;Fraisier&apos;,20,&apos;&apos;,&apos;&apos;,&apos;&apos;,3,5,&apos;0000001100000000100100&apos;);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (50,&apos;Framboisier&apos;,20,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (51,&apos;Groseillier&apos;,13,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (52,&apos;Haricot&apos;,12,&apos;betteraves, bourrache, choux, carotte, chou-fleur, maïs, oeillet d&apos;&apos;Inde, courge, fraise, tomate&apos;,&apos;ciboulette, fenouil, ail, poireau&apos;,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (53,&apos;Hysope&apos;,14,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (54,&apos;Kiwi&apos;,1,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (55,&apos;Laitue&apos;,4,&apos;betterave, chou, trèfle, pois, radis, fraise&apos;,&apos;&apos;,&apos;&apos;,2,5,&apos;0000000000000000000000&apos;);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (56,&apos;Lentille&apos;,12,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (57,&apos;Livèche&apos;,3,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (58,&apos;Maceron&apos;,3,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (59,&apos;Mâche&apos;,22,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (60,&apos;Mais doux&apos;,17,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (61,&apos;Marjolaine&apos;,14,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (62,&apos;Mélisse&apos;,14,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (63,&apos;Melon&apos;,10,&apos;maïs, tournesol&apos;,&apos;&apos;,&apos;&apos;,3,5,&apos;0000000100000001000100&apos;);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (64,&apos;Menthe&apos;,14,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (65,&apos;Moutarde&apos;,7,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (66,&apos;Myrtille&apos;,11,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (67,&apos;Navet&apos;,7,&apos;&apos;,&apos;&apos;,&apos;&apos;,1,4,&apos;0000001110010100000000&apos;);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (68,&apos;Oignon&apos;,15,&apos;betterave, chou, carotte, laitue, pomme de terre, fraise, tomate&apos;,&apos;fève, haricot, pois&apos;,&apos;&apos;,1,7,&apos;0000010000000000010000&apos;);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (69,&apos;Orge&apos;,17,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (70,&apos;Origan&apos;,14,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (71,&apos;Oseille&apos;,18,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (72,&apos;Panais&apos;,3,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (73,&apos;Pastèque&apos;,10,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (74,&apos;Patate douce&apos;,9,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (75,&apos;Pâtisson&apos;,10,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (76,&apos;Persil&apos;,3,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (77,&apos;Petits pois&apos;,12,&apos;Les pois aiment la proximité du fenouil, des concombres, des laitues et des carottes.&apos;,&apos;&apos;,&apos;&apos;,2,0,&apos;0000000000000000000000&apos;);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (78,&apos;Physalis&apos;,21,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (79,&apos;Piment&apos;,21,&apos;basilic, carotte, marjolaine, oignons, origan&apos;,&apos;fenouil&apos;,&apos;&apos;,3,5,&apos;0000010000000001000100&apos;);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (80,&apos;Pois&apos;,12,&apos;asperge, aubergine, carotte, céleri, concombres, laitue, radis, épinard, tomate, haricots, navets&apos;,&apos;&apos;,&apos;&apos;,1,5,&apos;0000000000000000100000&apos;);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (81,&apos;Pissenlit&apos;,3,&apos;&apos;,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (82,&apos;Poireau&apos;,25,&apos;Carotte, céleri, endive, épinard, fraisier, mâche, œillet d&apos;&apos;Inde, panais, tomate.&apos;,&apos;Ail, asperge, bette, betterave, brocoli, chou, chou de Bruxelles, chou-fleur, fève, haricot, oignon, persil, piment, pois, poivron, sauge.&apos;,&apos;Parasites : Anguillule, mouche de l&apos;&apos;oignon, teigne du poireau, thrips, ver du poireau
+Maladies : Mildiou, oïdium, rouille&apos;,3,6,&apos;0000010000000000010000&apos;);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (83,&apos;Poirée&apos;,8,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (84,&apos;Pois chiche&apos;,12,&apos;l&apos;&apos;artichaut, le brocoli, la carotte, le céleri, le chou, le concombre, la courge, l&apos;&apos;épinard, la laitue, le melon, la menthe, le navet, le panais, le radis&apos;,&apos;l&apos;&apos;ail, de l&apos;&apos;asperge, la ciboulette, l&apos;&apos;aubergine, l&apos;&apos;oignon, le persil, le piment, le poireau, la pomme de terre, la tomate.&apos;,&apos;Le pois chiche redoute plus particulièrement la bruche du pois. Les grains sont transformés en gruyère, car la larve de la bruche, à la tête brune et au corps blanc, voire jaunâtre, creuse des galeries dans les grains. &apos;,0,0,&apos;0000000000000000000000&apos;);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (85,&apos;Poivron&apos;,21,&apos;&apos;,&apos;&apos;,&apos;&apos;,3,5,&apos;0000010000000001000100&apos;);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (86,&apos;Pomme de terre&apos;,21,&apos;ail, haricot, pois, fève, chou, maïs, laitue, oignon, pétunia, oeillet d&apos;&apos;Inde, radis, potiron, courgettes&apos;,&apos;pomme, citrouille, tomate&apos;,&apos;&apos;,3,5,&apos;0000000000000000000100&apos;);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (87,&apos;Potimarron&apos;,10,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (88,&apos;Potiron&apos;,10,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (89,&apos;Pourpier&apos;,19,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (90,&apos;Quinoa&apos;,8,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (91,&apos;Radis&apos;,7,&apos;fève, chou, chou-fleur, concombre, laitue, pois, courge, tomate&apos;,&apos;vigne, hysope&apos;,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (92,&apos;Raifort&apos;,7,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (93,&apos;Rapini&apos;,7,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (94,&apos;Rhubarbe&apos;,18,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (95,&apos;Romarin&apos;,14,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (96,&apos;Ronce (mûres)&apos;,20,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (97,&apos;Roquette&apos;,7,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (98,&apos;Rutabaga&apos;,7,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (99,&apos;Salsifis&apos;,3,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (100,&apos;Sariette&apos;,14,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (101,&apos;Sarrasin&apos;,18,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (102,&apos;Sauge&apos;,14,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (103,&apos;Scorsonère&apos;,3,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (104,&apos;Seigle&apos;,17,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (105,&apos;Sorgho&apos;,17,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (106,&apos;Stevia&apos;,4,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (107,&apos;Tétragone&apos;,5,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (108,&apos;Thym&apos;,14,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (109,&apos;Tomate&apos;,21,&apos;asperge, basilic, carotte, oignon, persil, pois, sauge, poireaux, radis&apos;,&apos;fenouil, pomme de terre, chou&apos;,&apos;&apos;,3,5,&apos;0000000000000001000100&apos;);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (110,&apos;Tomate cerise&apos;,21,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (111,&apos;Topinambour&apos;,3,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (112,&apos;Tournesol&apos;,3,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (113,&apos;Safran&apos;,23,&apos;&apos;,&apos;&apos;,&apos;&apos;,2,5,&apos;0000000000000000010000&apos;);
+INSERT INTO `especes` (id,designation,famille,positif,negatif,commentaires,compost,rotation_ans,rotation_familles) VALUES (114,&apos;-&apos;,24,&apos;&apos;,&apos;&apos;,&apos;&apos;,1,1,&apos;0000000000000000000000&apos;);
+CREATE TABLE &quot;cultures&quot; (
+	`id`	INTEGER PRIMARY KEY AUTOINCREMENT,
+	`designation`	varchar(40),
+	`parcelle`	integer,
+	`date_semis`	varchar(10),
+	`type_plante`	integer,
+	`commentaires`	varchar(200),
+	`etat`	INTEGER,
+	`duree`	INTEGER,
+	`date_recolte`	varchar(10)
+);
+COMMIT;</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="6479"/>
+        <location filename="mainwindow.ui" line="6772"/>
         <source>Aide</source>
         <translation>Help</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="6048"/>
+        <location filename="mainwindow.ui" line="6486"/>
         <source>Modes</source>
         <translation>Modes</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="6061"/>
+        <location filename="mainwindow.ui" line="6499"/>
         <source>Passer l&apos;objet devant</source>
         <translation>Put the object in front</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="6113"/>
-        <location filename="mainwindow.ui" line="6116"/>
-        <location filename="mainwindow.ui" line="6119"/>
+        <location filename="mainwindow.ui" line="6551"/>
+        <location filename="mainwindow.ui" line="6554"/>
+        <location filename="mainwindow.ui" line="6557"/>
         <source>Ouvrir</source>
         <translation>Open</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="6139"/>
-        <location filename="mainwindow.ui" line="6142"/>
-        <location filename="mainwindow.ui" line="6145"/>
+        <location filename="mainwindow.ui" line="6577"/>
+        <location filename="mainwindow.ui" line="6580"/>
+        <location filename="mainwindow.ui" line="6583"/>
         <source>Quitter</source>
         <translation>Quit</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="6160"/>
-        <location filename="mainwindow.ui" line="6163"/>
-        <location filename="mainwindow.ui" line="6166"/>
+        <location filename="mainwindow.ui" line="6598"/>
+        <location filename="mainwindow.ui" line="6601"/>
+        <location filename="mainwindow.ui" line="6604"/>
         <source>Ajouter Parcelle</source>
         <translation>Add plot</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="6174"/>
+        <location filename="mainwindow.ui" line="6612"/>
         <source>Carré</source>
         <translation>Square</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="6186"/>
-        <location filename="mainwindow.ui" line="6189"/>
+        <location filename="mainwindow.ui" line="6624"/>
+        <location filename="mainwindow.ui" line="6627"/>
         <source>Ajouter Plante seule</source>
         <translation>Add alone plant</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="6192"/>
+        <location filename="mainwindow.ui" line="6630"/>
         <source>Ajouter Plante</source>
         <translation>Add plant</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="6204"/>
+        <location filename="mainwindow.ui" line="6642"/>
         <source>Ajouter image</source>
         <translation>Add image</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="6207"/>
+        <location filename="mainwindow.ui" line="6645"/>
         <source>Ajouter Image</source>
         <translation>Add image</translation>
     </message>
@@ -3920,53 +4510,53 @@ p, li { white-space: pre-wrap; }
         <translation type="vanished">Paste</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="6219"/>
+        <location filename="mainwindow.ui" line="6657"/>
         <source>Choisir le Fond d&apos;écran</source>
         <translation>Choose the background map</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="6224"/>
+        <location filename="mainwindow.ui" line="6662"/>
         <source>Ajouter icone</source>
         <translation>Add icon</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="6229"/>
+        <location filename="mainwindow.ui" line="6667"/>
         <source>Supprimer l&apos;objet sélectionné</source>
         <translation>delete the selected object</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="6238"/>
+        <location filename="mainwindow.ui" line="6676"/>
         <source>Choisir la couleur</source>
         <translation>Choose the color</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="6262"/>
+        <location filename="mainwindow.ui" line="6700"/>
         <source>selectionner tout</source>
         <translation>Select all</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="6271"/>
+        <location filename="mainwindow.ui" line="6709"/>
         <source>désélectionner tout</source>
         <translation>deselect all</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="6286"/>
+        <location filename="mainwindow.ui" line="6724"/>
         <source>Modification</source>
         <translation>Modify</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="6297"/>
+        <location filename="mainwindow.ui" line="6735"/>
         <source>Maj scene</source>
         <translation>Update the screen</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="6309"/>
-        <location filename="mainwindow.ui" line="6312"/>
+        <location filename="mainwindow.ui" line="6747"/>
+        <location filename="mainwindow.ui" line="6750"/>
         <source>Ajouter Matériel</source>
         <translation>Add equipment</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="6324"/>
+        <location filename="mainwindow.ui" line="6762"/>
         <source>mettre en avant</source>
         <translation>Put forward</translation>
     </message>
@@ -3975,101 +4565,101 @@ p, li { white-space: pre-wrap; }
         <translation type="vanished">put back</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="6329"/>
+        <location filename="mainwindow.ui" line="6767"/>
         <source>a propos de..</source>
         <translation>About .</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="6343"/>
+        <location filename="mainwindow.ui" line="6781"/>
         <source>Choisir le type de crayon</source>
         <translation>Choose the pen style</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="6361"/>
+        <location filename="mainwindow.ui" line="6799"/>
         <source>Création/Modification plan</source>
         <translation>Create or modify the map</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="6376"/>
+        <location filename="mainwindow.ui" line="6814"/>
         <source>Utilisation</source>
         <translation>Using</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="6385"/>
+        <location filename="mainwindow.ui" line="6823"/>
         <source>Cacher le fond d&apos;écran</source>
         <translation>Hide the background</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="6394"/>
+        <location filename="mainwindow.ui" line="6832"/>
         <source>Afficher le fond d&apos;écran</source>
         <translation>Show the background</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="6399"/>
+        <location filename="mainwindow.ui" line="6837"/>
         <source>Ouvrir fiche culture</source>
         <translation>Open the crop sheet</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="6407"/>
+        <location filename="mainwindow.ui" line="6845"/>
         <source>Enregistrer sous..</source>
         <translation>Save as .</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="6421"/>
+        <location filename="mainwindow.ui" line="6859"/>
         <source>Imprimer le plan</source>
         <translation>Print the map</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="6436"/>
+        <location filename="mainwindow.ui" line="6874"/>
         <source>Afficher la grille</source>
         <translation>Show the grid</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="6448"/>
+        <location filename="mainwindow.ui" line="6886"/>
         <source>Cacher la grille</source>
         <translation>Hide the grid</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1006"/>
+        <location filename="mainwindow.cpp" line="1032"/>
         <source>Sauvegarde du tableau des objets</source>
         <translation>Save the objects</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1008"/>
-        <location filename="mainwindow.cpp" line="1044"/>
+        <location filename="mainwindow.cpp" line="1034"/>
+        <location filename="mainwindow.cpp" line="1070"/>
         <source>XML Files (*.xml)</source>
         <translation>XML Files (*.xml)</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1042"/>
+        <location filename="mainwindow.cpp" line="1068"/>
         <source>Ouverture du fichier des objets</source>
         <translation>Open the objects file</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1307"/>
-        <location filename="mainwindow.cpp" line="2121"/>
+        <location filename="mainwindow.cpp" line="1332"/>
+        <location filename="mainwindow.cpp" line="2149"/>
         <source>Ouverture du fichier image</source>
         <translation>Open the image file</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1309"/>
-        <location filename="mainwindow.cpp" line="1889"/>
-        <location filename="mainwindow.cpp" line="2123"/>
+        <location filename="mainwindow.cpp" line="1334"/>
+        <location filename="mainwindow.cpp" line="1914"/>
+        <location filename="mainwindow.cpp" line="2151"/>
         <source>Image Files (*.png *.jpg *.bmp)</source>
         <translation>Image Files (*.png *.jpg *.bmp)</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1887"/>
+        <location filename="mainwindow.cpp" line="1912"/>
         <source>Ouverture du fichier fond d&apos;écran</source>
         <translation>Open the background file</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2201"/>
+        <location filename="mainwindow.cpp" line="2229"/>
         <source>A propos de Open_jardin</source>
         <translation>About openjardin</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="2202"/>
+        <location filename="mainwindow.cpp" line="2230"/>
         <source>Ce programme est utilisé pour gérer graphiquement les plantations d&apos;un potager.
 il utilise des fichier XML pour la configuration des plans
 et une base sqlite pour les données de culture
@@ -4078,6 +4668,46 @@ version 1.03.02 license GNU GPL version 3</source>
 He uses file XML for the configuration of the maps
 And a database sqlite for the data of crops
 Version 1.03.02 license LPG GNU version 3 </translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="4172"/>
+        <source>Création d&apos;une nouvelle base de données</source>
+        <translation>Creation of a new database</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="4174"/>
+        <location filename="mainwindow.cpp" line="4219"/>
+        <location filename="mainwindow.cpp" line="4255"/>
+        <location filename="mainwindow.cpp" line="4383"/>
+        <source>SQLI Files (*.sqli)</source>
+        <translation>SQLI Files (*.sqli)</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="4217"/>
+        <source>Ouverture d&apos;une base de données</source>
+        <translation>Opening a database</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="4253"/>
+        <location filename="mainwindow.cpp" line="4381"/>
+        <source>Importer des données dans la base de données</source>
+        <translation>Import data into the database</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="4287"/>
+        <source>Importer les données dans la base de données</source>
+        <translation>Import data into the database</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="4289"/>
+        <location filename="mainwindow.cpp" line="4494"/>
+        <source>SQL Files (*.sql)</source>
+        <translation>SQL Files (*.sql)</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="4492"/>
+        <source>Création d&apos;un export de la base de données</source>
+        <translation>Creating an export of the database</translation>
     </message>
     <message>
         <source>Ce programme est utilisé pour gérer graphiquement les plantations d&apos;un potager.
@@ -4099,28 +4729,28 @@ Version 2017.001 license LPG GNU version 3</translation>
         <location filename="database.cpp" line="111"/>
         <location filename="database.cpp" line="194"/>
         <location filename="database.cpp" line="355"/>
-        <location filename="database.cpp" line="403"/>
-        <location filename="database.cpp" line="452"/>
-        <location filename="database.cpp" line="494"/>
-        <location filename="database.cpp" line="640"/>
-        <location filename="database.cpp" line="661"/>
-        <location filename="mainwindow.cpp" line="317"/>
-        <location filename="mainwindow.cpp" line="331"/>
-        <location filename="mainwindow.cpp" line="337"/>
-        <location filename="mainwindow.cpp" line="352"/>
-        <location filename="mainwindow.cpp" line="2490"/>
-        <location filename="mainwindow.cpp" line="2826"/>
-        <location filename="mainwindow.cpp" line="2868"/>
-        <location filename="mainwindow.cpp" line="2912"/>
-        <location filename="mainwindow.cpp" line="3008"/>
-        <location filename="mainwindow.cpp" line="3052"/>
-        <location filename="mainwindow.cpp" line="3094"/>
-        <location filename="mainwindow.cpp" line="3126"/>
-        <location filename="mainwindow.cpp" line="3148"/>
-        <location filename="mainwindow.cpp" line="3184"/>
-        <location filename="mainwindow.cpp" line="3215"/>
-        <location filename="mainwindow.cpp" line="3238"/>
-        <location filename="mainwindow.cpp" line="3283"/>
+        <location filename="database.cpp" line="405"/>
+        <location filename="database.cpp" line="454"/>
+        <location filename="database.cpp" line="496"/>
+        <location filename="database.cpp" line="642"/>
+        <location filename="database.cpp" line="663"/>
+        <location filename="mainwindow.cpp" line="327"/>
+        <location filename="mainwindow.cpp" line="341"/>
+        <location filename="mainwindow.cpp" line="347"/>
+        <location filename="mainwindow.cpp" line="362"/>
+        <location filename="mainwindow.cpp" line="2528"/>
+        <location filename="mainwindow.cpp" line="2864"/>
+        <location filename="mainwindow.cpp" line="2906"/>
+        <location filename="mainwindow.cpp" line="2950"/>
+        <location filename="mainwindow.cpp" line="3046"/>
+        <location filename="mainwindow.cpp" line="3090"/>
+        <location filename="mainwindow.cpp" line="3132"/>
+        <location filename="mainwindow.cpp" line="3164"/>
+        <location filename="mainwindow.cpp" line="3186"/>
+        <location filename="mainwindow.cpp" line="3222"/>
+        <location filename="mainwindow.cpp" line="3253"/>
+        <location filename="mainwindow.cpp" line="3276"/>
+        <location filename="mainwindow.cpp" line="3321"/>
         <source>id</source>
         <translation>id</translation>
     </message>
@@ -4131,28 +4761,28 @@ Version 2017.001 license LPG GNU version 3</translation>
         <location filename="database.cpp" line="112"/>
         <location filename="database.cpp" line="195"/>
         <location filename="database.cpp" line="356"/>
-        <location filename="database.cpp" line="404"/>
-        <location filename="database.cpp" line="453"/>
-        <location filename="database.cpp" line="495"/>
-        <location filename="database.cpp" line="641"/>
-        <location filename="database.cpp" line="662"/>
-        <location filename="mainwindow.cpp" line="318"/>
-        <location filename="mainwindow.cpp" line="332"/>
-        <location filename="mainwindow.cpp" line="338"/>
-        <location filename="mainwindow.cpp" line="353"/>
-        <location filename="mainwindow.cpp" line="2491"/>
-        <location filename="mainwindow.cpp" line="2827"/>
-        <location filename="mainwindow.cpp" line="2869"/>
-        <location filename="mainwindow.cpp" line="2913"/>
-        <location filename="mainwindow.cpp" line="3009"/>
-        <location filename="mainwindow.cpp" line="3053"/>
-        <location filename="mainwindow.cpp" line="3095"/>
-        <location filename="mainwindow.cpp" line="3127"/>
-        <location filename="mainwindow.cpp" line="3149"/>
-        <location filename="mainwindow.cpp" line="3185"/>
-        <location filename="mainwindow.cpp" line="3216"/>
-        <location filename="mainwindow.cpp" line="3239"/>
-        <location filename="mainwindow.cpp" line="3284"/>
+        <location filename="database.cpp" line="406"/>
+        <location filename="database.cpp" line="455"/>
+        <location filename="database.cpp" line="497"/>
+        <location filename="database.cpp" line="643"/>
+        <location filename="database.cpp" line="664"/>
+        <location filename="mainwindow.cpp" line="328"/>
+        <location filename="mainwindow.cpp" line="342"/>
+        <location filename="mainwindow.cpp" line="348"/>
+        <location filename="mainwindow.cpp" line="363"/>
+        <location filename="mainwindow.cpp" line="2529"/>
+        <location filename="mainwindow.cpp" line="2865"/>
+        <location filename="mainwindow.cpp" line="2907"/>
+        <location filename="mainwindow.cpp" line="2951"/>
+        <location filename="mainwindow.cpp" line="3047"/>
+        <location filename="mainwindow.cpp" line="3091"/>
+        <location filename="mainwindow.cpp" line="3133"/>
+        <location filename="mainwindow.cpp" line="3165"/>
+        <location filename="mainwindow.cpp" line="3187"/>
+        <location filename="mainwindow.cpp" line="3223"/>
+        <location filename="mainwindow.cpp" line="3254"/>
+        <location filename="mainwindow.cpp" line="3277"/>
+        <location filename="mainwindow.cpp" line="3322"/>
         <source>designation</source>
         <translation>designation</translation>
     </message>
@@ -4161,39 +4791,39 @@ Version 2017.001 license LPG GNU version 3</translation>
         <location filename="database.cpp" line="107"/>
         <location filename="database.cpp" line="196"/>
         <location filename="database.cpp" line="357"/>
-        <location filename="database.cpp" line="642"/>
-        <location filename="mainwindow.cpp" line="2492"/>
+        <location filename="database.cpp" line="644"/>
+        <location filename="mainwindow.cpp" line="2530"/>
         <source>parcelle</source>
         <translation>plot</translation>
     </message>
     <message>
         <location filename="database.cpp" line="97"/>
         <location filename="database.cpp" line="113"/>
-        <location filename="database.cpp" line="405"/>
-        <location filename="database.cpp" line="454"/>
-        <location filename="database.cpp" line="496"/>
-        <location filename="database.cpp" line="663"/>
+        <location filename="database.cpp" line="407"/>
+        <location filename="database.cpp" line="456"/>
+        <location filename="database.cpp" line="498"/>
+        <location filename="database.cpp" line="665"/>
         <source>date</source>
         <translation>date</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="319"/>
-        <location filename="mainwindow.cpp" line="3010"/>
-        <location filename="mainwindow.cpp" line="3054"/>
-        <location filename="mainwindow.cpp" line="3096"/>
+        <location filename="mainwindow.cpp" line="329"/>
+        <location filename="mainwindow.cpp" line="3048"/>
+        <location filename="mainwindow.cpp" line="3092"/>
+        <location filename="mainwindow.cpp" line="3134"/>
         <source>famille</source>
         <translation>family</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="339"/>
-        <location filename="mainwindow.cpp" line="2828"/>
-        <location filename="mainwindow.cpp" line="2870"/>
-        <location filename="mainwindow.cpp" line="2914"/>
+        <location filename="mainwindow.cpp" line="349"/>
+        <location filename="mainwindow.cpp" line="2866"/>
+        <location filename="mainwindow.cpp" line="2908"/>
+        <location filename="mainwindow.cpp" line="2952"/>
         <source>espece</source>
         <translation>species</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="340"/>
+        <location filename="mainwindow.cpp" line="350"/>
         <source>commentaires</source>
         <translation>comments</translation>
     </message>

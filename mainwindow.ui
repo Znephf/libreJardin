@@ -25,7 +25,7 @@
    </font>
   </property>
   <property name="windowTitle">
-   <string>Open Jardin version 1.04 - 001</string>
+   <string>Open Jardin version 1.04 - 002</string>
   </property>
   <property name="windowIcon">
    <iconset resource="openjardin.qrc">
@@ -652,7 +652,8 @@
                   </property>
                   <property name="icon">
                    <iconset resource="openjardin.qrc">
-                    <normaloff>:/images/planner_Valider.png</normaloff>:/images/planner_Valider.png</iconset>
+                    <normaloff>:/images/planner_hide.png</normaloff>
+                    <normalon>:/images/planner_Valider.png</normalon>:/images/planner_hide.png</iconset>
                   </property>
                   <property name="iconSize">
                    <size>
@@ -673,6 +674,11 @@
                   <property name="toolTip">
                    <string>Afficher ou non la parcelle dans le planning</string>
                   </property>
+                  <item>
+                   <property name="text">
+                    <string>-Choix de l'affichage-</string>
+                   </property>
+                  </item>
                   <item>
                    <property name="text">
                     <string>Afficher dans le planning</string>

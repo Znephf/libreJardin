@@ -118,11 +118,11 @@ MainWindow::MainWindow(QWidget *parent) :
   scene2->setMode(MyGraphicsScene::Utilisation);
 
   scene_planning = new QGraphicsScene(this);
-  scene_planning->setSceneRect(0, 0,5205, 1200);//5320
+  scene_planning->setSceneRect(0, 0,5205, 2200);//5320
   scene_planning->setItemIndexMethod(QGraphicsScene::BspTreeIndex);
 
   scene_planning2 = new QGraphicsScene(this);
-  scene_planning2->setSceneRect(0, 0,100, 1200);
+  scene_planning2->setSceneRect(0, 0,100, 2200);
   scene_planning2->setItemIndexMethod(QGraphicsScene::BspTreeIndex);
 
   scene_planning3 = new QGraphicsScene(this);
@@ -131,11 +131,11 @@ MainWindow::MainWindow(QWidget *parent) :
 
 
   scene_rotation = new QGraphicsScene(this);
-  scene_rotation->setSceneRect(0, 0,5045, 1200);//5140
+  scene_rotation->setSceneRect(0, 0,5045, 2200);//5140
   scene_rotation->setItemIndexMethod(QGraphicsScene::BspTreeIndex);
 
   scene_rotation2 = new QGraphicsScene(this);
-  scene_rotation2->setSceneRect(0, 0,100, 1200);
+  scene_rotation2->setSceneRect(0, 0,100, 2200);
   scene_rotation2->setItemIndexMethod(QGraphicsScene::BspTreeIndex);
 
   scene_rotation3 = new QGraphicsScene(this);
@@ -279,6 +279,7 @@ MainWindow::MainWindow(QWidget *parent) :
   connect(ui->graphicsView_rotation->verticalScrollBar(), SIGNAL(valueChanged(int)),ui->graphicsView_rotation2->verticalScrollBar(),SLOT(setValue(int)));
   connect(ui->graphicsView_rotation->horizontalScrollBar(), SIGNAL(valueChanged(int)),ui->graphicsView_rotation3->horizontalScrollBar(),SLOT(setValue(int)));
   affiche_planning(jour);
+//  ui->graphicsView_planning->horizontalScrollBar()->setValue(3000);
 
   //cacher l'onglets "objets" qui contient les tables des objets
    ui->tabWidget_taches->removeTab(4);
@@ -300,6 +301,13 @@ MainWindow::~MainWindow()
 
 void MainWindow::createConnection(QString fileName)
   {
+  QFile file(fileName);
+  if (!file.open(QFile::ReadOnly | QFile::Text))
+    {
+      ui->plainTextMessages->insertPlainText("Erreur de lecture du fichier : "+fileName+"\n");
+      ui->plainTextMessages->insertPlainText("Vérifier le chemin d'accès au fichier !!\n");
+      return;
+    }
       QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
       db.setHostName("localhost");
       db.setUserName("root");
@@ -313,7 +321,7 @@ void MainWindow::createConnection(QString fileName)
         {
             qDebug() << "database open "<< fileName;
             ui->lineEdit_config_nom_base->setText(fileName);
-             ui->plainTextMessages->insertPlainText("Base de données ouverte :"+fileName+"\n");
+            ui->plainTextMessages->insertPlainText("Base de données ouverte : "+fileName+"\n");
             init_base();
         }
   }
@@ -588,7 +596,8 @@ void MainWindow::affiche_rotation(int year)
   // etiquettes horinzontales des parcelles
   int spaceE=28; //espacement de la grille
   // ajouter_vignette_horizontale("PARCELLES",1*spaceE,97,spaceE/2,Qt::white);
-    QString nom_parcelle="";
+  scene_rotation2->clear();
+  QString nom_parcelle="";
     int init_pos_vignette=1;
     for(int h=0;h<ui->tableWidget_parcelles->rowCount();h++)
       {
@@ -614,33 +623,34 @@ void MainWindow::affiche_rotation(int year)
 /****************************************************************/
 void MainWindow::on_comboBox_Etat_currentIndexChanged(int index)
 {  // affichage ou non de la parcelle dans le planning
+  qDebug() << "index "<<index;
+ if(ui->comboBox_Etat->currentIndex()!=0)
+   {
   int etat = 1;
    QList <QGraphicsItem*> itemList = scene->items();
-    if(ui->comboBox_Etat->currentIndex()==1)
+    if(ui->comboBox_Etat->currentIndex()==2)
       {
         etat=0;
       }
-    else
+   if(ui->comboBox_Etat->currentIndex()==1)
       {
         etat=1;
       }
-        for(int i=0; i<itemList.size(); i++)
-              {
-                if(itemList[i]->isSelected())
-                  {
-                    if(itemList[i]->type() == 65536) // MyItem
-                      {
-                        MyItem* item = dynamic_cast<MyItem*> (itemList[i]);
+    for(int i=0; i<itemList.size(); i++)
+          {
+            if(itemList[i]->isSelected())
+               {
+                 if(itemList[i]->type() == 65536) // MyItem
+                   {
+                     MyItem* item = dynamic_cast<MyItem*> (itemList[i]);
+                     item->setEtat(etat);
+                    }
+                  if(itemList[i]->type() == 65537) // MyPolygone
+                    {
+                      MyPolygone* item = dynamic_cast<MyPolygone*> (itemList[i]);
                         item->setEtat(etat);
-
-                      }
-                    if(itemList[i]->type() == 65537) // MyPolygone
-                      {
-                        MyPolygone* item = dynamic_cast<MyPolygone*> (itemList[i]);
-                        item->setEtat(etat);
-                      }
-
-                    items_vers_tableau();//ajout des items de la scene au tableau
+                    }
+                  items_vers_tableau();//ajout des items de la scene au tableau
                   }
               }
          ui->pushButton_recorPlan->show();
@@ -649,6 +659,9 @@ void MainWindow::on_comboBox_Etat_currentIndexChanged(int index)
     ui->toolButton_etatPlanning->setIcon(QIcon(":/images/planner_Valider.png"));
   else
     ui->toolButton_etatPlanning->setIcon(QIcon(":/images/planner_hide.png"));
+   }
+    ui->comboBox_Etat->setCurrentIndex(0);
+
 }
 
 
@@ -684,6 +697,7 @@ void MainWindow::affiche_planning(int day)
    // etiquettes horinzontales des parcelles
    int spaceE=28; //espacement de la grille
    // ajouter_vignette_horizontale("PARCELLES",1*spaceE,97,spaceE/2,Qt::white);
+   scene_planning2->clear();
      QString nom_parcelle="";
      int init_pos_vignette=1;
      for(int h=0;h<ui->tableWidget_parcelles->rowCount();h++)
@@ -1612,6 +1626,7 @@ void MainWindow::items_vers_tableau()
           ui->tableWidget_parcelles->setItem(row_parcelles, 1,new QTableWidgetItem(item->getNom()));
           row_parcelles++;
           }
+
         nbRow++;
       }
 
@@ -1648,6 +1663,7 @@ void MainWindow::items_vers_tableau()
           ui->tableWidget_parcelles->setItem(row_parcelles, 1,new QTableWidgetItem(item->getNom()));
           row_parcelles++;
           }
+
         nbRow++;
       }
     if(itemList[i]->type() == 65539) // MyPolyline
@@ -1932,6 +1948,8 @@ void MainWindow::on_actionFondEcran_triggered()
       insererFond(0,0,fileName,7); //ecriture des valeurs dans tableBackground
       //dessin de la grille (taille,transparence)
       dessine_grille(50,0.3);
+      ui->pushButton_recorPlan->show();
+      tableau_vers_items();
     }
 }
 
@@ -2230,7 +2248,7 @@ void MainWindow::on_actionA_propos_de_triggered()
               tr("Ce programme est utilisé pour gérer graphiquement les plantations d'un potager.\n"
                  "il utilise des fichier XML pour la configuration des plans\n"
                  "et une base sqlite pour les données de culture\n"
-                 "version 1.03.02 license GNU GPL version 3"));
+                 "version 1.04.01 license GNU GPL version 3"));
 }
 
 void MainWindow::on_actionQuitter_triggered()
