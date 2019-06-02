@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+ <base>
+  <fichier_base fichier="/home/christian/openjardin/test/jardinDemo.sqli"/>
+ </base>
+ <background>
+  <fond Type="7" chemin="/home/christian/openjardin/jardin_type.png" PositionX="0" PositionY="0"/>
+ </background>
+ <objets>
+  <Objet Uuid="{81a0ac4b-fdae-466c-9efb-dbb9651e742c}" Pen="4278190335" Chemin="" PositionX="704" Id="3" PositionY="61" Forme="3" TypeLine="1" ZValue="0" WidthLine="1" SizeY="87" Mode="1" Brush="4294923520" Texte="Abricotier Bergeron" Type="65536" Commentaire="" Etat="0" FichierDetail="" Nom="Abricotier" SizeX="86"/>
+  <Objet Uuid="{049e06c6-b2dd-4e0f-b1ee-088a0650d242}" Pen="4278190335" Chemin="" PositionX="162" Id="2" PositionY="351" Forme="2" TypeLine="1" ZValue="0" WidthLine="1" SizeY="117" Mode="1" Brush="4289352960" Texte="Parcelle potager " Type="65536" Commentaire="" Etat="1" FichierDetail="" Nom="Parcelle potager" SizeX="185"/>
+  <Objet Uuid="{918c1fba-1bb7-457f-b031-cd589de00eff}" Pen="4278190335" Chemin="" PositionX="147" Id="1" PositionY="189" Forme="1" TypeLine="2" ZValue="0" WidthLine="2" SizeY="76" Mode="1" Brush="4294967040" Texte="Parcelle paillée avec arrosage goutte à goutte" Type="65536" Commentaire="" Etat="1" FichierDetail="" Nom="Parcelle paillée" SizeX="158"/>
+  <Objet Uuid="{270e49dd-ec96-4448-9adb-1a644a73a029}" Pen="4294901760" Chemin="0,0;238,0;280,84;-14,84;" PositionX="638" Id="4" PositionY="426" Forme="5" TypeLine="3" ZValue="0" WidthLine="3" SizeY="91" Mode="1" Brush="4294967040" Texte="Parcelle dessinée en forme de polygone" Type="65537" Commentaire="" Etat="1" FichierDetail="" Nom="Parcelle polygonale" SizeX="301"/>
+  <Objet Uuid="{7b8da97d-bd3a-4707-9b1e-6e06aec3752a}" Pen="4278233855" Chemin="0,0;-42,-1;-41,-194;-394,-194;" PositionX="462" Id="5" PositionY="335" Forme="6" TypeLine="3" ZValue="0" WidthLine="3" SizeY="201" Mode="1" Brush="4294967040" Texte="Réseau d''arrosage départ de l''habitation vers les parcelles" Type="65539" Commentaire="" Etat="1" FichierDetail="" Nom="Réseau arrosage" SizeX="401"/>
+ </objets>
+</root>

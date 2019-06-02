@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+ <base>
+  <fichier_base fichier="/home/christian/openjardin/jardin.sqli"/>
+ </base>
+ <background>
+  <fond PositionY="0" chemin="/home/christian/openjardin/message.png" Type="7" PositionX="0"/>
+ </background>
+ <objets/>
+</root>
