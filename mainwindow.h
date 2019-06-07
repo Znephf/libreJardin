@@ -69,6 +69,16 @@ public:
         return m_fileNameBackGround;
     }
 
+    void setLocale(const QString locale)
+    {
+        m_locale = locale;
+    }
+
+    QString getLocale()
+    {
+        return m_locale;
+    }
+
     void supprimerSommet();
     void ajouterSommet();
     void modifierPolygone();
@@ -278,6 +288,7 @@ private:
     QString m_fileName_SQL;
     QString m_fileNameBackGround;
     QList <Parcelle *> parcelleList;
+    QString m_locale = "fr_FR";
 
     QSqlTableModel model1; //especes
     QSqlTableModel model2; //familles

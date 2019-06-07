@@ -10,6 +10,13 @@ Dialog_type_de_tache::Dialog_type_de_tache(const int&IdTypeTache, QWidget *paren
     QDialog(parent),
     ui(new Ui::Dialog_type_de_tache)
 {
+    // translator
+    QTranslator translator;
+    QString     fichier = ":/translations/open-jardin_" + util::getLocale();
+
+    translator.load(fichier);
+    qApp->installTranslator(&translator);
+
     ui->setupUi(this);
     setIdTypeDeTache(IdTypeTache);
     init_base();

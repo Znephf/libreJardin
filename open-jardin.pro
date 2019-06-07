@@ -109,7 +109,7 @@ FORMS    += mainwindow.ui \
 RESOURCES += \
     openjardin.qrc
 
-TRANSLATIONS = open-jardin_fr.ts \
-               open-jardin_en.ts
+TRANSLATIONS = translations/open-jardin_fr.ts \
+               translations/open-jardin_en.ts
 
 DISTFILES +=

@@ -42,6 +42,13 @@ Planner::Planner(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::Planner)
 {
+    // translator
+    QTranslator translator;
+    QString     fichier = ":/translations/open-jardin_" + util::getLocale();
+
+    translator.load(fichier);
+    qApp->installTranslator(&translator);
+
     ui->setupUi(this);
     scene_planning = new QGraphicsScene(this);
     scene_planning->setSceneRect(0, 0, 5205, 800);//5320
@@ -113,12 +120,19 @@ void Planner::init_base()
 /*********************************************************************************/
 void Planner::affiche_planning(int day, int bis)
 {
+    QTranslator translator;
+    QString     fichier = ":/translations/open-jardin_" + util::getLocale();
+
+    translator.load(fichier);
+    qApp->installTranslator(&translator);
     //affiche le planning en démarrant au premier jour de la semaine selon la valeur de "day"
     //en fonction de l'année
     scene_planning->clear();
     scene_planning3->clear();
     QStringList jours_semaine;
-    jours_semaine << "L" << "M" << "M" << "J" << "V" << "S" << "D" << "L" << "M" << "M" << "J" << "V" << "S" << "D";
+    jours_semaine << tr("L") << tr("M") << tr("M.") << tr("J") << tr("V") << tr("S") << tr("D") << tr("L") << tr("M") <<
+        tr("M.") <<
+        tr("J") << tr("V") << tr("S") << tr("D");
 
     // DESSIN DE LA GRILLE DU PLANNING
     int spaceCase = Consts::SPACE_CASE; //espacement de la grille
@@ -138,7 +152,7 @@ void Planner::affiche_planning(int day, int bis)
         }
     }
     // remplissage des étiquettes semaines
-    QString texte_date   = "semaine ";
+    QString texte_date   = tr("semaine ");
     int     WidthSemaine = spaceCase * 7;
     // int     HeightSemaine = 35;
     int    HeightSemaine = 35;
@@ -148,7 +162,7 @@ void Planner::affiche_planning(int day, int bis)
     int    jour          = 1;                       //lundi
     int    decal         = 101 - ((day - 1) * 14);  //décalage des étiquettes semaines
     //ajout semaine 52 année précédente
-    ajouter_vignette_semaine("S " + QString::number(
+    ajouter_vignette_semaine(texte_date + QString::number(
                                  52), WidthSemaine + 4, PosHSemaine, WidthSemaine, HeightSemaine - 14, Qt::white);
     for (int i = 1; i < 8; i++)
     {
@@ -169,8 +183,9 @@ void Planner::affiche_planning(int day, int bis)
     // Etiquettes mois
     //définition du nombre de carrés selon la taille de la scene
     QStringList Listmois;
-    Listmois << "Janvier" << "Février" << "Mars" << "Avril" << "Mai" << "Juin" << "Juillet" << "Aout" << "Septembre" <<
-        "Octobre" << "Novembre" << "Décembre" << "Janvier";
+    Listmois << tr("Janvier") << tr("Février") << tr("Mars") << tr("Avril") << tr("Mai") << tr("Juin") << tr("Juillet") << tr(
+        "Aout") << tr("Septembre") <<
+        tr("Octobre") << tr("Novembre") << tr("Décembre") << tr("Janvier");
     QList <int> Jours_mois = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31, 31 };
     if (bis == 29)
     {

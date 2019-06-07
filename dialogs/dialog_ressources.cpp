@@ -11,6 +11,13 @@ Dialog_ressources::Dialog_ressources(const int&IdRessource, const int&IdTache, Q
     QDialog(parent),
     ui(new Ui::Dialog_ressources)
 {
+    // translator
+    QTranslator translator;
+    QString     fichier = ":/translations/open-jardin_" + util::getLocale();
+
+    translator.load(fichier);
+    qApp->installTranslator(&translator);
+
     ui->setupUi(this);
     setIdRessource(IdRessource);
     setIdTache(IdTache);

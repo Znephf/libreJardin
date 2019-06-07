@@ -17,6 +17,13 @@ Fiche_plantes::Fiche_plantes(const int&IdPlante, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::Fiche_plantes)
 {
+    // translator
+    QTranslator translator;
+    QString     fichier = ":/translations/open-jardin_" + util::getLocale();
+
+    translator.load(fichier);
+    qApp->installTranslator(&translator);
+
     ui->setupUi(this);
     setIdPlante(IdPlante);
     ui->lineEdit_Id_plantes->setText(QString::number(IdPlante));

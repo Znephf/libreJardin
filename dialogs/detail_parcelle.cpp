@@ -25,6 +25,13 @@ detail_parcelle::detail_parcelle(const int&IdParcelle, const QString&fileName, Q
     QDialog(parent),
     ui(new Ui::detail_parcelle)
 {
+    // translator
+    QTranslator translator;
+    QString     fichier = ":/translations/open-jardin_" + util::getLocale();
+
+    translator.load(fichier);
+    qApp->installTranslator(&translator);
+
     ui->setupUi(this);
     setFileNameXML(fileName); //nom du fichier du plan de détail
     scene = new QGraphicsScene(this);

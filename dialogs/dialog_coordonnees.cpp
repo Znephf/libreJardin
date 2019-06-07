@@ -8,6 +8,13 @@ Dialog_coordonnees::Dialog_coordonnees(const int&IdCoord, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::Dialog_coordonnees)
 {
+    // translator
+    QTranslator translator;
+    QString     fichier = ":/translations/open-jardin_" + util::getLocale();
+
+    translator.load(fichier);
+    qApp->installTranslator(&translator);
+
     ui->setupUi(this);
     setIdCoord(IdCoord);
     init_base();

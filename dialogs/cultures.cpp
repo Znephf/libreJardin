@@ -52,6 +52,13 @@ Cultures::Cultures(const int&IdItem, const int&IdCulture, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::Cultures)
 {
+    // translator
+    QTranslator translator;
+    QString     fichier = ":/translations/open-jardin_" + util::getLocale();
+
+    translator.load(fichier);
+    qApp->installTranslator(&translator);
+
     ui->setupUi(this);
     setIdItem(IdItem);     // id de la parcelle
     setIdCulture(IdCulture);
@@ -170,7 +177,6 @@ void Cultures::on_pushButton_validerData_clicked()
     if (query.first())
     {
         id_plante = query.value(0).toString();
-        qDebug() << nom_plante << " id " << id_plante;
     }
     else
     {
@@ -355,7 +361,6 @@ void Cultures::on_pushButton_modifier_clicked()
     if (query.first())
     {
         id_plante = query.value(0).toString();
-        qDebug() << nom_plante << " id " << id_plante;
     }
     else
     {
@@ -421,7 +426,7 @@ void Cultures::on_pushButton_modifier_tache_clicked()
         QMessageBox::information(this, tr("Erreur d'enregistrement"),
                                  tr("Veuillez vérifier que tous les champs soient bien remplis"));
     }
-    qDebug() << "modifier: " << query.lastQuery().toUtf8();
+
     QString str1     = ui->dateEdit_tache->date().toString("yyyy.MM.dd");                            //date tache
     QString str      = util::apos(ui->lineEdit_designation_tache->text());                           //designation tache
     QString str2     = id_type_tache;                                                                // id du type de tache
@@ -432,8 +437,6 @@ void Cultures::on_pushButton_modifier_tache_clicked()
                        ",commentaires='" + str3 + "',id_culture=" + str5 + " where id=" + str4;
 
     query.exec(strQuery);
-    qDebug() << "PREPARE: " << query.lastQuery().toUtf8();
-
     if (!query.isActive())
     {
         qDebug() << "erreur query :" << query.lastError().text() << "  " << query.lastError().databaseText() << query.driver();
@@ -445,7 +448,7 @@ void Cultures::on_pushButton_modifier_tache_clicked()
         qDebug() << "enregistrement terminé";
     }
     QSqlQueryModel *modelObs = new QSqlQueryModel;
-    modelObs->setQuery("SELECT id, designation, date,type , commentaires,id_culture FROM observations ");
+    modelObs->setQuery("SELECT id, designation, date,type , commentaires,id_culture FROM observations where id_culture= " + str5);
     modelObs->setHeaderData(0, Qt::Vertical, QObject::tr("id"));
     modelObs->setHeaderData(1, Qt::Vertical, QObject::tr("designation"));
     modelObs->setHeaderData(3, Qt::Vertical, QObject::tr("date"));
@@ -464,7 +467,6 @@ void Cultures::on_pushButton_creer_tache_clicked()
     if (query.first())
     {
         id_type_tache = query.value(0).toString();
-        qDebug() << nom_type_tache << " id " << id_type_tache;
     }
     else
     {
@@ -472,7 +474,6 @@ void Cultures::on_pushButton_creer_tache_clicked()
         QMessageBox::information(this, tr("Erreur d'enregistrement"),
                                  tr("Veuillez vérifier que tous les champs soient bien remplis"));
     }
-    qDebug() << "modifier: " << query.lastQuery().toUtf8();
     QString str1 = ui->dateEdit_tache->date().toString("yyyy.MM.dd");                            //date tache
     QString str  = util::apos(ui->lineEdit_designation_tache->text());                           //designation tache
     QString str2 = id_type_tache;                                                                // id du type de tache
@@ -482,7 +483,7 @@ void Cultures::on_pushButton_creer_tache_clicked()
     QString strQ = "insert into observations (designation, date,type , commentaires,id_culture)"
                    "values('" + str + "','" + str1 + "'," + str2 + ",'" + str3 + "'," + str5 + ")";
     query.exec(strQ);
-    qDebug() << "VALIDER: " << query.lastQuery().toUtf8();
+
 
     if (!query.isActive())
     {
@@ -670,7 +671,6 @@ void Cultures::on_pushButton_print_fiche_clicked()
 
         //fin de l'edition
         cursor.endEditBlock();
-        qDebug() << "impression terminée";
         //impression de editor dans le QPrinter initialisé au début de la fonction
         editor->print(printer);
     }
@@ -693,8 +693,6 @@ void Cultures::on_pushButton_supprimer_culture_clicked()
         QSqlQuery query;
 
         query.exec(str);
-        qDebug() << "delete: " << query.lastQuery().toUtf8();
-
         if (!query.isActive())
         {
             qDebug() << "erreur query :" << query.lastError().text() << "  " << query.lastError().databaseText() <<
@@ -727,10 +725,11 @@ void Cultures::on_pushButton_supprimer_tache_clicked()
 {   //suppression d'une fiche de taches et observations
     QString   strId = ui->lineEdit_id_tache->text();
     QString   str   = "delete from observations where id=" + strId;
+    QString   str5  = ui->lineEdit_id_cultures->text();  // id culture
     QSqlQuery query;
 
     query.exec(str);
-    qDebug() << "delete: " << query.lastQuery().toUtf8();
+
     if (!query.isActive())
     {
         qDebug() << "erreur query :" << query.lastError().text() << "  " << query.lastError().databaseText() << query.driver();
@@ -741,7 +740,7 @@ void Cultures::on_pushButton_supprimer_tache_clicked()
     }
 
     QSqlQueryModel *modelObs = new QSqlQueryModel;
-    modelObs->setQuery("SELECT id, designation, date,type , commentaires,id_culture FROM observations ");
+    modelObs->setQuery("SELECT id, designation, date,type , commentaires,id_culture FROM observations where id_culture= " + str5);
     modelObs->setHeaderData(0, Qt::Vertical, QObject::tr("id"));
     modelObs->setHeaderData(1, Qt::Vertical, QObject::tr("designation"));
     modelObs->setHeaderData(3, Qt::Vertical, QObject::tr("date"));
@@ -769,7 +768,6 @@ void Cultures::on_toolButton_FichePlantes_clicked()
 
         if (resultat == QDialog::Accepted)
         {
-            qDebug() << "idculture" << Num_culture;
             QSqlQueryModel *modelM = new QSqlQueryModel;
             modelM->setQuery("SELECT designation,type_lune FROM plantes ORDER BY designation ASC");
             ui->comboBox_plante->setModel(modelM);
@@ -790,7 +788,7 @@ void Cultures::on_toolButton_NouvellePlante_clicked()
     if (resultat == QDialog::Accepted)
     {
         Id = fenetre_plante->getIdPlante();
-        qDebug() << "idculture" << Num_culture << "idplante" << Id;
+
         QSqlQueryModel *modelM = new QSqlQueryModel;
         modelM->setQuery("SELECT designation,type_lune FROM plantes ORDER BY designation ASC");
         ui->comboBox_plante->setModel(modelM);
@@ -804,7 +802,7 @@ void Cultures::on_toolButton_NouvellePlante_clicked()
         if (query.first())
         {
             nom_plante = query.value(0).toString();
-            qDebug() << nom_plante << " id " << id_plante;
+
             ui->comboBox_plante->setCurrentText(nom_plante);
         }
         else
@@ -855,7 +853,6 @@ void Cultures::creer_phase()
     if (query.first())
     {
         int id = query.value(0).toInt();
-        qDebug() << " valeur id " << id;
 
         if (id > 0)
         {
@@ -888,8 +885,6 @@ void Cultures::creer_phase()
             }
             else
             {
-                qDebug() << "enregistrement terminé avec succès";
-                qDebug() << "last query creer phase :" << query.lastQuery().toUtf8();
                 QMessageBox::information(this, tr("Enregistrement de la phase culture "),
                                          tr("La phase de culture a été crée avec succès !"));
             }

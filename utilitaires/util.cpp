@@ -1,4 +1,7 @@
 #include "util.h"
+#include <QCoreApplication>
+#include <QDebug>
+#include <qtranslator.h>
 
 util::util()
 {
@@ -34,4 +37,14 @@ QString util::afficheZeros(QString texte)
         texte = texte + ".00";
     }
     return texte;
+}
+
+QString util::getLocale()
+{
+    // translator
+    QString locale = QLocale::system().name();
+
+    // QString locale = "en_EN";
+    // qDebug() << " locale util " << locale;
+    return locale;
 }

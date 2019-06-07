@@ -10,6 +10,13 @@ Dialog_taches::Dialog_taches(const int&IdTache, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::Dialog_taches)
 {
+    // translator
+    QTranslator translator;
+    QString     fichier = ":/translations/open-jardin_" + util::getLocale();
+
+    translator.load(fichier);
+    qApp->installTranslator(&translator);
+
     ui->setupUi(this);
     setIdTache(IdTache);
     init_base();

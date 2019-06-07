@@ -1,13 +1,22 @@
 #include "dialog_aide.h"
 #include "ui_dialog_aide.h"
+#include "mainwindow.h"
 #include <QDebug>
 #include <qsplitter.h>
 #include "graphic/mytreewidgetitem.h"
+#include "utilitaires/util.h"
 
 dialog_Aide::dialog_Aide(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::dialog_Aide)
 {
+    // translator
+    QTranslator translator;
+    QString     fichier = ":/translations/open-jardin_" + util::getLocale();
+
+    translator.load(fichier);
+    qApp->installTranslator(&translator);
+
     ui->setupUi(this);
     parse_html();
     ui->treeWidget_aide->header()->setFixedHeight(10);

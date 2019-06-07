@@ -10,6 +10,13 @@ Dialog_ajout_Moyen::Dialog_ajout_Moyen(const int&IdRessource, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::Dialog_ajout_Moyen)
 {
+    // translator
+    QTranslator translator;
+    QString     fichier = ":/translations/open-jardin_" + util::getLocale();
+
+    translator.load(fichier);
+    qApp->installTranslator(&translator);
+
     ui->setupUi(this);
     setIdRessource(IdRessource);
     QSqlQueryModel *modelMoyens = new QSqlQueryModel;

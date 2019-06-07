@@ -90,6 +90,7 @@
 #include <QDomDocument>
 #include <iostream>
 #include <fstream>
+#include <qtranslator.h>
 
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -104,12 +105,13 @@ MainWindow::MainWindow(QWidget *parent) :
     //connexion à la base de données
     QString fileName     = QDir::homePath() + "/openjardin/jardin.sqli"; //emplacement de la base de données utilisée
     QString fileName_usr = "/usr/share/openjardin/jardin.sqli";          //emplacement base de données copiées à l'installation
+
     // translator
-    QString     locale = QLocale::system().name();
     QTranslator translator;
-    translator.load(QString("open-jardin_") + locale);
-    //  translator.load("open-jardin_en"); only in english
+    QString     fichier = ":/translations/open-jardin_" + util::getLocale();
+    translator.load(fichier);
     qApp->installTranslator(&translator);
+
 
     //test existance du fichier de la base dans homePath()/openjardin pour la première utilisation
 
@@ -1377,6 +1379,12 @@ void MainWindow::on_pushButton_color_clicked()
 /********************************************************************************/
 void MainWindow::affiche_rotation(int year)
 {
+    QTranslator translator;
+    QString     fichier = ":/translations/open-jardin_" + util::getLocale();
+
+    translator.load(fichier);
+    qApp->installTranslator(&translator);
+
     scene_rotation->clear();
     scene_rotation3->clear();
     // DESSIN DE LA GRILLE DU TABLEAU ROTATION
@@ -1403,62 +1411,62 @@ void MainWindow::affiche_rotation(int year)
     {
         if (mois == 1)
         {
-            ajouter_vignette_haut_rotation("Janvier", 2, decalage, 5, Qt::lightGray);
+            ajouter_vignette_haut_rotation(tr("Janvier"), 2, decalage, 5, Qt::lightGray);
             decalage = decalage + 5;
         }
         if (mois == 2)
         {
-            ajouter_vignette_haut_rotation("Février", 2, decalage, 5, Qt::lightGray);
+            ajouter_vignette_haut_rotation(tr("Février"), 2, decalage, 5, Qt::lightGray);
             decalage = decalage + 5;
         }
         if (mois == 3)
         {
-            ajouter_vignette_haut_rotation("Mars", 2, decalage, 5, Qt::lightGray);
+            ajouter_vignette_haut_rotation(tr("Mars"), 2, decalage, 5, Qt::lightGray);
             decalage = decalage + 5;
         }
         if (mois == 4)
         {
-            ajouter_vignette_haut_rotation("Avril", 2, decalage, 5, Qt::lightGray);
+            ajouter_vignette_haut_rotation(tr("Avril"), 2, decalage, 5, Qt::lightGray);
             decalage = decalage + 5;
         }
         if (mois == 5)
         {
-            ajouter_vignette_haut_rotation("Mai", 2, decalage, 5, Qt::lightGray);
+            ajouter_vignette_haut_rotation(tr("Mai"), 2, decalage, 5, Qt::lightGray);
             decalage = decalage + 5;
         }
         if (mois == 6)
         {
-            ajouter_vignette_haut_rotation("Juin", 2, decalage, 5, Qt::lightGray);
+            ajouter_vignette_haut_rotation(tr("Juin"), 2, decalage, 5, Qt::lightGray);
             decalage = decalage + 5;
         }
         if (mois == 7)
         {
-            ajouter_vignette_haut_rotation("Juillet", 2, decalage, 5, Qt::lightGray);
+            ajouter_vignette_haut_rotation(tr("Juillet"), 2, decalage, 5, Qt::lightGray);
             decalage = decalage + 5;
         }
         if (mois == 8)
         {
-            ajouter_vignette_haut_rotation("Aout", 2, decalage, 5, Qt::lightGray);
+            ajouter_vignette_haut_rotation(tr("Aout"), 2, decalage, 5, Qt::lightGray);
             decalage = decalage + 5;
         }
         if (mois == 9)
         {
-            ajouter_vignette_haut_rotation("Septembre", 2, decalage, 5, Qt::lightGray);
+            ajouter_vignette_haut_rotation(tr("Septembre"), 2, decalage, 5, Qt::lightGray);
             decalage = decalage + 5;
         }
         if (mois == 10)
         {
-            ajouter_vignette_haut_rotation("Octobre", 2, decalage, 5, Qt::lightGray);
+            ajouter_vignette_haut_rotation(tr("Octobre"), 2, decalage, 5, Qt::lightGray);
             decalage = decalage + 5;
         }
         if (mois == 11)
         {
-            ajouter_vignette_haut_rotation("Novembre", 2, decalage, 5, Qt::lightGray);
+            ajouter_vignette_haut_rotation(tr("Novembre"), 2, decalage, 5, Qt::lightGray);
             decalage = decalage + 5;
         }
         if (mois == 12)
         {
-            ajouter_vignette_haut_rotation("Décembre", 2, decalage, 5, Qt::lightGray);
+            ajouter_vignette_haut_rotation(tr("Décembre"), 2, decalage, 5, Qt::lightGray);
             decalage = decalage + 5;
             mois     = 0;
         }
@@ -1552,12 +1560,20 @@ void MainWindow::on_comboBox_Etat_currentIndexChanged(int index)
 /*********************************************************************************/
 void MainWindow::affiche_planning(int day, int bis)
 {
+    QTranslator translator;
+    QString     fichier = ":/translations/open-jardin_" + util::getLocale();
+
+    translator.load(fichier);
+    qApp->installTranslator(&translator);
+
     //affiche le planning en démarrant au premier jour de la semaine selon la valeur de "day"
     //en fonction de l'année
     scene_planning->clear();
     scene_planning3->clear();
     QStringList jours_semaine;
-    jours_semaine << "L" << "M" << "M" << "J" << "V" << "S" << "D" << "L" << "M" << "M" << "J" << "V" << "S" << "D";
+    jours_semaine << tr("L") << tr("M") << tr("M.") << tr("J") << tr("V") << tr("S") << tr("D") << tr("L") << tr("M") <<
+        tr("M.") <<
+        tr("J") << tr("V") << tr("S") << tr("D");
 
     // DESSIN DE LA GRILLE DU PLANNING
     int spaceCase = Consts::SPACE_CASE; //espacement de la grille
@@ -1592,7 +1608,7 @@ void MainWindow::affiche_planning(int day, int bis)
         }
     }
     // remplissage des étiquettes semaines
-    QString texte_date   = "semaine ";
+    QString texte_date   = tr("semaine ");
     int     WidthSemaine = spaceCase * 7;
     // int     HeightSemaine = 35;
     int    HeightSemaine = 35;
@@ -1601,7 +1617,7 @@ void MainWindow::affiche_planning(int day, int bis)
     double NbSemaines    = ((scene_planning3->sceneRect().width() - 100) / WidthSemaine) + 1;
     int    jour          = 1;                       //lundi
     int    decal         = 101 - ((day - 1) * 14);  //décalage des étiquettes semaines
-    //ajout semaine 52 année précédente
+    // ajout  semaine 52 année précédente
     ajouter_vignette_semaine("S " + QString::number(
                                  52), WidthSemaine + 4, PosHSemaine, WidthSemaine, HeightSemaine - 14, Qt::white);
     for (int i = 1; i < 8; i++)
@@ -1610,8 +1626,8 @@ void MainWindow::affiche_planning(int day, int bis)
     }
     for (int v = 2; v < NbSemaines + 2; v++)
     {
-        ajouter_vignette_semaine(texte_date + QString::number(
-                                     v - 1), (v * WidthSemaine - ((day - 1) * 14)) + 3, PosHSemaine, WidthSemaine, HeightSemaine - 14,
+        QString titre = texte_date + QString::number(v - 1);
+        ajouter_vignette_semaine(titre, (v * WidthSemaine - ((day - 1) * 14)) + 3, PosHSemaine, WidthSemaine, HeightSemaine - 14,
                                  Qt::white);
         for (int i = jour; i < 8; i++)
         {
@@ -1623,8 +1639,9 @@ void MainWindow::affiche_planning(int day, int bis)
     // Etiquettes mois
     //définition du nombre de carrés selon la taille de la scene
     QStringList Listmois;
-    Listmois << "Janvier" << "Février" << "Mars" << "Avril" << "Mai" << "Juin" << "Juillet" << "Aout" << "Septembre" <<
-        "Octobre" << "Novembre" << "Décembre" << "Janvier";
+    Listmois << tr("Janvier") << tr("Février") << tr("Mars") << tr("Avril") << tr("Mai") << tr("Juin") << tr("Juillet") << tr(
+        "Aout") << tr("Septembre") <<
+        tr("Octobre") << tr("Novembre") << tr("Décembre") << tr("Janvier");
     QList <int> Jours_mois = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31, 31 };
     if (bis == 29)
     {
@@ -1638,7 +1655,7 @@ void MainWindow::affiche_planning(int day, int bis)
     int    decalage    = 100; //98
     int    jour_depart = 1;
     //ajout décembre année précédente
-    ajouter_vignette_mois("Decembre", 3, 8, Qt::lightGray);
+    ajouter_vignette_mois(tr("Décembre"), 3, 8, Qt::lightGray);
     for (int i = 24; i < 31; i++)
     {
         ajouter_vignette_jour(QString::number(
@@ -1708,22 +1725,6 @@ void MainWindow::affiche_planning(int day, int bis)
     ui->graphicsView_planning->horizontalScrollBar()->setValue(int(5200 / 365 * (Posjour + 20)));
     ui->graphicsView_planning->verticalScrollBar()->setValue(0);
     ui->graphicsView_Planning2->verticalScrollBar()->setValue(0);
-}
-
-void MainWindow::ajouter_vignette_semaine(QString titre, int colonne, int ligne, int width, int height, QColor couleur)
-{   // semaines
-    planning_item *item = new planning_item(width, height);
-
-    item->setColor(couleur);
-    item->setPenColor(QColor(Qt::black));
-    double sizeW = item->boundingRect().width();
-    double sizeH = item->boundingRect().height();
-    item->setPos(colonne - (sizeW / 2 + 4), ligne + sizeH / 2);
-    item->setNom(titre);
-    item->setEtat(1);
-    item->setTypeShape(MyItem::Rectangle);
-    item->setMode(1);//mode utilisation
-    scene_planning3->addItem(item);
 }
 
 void MainWindow::on_pushButton_maj_planning_clicked()
@@ -2163,6 +2164,22 @@ void MainWindow::ajouter_vignette_planning(int culture, QString titre, int ligne
     item->setMode(2); //déplacements possibles
     item->setTypeShape(MyItem::Rectangle);
     scene_planning->addItem(item);
+}
+
+void MainWindow::ajouter_vignette_semaine(QString titre, int colonne, int ligne, int width, int height, QColor couleur)
+{   // semaines
+    planning_item *item = new planning_item(width, height);
+
+    item->setColor(couleur);
+    item->setPenColor(QColor(Qt::black));
+    double sizeW = item->boundingRect().width();
+    double sizeH = item->boundingRect().height();
+    item->setPos(colonne - (sizeW / 2 + 4), ligne + sizeH / 2);
+    item->setNom(titre);
+    item->setEtat(1);
+    item->setTypeShape(MyItem::Rectangle);
+    item->setMode(1);//mode utilisation
+    scene_planning3->addItem(item);
 }
 
 void MainWindow::ajouter_vignette_mois(QString titre, int colonne, int nb_jours, QColor couleur)

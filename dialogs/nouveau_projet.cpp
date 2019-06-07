@@ -16,6 +16,13 @@ nouveau_Projet::nouveau_Projet(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::nouveau_Projet)
 {
+    // translator
+    QTranslator translator;
+    QString     fichier = ":/translations/open-jardin_" + util::getLocale();
+
+    translator.load(fichier);
+    qApp->installTranslator(&translator);
+
     ui->setupUi(this);
     ui->lineEdit_filename->setStyleSheet(
         "QLineEdit { background-color: rgb(255,255,217);border-width: 2px;border-style: solid;border-color: red }");

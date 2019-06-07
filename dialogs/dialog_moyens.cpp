@@ -11,6 +11,13 @@ Dialog_moyens::Dialog_moyens(const int&IdMoyen, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::Dialog_moyens)
 {
+    // translator
+    QTranslator translator;
+    QString     fichier = ":/translations/open-jardin_" + util::getLocale();
+
+    translator.load(fichier);
+    qApp->installTranslator(&translator);
+
     ui->setupUi(this);
     setIdMoyen(IdMoyen);
     init_base();

@@ -9,6 +9,13 @@ Dialog_ajout_ressource::Dialog_ajout_ressource(const int&IdTache, QWidget *paren
     QDialog(parent),
     ui(new Ui::Dialog_ajout_ressource)
 {
+    // translator
+    QTranslator translator;
+    QString     fichier = ":/translations/open-jardin_" + util::getLocale();
+
+    translator.load(fichier);
+    qApp->installTranslator(&translator);
+
     ui->setupUi(this);
     setIdTache(IdTache);
     QSqlQueryModel *modelRessources = new QSqlQueryModel;

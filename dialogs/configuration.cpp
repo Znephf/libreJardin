@@ -15,6 +15,13 @@ Configuration::Configuration(const QString&fileNameXML, const QString&fileNameSQ
     QDialog(parent),
     ui(new Ui::Configuration)
 {
+    // translator
+    QTranslator translator;
+    QString     fichier = ":/translations/open-jardin_" + util::getLocale();
+
+    translator.load(fichier);
+    qApp->installTranslator(&translator);
+
     ui->setupUi(this);
     init_base();
     ui->lineEdit_config_nom_Xml->setText(fileNameXML);

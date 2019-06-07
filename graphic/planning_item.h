@@ -41,6 +41,8 @@
 #include <QRectF>
 #include <QPainterPath>
 
+
+
 class planning_item : public QGraphicsItem
 {
 public:
@@ -181,23 +183,23 @@ protected:
     void mouseMoveEvent(QGraphicsSceneMouseEvent *event);
 
 private:
-    int     m_itemId;
-    int     typeAction;
+    int m_itemId;
+    int typeAction;
     QString action;
-    QColor  brushColor;
-    QColor  penColor;
-    qreal   m_width;
-    qreal   m_height;
-    int     m_angle;
-    qreal   m_oldX;
-    qreal   m_oldY;
+    QColor brushColor;
+    QColor penColor;
+    qreal m_width;
+    qreal m_height;
+    int m_angle;
+    qreal m_oldX;
+    qreal m_oldY;
     QString itemNom;
     QString itemText;
     QString itemComment;
-    int     typeShape;
+    int typeShape;
     QString pixmapfileName;
-    int     m_etat;
-    int     m_mode; //0 modification - 1 utilisation
+    int m_etat;
+    int m_mode;     //0 modification - 1 utilisation
 };
 
 #endif // PLANNING_ITEM_H

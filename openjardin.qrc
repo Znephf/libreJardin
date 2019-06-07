@@ -75,5 +75,7 @@
         <file>images/icones/quitter.png</file>
         <file>sql/planner.sql</file>
         <file>images/save_as_48.png</file>
+        <file>translations/open-jardin_en.qm</file>
+        <file>translations/open-jardin_fr.qm</file>
     </qresource>
 </RCC>

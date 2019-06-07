@@ -42,6 +42,7 @@
 #include <QGraphicsSceneHoverEvent>
 #include <QtWidgets>
 
+
 planning_item::planning_item(qreal wid, qreal hgt)
 {
     m_width    = wid; m_height = hgt; //initialisation des valeurs largeur - hauteur
