@@ -42,7 +42,7 @@ private slots:
 
     void on_pushButton_Modifier_plantes_clicked();
 
-    void on_pushButton_enregistrer_plantes_clicked();
+    void on_pushButton_enregistrerVariete_clicked();
 
     void on_pushButton_supprimer_plantes_clicked();
 
@@ -83,6 +83,8 @@ private slots:
     void on_pushButton_fermer_clicked();
 
     void on_toolButton_clicked();
+
+
 
 protected:
     void closeEvent(QCloseEvent *event) override;

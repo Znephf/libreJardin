@@ -175,17 +175,17 @@
          <property name="columnCount">
           <number>11</number>
          </property>
-         <attribute name="horizontalHeaderDefaultSectionSize">
-          <number>72</number>
-         </attribute>
          <attribute name="horizontalHeaderMinimumSectionSize">
           <number>15</number>
          </attribute>
-         <attribute name="verticalHeaderDefaultSectionSize">
-          <number>20</number>
+         <attribute name="horizontalHeaderDefaultSectionSize">
+          <number>72</number>
          </attribute>
          <attribute name="verticalHeaderMinimumSectionSize">
           <number>10</number>
+         </attribute>
+         <attribute name="verticalHeaderDefaultSectionSize">
+          <number>20</number>
          </attribute>
          <row>
           <property name="text">
@@ -400,14 +400,47 @@
           <rect>
            <x>10</x>
            <y>30</y>
-           <width>951</width>
-           <height>221</height>
+           <width>971</width>
+           <height>225</height>
           </rect>
          </property>
          <layout class="QGridLayout" name="gridLayout_2">
           <property name="spacing">
            <number>0</number>
           </property>
+          <item row="2" column="1" colspan="2">
+           <widget class="QLineEdit" name="lineEdit_designation_plantes">
+            <property name="minimumSize">
+             <size>
+              <width>200</width>
+              <height>0</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="3">
+           <widget class="QLabel" name="label_Nomlatin">
+            <property name="frameShape">
+             <enum>QFrame::StyledPanel</enum>
+            </property>
+            <property name="text">
+             <string>Nom scientifique</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="2">
+           <widget class="QLineEdit" name="lineEdit_Id_plantes">
+            <property name="maximumSize">
+             <size>
+              <width>30</width>
+              <height>23</height>
+             </size>
+            </property>
+            <property name="readOnly">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
           <item row="2" column="4">
            <widget class="QLineEdit" name="lineEdit_nom_latin">
             <property name="maximumSize">
@@ -418,11 +451,78 @@
             </property>
            </widget>
           </item>
-          <item row="4" column="4">
-           <widget class="QComboBox" name="comboBox_familles_de_plantes">
+          <item row="4" column="1">
+           <widget class="QLabel" name="label_28">
             <property name="minimumSize">
              <size>
-              <width>150</width>
+              <width>0</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>25</height>
+             </size>
+            </property>
+            <property name="frameShape">
+             <enum>QFrame::StyledPanel</enum>
+            </property>
+            <property name="text">
+             <string>Enregistrement N°</string>
+            </property>
+           </widget>
+          </item>
+          <item row="7" column="4">
+           <layout class="QVBoxLayout" name="verticalLayout_2">
+            <property name="spacing">
+             <number>0</number>
+            </property>
+            <item>
+             <widget class="QTextEdit" name="textEdit_plante_positif">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>50</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>16777215</width>
+                <height>80</height>
+               </size>
+              </property>
+              <property name="readOnly">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QTextEdit" name="textEdit_plante_negatif">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>50</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>16777215</width>
+                <height>80</height>
+               </size>
+              </property>
+              <property name="readOnly">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item row="6" column="3" colspan="2">
+           <widget class="QLabel" name="label_21">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
               <height>25</height>
              </size>
             </property>
@@ -430,6 +530,75 @@
              <size>
               <width>16777215</width>
               <height>25</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>10</pointsize>
+              <weight>75</weight>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Associations &lt;span style=&quot; color:#0055ff;&quot;&gt;positives&lt;/span&gt; / &lt;span style=&quot; color:#ff0000;&quot;&gt;négatives&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="2">
+           <widget class="QComboBox" name="comboBox_especes_de_plantes">
+            <property name="minimumSize">
+             <size>
+              <width>200</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>25</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="4">
+           <widget class="QComboBox" name="comboBox_lunaire_de_plantes">
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>25</height>
+             </size>
+            </property>
+            <item>
+             <property name="text">
+              <string>Feuilles</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Fleurs</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Racines</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Fruits-graines</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item row="7" column="1" colspan="2">
+           <widget class="QTextEdit" name="textEdit_commentaires_plantes">
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>165</height>
              </size>
             </property>
            </widget>
@@ -493,19 +662,51 @@
             </item>
            </layout>
           </item>
-          <item row="4" column="3">
-           <widget class="QLabel" name="label_3">
+          <item row="4" column="0" rowspan="4">
+           <widget class="QTableView" name="tableView_plantes">
+            <property name="minimumSize">
+             <size>
+              <width>280</width>
+              <height>200</height>
+             </size>
+            </property>
             <property name="maximumSize">
              <size>
               <width>16777215</width>
-              <height>40</height>
+              <height>270</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="4">
+           <widget class="QComboBox" name="comboBox_familles_de_plantes">
+            <property name="minimumSize">
+             <size>
+              <width>150</width>
+              <height>25</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>25</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="1">
+           <widget class="QLabel" name="label_5">
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>25</height>
              </size>
             </property>
             <property name="frameShape">
              <enum>QFrame::StyledPanel</enum>
             </property>
             <property name="text">
-             <string>Famille</string>
+             <string>Espèce</string>
             </property>
            </widget>
           </item>
@@ -519,98 +720,41 @@
             </property>
            </widget>
           </item>
-          <item row="5" column="4">
-           <widget class="QComboBox" name="comboBox_lunaire_de_plantes">
+          <item row="2" column="0">
+           <widget class="QLabel" name="label_2">
             <property name="maximumSize">
              <size>
               <width>16777215</width>
               <height>25</height>
              </size>
             </property>
-            <item>
-             <property name="text">
-              <string>Feuilles</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Fleurs</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Racines</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Fruits-graines</string>
-             </property>
-            </item>
-           </widget>
-          </item>
-          <item row="2" column="3">
-           <widget class="QLabel" name="label_Nomlatin">
+            <property name="font">
+             <font>
+              <weight>75</weight>
+              <bold>true</bold>
+             </font>
+            </property>
             <property name="frameShape">
              <enum>QFrame::StyledPanel</enum>
             </property>
             <property name="text">
-             <string>Nom scientifique</string>
+             <string>Désignation variété</string>
             </property>
            </widget>
           </item>
-          <item row="7" column="4">
-           <layout class="QVBoxLayout" name="verticalLayout_2">
-            <property name="spacing">
-             <number>0</number>
-            </property>
-            <item>
-             <widget class="QTextEdit" name="textEdit_plante_positif">
-              <property name="minimumSize">
-               <size>
-                <width>0</width>
-                <height>50</height>
-               </size>
-              </property>
-              <property name="maximumSize">
-               <size>
-                <width>16777215</width>
-                <height>80</height>
-               </size>
-              </property>
-              <property name="readOnly">
-               <bool>true</bool>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QTextEdit" name="textEdit_plante_negatif">
-              <property name="minimumSize">
-               <size>
-                <width>0</width>
-                <height>50</height>
-               </size>
-              </property>
-              <property name="maximumSize">
-               <size>
-                <width>16777215</width>
-                <height>80</height>
-               </size>
-              </property>
-              <property name="readOnly">
-               <bool>true</bool>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </item>
-          <item row="7" column="1" colspan="2">
-           <widget class="QTextEdit" name="textEdit_commentaires_plantes">
+          <item row="4" column="3">
+           <widget class="QLabel" name="label_3">
             <property name="maximumSize">
              <size>
               <width>16777215</width>
-              <height>165</height>
+              <height>40</height>
              </size>
+            </property>
+            <property name="frameShape">
+             <enum>QFrame::StyledPanel</enum>
+            </property>
+            <property name="text">
+             <string>Famille</string>
             </property>
            </widget>
           </item>
@@ -636,150 +780,6 @@
             </property>
             <property name="alignment">
              <set>Qt::AlignCenter</set>
-            </property>
-           </widget>
-          </item>
-          <item row="5" column="1">
-           <widget class="QLabel" name="label_5">
-            <property name="maximumSize">
-             <size>
-              <width>16777215</width>
-              <height>25</height>
-             </size>
-            </property>
-            <property name="frameShape">
-             <enum>QFrame::StyledPanel</enum>
-            </property>
-            <property name="text">
-             <string>Espèce</string>
-            </property>
-           </widget>
-          </item>
-          <item row="5" column="2">
-           <widget class="QComboBox" name="comboBox_especes_de_plantes">
-            <property name="minimumSize">
-             <size>
-              <width>200</width>
-              <height>0</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>16777215</width>
-              <height>25</height>
-             </size>
-            </property>
-           </widget>
-          </item>
-          <item row="4" column="1">
-           <widget class="QLabel" name="label_28">
-            <property name="minimumSize">
-             <size>
-              <width>0</width>
-              <height>0</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>16777215</width>
-              <height>25</height>
-             </size>
-            </property>
-            <property name="frameShape">
-             <enum>QFrame::StyledPanel</enum>
-            </property>
-            <property name="text">
-             <string>Enregistrement N°</string>
-            </property>
-           </widget>
-          </item>
-          <item row="4" column="2">
-           <widget class="QLineEdit" name="lineEdit_Id_plantes">
-            <property name="maximumSize">
-             <size>
-              <width>30</width>
-              <height>23</height>
-             </size>
-            </property>
-            <property name="readOnly">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="6" column="3" colspan="2">
-           <widget class="QLabel" name="label_21">
-            <property name="minimumSize">
-             <size>
-              <width>0</width>
-              <height>25</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>16777215</width>
-              <height>25</height>
-             </size>
-            </property>
-            <property name="font">
-             <font>
-              <pointsize>10</pointsize>
-              <weight>75</weight>
-              <bold>true</bold>
-             </font>
-            </property>
-            <property name="text">
-             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Associations &lt;span style=&quot; color:#0055ff;&quot;&gt;positives&lt;/span&gt; / &lt;span style=&quot; color:#ff0000;&quot;&gt;négatives&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignCenter</set>
-            </property>
-           </widget>
-          </item>
-          <item row="4" column="0" rowspan="4">
-           <widget class="QTableView" name="tableView_plantes">
-            <property name="minimumSize">
-             <size>
-              <width>280</width>
-              <height>249</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>16777215</width>
-              <height>270</height>
-             </size>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="1" colspan="2">
-           <widget class="QLineEdit" name="lineEdit_designation_plantes">
-            <property name="minimumSize">
-             <size>
-              <width>200</width>
-              <height>0</height>
-             </size>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="0">
-           <widget class="QLabel" name="label_2">
-            <property name="maximumSize">
-             <size>
-              <width>16777215</width>
-              <height>25</height>
-             </size>
-            </property>
-            <property name="font">
-             <font>
-              <weight>75</weight>
-              <bold>true</bold>
-             </font>
-            </property>
-            <property name="frameShape">
-             <enum>QFrame::StyledPanel</enum>
-            </property>
-            <property name="text">
-             <string>Désignation variété</string>
             </property>
            </widget>
           </item>
@@ -826,7 +826,7 @@
            <x>30</x>
            <y>400</y>
            <width>901</width>
-           <height>231</height>
+           <height>233</height>
           </rect>
          </property>
          <layout class="QGridLayout" name="gridLayout">
@@ -867,10 +867,10 @@
             <attribute name="horizontalHeaderDefaultSectionSize">
              <number>60</number>
             </attribute>
-            <attribute name="verticalHeaderDefaultSectionSize">
+            <attribute name="verticalHeaderMinimumSectionSize">
              <number>20</number>
             </attribute>
-            <attribute name="verticalHeaderMinimumSectionSize">
+            <attribute name="verticalHeaderDefaultSectionSize">
              <number>20</number>
             </attribute>
             <row>
@@ -1108,10 +1108,10 @@
             <attribute name="horizontalHeaderDefaultSectionSize">
              <number>60</number>
             </attribute>
-            <attribute name="verticalHeaderDefaultSectionSize">
+            <attribute name="verticalHeaderMinimumSectionSize">
              <number>20</number>
             </attribute>
-            <attribute name="verticalHeaderMinimumSectionSize">
+            <attribute name="verticalHeaderDefaultSectionSize">
              <number>20</number>
             </attribute>
             <row>
@@ -1274,10 +1274,10 @@
             <attribute name="horizontalHeaderDefaultSectionSize">
              <number>60</number>
             </attribute>
-            <attribute name="verticalHeaderDefaultSectionSize">
+            <attribute name="verticalHeaderMinimumSectionSize">
              <number>20</number>
             </attribute>
-            <attribute name="verticalHeaderMinimumSectionSize">
+            <attribute name="verticalHeaderDefaultSectionSize">
              <number>20</number>
             </attribute>
             <row>
@@ -1448,8 +1448,8 @@
           <rect>
            <x>10</x>
            <y>260</y>
-           <width>951</width>
-           <height>41</height>
+           <width>1043</width>
+           <height>43</height>
           </rect>
          </property>
          <layout class="QHBoxLayout" name="horizontalLayout_9">
@@ -1536,19 +1536,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="pushButton_enregistrer_plantes">
-            <property name="minimumSize">
-             <size>
-              <width>0</width>
-              <height>25</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>16777215</width>
-              <height>25</height>
-             </size>
-            </property>
+           <widget class="QPushButton" name="pushButton_enregistrerVariete">
             <property name="font">
              <font>
               <weight>75</weight>
@@ -1556,7 +1544,11 @@
              </font>
             </property>
             <property name="text">
-             <string>Enregistrer une nouvelle fiche</string>
+             <string>Enregistrer une nouvelle variété</string>
+            </property>
+            <property name="icon">
+             <iconset resource="../openjardin.qrc">
+              <normaloff>:/images/Valider.png</normaloff>:/images/Valider.png</iconset>
             </property>
            </widget>
           </item>
@@ -1609,7 +1601,7 @@
            <x>10</x>
            <y>40</y>
            <width>951</width>
-           <height>571</height>
+           <height>575</height>
           </rect>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_5">
@@ -2037,10 +2029,10 @@
               <attribute name="horizontalHeaderDefaultSectionSize">
                <number>72</number>
               </attribute>
-              <attribute name="verticalHeaderDefaultSectionSize">
+              <attribute name="verticalHeaderMinimumSectionSize">
                <number>20</number>
               </attribute>
-              <attribute name="verticalHeaderMinimumSectionSize">
+              <attribute name="verticalHeaderDefaultSectionSize">
                <number>20</number>
               </attribute>
               <row>

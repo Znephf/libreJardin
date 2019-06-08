@@ -146,13 +146,13 @@ void nouveau_Projet::on_pushButton_clicked()
                     query.exec(s);                             //<== executer les requêtes normales
                     if (query.lastError().type() != QSqlError::NoError)
                     {
-                        //  qDebug() << "erreur 135 " << query.lastError().text() << query.lastQuery();
+                        //qDebug() << "erreur 135 " << query.lastError().text() << query.lastQuery();
 
                         db.rollback();                         //<== rollback la transaction s'il y a un probême
                     }
                     else
                     {
-                        //  qDebug() << "142 " << query.lastQuery();
+                        // qDebug() << "142 " << query.lastQuery();
                     }
                 }
             }
@@ -179,7 +179,7 @@ void nouveau_Projet::on_pushButton_clicked()
                 query.exec(s);
                 if (query.lastError().type() != QSqlError::NoError)
                 {
-                    qDebug() << "erreur 169 " << query.lastQuery();
+                    //  qDebug() << "erreur 169 " << query.lastQuery();
                 }
                 else
                 {

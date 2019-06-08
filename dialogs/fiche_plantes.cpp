@@ -25,7 +25,7 @@ Fiche_plantes::Fiche_plantes(const int&IdPlante, QWidget *parent) :
     qApp->installTranslator(&translator);
 
     ui->setupUi(this);
-    setIdPlante(IdPlante);
+    // ui->pushButton_enregistrer_plantes->setStyleSheet("QPushButton {Qt::AlignVCenter}");
     ui->lineEdit_Id_plantes->setText(QString::number(IdPlante));
     init_base();
     mise_a_jourFiche(IdPlante);
@@ -317,7 +317,7 @@ void Fiche_plantes::on_pushButton_Modifier_plantes_clicked()
     on_pushButton_Nouveau_plantes_clicked();
 }
 
-void Fiche_plantes::on_pushButton_enregistrer_plantes_clicked()
+void Fiche_plantes::on_pushButton_enregistrerVariete_clicked()
 {
     //enregistrer la nouvelle fiche plante
     QSqlQuery query;

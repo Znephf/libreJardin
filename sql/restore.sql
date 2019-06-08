@@ -13,6 +13,7 @@ INSERT INTO `taches` (id,designation) VALUES (9,'Jachère');
 INSERT INTO `taches` (id,designation) VALUES (10,'Paillage');
 INSERT INTO `taches` (id,designation) VALUES (11,'Traitement');
 INSERT INTO `taches` (id,designation) VALUES (14,'Maladie');
+
 CREATE TABLE "plantes" (
         `id`	INTEGER PRIMARY KEY AUTOINCREMENT,
         `designation`	varchar(40),
@@ -24,6 +25,31 @@ CREATE TABLE "plantes" (
         `semis_ete`	varchar(24),
         `semis_automne`	varchar(24)
 );
+INSERT INTO `plantes` (id,designation,type_lune,espece,nom_latin,commentaires,semis_printemps,semis_ete,semis_automne) VALUES (1,'-',0,114,'N/A','N/A','000000000000000000000000','000000000000000000000000','000000000000000000000000'),
+ (3,'Radis de 18 jours',3,91,'Raphanus sativus
+L.','','001111000000000111100000','000000110000000000011000','000000000000000000000000'),
+ (4,'Aneth',1,4,'Anethum graveolens','','011100000000001110000000','000001110000000000000000','000000001100011000000000'),
+ (5,'Ail ',3,1,'0','culture avec buttage, pas de fumure','000000000000000111000000','000000000000000000000000','000000001110000001110000'),
+ (6,'Celeri',1,22,'Apium graveolens L.','celeri grand vert','011100000000001110000000','000000000000000000000000','000000000000000000000000'),
+ (7,'Courge spaguetti',4,36,'Cucurbita pepo L. Spaghetti','courge spaguetti jaune','011100000000000001110000','000000000000000000000000','000000000000000000000000'),
+ (8,'Chicorée italienne rossa di firenze',1,26,'Cichorium intybus L.','','011100000000001110000000','000000000000000000000000','000000000000000000000000'),
+ (9,'Courgette longue de Nice ',1,37,'Cucurbita moschata','courgette longue de Nice ','011100000000001110000000','000000000000000000000000','000000000000000000000000'),
+ (10,'Livèche',1,57,'Levisticum officinale','','011100000000001110000000','000000000000000000000000','000000000000000000000000'),
+ (11,'Seigle',3,104,'Secale cereale L.','seigle (à germer)','000000000000000000000000','000000000000000000000000','000000000110000000011000'),
+ (12,'Safran',2,113,'Crocus sativus L.','','000000000000000000000000','000000110000000000000110','000000000000000000000000'),
+ (13,'Cassisier',3,21,'Ribes nigrum','','000000000000000000000000','000000000000000000000000','111000000111000000111000'),
+ (14,'Persil frisé',1,76,'Petroselinum crispum ','','001111000000000001111000','000000000000000000000000','000000000000000000000000'),
+ (15,'Tomate San Marzano',4,109,'Solanum lycopersicum L.','Variété italienne pour sauce - plein champ sans tuteur','011100000000001110000000','000000000000000000000000','000000000000000000000000'),
+ (16,'Aubergine',4,9,'Solanum melongena L.','','011100000000001110000000','000000000000000000000000','000000000000000000000000'),
+ (17,'Poivron doux',4,85,'Capsicum annuum
+L.','','011100000000001110000000','000000000000000000000000','000000000000000000000000'),
+ (18,'Carottes Touchon',3,19,'Daucus Carota L.','Variété précoce aux racines parfaitement cylindrique droite et demi-longue, de couleur orange rougeâtre brillant et sans coeur. La carotte touchon est une carotte réputée pour ces qualités gustatives. Se cultive dans un sol aéré, frais, bien travaillé, même les sols argileux peuvent lui convenir. Les sols compact ne sont pas recommandés, les racines auront tendances à se mettre en fourchettes. Prévenir contre la mouche de la carotte. ','001111000000000000011110','000000100000000000000001','000000000000000000000000'),
+ (20,'Cornichon',1,35,'','','000000000000000000000000','000000000000000000000000','000000000000000000000000'),
+ (21,'Artichaut Impérial Star',4,7,'Cynara cardunculus var. scolymus (L.)','Variété précoce et vigoureuse.
+Pomme ronde d’un diamètre de 12 cm environ. Saveur douce à légèrement sucrée.','001100000000000000000110','000000000000000000000000','000000000110000110000000'),
+ (22,'salade de saison',0,55,'','','000000000000000000000000','000000000000000000000000','000000000000000000000000'),
+ (23,'basilic grand vert',0,12,'','','000000000000000000000000','000000000000000000000000','000000000000000000000000'),
+ (24,'fraise des bois',0,49,'','','000000000000000000000000','000000000000000000000000','000000000000000000000000');
 
 CREATE TABLE "observations" (
         `id`	INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -260,6 +286,15 @@ CREATE TABLE  "liste_moyens" (
 	`quantite_realise`	NUMERIC,
 	`unite`	INTEGER
 );
+
+CREATE TABLE "cultures" ( `id` INTEGER PRIMARY KEY AUTOINCREMENT,
+`designation` varchar(40),
+`parcelle` integer, `date_semis` varchar(10),
+`type_plante` integer,
+`commentaires` varchar(200),
+`etat` INTEGER,
+`duree` INTEGER,
+`date_recolte` varchar(10) );
 
 CREATE TABLE  "coordonnees" (
 	`id`	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,

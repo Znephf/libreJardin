@@ -2556,7 +2556,7 @@ void MainWindow::on_actionA_propos_de_triggered()
                        tr("Ce programme est utilisé pour gérer graphiquement les plantations d'un potager.\n"
                           "il utilise des fichier XML pour la configuration des plans\n"
                           "et une base sqlite pour les données de culture\n"
-                          "version 1.06.002 license GNU GPL version 3"));
+                          "version 1.06.003 license GNU GPL version 3"));
 }
 
 void MainWindow::on_actionQuitter_triggered()
