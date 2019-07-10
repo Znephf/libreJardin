@@ -218,12 +218,12 @@
               </property>
               <property name="icon">
                <iconset resource="openjardin.qrc">
-                <normaloff>:/images/semences.png</normaloff>:/images/semences.png</iconset>
+                <normaloff>:/images/motoculteur.png</normaloff>:/images/motoculteur.png</iconset>
               </property>
               <property name="iconSize">
                <size>
-                <width>28</width>
-                <height>28</height>
+                <width>20</width>
+                <height>20</height>
                </size>
               </property>
              </widget>
@@ -293,7 +293,7 @@
               </property>
               <property name="icon">
                <iconset resource="openjardin.qrc">
-                <normaloff>:/images/printer.png</normaloff>:/images/printer.png</iconset>
+                <normaloff>:/images/print_48.png</normaloff>:/images/print_48.png</iconset>
               </property>
               <property name="iconSize">
                <size>
@@ -511,7 +511,7 @@
                 </property>
                 <property name="icon">
                  <iconset resource="openjardin.qrc">
-                  <normaloff>:/images/1474942846_Text_color.png</normaloff>:/images/1474942846_Text_color.png</iconset>
+                  <normaloff>:/images/textcolor.png</normaloff>:/images/textcolor.png</iconset>
                 </property>
                 <property name="iconSize">
                  <size>
@@ -587,7 +587,7 @@
                 </property>
                 <property name="icon">
                  <iconset resource="openjardin.qrc">
-                  <normaloff>:/images/Colors@2x.png</normaloff>:/images/Colors@2x.png</iconset>
+                  <normaloff>:/images/colorpalette.png</normaloff>:/images/colorpalette.png</iconset>
                 </property>
                 <property name="iconSize">
                  <size>
@@ -1331,7 +1331,7 @@
             <property name="minimumSize">
              <size>
               <width>0</width>
-              <height>50</height>
+              <height>55</height>
              </size>
             </property>
             <property name="maximumSize">
@@ -1494,7 +1494,7 @@
                 </property>
                 <property name="icon">
                  <iconset resource="openjardin.qrc">
-                  <normaloff>:/images/semences.png</normaloff>:/images/semences.png</iconset>
+                  <normaloff>:/images/motoculteur.png</normaloff>:/images/motoculteur.png</iconset>
                 </property>
                 <property name="iconSize">
                  <size>
@@ -1880,6 +1880,9 @@
               <height>16777215</height>
              </size>
             </property>
+            <property name="toolTip">
+             <string>Glisser pour modifier la largeur</string>
+            </property>
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
             </property>
@@ -1980,7 +1983,7 @@
                 <property name="frameShadow">
                  <enum>QFrame::Raised</enum>
                 </property>
-                <layout class="QHBoxLayout" name="horizontalLayout_13">
+                <layout class="QVBoxLayout" name="verticalLayout_10">
                  <property name="spacing">
                   <number>0</number>
                  </property>
@@ -1997,29 +2000,68 @@
                   <number>0</number>
                  </property>
                  <item>
-                  <widget class="QGraphicsView" name="graphicsView_Planning2">
-                   <property name="minimumSize">
-                    <size>
-                     <width>150</width>
-                     <height>0</height>
-                    </size>
+                  <layout class="QVBoxLayout" name="verticalLayout_8">
+                   <property name="spacing">
+                    <number>0</number>
                    </property>
-                   <property name="maximumSize">
-                    <size>
-                     <width>300</width>
-                     <height>16777215</height>
-                    </size>
-                   </property>
-                   <property name="frameShape">
-                    <enum>QFrame::StyledPanel</enum>
-                   </property>
-                   <property name="verticalScrollBarPolicy">
-                    <enum>Qt::ScrollBarAlwaysOff</enum>
-                   </property>
-                   <property name="alignment">
-                    <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
-                   </property>
-                  </widget>
+                   <item>
+                    <widget class="QGraphicsView" name="graphicsView_Planning2">
+                     <property name="minimumSize">
+                      <size>
+                       <width>150</width>
+                       <height>0</height>
+                      </size>
+                     </property>
+                     <property name="maximumSize">
+                      <size>
+                       <width>300</width>
+                       <height>16777215</height>
+                      </size>
+                     </property>
+                     <property name="frameShape">
+                      <enum>QFrame::StyledPanel</enum>
+                     </property>
+                     <property name="verticalScrollBarPolicy">
+                      <enum>Qt::ScrollBarAlwaysOff</enum>
+                     </property>
+                     <property name="alignment">
+                      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QLineEdit" name="lineEdit">
+                     <property name="minimumSize">
+                      <size>
+                       <width>0</width>
+                       <height>14</height>
+                      </size>
+                     </property>
+                     <property name="maximumSize">
+                      <size>
+                       <width>16777215</width>
+                       <height>14</height>
+                      </size>
+                     </property>
+                     <property name="font">
+                      <font>
+                       <pointsize>7</pointsize>
+                       <weight>75</weight>
+                       <bold>true</bold>
+                      </font>
+                     </property>
+                     <property name="text">
+                      <string>Pour élargir cette liste -&gt;</string>
+                     </property>
+                     <property name="alignment">
+                      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                     </property>
+                     <property name="readOnly">
+                      <bool>true</bool>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
                  </item>
                 </layout>
                </widget>
@@ -2064,7 +2106,7 @@
                 <property name="minimumSize">
                  <size>
                   <width>800</width>
-                  <height>200</height>
+                  <height>180</height>
                  </size>
                 </property>
                 <property name="sizeIncrement">
@@ -2245,28 +2287,6 @@
              <property name="text">
               <string>Actualiser</string>
              </property>
-            </widget>
-            <widget class="QWidget" name="layoutWidget2">
-             <property name="geometry">
-              <rect>
-               <x>329</x>
-               <y>0</y>
-               <width>211</width>
-               <height>27</height>
-              </rect>
-             </property>
-             <layout class="QHBoxLayout" name="horizontalLayout_22">
-              <item>
-               <widget class="QLabel" name="label_46">
-                <property name="text">
-                 <string>Date du jour</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QLineEdit" name="lineEdit_dateDuJour"/>
-              </item>
-             </layout>
             </widget>
            </widget>
           </item>
@@ -2754,6 +2774,7 @@
     </property>
     <addaction name="actionA_propos_de"/>
     <addaction name="actionAide"/>
+    <addaction name="actionAide_PDF"/>
     <addaction name="action_Licenses"/>
    </widget>
    <widget class="QMenu" name="menuConfiguration">
@@ -2799,6 +2820,7 @@
    <addaction name="actionOuvrir"/>
    <addaction name="actionSauver"/>
    <addaction name="separator"/>
+   <addaction name="actionEnregistrer_sous"/>
    <addaction name="actionUtilisation"/>
    <addaction name="actionModification_plan"/>
    <addaction name="separator"/>
@@ -2828,7 +2850,7 @@
   <action name="actionOuvrir">
    <property name="icon">
     <iconset resource="openjardin.qrc">
-     <normaloff>:/images/open.png</normaloff>:/images/open.png</iconset>
+     <normaloff>:/images/open_48.png</normaloff>:/images/open_48.png</iconset>
    </property>
    <property name="text">
     <string>Ouvrir</string>
@@ -2843,7 +2865,7 @@
   <action name="actionSauver">
    <property name="icon">
     <iconset resource="openjardin.qrc">
-     <normaloff>:/images/filesave.png</normaloff>:/images/filesave.png</iconset>
+     <normaloff>:/images/save_48.png</normaloff>:/images/save_48.png</iconset>
    </property>
    <property name="text">
     <string>Enregistrer</string>
@@ -2953,7 +2975,7 @@
   <action name="actionChoisir_la_couleur">
    <property name="icon">
     <iconset resource="openjardin.qrc">
-     <normaloff>:/images/Colors@2x.png</normaloff>:/images/Colors@2x.png</iconset>
+     <normaloff>:/images/colorpalette.png</normaloff>:/images/colorpalette.png</iconset>
    </property>
    <property name="text">
     <string>Choisir la couleur</string>
@@ -3057,7 +3079,7 @@
   </action>
   <action name="actionChoisir_le_type_de_crayon">
    <property name="icon">
-    <iconset resource="openjardin.qrc">
+    <iconset>
      <normaloff>:/images/1474942846_Text_color.png</normaloff>:/images/1474942846_Text_color.png</iconset>
    </property>
    <property name="text">
@@ -3131,7 +3153,7 @@
   <action name="actionImprimer_le_plan">
    <property name="icon">
     <iconset resource="openjardin.qrc">
-     <normaloff>:/images/printer.png</normaloff>:/images/printer.png</iconset>
+     <normaloff>:/images/print_48.png</normaloff>:/images/print_48.png</iconset>
    </property>
    <property name="text">
     <string>Imprimer le plan</string>
@@ -3218,6 +3240,10 @@
    </property>
   </action>
   <action name="actionEnregistrer_sous">
+   <property name="icon">
+    <iconset resource="openjardin.qrc">
+     <normaloff>:/images/save_as_48.png</normaloff>:/images/save_as_48.png</iconset>
+   </property>
    <property name="text">
     <string>Enregistrer sous</string>
    </property>
@@ -3225,6 +3251,11 @@
   <action name="actionNouveau_projet">
    <property name="text">
     <string>Nouveau projet</string>
+   </property>
+  </action>
+  <action name="actionAide_PDF">
+   <property name="text">
+    <string>Afficher la notice PDF</string>
    </property>
   </action>
  </widget>

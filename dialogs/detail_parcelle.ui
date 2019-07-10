@@ -584,7 +584,7 @@
              </property>
              <property name="icon">
               <iconset resource="../openjardin.qrc">
-               <normaloff>:/images/1474942846_Text_color.png</normaloff>:/images/1474942846_Text_color.png</iconset>
+               <normaloff>:/images/textcolor.png</normaloff>:/images/textcolor.png</iconset>
              </property>
              <property name="iconSize">
               <size>
@@ -660,7 +660,7 @@
              </property>
              <property name="icon">
               <iconset resource="../openjardin.qrc">
-               <normaloff>:/images/Colors@2x.png</normaloff>:/images/Colors@2x.png</iconset>
+               <normaloff>:/images/colorpalette.png</normaloff>:/images/colorpalette.png</iconset>
              </property>
              <property name="iconSize">
               <size>
@@ -864,6 +864,32 @@
               <size>
                <width>28</width>
                <height>28</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="pushButton_Affiches_fiche">
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>30</height>
+              </size>
+             </property>
+             <property name="toolTip">
+              <string>Afficher la fiche culture correspondante à la parcelle</string>
+             </property>
+             <property name="text">
+              <string>Fiche culture</string>
+             </property>
+             <property name="icon">
+              <iconset resource="../openjardin.qrc">
+               <normaloff>:/images/motoculteur.png</normaloff>:/images/motoculteur.png</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>20</width>
+               <height>20</height>
               </size>
              </property>
             </widget>

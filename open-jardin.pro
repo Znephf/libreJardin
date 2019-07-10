@@ -2,14 +2,24 @@
 #
 # Project created by QtCreator 2016-09-01T18:03:06
 #
-#-------------------------------------------------
+unix:!mac {
+ LIBS += -Wl,-rpath=\\\$$ORIGIN/../lib
+}
+
+target.path = /usr/bin
+target.files = app_name qt.conf
+INSTALLS += target
+data.path = /usr/share/openjardin/lib
+data.files = lib/*
+INSTALLS += data
+unix:QMAKE_RPATHDIR += /usr/lib/x86_64-linux-gnu
 
 QT  += core gui
 QT  += xml widgets
 QT  += sql widgets
 QT  += printsupport
-QT += xmlpatterns
-QT += core
+QT  += xmlpatterns
+QT  += core
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -111,5 +121,3 @@ RESOURCES += \
 
 TRANSLATIONS = translations/open-jardin_fr.ts \
                translations/open-jardin_en.ts
-
-DISTFILES +=

@@ -5,6 +5,8 @@
 #include <qsplitter.h>
 #include "graphic/mytreewidgetitem.h"
 #include "utilitaires/util.h"
+#include <QtGui>
+#include <QApplication>
 
 dialog_Aide::dialog_Aide(QWidget *parent) :
     QDialog(parent),

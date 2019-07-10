@@ -98,6 +98,8 @@ private slots:
 
     void on_toolButton_save_as_clicked();
 
+    void on_pushButton_Affiches_fiche_clicked();
+
 protected:
     void closeEvent(QCloseEvent *event) override;
 

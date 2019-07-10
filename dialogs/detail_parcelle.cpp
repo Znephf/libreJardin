@@ -20,6 +20,7 @@
 #include <QGraphicsRectItem>
 #include <QScrollBar>
 #include <QColorDialog>
+#include <QUuid>
 
 detail_parcelle::detail_parcelle(const int&IdParcelle, const QString&fileName, QWidget *parent) :
     QDialog(parent),
@@ -280,13 +281,14 @@ void detail_parcelle::Item_clicked()
                 ui->lineEdit_Id_Item->setText(QString::number(item->getId()));
                 ui->lineEdit_Nom_item->setText(item->getNom());
                 ui->textEdit_plan_commentaires->setText(item->getTexte());
+
                 if (item->getTypeShape() == (parcelleItem::Rectangle))
                 {
                     ui->lineEdit_Id_Item->setText(QString::number(item->getId()));
                 }
                 if (item->getTypeShape() == (parcelleItem::RoundedRectangle))
                 {
-                    ui->lineEdit_Id_Item->setText(QString::number(item->getId())); //équipement
+                    ui->lineEdit_Id_Item->setText(QString::number(item->getId()));
                 }
                 if (item->getTypeShape() == (parcelleItem::Circle))
                 {
@@ -738,6 +740,7 @@ void detail_parcelle::on_toolButton_AjoutRectangle_clicked()
     item->setTypeLine(ui->comboBox_typeLigne_P->currentIndex() + 1);
     item->setOpac(0.8);       //opacité de l'item
     item->setId(get_MaxId()); // valeur id en dernière position dans la table
+    item->setUuid(QUuid::createUuid());
     double sizeW = item->boundingRect().width();
     double sizeH = item->boundingRect().height();
     item->setPos(sizeW / 2, sizeH / 2);
@@ -751,6 +754,7 @@ void detail_parcelle::on_toolButton_AjoutRectangle_clicked()
     ui->graphicsView->horizontalScrollBar()->setValue(int(zero.x()));
     ui->graphicsView->verticalScrollBar()->setValue(int(zero.y()));
     QList <QGraphicsItem *> itemList = scene->items();
+    ui->lineEdit_Id_Item->setText(QString::number(item->getId()));
 }
 
 void detail_parcelle::on_toolButton_AjoutCercle_clicked()
@@ -763,6 +767,7 @@ void detail_parcelle::on_toolButton_AjoutCercle_clicked()
     item->setTypeLine(ui->comboBox_typeLigne_P->currentIndex() + 1);
     item->setOpac(0.8);                               //opacité de l'item
     item->setId(get_MaxId());
+    item->setUuid(QUuid::createUuid());
     double sizeW = item->boundingRect().width();
     double sizeH = item->boundingRect().height();
     item->setPos(sizeW / 2, sizeH / 2);
@@ -776,6 +781,7 @@ void detail_parcelle::on_toolButton_AjoutCercle_clicked()
     ui->graphicsView->horizontalScrollBar()->setValue(int(zero.x()));
     ui->graphicsView->verticalScrollBar()->setValue(int(zero.y()));
     QList <QGraphicsItem *> itemList = scene->items();
+    ui->lineEdit_Id_Item->setText(QString::number(item->getId()));
 }
 
 int detail_parcelle::get_MaxId()
@@ -1126,4 +1132,18 @@ void detail_parcelle::on_toolButton_devant_clicked()
         qDebug() << zValue;
     }
     selectedItem->setZValue(zValue);
+}
+
+void detail_parcelle::on_pushButton_Affiches_fiche_clicked()
+{
+    int Id = ui->lineEdit_Id_Item->text().toInt();
+
+    // int Id = ui->lineEditUuid->text().toInt();
+
+    if (Id >= 0)
+    {
+        QString   fileName       = getfileNameSQL();
+        Cultures *fiche_Cultures = new Cultures(Id, 0);
+        fiche_Cultures->show();
+    }
 }

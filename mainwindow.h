@@ -261,6 +261,8 @@ private slots:
 
     void on_actionNouveau_projet_triggered();
 
+    void on_actionAide_PDF_triggered();
+
 protected:
     QPoint mousePressPt;
     void mousePressEvent(QMouseEvent *event);

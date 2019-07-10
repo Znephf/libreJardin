@@ -47,7 +47,7 @@
            </property>
            <property name="icon">
             <iconset resource="../openjardin.qrc">
-             <normaloff>:/images/pen_48.png</normaloff>:/images/pen_48.png</iconset>
+             <normaloff>:/images/edit.png</normaloff>:/images/edit.png</iconset>
            </property>
            <property name="iconSize">
             <size>

@@ -188,7 +188,7 @@
            </property>
            <property name="icon">
             <iconset resource="../openjardin.qrc">
-             <normaloff>:/images/worker.png</normaloff>:/images/worker.png</iconset>
+             <normaloff>:/images/motoculteur.png</normaloff>:/images/motoculteur.png</iconset>
            </property>
            <property name="iconSize">
             <size>

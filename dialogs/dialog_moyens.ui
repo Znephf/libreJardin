@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>424</width>
-    <height>350</height>
+    <height>426</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -78,14 +78,17 @@
            <property name="maximumSize">
             <size>
              <width>48</width>
-             <height>16777215</height>
+             <height>48</height>
             </size>
            </property>
            <property name="text">
             <string/>
            </property>
            <property name="pixmap">
-            <pixmap resource="../openjardin.qrc">:/images/service.png</pixmap>
+            <pixmap resource="../openjardin.qrc">:/images/motoculteur.png</pixmap>
+           </property>
+           <property name="scaledContents">
+            <bool>true</bool>
            </property>
           </widget>
          </item>

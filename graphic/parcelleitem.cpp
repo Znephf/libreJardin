@@ -9,6 +9,7 @@
 #include <QKeyEvent>
 #include <QGraphicsSceneHoverEvent>
 #include <QtWidgets>
+#include <QUuid>
 
 parcelleItem::parcelleItem(qreal wid, qreal hgt)
 {

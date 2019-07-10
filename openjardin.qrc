@@ -30,7 +30,6 @@
         <file>images/cacher_Picture.png</file>
         <file>images/icones/champ.png</file>
         <file>images/icones/utilisation.png</file>
-        <file>images/printer.png</file>
         <file>images/util.png</file>
         <file>images/1474942892_Grid.png</file>
         <file>images/noGrid.png</file>
@@ -69,7 +68,6 @@
         <file>images/save_48.png</file>
         <file>images/service.png</file>
         <file>images/settings_48.png</file>
-        <file>images/worker.png</file>
         <file>images/remove_48.png</file>
         <file>images/az.png</file>
         <file>images/icones/quitter.png</file>
@@ -77,5 +75,11 @@
         <file>images/save_as_48.png</file>
         <file>translations/open-jardin_en.qm</file>
         <file>translations/open-jardin_fr.qm</file>
+        <file>images/lireculture.png</file>
+        <file>images/deleteculture.png</file>
+        <file>images/addculture.png</file>
+        <file>images/motoculteur.png</file>
+        <file>images/pen_colorPalette.png</file>
+        <file>images/textcolor.png</file>
     </qresource>
 </RCC>

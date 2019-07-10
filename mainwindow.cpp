@@ -86,6 +86,7 @@
 #include <QPrintDialog>
 #include <QPainter>
 #include <QCoreApplication>
+#include <QProcess>
 //xml
 #include <QDomDocument>
 #include <iostream>
@@ -328,6 +329,8 @@ void MainWindow::resizeEvent(QResizeEvent *event)
 void MainWindow::on_actionNouveau_projet_triggered()
 {   // création d'un nouveau projet
     // editer une fiche de type de ressource
+    QSettings       settings;
+    QString         fileName;
     nouveau_Projet *FicheProjet = new nouveau_Projet();
     int             resultat    = FicheProjet->exec();
 
@@ -335,7 +338,18 @@ void MainWindow::on_actionNouveau_projet_triggered()
     if (resultat == QDialog::Accepted)
     {
         setFileNameXML(FicheProjet->getXmlFilName());
-        ouvrir_FichierXML(getFileNameXML());
+        fileName = getFileNameXML();
+        qDebug() << " new filename " << getFileNameXML();
+        if (fileName.isEmpty())
+        {
+            return;
+        }
+        else
+        {
+            setFileNameBackGround("");
+            settings.setValue("lastfile", fileName); // enregistre dans fichier .conf
+            ouvrir_FichierXML(fileName);
+        }
     }
 }
 
@@ -627,6 +641,7 @@ void MainWindow::ouvrir_FichierXML(QString fileName)
     QFile        nomFichier(fileName);
     int          row_parcelles = 0;
 
+    ui->tableWidget_parcelles->setRowCount(0);
     parcelleList.clear();
 
     if (nomFichier.exists())
@@ -1097,6 +1112,7 @@ void MainWindow::on_actionSauver_triggered()
         file.close();
         qDebug() << "enregistrement terminé ";
         ui->statusBar->showMessage("enregistrement terminé : " + fileName, 5000);
+        ouvrir_FichierXML(fileName);
     }
 }
 
@@ -1753,7 +1769,7 @@ void MainWindow::on_pushButton_recorPlan_clicked()
 
 void MainWindow::resize_planning(int nb_parcelles)
 {
-    int hauteur = (nb_parcelles + 1) * 28;
+    int hauteur = ((nb_parcelles) * 28);
 
     if (hauteur < 1200)
     {
@@ -2556,7 +2572,7 @@ void MainWindow::on_actionA_propos_de_triggered()
                        tr("Ce programme est utilisé pour gérer graphiquement les plantations d'un potager.\n"
                           "il utilise des fichier XML pour la configuration des plans\n"
                           "et une base sqlite pour les données de culture\n"
-                          "version 1.06.003 license GNU GPL version 3"));
+                          "version 1.06.064 license GNU GPL version 3"));
 }
 
 void MainWindow::on_actionQuitter_triggered()
@@ -3911,4 +3927,11 @@ void MainWindow::on_pushButton_Detail_clicked()
         }
         ui->pushButton_recorPlan->show();
     }
+}
+
+void MainWindow::on_actionAide_PDF_triggered()
+{
+    QProcess *process = new QProcess(this);
+
+    process->start("/etc/alternatives/x-www-browser /usr/share/openjardin/notice_openJardin_1-06.pdf");
 }
