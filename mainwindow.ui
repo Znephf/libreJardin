@@ -218,7 +218,7 @@
               </property>
               <property name="icon">
                <iconset resource="openjardin.qrc">
-                <normaloff>:/images/motoculteur.png</normaloff>:/images/motoculteur.png</iconset>
+                <normaloff>:/images/cultures.png</normaloff>:/images/cultures.png</iconset>
               </property>
               <property name="iconSize">
                <size>
@@ -312,7 +312,7 @@
                <string>Enregistrer le plan modifé</string>
               </property>
               <property name="icon">
-               <iconset resource="openjardin.qrc">
+               <iconset>
                 <normaloff>:/images/filesave.png</normaloff>:/images/filesave.png</iconset>
               </property>
              </widget>
@@ -1110,7 +1110,7 @@
                    </property>
                    <property name="icon">
                     <iconset resource="openjardin.qrc">
-                     <normaloff>:/images/1474942820_New_image.png</normaloff>:/images/1474942820_New_image.png</iconset>
+                     <normaloff>:/images/add_image.png</normaloff>:/images/add_image.png</iconset>
                    </property>
                    <property name="iconSize">
                     <size>
@@ -1494,7 +1494,7 @@
                 </property>
                 <property name="icon">
                  <iconset resource="openjardin.qrc">
-                  <normaloff>:/images/motoculteur.png</normaloff>:/images/motoculteur.png</iconset>
+                  <normaloff>:/images/cultures.png</normaloff>:/images/cultures.png</iconset>
                 </property>
                 <property name="iconSize">
                  <size>
@@ -2940,7 +2940,7 @@
   </action>
   <action name="actionAjouterImage">
    <property name="icon">
-    <iconset resource="openjardin.qrc">
+    <iconset>
      <normaloff>:/images/1474942820_New_image.png</normaloff>:/images/1474942820_New_image.png</iconset>
    </property>
    <property name="text">
@@ -3079,7 +3079,7 @@
   </action>
   <action name="actionChoisir_le_type_de_crayon">
    <property name="icon">
-    <iconset>
+    <iconset resource="openjardin.qrc">
      <normaloff>:/images/1474942846_Text_color.png</normaloff>:/images/1474942846_Text_color.png</iconset>
    </property>
    <property name="text">
