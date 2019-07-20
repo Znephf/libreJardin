@@ -73,5 +73,6 @@
         <file>images/textcolor.png</file>
         <file>images/add_image.png</file>
         <file>images/cultures.png</file>
+        <file>images/type_moyen.png</file>
     </qresource>
 </RCC>

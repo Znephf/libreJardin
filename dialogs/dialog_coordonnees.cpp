@@ -49,14 +49,14 @@ void Dialog_coordonnees::on_pushButton_Valider_clicked()
     QString   commentaires   = util::apos(ui->textEdit_Commentaires->document()->toPlainText());
     QString   nom            = util::apos(ui->lineEdit_Nom->text());
     QString   prenom         = util::apos(ui->lineEdit_Prenom->text());
-    QString   adresse        = ui->lineEdit_Adresse->text();
+    QString   adresse        = util::apos(ui->lineEdit_Adresse->text());
     QString   code_postal    = ui->lineEdit_Code_postal->text();
     QString   ville          = util::apos(ui->lineEdit_Ville->text());
-    QString   pays           = ui->lineEdit_Pays->text();
+    QString   pays           = util::apos(ui->lineEdit_Pays->text());
     QString   telephone_fixe = ui->lineEdit_Fixe->text();
     QString   portable       = ui->lineEdit_portable->text();
     QString   fax            = ui->lineEdit_Fax->text();
-    QString   email          = ui->lineEdit_Email->text();
+    QString   email          = util::apos(ui->lineEdit_Email->text());
 
     if (ui->lineEdit_idCoordonnees->text() == "")
     {   //mode nouvel enregistrement

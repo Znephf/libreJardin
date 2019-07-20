@@ -56,10 +56,6 @@ private slots:
 
     void on_spinBox_Avancement_valueChanged(int arg1);
 
-    void on_listView_Ressources_doubleClicked(const QModelIndex&index);
-
-
-
     void on_pushButton_Edit_Type_clicked();
 
     void on_lineEdit_Duree_textChanged(const QString&arg1);
@@ -87,6 +83,7 @@ private slots:
     void on_comboBox_phasesCultures_currentIndexChanged(const QString&arg1);
 
     void on_lineEdit_Designation_textChanged(const QString&arg1);
+
 
 private:
     Ui::Dialog_taches *ui;

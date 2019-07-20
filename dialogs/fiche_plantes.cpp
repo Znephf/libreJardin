@@ -197,7 +197,7 @@ void Fiche_plantes::on_comboBox_especes_de_plantes_currentIndexChanged(const QSt
     QSqlQuery query;
     QString   resultat;
 
-    query.exec(QString("select id from especes where designation ='" + arg1 + "'"));
+    query.exec(QString("select id from especes where designation ='" + util::apos(arg1) + "'"));
     if (query.first())
     {
         resultat = query.value(0).toString();
@@ -231,7 +231,7 @@ void Fiche_plantes::on_comboBox_especes_de_plantes_currentIndexChanged(const QSt
         qDebug() << "erreur query :" << query.lastError().text() << "  " << query.lastError().databaseText() << query.driver();
     }
 
-    query.exec(QString("select famille from especes where designation ='" + arg1 + "'"));
+    query.exec(QString("select famille from especes where designation ='" + util::apos(arg1) + "'"));
     if (query.first())
     {
         resultat = query.value(0).toString();
@@ -268,7 +268,7 @@ void Fiche_plantes::on_pushButton_Modifier_plantes_clicked()
 {
     // enregister la fiche modifiée
     QSqlQuery query;
-    QString   nom_espece = ui->comboBox_especes_de_plantes->currentText();
+    QString   nom_espece = util::apos(ui->comboBox_especes_de_plantes->currentText());
     QString   id_espece;
 
     query.exec(QString("select id from especes where designation ='" + nom_espece + "'"));
@@ -321,7 +321,7 @@ void Fiche_plantes::on_pushButton_enregistrerVariete_clicked()
 {
     //enregistrer la nouvelle fiche plante
     QSqlQuery query;
-    QString   nom_espece = ui->comboBox_especes_de_plantes->currentText();
+    QString   nom_espece = util::apos(ui->comboBox_especes_de_plantes->currentText());
     QString   id_espece;
 
     query.exec(QString("select id from especes where designation ='" + nom_espece + "'"));
@@ -342,7 +342,7 @@ void Fiche_plantes::on_pushButton_enregistrerVariete_clicked()
     QString str4 = m_printemps;
     QString str5 = m_ete;
     QString str6 = m_automne;
-    QString str7 = ui->lineEdit_nom_latin->text();
+    QString str7 = util::apos(ui->lineEdit_nom_latin->text());
     QString str8 = QString::number(ui->comboBox_lunaire_de_plantes->currentIndex() + 1);
 
     QString str =
@@ -706,7 +706,7 @@ void Fiche_plantes::on_tableView_especes_clicked(const QModelIndex&index)
     //selection famille dans combobox
     QSqlQuery query;
     QString   resultat;
-    query.exec(QString("select famille from especes where designation ='" + str + "'"));
+    query.exec(QString("select famille from especes where designation ='" + util::apos(str) + "'"));
     if (query.first())
     {
         resultat = query.value(0).toString();
@@ -747,7 +747,7 @@ void Fiche_plantes::on_pushButton_enregistrer_especes_clicked()
 {
     QString   str1 = util::apos(ui->lineEdit_designation_espece->text());
     QSqlQuery query;
-    QString   nom_famille = ui->comboBox_familles_de_especes->currentText();
+    QString   nom_famille = util::apos(ui->comboBox_familles_de_especes->currentText());
     QString   id_famille;
 
     query.exec(QString("select id from familles where designation ='" + nom_famille + "'"));
@@ -799,7 +799,7 @@ void Fiche_plantes::on_pushButton_Modifier_especes_clicked()
 {
     QString   str1 = ui->lineEdit_designation_espece->text();
     QSqlQuery query;
-    QString   nom_famille = ui->comboBox_familles_de_especes->currentText();
+    QString   nom_famille = util::apos(ui->comboBox_familles_de_especes->currentText());
     QString   id_famille;
 
     query.exec(QString("select id from familles where designation ='" + nom_famille + "'"));

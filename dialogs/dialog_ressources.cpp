@@ -359,20 +359,13 @@ void Dialog_ressources::calculer()
             qDebug() << "erreur query :" << query2.lastError().text() << "  " << query2.lastError().databaseText() <<
                 query2.driver() << query2.lastQuery();
         }
-        else
-        {
-            qDebug() << " query ok :" << query2.lastQuery() << coutPrevu;
-        }
     }
     if (!query.isActive())
     {
         qDebug() << "erreur query :" << query.lastError().text() << "  " << query.lastError().databaseText() <<
             query.driver() << query.lastQuery();
     }
-    else
-    {
-        qDebug() << " query ok :" << query.lastQuery();
-    }
+
 
 
     ui->lineEdit_coutPrevu->setText(util::afficheZeros(QString::number(coutPrevu, 'f', 1)));
@@ -499,7 +492,7 @@ void Dialog_ressources::on_toolButton_validerQuantiteMoyen_clicked()
     QString   id_liste_moyen    = ui->lineEdit_idListeRessource->text();
     QString   quantite_prevu    = ui->lineEdit_quantitePrevue->text();
     QString   quantite_realise  = ui->lineEdit_quantiteUtilisee->text();
-    QString   designation_unite = ui->comboBox_unite->currentText();
+    QString   designation_unite = util::apos(ui->comboBox_unite->currentText());
 
     QString unite;
 

@@ -447,7 +447,7 @@ void Planner::ItemPlanning_clicked()
                 tache_item *item = dynamic_cast <tache_item *> (itemList[i]);
                 ui->lineEdit_id_tache->setText(QString::number(item->getId()));
                 nbJours    = (item->getWidth() / Consts::SPACE_CASE);
-                dateDepart = (((item->pos().x()) / Consts::SPACE_CASE) - nbJours / 2) - 7;
+                dateDepart = int((((item->pos().x()) / Consts::SPACE_CASE) - nbJours / 2) - 7);
                 QDate date_depart = dateAn.addDays(dateDepart);
                 QDate date_fin    = date_depart.addDays(nbJours - 1);
                 ui->dateEdit_depart->setDate(date_depart);
@@ -460,32 +460,51 @@ void Planner::ItemPlanning_clicked()
 
 void Planner::on_pushButton_validerDates_clicked()
 {   // bouton valider les dates suite à click sur item tâche dans le planning
-    QSqlQuery query;
-    QString   id_tache = ui->lineEdit_id_tache->text();
-    QString   depart   = ui->dateEdit_depart->date().toString("dd-MM-yyyy");
-    QString   fin      = ui->dateEdit_fin->date().toString("dd-MM-yyyy");
-    QString   duree    = ui->lineEdit_duree->text();
-    QString   strQuery = "update tasks set depart= '" + depart +
-                         "',fin= '" + fin + "',duree=" + duree +
-                         " where id=" + id_tache;
-
-    query.exec(strQuery);
-    qDebug() << "PREPARE: " << query.lastQuery().toUtf8();
-
-    if (!query.isActive())
+    if (ui->lineEdit_id_tache->text() != "")
     {
-        qDebug() << "erreur query :" << query.lastError().text() << "  " << query.lastError().databaseText() <<
-            query.driver();
-        QMessageBox::information(this, tr("Erreur d'enregistrement"),
-                                 tr("Veuillez vérifier que tous les champs soient bien remplis"));
+        QSqlQuery query;
+        QString   designation = util::apos(ui->lineEdit_designation->text());
+        QString   id_tache    = ui->lineEdit_id_tache->text();
+        QString   depart      = ui->dateEdit_depart->date().toString("dd-MM-yyyy");
+        QString   fin         = ui->dateEdit_fin->date().toString("dd-MM-yyyy");
+        QString   duree       = ui->lineEdit_duree->text();
+        QString   contrainte_date;
+
+        if (ui->checkBox_ContrainteDate->isChecked())
+        {
+            contrainte_date = "1";
+        }
+        else
+        {
+            contrainte_date = "0";
+        }
+        QString strQuery = "update tasks set designation='" + designation + "',depart= '" + depart +
+                           "',fin= '" + fin + "',duree=" + duree + ",contrainte_date=" + contrainte_date +
+                           " where id=" + id_tache;
+
+        query.exec(strQuery);
+        qDebug() << "PREPARE: " << query.lastQuery().toUtf8();
+
+        if (!query.isActive())
+        {
+            qDebug() << "erreur query :" << query.lastError().text() << "  " << query.lastError().databaseText() <<
+                query.driver();
+            QMessageBox::information(this, tr("Erreur d'enregistrement"),
+                                     tr("Veuillez vérifier que tous les champs soient bien remplis"));
+        }
+        else
+        {
+            qDebug() << "enregistrement terminé";
+        }
+        init_base();
+        mise_a_jour_phases();
+        init_base();
     }
     else
     {
-        qDebug() << "enregistrement terminé";
+        QMessageBox::information(this, tr("Erreur "),
+                                 tr("Veuillez sélectionner une tâche svp"));
     }
-    init_base();
-    mise_a_jour_phases();
-    init_base();
 }
 
 void Planner::mise_a_jour_phases()
@@ -549,8 +568,8 @@ void Planner::mise_a_jour_phases()
 
                     if (dateMinDepart.daysTo(date_departTache) <= 1)
                     {
-                        qDebug() << " dateMindepart " << dateMinDepart << "date depart tache " << date_departTache <<
-                            "nb jours " << dateMinDepart.daysTo(date_departTache);
+                        // qDebug() << " dateMindepart " << dateMinDepart << "date depart tache " << date_departTache <<
+                        //     "nb jours " << dateMinDepart.daysTo(date_departTache);
                         dateMinDepart = date_departTache;
                         date_depart   = dateMinDepart;
                         duree         = int(date_depart.daysTo(date_finTache));
@@ -559,8 +578,8 @@ void Planner::mise_a_jour_phases()
                     }
                     if (dateMaxFin.daysTo(date_finTache) >= 1)
                     {
-                        qDebug() << " dateMaxfin " << dateMaxFin << "date fin tache " << date_finTache <<
-                            "nb jours " << dateMinDepart.daysTo(date_departTache);
+                        //  qDebug() << " dateMaxfin " << dateMaxFin << "date fin tache " << date_finTache <<
+                        //     "nb jours " << dateMinDepart.daysTo(date_departTache);
                         dateMaxFin = date_finTache;
                         date_fin   = dateMaxFin;
                         duree      = int(date_depart.daysTo(date_finTache));
@@ -570,13 +589,14 @@ void Planner::mise_a_jour_phases()
                 }
                 listeDesTaches.replace(i, tache{ id, depart, fin, duree, phase_parent, type });
             }
-            qDebug() << " structure modifiée " << " id " << listeDesTaches.at(i).id << " depart " <<
-                listeDesTaches.at(i).depart <<
-                " fin " <<
-                listeDesTaches.at(i).fin << " duree " <<
-                listeDesTaches.at(i).duree << " phase " <<
-                listeDesTaches.at(i).phase_parent << " type " <<
-                listeDesTaches.at(i).type;
+
+            /*         qDebug() << " structure modifiée " << " id " << listeDesTaches.at(i).id << " depart " <<
+             *            listeDesTaches.at(i).depart <<
+             *            " fin " <<
+             *            listeDesTaches.at(i).fin << " duree " <<
+             *            listeDesTaches.at(i).duree << " phase " <<
+             *            listeDesTaches.at(i).phase_parent << " type " <<
+             *            listeDesTaches.at(i).type;*/
 
             QSqlQuery query;
             QString   strQuery = "update tasks set depart= '" + depart + "',fin= '" + fin + "',duree=" +
@@ -623,6 +643,7 @@ void Planner::on_comboBox_phases_currentTextChanged(const QString&arg1)
     ui->dateEdit_fin->clear();
     ui->lineEdit_duree->setText("");
     ui->lineEdit_designation->setText("");
+    ui->checkBox_ContrainteDate->setChecked(false);
     populate_treeview();
 }
 
@@ -640,7 +661,7 @@ void Planner::populate_treeview()
     }
     else
     {
-        qDebug() << "erreur query :" << queryComboPhase.lastError().text() << "  " <<
+        qDebug() << "erreur query 664:" << queryComboPhase.lastError().text() << "  " <<
             queryComboPhase.lastError().databaseText() << queryComboPhase.lastQuery().toUtf8();
     }
     standardModel = new QStandardItemModel(this);
@@ -789,23 +810,32 @@ void Planner::on_treeView_taches_clicked(const QModelIndex&index)
 
     ui->treeView_taches->model()->data(index);
     ui->lineEdit_id_tache->setText(strposition);
-    query.exec(QString("select depart,fin, duree from tasks where id=" + strposition));
+    query.exec(QString("select depart,fin, duree,contrainte_date from tasks where id=" + strposition));
     if (query.first())
     {
-        QString strDepart   = query.value(0).toString();
-        QString strFin      = query.value(1).toString();
-        QString strDuree    = query.value(2).toString();
-        QDate   date_depart = QDate::fromString(strDepart, "dd-MM-yyyy");
-        QDate   date_fin    = QDate::fromString(strFin, "dd-MM-yyyy");
-        int     duree       = int((date_depart.daysTo(date_fin)));
+        QString strDepart       = query.value(0).toString();
+        QString strFin          = query.value(1).toString();
+        QString strDuree        = query.value(2).toString();
+        int     contrainte_date = query.value(3).toInt();
+        QDate   date_depart     = QDate::fromString(strDepart, "dd-MM-yyyy");
+        QDate   date_fin        = QDate::fromString(strFin, "dd-MM-yyyy");
+        int     duree           = int((date_depart.daysTo(date_fin)));
         ui->dateEdit_depart->setDate(date_depart);
         ui->dateEdit_fin->setDate(date_fin);
         ui->lineEdit_duree->setText(QString::number(duree + 1));
         ui->lineEdit_designation->setText(strDesignation);
+        if (contrainte_date == 0)
+        {
+            ui->checkBox_ContrainteDate->setChecked(false);
+        }
+        else
+        {
+            ui->checkBox_ContrainteDate->setChecked(true);
+        }
     }
     else
     {
-        qWarning("ne peut récupérer la valeur ");
+        qWarning("ne peut récupérer la valeur  ");
     }
 }
 
@@ -844,7 +874,7 @@ void Planner::on_treeView_taches_collapsed(const QModelIndex&index)
         modelIndexp = ui->treeView_taches->indexBelow(modelIndexp);
         rowTreep++;
     }
-    //  qDebug() << "rowtree =" << rowTreep;
+
     resize_planning(rowTreep);
     /***********************************/
     QModelIndex modelIndex  = ui->treeView_taches->indexAt(ui->treeView_taches->rect().topLeft());
@@ -875,7 +905,7 @@ void Planner::on_treeView_taches_expanded(const QModelIndex&index)
             modelIndexp = ui->treeView_taches->indexBelow(modelIndexp);
             rowTreep++;
         }
-        //  qDebug() << "rowtree =" << rowTreep;
+
         resize_planning(rowTreep);
         /***********************************/
         QModelIndex modelIndex  = ui->treeView_taches->indexAt(ui->treeView_taches->rect().topLeft());
@@ -991,25 +1021,66 @@ void Planner::afficher_les_liens_planning()
 
 void Planner::on_pushButton_AjouterTache_clicked()
 {
-    // créer une nouvelle fiche de tâche
-    Dialog_taches *FicheTaches = new Dialog_taches(0, this);
+    // créer une nouvelle tâche
 
-    connect(this, SIGNAL(sendText(const QString&)),
-            FicheTaches, SLOT(nouvelle_tache(const QString&)));
-    if (ui->comboBox_phases->currentText() != "0")
+    if (ui->lineEdit_id_tache->text().toInt() > 0)
     {
-        emit sendText(ui->comboBox_phases->currentText());
-        int  resultat = FicheTaches->exec();
-        if (resultat == QDialog::Accepted)
+        QString designation  = "nouvelle tache";
+        QString commentaires = " ";
+        QString depart       = ui->dateEdit_depart->date().toString("dd-MM-yyyy");
+        QString fin          = ui->dateEdit_depart->date().toString("dd-MM-yyyy");
+        QString duree        = "1";
+        QString id_culture;
+        QString precedent       = ui->lineEdit_id_tache->text();
+        QString contrainte_date = "0";
+        QString phase_parent;
+        QString avancement = "0";
+        QString type       = "2";
+
+        QSqlQuery queryComboPhase;
+
+        QString designation_combo_phases = util::apos(ui->comboBox_phases->currentText());
+        queryComboPhase.exec(QString("select phase_parent,id_culture from tasks where designation ='" + designation_combo_phases +
+                                     "'"));
+        if (queryComboPhase.first())
         {
-            maj_planning();
-            populate_treeview();
+            phase_parent = queryComboPhase.value(0).toString();
+            id_culture   = queryComboPhase.value(1).toString();
+            qDebug() << "phase parent " << phase_parent << " id_culture " << id_culture << "designation " <<
+                designation_combo_phases;
         }
+        else
+        {
+            qDebug() << "erreur query recherche phase_parent :" << queryComboPhase.lastError().text() << "  " <<
+                queryComboPhase.lastError().databaseText() << queryComboPhase.lastQuery().toUtf8();
+        }
+
+        QSqlQuery query;
+
+        QString str =
+            "insert into tasks (designation,commentaires, depart, fin, duree,precedent, avancement,type,contrainte_date,phase_parent,id_culture)"
+            "values('" + designation + "','" + commentaires + "','" + depart + "','" + fin +
+            "'," + duree + "," + precedent + "," + avancement + "," + type + "," + contrainte_date + "," + phase_parent + "," +
+            id_culture + ")";
+        query.exec(str);
+        if (!query.isActive())
+        {
+            qDebug() << "erreur query valider:" << query.lastError().text() << "  " << query.lastError().databaseText() <<
+                query.lastQuery().toUtf8();
+            QMessageBox::information(this, tr("Erreur d'enregistrement"),
+                                     tr("Veuillez vérifier que tous les champs soient bien remplis"));
+        }
+        else
+        {
+            qDebug() << "enregistrement terminé avec succès";
+        }
+        maj_planning();
+        populate_treeview();
     }
     else
     {
         QMessageBox::information(this, tr("Erreur "),
-                                 tr("Veuillez sélectionner une phase de culture svp"));
+                                 tr("Veuillez sélectionner la tache précédente svp"));
     }
 }
 

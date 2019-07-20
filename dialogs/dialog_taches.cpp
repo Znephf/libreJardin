@@ -191,7 +191,7 @@ void Dialog_taches::on_comboBox_phasesCultures_currentIndexChanged(const QString
     QSqlQuery query;
     QString   idPhase;
 
-    query.exec(QString("select id from tasks where designation='" + arg1 + "'"));
+    query.exec(QString("select id from tasks where designation='" + util::apos(arg1) + "'"));
     if (query.first())
     {
         idPhase = query.value(0).toString();
@@ -205,14 +205,6 @@ void Dialog_taches::on_comboBox_phasesCultures_currentIndexChanged(const QString
 void Dialog_taches::init_base()
 {   /***********************initialisation des bases de données sqlite******************/
     QSqlQuery query;
-
-    /* QSqlQueryModel *modelTaches = new QSqlQueryModel;
-     *
-     * modelTaches->setQuery(
-     *  "SELECT designation FROM tasks ORDER BY id ASC");
-     * ui->comboBox_Taches->setModel(modelTaches);*/
-
-
 
     QSqlQueryModel *modelPhases = new QSqlQueryModel;
 
@@ -235,6 +227,12 @@ void Dialog_taches::init_base()
             designation_phase_parent = query.value(0).toString();
             ui->comboBox_phasesCultures->setCurrentText(designation_phase_parent);
         }
+    }
+    else
+    {
+        qDebug() << "erreur query designation_phase_parent:" << query.lastError().text() << "  " <<
+            query.lastError().databaseText() <<
+            query.lastQuery().toUtf8();
     }
 
     QSqlQueryModel *modelTypedetaches = new QSqlQueryModel;
@@ -282,7 +280,6 @@ void Dialog_taches::init_base()
     {
         qWarning("ne peut récupérer la valeur designation culture et parcelle");
     }
-    int largeur = ui->tableView_Ressources->geometry().width();
     ui->tableView_Ressources->setColumnWidth(0, 100);
     ui->tableView_Ressources->setColumnWidth(1, 350);
     calculer();
@@ -536,7 +533,7 @@ void Dialog_taches::on_pushButton_Supprimer_clicked()
 {
     //remplacement de l'id de la tache precedente de la tâche à supprimer dans les tâches qui la suivent
     QString   tacheActive  = ui->lineEdit_idtache->text();
-    QString   designation  = ui->comboBox_Taches->currentText();
+    QString   designation  = util::apos(ui->comboBox_Taches->currentText());
     QString   id_precedent = ui->lineEditIdTachePrecedente->text();
     QString   id_tache     = ui->lineEdit_idtache->text();
     QSqlQuery query;
@@ -734,35 +731,6 @@ void Dialog_taches::on_lineEdit_Duree_textChanged(const QString&arg1)
 void Dialog_taches::on_spinBox_Avancement_valueChanged(int arg1)
 {
     ui->progressBar_Avancement->setValue(arg1);
-}
-
-void Dialog_taches::on_listView_Ressources_doubleClicked(const QModelIndex&index)
-{   //ouverture de la feuille des ressources correspondant à l'item choisi
-    int     tacheActive    = ui->lineEdit_idtache->text().toInt();
-    QString strdesignation =
-        ui->tableView_Ressources->model()->data(ui->tableView_Ressources->model()->index(index.row(), 0)).toString();
-    QString idRessources;
-
-    QSqlQuery query;
-
-    query.exec(QString("select id from ressources where designation='" + strdesignation + "' ORDER BY id ASC "));
-    if (query.first())
-    {
-        idRessources = query.value(0).toString();
-    }
-    else
-    {
-        qDebug() << "erreur query :" << query.lastError().text() << "  " << query.lastError().databaseText() << query.driver();
-    }
-
-    Dialog_ressources *FicheRessources = new Dialog_ressources(idRessources.toInt(), tacheActive, this);
-    int resultat = FicheRessources->exec();
-
-    if (resultat == QDialog::Accepted)
-    {
-        init_base();
-        ui->comboBox_Taches->setCurrentIndex(tacheActive - 1);
-    }
 }
 
 void Dialog_taches::on_btnRessourcesAdd_clicked()

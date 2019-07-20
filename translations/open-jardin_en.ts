@@ -864,67 +864,67 @@ Confirm removal of the crop</translation>
     </message>
     <message>
         <location filename="../dialogs/dialog_moyens.ui" line="48"/>
-        <location filename="../dialogs/dialog_moyens.ui" line="169"/>
+        <location filename="../dialogs/dialog_moyens.ui" line="172"/>
         <source>1</source>
         <translation>1</translation>
     </message>
     <message>
-        <location filename="../dialogs/dialog_moyens.ui" line="111"/>
+        <location filename="../dialogs/dialog_moyens.ui" line="114"/>
         <source>MOYENS</source>
         <translation>MEANS</translation>
     </message>
     <message>
-        <location filename="../dialogs/dialog_moyens.ui" line="121"/>
+        <location filename="../dialogs/dialog_moyens.ui" line="124"/>
         <source>...</source>
         <translation>...</translation>
     </message>
     <message>
-        <location filename="../dialogs/dialog_moyens.ui" line="140"/>
+        <location filename="../dialogs/dialog_moyens.ui" line="143"/>
         <source>Commentaires</source>
         <translation>Comments</translation>
     </message>
     <message>
-        <location filename="../dialogs/dialog_moyens.ui" line="147"/>
+        <location filename="../dialogs/dialog_moyens.ui" line="150"/>
         <source>Désignation</source>
         <translation>Designation</translation>
     </message>
     <message>
-        <location filename="../dialogs/dialog_moyens.ui" line="154"/>
+        <location filename="../dialogs/dialog_moyens.ui" line="157"/>
         <source>Type de moyen</source>
         <translation>Type of means</translation>
     </message>
     <message>
-        <location filename="../dialogs/dialog_moyens.ui" line="215"/>
+        <location filename="../dialogs/dialog_moyens.ui" line="218"/>
         <source>Coordonnées</source>
         <translation>Contact info</translation>
     </message>
     <message>
-        <location filename="../dialogs/dialog_moyens.ui" line="227"/>
+        <location filename="../dialogs/dialog_moyens.ui" line="230"/>
         <source>Unité :</source>
         <translation>Units:</translation>
     </message>
     <message>
-        <location filename="../dialogs/dialog_moyens.ui" line="252"/>
+        <location filename="../dialogs/dialog_moyens.ui" line="255"/>
         <source>Coût unitaire</source>
         <translation>Unit cost </translation>
     </message>
     <message>
-        <location filename="../dialogs/dialog_moyens.ui" line="276"/>
+        <location filename="../dialogs/dialog_moyens.ui" line="279"/>
         <source>Nouveau moyen</source>
         <translation>New means</translation>
     </message>
     <message>
-        <location filename="../dialogs/dialog_moyens.ui" line="287"/>
+        <location filename="../dialogs/dialog_moyens.ui" line="290"/>
         <source>Supprimer</source>
         <translation>Delete</translation>
     </message>
     <message>
-        <location filename="../dialogs/dialog_moyens.ui" line="298"/>
+        <location filename="../dialogs/dialog_moyens.ui" line="301"/>
         <source>Valider</source>
         <translation>validate</translation>
     </message>
     <message>
-        <location filename="../dialogs/dialog_moyens.ui" line="309"/>
+        <location filename="../dialogs/dialog_moyens.ui" line="312"/>
         <source>Annuler</source>
         <translation>Cancel</translation>
     </message>
@@ -1091,7 +1091,7 @@ Confirm deletion of the form?</translation>
         <location filename="../dialogs/dialog_ressources.cpp" line="196"/>
         <location filename="../dialogs/dialog_ressources.cpp" line="278"/>
         <location filename="../dialogs/dialog_ressources.cpp" line="301"/>
-        <location filename="../dialogs/dialog_ressources.cpp" line="522"/>
+        <location filename="../dialogs/dialog_ressources.cpp" line="515"/>
         <source>Erreur d&apos;enregistrement</source>
         <translation>Error of recording</translation>
     </message>
@@ -1113,45 +1113,45 @@ Confirm deletion of the form?</translation>
         <translation>Modification of the resource taken into account</translation>
     </message>
     <message>
-        <location filename="../dialogs/dialog_ressources.cpp" line="431"/>
-        <location filename="../dialogs/dialog_ressources.cpp" line="452"/>
+        <location filename="../dialogs/dialog_ressources.cpp" line="424"/>
+        <location filename="../dialogs/dialog_ressources.cpp" line="445"/>
         <source>Pas de moyen sélectionné</source>
         <translation>no means selected</translation>
     </message>
     <message>
-        <location filename="../dialogs/dialog_ressources.cpp" line="432"/>
+        <location filename="../dialogs/dialog_ressources.cpp" line="425"/>
         <source>Veuillez choisir un moyen avant de le supprimer svp !</source>
         <translation>Please choose a means before you delete it!</translation>
     </message>
     <message>
-        <location filename="../dialogs/dialog_ressources.cpp" line="453"/>
+        <location filename="../dialogs/dialog_ressources.cpp" line="446"/>
         <source>Veuillez choisir un moyen avant de l&apos;éditer svp !</source>
         <translation>Please choose a means before editing it please. !</translation>
     </message>
     <message>
-        <location filename="../dialogs/dialog_ressources.cpp" line="523"/>
+        <location filename="../dialogs/dialog_ressources.cpp" line="516"/>
         <source>Veuillez choisir un moyen avant de valider svp !</source>
         <translation>Please choose a means before validate it please.!</translation>
     </message>
     <message>
-        <location filename="../dialogs/dialog_ressources.cpp" line="561"/>
+        <location filename="../dialogs/dialog_ressources.cpp" line="554"/>
         <source>Suppression</source>
         <translation>Deleting </translation>
     </message>
     <message>
-        <location filename="../dialogs/dialog_ressources.cpp" line="562"/>
+        <location filename="../dialogs/dialog_ressources.cpp" line="555"/>
         <source>Cette fiche peut être supprimer.
 Confirmer la suppression de la fiche?</source>
         <translation>This form can be deleted. 
 Confirm deletion of the form?</translation>
     </message>
     <message>
-        <location filename="../dialogs/dialog_ressources.cpp" line="599"/>
+        <location filename="../dialogs/dialog_ressources.cpp" line="592"/>
         <source>Pas de ressource sélectionnée</source>
         <translation>no resource selected</translation>
     </message>
     <message>
-        <location filename="../dialogs/dialog_ressources.cpp" line="600"/>
+        <location filename="../dialogs/dialog_ressources.cpp" line="593"/>
         <source>Veuillez choisir une ressource avant de le supprimer svp !</source>
         <translation>Please choose a means before you delete it !</translation>
     </message>
@@ -1299,81 +1299,81 @@ Confirm deletion of the form?</translation>
         <translation>Belongs to the phase:</translation>
     </message>
     <message>
-        <location filename="../dialogs/dialog_taches.ui" line="650"/>
+        <location filename="../dialogs/dialog_taches.ui" line="653"/>
         <source>PHASES DE CULTURE</source>
         <translation>PHASES OF CULTURE </translation>
     </message>
     <message>
-        <location filename="../dialogs/dialog_taches.ui" line="676"/>
+        <location filename="../dialogs/dialog_taches.ui" line="679"/>
         <source>TACHES </source>
         <translation>TASKS</translation>
     </message>
     <message>
-        <location filename="../dialogs/dialog_taches.ui" line="709"/>
+        <location filename="../dialogs/dialog_taches.ui" line="712"/>
         <source>Nouvelle tâche</source>
         <translation>New task</translation>
     </message>
     <message>
-        <location filename="../dialogs/dialog_taches.ui" line="720"/>
+        <location filename="../dialogs/dialog_taches.ui" line="723"/>
         <source>Supprimer</source>
         <translation>Delete</translation>
     </message>
     <message>
-        <location filename="../dialogs/dialog_taches.ui" line="731"/>
+        <location filename="../dialogs/dialog_taches.ui" line="734"/>
         <source>Cloturer</source>
         <translation>Close</translation>
     </message>
     <message>
-        <location filename="../dialogs/dialog_taches.ui" line="738"/>
+        <location filename="../dialogs/dialog_taches.ui" line="741"/>
         <source>Valider</source>
         <translation>validate</translation>
     </message>
     <message>
-        <location filename="../dialogs/dialog_taches.ui" line="749"/>
+        <location filename="../dialogs/dialog_taches.ui" line="752"/>
         <source>Fermer</source>
         <translation>Close</translation>
     </message>
     <message>
-        <location filename="../dialogs/dialog_taches.cpp" line="548"/>
+        <location filename="../dialogs/dialog_taches.cpp" line="545"/>
         <source>Suppression</source>
         <translation>Deleting </translation>
     </message>
     <message>
-        <location filename="../dialogs/dialog_taches.cpp" line="549"/>
+        <location filename="../dialogs/dialog_taches.cpp" line="546"/>
         <source>Cette fiche peut être supprimer.
 Confirmer la suppression de la fiche?</source>
         <translation>This form can be deleted. 
 Confirm deletion of the form?</translation>
     </message>
     <message>
-        <location filename="../dialogs/dialog_taches.cpp" line="587"/>
+        <location filename="../dialogs/dialog_taches.cpp" line="584"/>
         <source>Pas de tâche sélectionnée</source>
         <translation>no task selected</translation>
     </message>
     <message>
-        <location filename="../dialogs/dialog_taches.cpp" line="588"/>
+        <location filename="../dialogs/dialog_taches.cpp" line="585"/>
         <source>Veuillez choisir une tâche avant de le supprimer svp !</source>
         <translation>Please choose a task before you delete it !</translation>
     </message>
     <message>
-        <location filename="../dialogs/dialog_taches.cpp" line="669"/>
-        <location filename="../dialogs/dialog_taches.cpp" line="694"/>
+        <location filename="../dialogs/dialog_taches.cpp" line="666"/>
+        <location filename="../dialogs/dialog_taches.cpp" line="691"/>
         <source>Erreur d&apos;enregistrement</source>
         <translation>Error of recording</translation>
     </message>
     <message>
-        <location filename="../dialogs/dialog_taches.cpp" line="670"/>
-        <location filename="../dialogs/dialog_taches.cpp" line="695"/>
+        <location filename="../dialogs/dialog_taches.cpp" line="667"/>
+        <location filename="../dialogs/dialog_taches.cpp" line="692"/>
         <source>Veuillez vérifier que tous les champs soient bien remplis</source>
         <translation>Please check that all fields are full</translation>
     </message>
     <message>
-        <location filename="../dialogs/dialog_taches.cpp" line="839"/>
+        <location filename="../dialogs/dialog_taches.cpp" line="807"/>
         <source>Pas de ressource sélectionnée</source>
         <translation>no resource selected</translation>
     </message>
     <message>
-        <location filename="../dialogs/dialog_taches.cpp" line="840"/>
+        <location filename="../dialogs/dialog_taches.cpp" line="808"/>
         <source>Veuillez choisir une ressource avant de l&apos;éditer svp !</source>
         <translation>Please choose a resource before editing it please.!</translation>
     </message>
@@ -1576,76 +1576,76 @@ Confirm deletion of the form?</translation>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#00aa00;&quot;&gt;PLANTS VARIETY SHEET&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/fiche_plantes.ui" line="461"/>
+        <location filename="../dialogs/fiche_plantes.ui" line="630"/>
         <source>Positif</source>
         <translation>Positive</translation>
     </message>
     <message>
-        <location filename="../dialogs/fiche_plantes.ui" line="487"/>
+        <location filename="../dialogs/fiche_plantes.ui" line="656"/>
         <source>Négatif</source>
         <translation>Negative</translation>
     </message>
     <message>
-        <location filename="../dialogs/fiche_plantes.ui" line="508"/>
-        <location filename="../dialogs/fiche_plantes.ui" line="1657"/>
+        <location filename="../dialogs/fiche_plantes.ui" line="757"/>
+        <location filename="../dialogs/fiche_plantes.ui" line="1649"/>
         <source>Famille</source>
         <translation>Family</translation>
     </message>
     <message>
-        <location filename="../dialogs/fiche_plantes.ui" line="518"/>
+        <location filename="../dialogs/fiche_plantes.ui" line="719"/>
         <source>Type de plante</source>
         <translation>Kind plant</translation>
     </message>
     <message>
-        <location filename="../dialogs/fiche_plantes.ui" line="532"/>
+        <location filename="../dialogs/fiche_plantes.ui" line="576"/>
         <source>Feuilles</source>
         <translation>Leaves</translation>
     </message>
     <message>
-        <location filename="../dialogs/fiche_plantes.ui" line="537"/>
+        <location filename="../dialogs/fiche_plantes.ui" line="581"/>
         <source>Fleurs</source>
         <translation>Flowers</translation>
     </message>
     <message>
-        <location filename="../dialogs/fiche_plantes.ui" line="542"/>
+        <location filename="../dialogs/fiche_plantes.ui" line="586"/>
         <source>Racines</source>
         <translation>Roots</translation>
     </message>
     <message>
-        <location filename="../dialogs/fiche_plantes.ui" line="547"/>
+        <location filename="../dialogs/fiche_plantes.ui" line="591"/>
         <source>Fruits-graines</source>
         <translation>Fruits - seeds</translation>
     </message>
     <message>
-        <location filename="../dialogs/fiche_plantes.ui" line="558"/>
+        <location filename="../dialogs/fiche_plantes.ui" line="427"/>
         <source>Nom scientifique</source>
         <translation>Scientific name</translation>
     </message>
     <message>
-        <location filename="../dialogs/fiche_plantes.ui" line="635"/>
-        <location filename="../dialogs/fiche_plantes.ui" line="1803"/>
+        <location filename="../dialogs/fiche_plantes.ui" line="779"/>
+        <location filename="../dialogs/fiche_plantes.ui" line="1795"/>
         <source>Commentaires</source>
         <translation>Comments</translation>
     </message>
     <message>
-        <location filename="../dialogs/fiche_plantes.ui" line="654"/>
+        <location filename="../dialogs/fiche_plantes.ui" line="709"/>
         <source>Espèce</source>
         <translation>Species</translation>
     </message>
     <message>
-        <location filename="../dialogs/fiche_plantes.ui" line="692"/>
-        <location filename="../dialogs/fiche_plantes.ui" line="1796"/>
-        <location filename="../dialogs/fiche_plantes.ui" line="2306"/>
+        <location filename="../dialogs/fiche_plantes.ui" line="472"/>
+        <location filename="../dialogs/fiche_plantes.ui" line="1788"/>
+        <location filename="../dialogs/fiche_plantes.ui" line="2298"/>
         <source>Enregistrement N°</source>
         <translation>Record N°</translation>
     </message>
     <message>
-        <location filename="../dialogs/fiche_plantes.ui" line="731"/>
+        <location filename="../dialogs/fiche_plantes.ui" line="543"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Associations &lt;span style=&quot; color:#0055ff;&quot;&gt;positives&lt;/span&gt; / &lt;span style=&quot; color:#ff0000;&quot;&gt;négatives&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Associations &lt;span style=&quot; color:#0055ff;&quot;&gt;positives&lt;/span&gt; / &lt;span style=&quot; color:#ff0000;&quot;&gt;negatives&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/fiche_plantes.ui" line="782"/>
+        <location filename="../dialogs/fiche_plantes.ui" line="741"/>
         <source>Désignation variété</source>
         <translation>Name of the variety</translation>
     </message>
@@ -1656,8 +1656,8 @@ Confirm deletion of the form?</translation>
     </message>
     <message>
         <location filename="../dialogs/fiche_plantes.ui" line="1515"/>
-        <location filename="../dialogs/fiche_plantes.ui" line="1919"/>
-        <location filename="../dialogs/fiche_plantes.ui" line="2322"/>
+        <location filename="../dialogs/fiche_plantes.ui" line="1911"/>
+        <location filename="../dialogs/fiche_plantes.ui" line="2314"/>
         <source>Supprimer</source>
         <translation>Delete</translation>
     </message>
@@ -1667,12 +1667,11 @@ Confirm deletion of the form?</translation>
         <translation>Blank form</translation>
     </message>
     <message>
-        <location filename="../dialogs/fiche_plantes.ui" line="1559"/>
         <source>Enregistrer une nouvelle fiche</source>
-        <translation>Save new form</translation>
+        <translation type="vanished">Save new form</translation>
     </message>
     <message>
-        <location filename="../dialogs/fiche_plantes.ui" line="1572"/>
+        <location filename="../dialogs/fiche_plantes.ui" line="1564"/>
         <source>Fermer et Valider le choix</source>
         <translation>Close and validate the choice</translation>
     </message>
@@ -1688,79 +1687,79 @@ Confirm deletion of the form?</translation>
     </message>
     <message>
         <location filename="../dialogs/fiche_plantes.ui" line="192"/>
-        <location filename="../dialogs/fiche_plantes.ui" line="2048"/>
+        <location filename="../dialogs/fiche_plantes.ui" line="2040"/>
         <source>FAVORABLE</source>
         <translation>POSITIVE</translation>
     </message>
     <message>
         <location filename="../dialogs/fiche_plantes.ui" line="197"/>
-        <location filename="../dialogs/fiche_plantes.ui" line="2053"/>
+        <location filename="../dialogs/fiche_plantes.ui" line="2045"/>
         <source>A EVITER</source>
         <translation>To avoid</translation>
     </message>
     <message>
         <location filename="../dialogs/fiche_plantes.ui" line="202"/>
-        <location filename="../dialogs/fiche_plantes.ui" line="2058"/>
+        <location filename="../dialogs/fiche_plantes.ui" line="2050"/>
         <source>APIACEES</source>
         <translation>APIACEES</translation>
     </message>
     <message>
         <location filename="../dialogs/fiche_plantes.ui" line="219"/>
-        <location filename="../dialogs/fiche_plantes.ui" line="2075"/>
+        <location filename="../dialogs/fiche_plantes.ui" line="2067"/>
         <source>ASTERACEES</source>
         <translation>ASTERACEES</translation>
     </message>
     <message>
         <location filename="../dialogs/fiche_plantes.ui" line="236"/>
-        <location filename="../dialogs/fiche_plantes.ui" line="2092"/>
+        <location filename="../dialogs/fiche_plantes.ui" line="2084"/>
         <source>BRASSICACEES</source>
         <translation>BRASSICACEES</translation>
     </message>
     <message>
         <location filename="../dialogs/fiche_plantes.ui" line="253"/>
-        <location filename="../dialogs/fiche_plantes.ui" line="2109"/>
+        <location filename="../dialogs/fiche_plantes.ui" line="2101"/>
         <source>CHENOPODACEES</source>
         <translation>CHENOPODIACEES</translation>
     </message>
     <message>
         <location filename="../dialogs/fiche_plantes.ui" line="270"/>
-        <location filename="../dialogs/fiche_plantes.ui" line="2126"/>
+        <location filename="../dialogs/fiche_plantes.ui" line="2118"/>
         <source>CUCURBITACEES</source>
         <translation>CUCURBITACEES</translation>
     </message>
     <message>
         <location filename="../dialogs/fiche_plantes.ui" line="287"/>
-        <location filename="../dialogs/fiche_plantes.ui" line="2143"/>
+        <location filename="../dialogs/fiche_plantes.ui" line="2135"/>
         <source>FABACEES</source>
         <translation>FABACEES</translation>
     </message>
     <message>
         <location filename="../dialogs/fiche_plantes.ui" line="304"/>
-        <location filename="../dialogs/fiche_plantes.ui" line="2160"/>
+        <location filename="../dialogs/fiche_plantes.ui" line="2152"/>
         <source>ALLIACEES</source>
         <translation>ALLIACEES</translation>
     </message>
     <message>
         <location filename="../dialogs/fiche_plantes.ui" line="321"/>
-        <location filename="../dialogs/fiche_plantes.ui" line="2177"/>
+        <location filename="../dialogs/fiche_plantes.ui" line="2169"/>
         <source>POACEES</source>
         <translation>POACEES</translation>
     </message>
     <message>
         <location filename="../dialogs/fiche_plantes.ui" line="338"/>
-        <location filename="../dialogs/fiche_plantes.ui" line="2194"/>
+        <location filename="../dialogs/fiche_plantes.ui" line="2186"/>
         <source>SOLANACEES</source>
         <translation>SOLANACEES</translation>
     </message>
     <message>
         <location filename="../dialogs/fiche_plantes.ui" line="355"/>
-        <location filename="../dialogs/fiche_plantes.ui" line="2211"/>
+        <location filename="../dialogs/fiche_plantes.ui" line="2203"/>
         <source>VALERIANACEES</source>
         <translation>VALERIANACEES</translation>
     </message>
     <message>
         <location filename="../dialogs/fiche_plantes.ui" line="372"/>
-        <location filename="../dialogs/fiche_plantes.ui" line="2228"/>
+        <location filename="../dialogs/fiche_plantes.ui" line="2220"/>
         <source>AUTRES</source>
         <translation>OTHERS</translation>
     </message>
@@ -1883,146 +1882,151 @@ Confirm deletion of the form?</translation>
         <translation>Seeding and harvests periods</translation>
     </message>
     <message>
-        <location filename="../dialogs/fiche_plantes.ui" line="1581"/>
+        <location filename="../dialogs/fiche_plantes.ui" line="1547"/>
+        <source>Enregistrer une nouvelle variété</source>
+        <translation>record a new variety</translation>
+    </message>
+    <message>
+        <location filename="../dialogs/fiche_plantes.ui" line="1573"/>
         <source>Espèces</source>
         <translation>Species</translation>
     </message>
     <message>
-        <location filename="../dialogs/fiche_plantes.ui" line="1600"/>
+        <location filename="../dialogs/fiche_plantes.ui" line="1592"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#00aa00;&quot;&gt;FICHE DES ESPECES&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#00aa00;&quot;&gt;SPECIES SHEET&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/fiche_plantes.ui" line="1623"/>
+        <location filename="../dialogs/fiche_plantes.ui" line="1615"/>
         <source>Liste des espèces</source>
         <translation>List of the species</translation>
     </message>
     <message>
-        <location filename="../dialogs/fiche_plantes.ui" line="1650"/>
+        <location filename="../dialogs/fiche_plantes.ui" line="1642"/>
         <source>Apports en fumure/compost nécessaires</source>
         <translation>Necessary contributions in compost</translation>
     </message>
     <message>
-        <location filename="../dialogs/fiche_plantes.ui" line="1671"/>
+        <location filename="../dialogs/fiche_plantes.ui" line="1663"/>
         <source>FACTEURS DE ROTATION</source>
         <translation>Factors of crop rotation</translation>
     </message>
     <message>
-        <location filename="../dialogs/fiche_plantes.ui" line="1704"/>
+        <location filename="../dialogs/fiche_plantes.ui" line="1696"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;Associations négatives&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;Associations negatives&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/fiche_plantes.ui" line="1743"/>
-        <location filename="../dialogs/fiche_plantes.ui" line="2280"/>
+        <location filename="../dialogs/fiche_plantes.ui" line="1735"/>
+        <location filename="../dialogs/fiche_plantes.ui" line="2272"/>
         <source>Désignation</source>
         <translation>Designation</translation>
     </message>
     <message>
-        <location filename="../dialogs/fiche_plantes.ui" line="1779"/>
+        <location filename="../dialogs/fiche_plantes.ui" line="1771"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; color:#00aaff;&quot;&gt;Associations positives&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; color:#00aaff;&quot;&gt;Associations positives&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/fiche_plantes.ui" line="1810"/>
+        <location filename="../dialogs/fiche_plantes.ui" line="1802"/>
         <source>Nb d&apos;années avant retour sur la parcelle : </source>
         <translation>Nb of years before return on the plot of land:</translation>
     </message>
     <message>
-        <location filename="../dialogs/fiche_plantes.ui" line="1818"/>
+        <location filename="../dialogs/fiche_plantes.ui" line="1810"/>
         <source>Peu d&apos;importance</source>
         <translation>low priority</translation>
     </message>
     <message>
-        <location filename="../dialogs/fiche_plantes.ui" line="1823"/>
+        <location filename="../dialogs/fiche_plantes.ui" line="1815"/>
         <source>1 an</source>
         <translation>1 year</translation>
     </message>
     <message>
-        <location filename="../dialogs/fiche_plantes.ui" line="1828"/>
+        <location filename="../dialogs/fiche_plantes.ui" line="1820"/>
         <source>2 ans</source>
         <translation>2 years</translation>
     </message>
     <message>
-        <location filename="../dialogs/fiche_plantes.ui" line="1833"/>
+        <location filename="../dialogs/fiche_plantes.ui" line="1825"/>
         <source>3 ans</source>
         <translation>3 years</translation>
     </message>
     <message>
-        <location filename="../dialogs/fiche_plantes.ui" line="1838"/>
+        <location filename="../dialogs/fiche_plantes.ui" line="1830"/>
         <source>4 ans</source>
         <translation>4 years</translation>
     </message>
     <message>
-        <location filename="../dialogs/fiche_plantes.ui" line="1843"/>
+        <location filename="../dialogs/fiche_plantes.ui" line="1835"/>
         <source>5 ans</source>
         <translation>5 years</translation>
     </message>
     <message>
-        <location filename="../dialogs/fiche_plantes.ui" line="1848"/>
+        <location filename="../dialogs/fiche_plantes.ui" line="1840"/>
         <source>6 ans</source>
         <translation>6 years</translation>
     </message>
     <message>
-        <location filename="../dialogs/fiche_plantes.ui" line="1853"/>
+        <location filename="../dialogs/fiche_plantes.ui" line="1845"/>
         <source>7 ans</source>
         <translation>7 years</translation>
     </message>
     <message>
-        <location filename="../dialogs/fiche_plantes.ui" line="1862"/>
+        <location filename="../dialogs/fiche_plantes.ui" line="1854"/>
         <source>Aucun</source>
         <translation>none</translation>
     </message>
     <message>
-        <location filename="../dialogs/fiche_plantes.ui" line="1867"/>
+        <location filename="../dialogs/fiche_plantes.ui" line="1859"/>
         <source>Faibles</source>
         <translation>Low</translation>
     </message>
     <message>
-        <location filename="../dialogs/fiche_plantes.ui" line="1872"/>
+        <location filename="../dialogs/fiche_plantes.ui" line="1864"/>
         <source>Moyens</source>
         <translation>average</translation>
     </message>
     <message>
-        <location filename="../dialogs/fiche_plantes.ui" line="1877"/>
+        <location filename="../dialogs/fiche_plantes.ui" line="1869"/>
         <source>Importants</source>
         <translation>Importants</translation>
     </message>
     <message>
-        <location filename="../dialogs/fiche_plantes.ui" line="1906"/>
-        <location filename="../dialogs/fiche_plantes.ui" line="2315"/>
+        <location filename="../dialogs/fiche_plantes.ui" line="1898"/>
+        <location filename="../dialogs/fiche_plantes.ui" line="2307"/>
         <source>Enregister modifications</source>
         <translation>Save changes</translation>
     </message>
     <message>
-        <location filename="../dialogs/fiche_plantes.ui" line="1932"/>
-        <location filename="../dialogs/fiche_plantes.ui" line="2329"/>
+        <location filename="../dialogs/fiche_plantes.ui" line="1924"/>
+        <location filename="../dialogs/fiche_plantes.ui" line="2321"/>
         <source>Nouveau</source>
         <translation>New</translation>
     </message>
     <message>
-        <location filename="../dialogs/fiche_plantes.ui" line="1945"/>
-        <location filename="../dialogs/fiche_plantes.ui" line="2336"/>
+        <location filename="../dialogs/fiche_plantes.ui" line="1937"/>
+        <location filename="../dialogs/fiche_plantes.ui" line="2328"/>
         <source>Enregistrer nouvelle fiche</source>
         <translation>Save new form</translation>
     </message>
     <message>
-        <location filename="../dialogs/fiche_plantes.ui" line="1973"/>
+        <location filename="../dialogs/fiche_plantes.ui" line="1965"/>
         <source>ROTATION DES CULTURES</source>
         <translation>Crops rotation</translation>
     </message>
     <message>
-        <location filename="../dialogs/fiche_plantes.ui" line="2002"/>
+        <location filename="../dialogs/fiche_plantes.ui" line="1994"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#000000;&quot;&gt;(Aspects &lt;/span&gt;&lt;span style=&quot; color:#00aa00;&quot;&gt;favorables&lt;/span&gt;&lt;span style=&quot; color:#000000;&quot;&gt; ou &lt;/span&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;défavorables&lt;/span&gt;&lt;span style=&quot; color:#000000;&quot;&gt; de la famille de la culture précédente)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#000000;&quot;&gt;(Aspects &lt;/span&gt;&lt;span style=&quot; color:#00aa00;&quot;&gt;positives&lt;/span&gt;&lt;span style=&quot; color:#000000;&quot;&gt; or &lt;/span&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;to avoid&lt;/span&gt;&lt;span style=&quot; color:#000000;&quot;&gt; of theprevious crop family )&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/fiche_plantes.ui" line="2262"/>
+        <location filename="../dialogs/fiche_plantes.ui" line="2254"/>
         <source>Familles</source>
         <translation>family</translation>
     </message>
     <message>
-        <location filename="../dialogs/fiche_plantes.ui" line="2377"/>
+        <location filename="../dialogs/fiche_plantes.ui" line="2369"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#00aa00;&quot;&gt;FICHE DES FAMILLES&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#00aa00;&quot;&gt;FAMILY SHEET&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
@@ -3370,9 +3374,9 @@ la traduction &lt;http://www.gnu.org/licenses/why-not-lgpl.fr.html&gt;
         <translation type="vanished">Show crop sheet</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2849"/>
-        <location filename="../mainwindow.ui" line="2852"/>
-        <location filename="../mainwindow.ui" line="2855"/>
+        <location filename="../mainwindow.ui" line="2871"/>
+        <location filename="../mainwindow.ui" line="2874"/>
+        <location filename="../mainwindow.ui" line="2877"/>
         <source>Enregistrer</source>
         <translation>Record</translation>
     </message>
@@ -3747,127 +3751,142 @@ la traduction &lt;http://www.gnu.org/licenses/why-not-lgpl.fr.html&gt;
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1363"/>
-        <location filename="../mainwindow.ui" line="2161"/>
+        <location filename="../mainwindow.ui" line="2203"/>
         <source>2017</source>
         <translation>2017</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1368"/>
-        <location filename="../mainwindow.ui" line="2166"/>
+        <location filename="../mainwindow.ui" line="2208"/>
         <source>2018</source>
         <translation>2018</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1373"/>
-        <location filename="../mainwindow.ui" line="2171"/>
+        <location filename="../mainwindow.ui" line="2213"/>
         <source>2019</source>
         <translation>2019</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1378"/>
-        <location filename="../mainwindow.ui" line="2176"/>
+        <location filename="../mainwindow.ui" line="2218"/>
         <source>2020</source>
         <translation>2020</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1383"/>
-        <location filename="../mainwindow.ui" line="2181"/>
+        <location filename="../mainwindow.ui" line="2223"/>
         <source>2021</source>
         <translation>2021</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1388"/>
-        <location filename="../mainwindow.ui" line="2186"/>
+        <location filename="../mainwindow.ui" line="2228"/>
         <source>2022</source>
         <translation>2022</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1393"/>
-        <location filename="../mainwindow.ui" line="2191"/>
+        <location filename="../mainwindow.ui" line="2233"/>
         <source>2023</source>
         <translation>2023</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1398"/>
-        <location filename="../mainwindow.ui" line="2196"/>
+        <location filename="../mainwindow.ui" line="2238"/>
         <source>2024</source>
         <translation>2024</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1403"/>
-        <location filename="../mainwindow.ui" line="2201"/>
+        <location filename="../mainwindow.ui" line="2243"/>
         <source>2025</source>
         <translation>2025</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1408"/>
-        <location filename="../mainwindow.ui" line="2206"/>
+        <location filename="../mainwindow.ui" line="2248"/>
         <source>2026</source>
         <translation>2026</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1413"/>
-        <location filename="../mainwindow.ui" line="2211"/>
+        <location filename="../mainwindow.ui" line="2253"/>
         <source>2027</source>
         <translation>2027</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1418"/>
-        <location filename="../mainwindow.ui" line="2216"/>
+        <location filename="../mainwindow.ui" line="2258"/>
         <source>2028</source>
         <translation>2028</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1423"/>
-        <location filename="../mainwindow.ui" line="2221"/>
+        <location filename="../mainwindow.ui" line="2263"/>
         <source>2029</source>
         <translation>2029</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1428"/>
-        <location filename="../mainwindow.ui" line="2226"/>
+        <location filename="../mainwindow.ui" line="2268"/>
         <source>2030</source>
         <translation>2030</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="3178"/>
+        <location filename="../mainwindow.ui" line="1884"/>
+        <source>Glisser pour modifier la largeur</source>
+        <translation>Drag to change the width</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="2054"/>
+        <source>Pour élargir cette liste -&gt;</source>
+        <translation>To expand this list -&gt;</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="3200"/>
         <source>Configuration </source>
         <translation>Configuration</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="3197"/>
+        <location filename="../mainwindow.ui" line="3219"/>
         <source>Ouvrir fiche Taches</source>
         <translation>Open the tasks form</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="3202"/>
+        <location filename="../mainwindow.ui" line="3224"/>
         <source>Ouvrir fiche Ressources</source>
         <translation>Open the resources form</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="3207"/>
+        <location filename="../mainwindow.ui" line="3229"/>
         <source>Ouvrir fiche Moyens</source>
         <translation>open the means form</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="3212"/>
+        <location filename="../mainwindow.ui" line="3234"/>
         <source>Ouvrir fiche Coordonnées</source>
         <translation>Open the contact form</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="3217"/>
+        <location filename="../mainwindow.ui" line="3239"/>
         <source>Ouvrir fiche Type de Moyens</source>
         <translation>open the type of means form</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="3222"/>
+        <location filename="../mainwindow.ui" line="3248"/>
         <source>Enregistrer sous</source>
         <translation>Save as </translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="3227"/>
+        <location filename="../mainwindow.ui" line="3253"/>
         <source>Nouveau projet</source>
         <translation>New project</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="3258"/>
+        <source>Afficher la notice PDF</source>
+        <translation>Show the pdf manual</translation>
     </message>
     <message>
         <source>Ouvrir la fiche culture de la parcelle sélectionnée</source>
@@ -3901,99 +3920,98 @@ la traduction &lt;http://www.gnu.org/licenses/why-not-lgpl.fr.html&gt;
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1675"/>
-        <location filename="../mainwindow.ui" line="2330"/>
+        <location filename="../mainwindow.ui" line="2350"/>
         <source>APIACEES</source>
         <translation>APIACEAE</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1692"/>
-        <location filename="../mainwindow.ui" line="2347"/>
+        <location filename="../mainwindow.ui" line="2367"/>
         <source>ASTERACEES</source>
         <translation>ASTERACEAE</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1709"/>
-        <location filename="../mainwindow.ui" line="2364"/>
+        <location filename="../mainwindow.ui" line="2384"/>
         <source>BRASSICACEES</source>
         <translation>BRASSICACEAE</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1726"/>
-        <location filename="../mainwindow.ui" line="2381"/>
+        <location filename="../mainwindow.ui" line="2401"/>
         <source>CHENOPODACEES</source>
         <translation>CHENOPODIACEAE</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1743"/>
-        <location filename="../mainwindow.ui" line="2398"/>
+        <location filename="../mainwindow.ui" line="2418"/>
         <source>CUCURBITACEES</source>
         <translation>CUCURBITACEAE</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1760"/>
-        <location filename="../mainwindow.ui" line="2415"/>
+        <location filename="../mainwindow.ui" line="2435"/>
         <source>FABACEES</source>
         <translation>FABACEAE</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1777"/>
-        <location filename="../mainwindow.ui" line="2432"/>
+        <location filename="../mainwindow.ui" line="2452"/>
         <source>ALLIACEES</source>
         <translation>ALLIACEAE</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1794"/>
-        <location filename="../mainwindow.ui" line="2449"/>
+        <location filename="../mainwindow.ui" line="2469"/>
         <source>POACEES</source>
         <translation>POACEAE</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1811"/>
-        <location filename="../mainwindow.ui" line="2466"/>
+        <location filename="../mainwindow.ui" line="2486"/>
         <source>SOLANACEES</source>
         <translation>SOLANACEAE</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1828"/>
-        <location filename="../mainwindow.ui" line="2483"/>
+        <location filename="../mainwindow.ui" line="2503"/>
         <source>VALERIANACEES</source>
         <translation>VALERIANACEAE</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1845"/>
-        <location filename="../mainwindow.ui" line="2500"/>
+        <location filename="../mainwindow.ui" line="2520"/>
         <source>AUTRES</source>
         <translation>OTHERS</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="1949"/>
+        <location filename="../mainwindow.ui" line="1952"/>
         <source>Parcelles</source>
         <translation>Plots</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2112"/>
+        <location filename="../mainwindow.ui" line="2154"/>
         <source>Rotation</source>
         <translation>Crop cropping</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2153"/>
+        <location filename="../mainwindow.ui" line="2195"/>
         <source>Année de démarrage</source>
         <translation>Starting year</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2243"/>
+        <location filename="../mainwindow.ui" line="2285"/>
         <source>Actualiser l&apos;affichage des parcelles</source>
         <translation>Refresh the display of plots</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2246"/>
+        <location filename="../mainwindow.ui" line="2288"/>
         <source>Actualiser</source>
         <translation>Update</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2262"/>
         <source>Date du jour</source>
-        <translation>Current date</translation>
+        <translation type="vanished">Current date</translation>
     </message>
     <message>
         <source>Paramétrage</source>
@@ -4070,27 +4088,27 @@ la traduction &lt;http://www.gnu.org/licenses/why-not-lgpl.fr.html&gt;
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1205"/>
-        <location filename="../mainwindow.ui" line="2971"/>
+        <location filename="../mainwindow.ui" line="2993"/>
         <source>Supprimer</source>
         <translation>Delete</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="3018"/>
+        <location filename="../mainwindow.ui" line="3040"/>
         <source>Mise à jour de la scène</source>
         <translation>Update of the scene</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="3082"/>
+        <location filename="../mainwindow.ui" line="3104"/>
         <source>Mode Création/Modification dans le plan</source>
         <translation>Creation/editing mode in the plan </translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="3097"/>
+        <location filename="../mainwindow.ui" line="3119"/>
         <source>Mode Utilisation du plan</source>
         <translation>Mode using the plan</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="3128"/>
+        <location filename="../mainwindow.ui" line="3150"/>
         <source>Nouveau</source>
         <translation>New</translation>
     </message>
@@ -4319,7 +4337,7 @@ la traduction &lt;http://www.gnu.org/licenses/why-not-lgpl.fr.html&gt;
         <translation type="vanished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#00aa00;&quot;&gt;FAMILY SHEET&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2761"/>
+        <location filename="../mainwindow.ui" line="2782"/>
         <source>Configuration</source>
         <translation>Configuration</translation>
     </message>
@@ -5680,7 +5698,7 @@ The database file (.sqli) that is linked to the configuration file contains :
 - plant family sheets</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2665"/>
+        <location filename="../mainwindow.ui" line="2685"/>
         <source>Objets</source>
         <translation>Objects</translation>
     </message>
@@ -5689,7 +5707,7 @@ The database file (.sqli) that is linked to the configuration file contains :
         <translation type="vanished">Release</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="3173"/>
+        <location filename="../mainwindow.ui" line="3195"/>
         <source>Fiches plantes</source>
         <translation>Plants sheet</translation>
     </message>
@@ -5698,7 +5716,7 @@ The database file (.sqli) that is linked to the configuration file contains :
         <translation type="vanished">Configuration of databases and tasks</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="3183"/>
+        <location filename="../mainwindow.ui" line="3205"/>
         <source>Licences</source>
         <translation>Licenses</translation>
     </message>
@@ -7015,7 +7033,7 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2722"/>
+        <location filename="../mainwindow.ui" line="2742"/>
         <source>Fichier</source>
         <translation>Files</translation>
     </message>
@@ -7544,8 +7562,8 @@ CREATE TABLE &quot;cultures&quot; (
 COMMIT;</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2753"/>
-        <location filename="../mainwindow.ui" line="3055"/>
+        <location filename="../mainwindow.ui" line="2773"/>
+        <location filename="../mainwindow.ui" line="3077"/>
         <source>Aide</source>
         <translation>Help</translation>
     </message>
@@ -7554,54 +7572,54 @@ COMMIT;</translation>
         <translation type="vanished">Modes</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2785"/>
+        <location filename="../mainwindow.ui" line="2806"/>
         <source>Passer l&apos;objet devant</source>
         <translation>Put the object in front</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2834"/>
-        <location filename="../mainwindow.ui" line="2837"/>
-        <location filename="../mainwindow.ui" line="2840"/>
+        <location filename="../mainwindow.ui" line="2856"/>
+        <location filename="../mainwindow.ui" line="2859"/>
+        <location filename="../mainwindow.ui" line="2862"/>
         <source>Ouvrir</source>
         <translation>Open</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2860"/>
-        <location filename="../mainwindow.ui" line="2863"/>
-        <location filename="../mainwindow.ui" line="2866"/>
+        <location filename="../mainwindow.ui" line="2882"/>
+        <location filename="../mainwindow.ui" line="2885"/>
+        <location filename="../mainwindow.ui" line="2888"/>
         <source>Quitter</source>
         <translation>Quit</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2881"/>
-        <location filename="../mainwindow.ui" line="2884"/>
-        <location filename="../mainwindow.ui" line="2887"/>
+        <location filename="../mainwindow.ui" line="2903"/>
+        <location filename="../mainwindow.ui" line="2906"/>
+        <location filename="../mainwindow.ui" line="2909"/>
         <source>Ajouter Parcelle</source>
         <translation>Add plot</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2895"/>
+        <location filename="../mainwindow.ui" line="2917"/>
         <source>Carré</source>
         <translation>Square</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2907"/>
-        <location filename="../mainwindow.ui" line="2910"/>
+        <location filename="../mainwindow.ui" line="2929"/>
+        <location filename="../mainwindow.ui" line="2932"/>
         <source>Ajouter Plante seule</source>
         <translation>Add alone plant</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2913"/>
+        <location filename="../mainwindow.ui" line="2935"/>
         <source>Ajouter Plante</source>
         <translation>Add plant</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2925"/>
+        <location filename="../mainwindow.ui" line="2947"/>
         <source>Ajouter image</source>
         <translation>Add image</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2928"/>
+        <location filename="../mainwindow.ui" line="2950"/>
         <source>Ajouter Image</source>
         <translation>Add image</translation>
     </message>
@@ -7618,18 +7636,18 @@ COMMIT;</translation>
         <translation type="vanished">Paste</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2940"/>
+        <location filename="../mainwindow.ui" line="2962"/>
         <source>Choisir le Fond d&apos;écran</source>
         <translation>Choose the background map</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2945"/>
+        <location filename="../mainwindow.ui" line="2967"/>
         <source>Ajouter icone</source>
         <translation>Add icon</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="1002"/>
-        <location filename="../mainwindow.ui" line="2950"/>
+        <location filename="../mainwindow.ui" line="2972"/>
         <source>Supprimer l&apos;objet sélectionné</source>
         <translation>delete the selected object</translation>
     </message>
@@ -7644,33 +7662,33 @@ COMMIT;</translation>
         <translation> dd/MM/yyyy</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2733"/>
+        <location filename="../mainwindow.ui" line="2753"/>
         <source>Gestion du plan</source>
         <translation>Plan Management</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2768"/>
-        <location filename="../mainwindow.ui" line="3192"/>
+        <location filename="../mainwindow.ui" line="2789"/>
+        <location filename="../mainwindow.ui" line="3214"/>
         <source>Gestion des tâches</source>
         <translation>Tasks management </translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2959"/>
+        <location filename="../mainwindow.ui" line="2981"/>
         <source>Choisir la couleur</source>
         <translation>Choose the color</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2983"/>
+        <location filename="../mainwindow.ui" line="3005"/>
         <source>selectionner tout</source>
         <translation>Select all</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="2992"/>
+        <location filename="../mainwindow.ui" line="3014"/>
         <source>désélectionner tout</source>
         <translation>deselect all</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="3007"/>
+        <location filename="../mainwindow.ui" line="3029"/>
         <source>Modification</source>
         <translation>Modify</translation>
     </message>
@@ -7679,13 +7697,13 @@ COMMIT;</translation>
         <translation type="vanished">Update the screen</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="3030"/>
-        <location filename="../mainwindow.ui" line="3033"/>
+        <location filename="../mainwindow.ui" line="3052"/>
+        <location filename="../mainwindow.ui" line="3055"/>
         <source>Ajouter Matériel</source>
         <translation>Add equipment</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="3045"/>
+        <location filename="../mainwindow.ui" line="3067"/>
         <source>mettre en avant</source>
         <translation>Put forward</translation>
     </message>
@@ -7694,12 +7712,12 @@ COMMIT;</translation>
         <translation type="vanished">put back</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="3050"/>
+        <location filename="../mainwindow.ui" line="3072"/>
         <source>a propos de..</source>
         <translation>About .</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="3064"/>
+        <location filename="../mainwindow.ui" line="3086"/>
         <source>Choisir le type de crayon</source>
         <translation>Choose the pen style</translation>
     </message>
@@ -7712,17 +7730,17 @@ COMMIT;</translation>
         <translation type="vanished">Using</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="3106"/>
+        <location filename="../mainwindow.ui" line="3128"/>
         <source>Cacher le fond d&apos;écran</source>
         <translation>Hide the background</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="3115"/>
+        <location filename="../mainwindow.ui" line="3137"/>
         <source>Afficher le fond d&apos;écran</source>
         <translation>Show the background</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="3120"/>
+        <location filename="../mainwindow.ui" line="3142"/>
         <source>Ouvrir fiche culture</source>
         <translation>Open the crop form</translation>
     </message>
@@ -7731,17 +7749,17 @@ COMMIT;</translation>
         <translation type="vanished">Save as .</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="3137"/>
+        <location filename="../mainwindow.ui" line="3159"/>
         <source>Imprimer le plan</source>
         <translation>Print the map</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="3152"/>
+        <location filename="../mainwindow.ui" line="3174"/>
         <source>Afficher la grille</source>
         <translation>Show the grid</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="3164"/>
+        <location filename="../mainwindow.ui" line="3186"/>
         <source>Cacher la grille</source>
         <translation>Hide the grid</translation>
     </message>
@@ -7750,209 +7768,219 @@ COMMIT;</translation>
         <translation type="vanished">Save the objects</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1291"/>
+        <location filename="../mainwindow.cpp" line="1324"/>
         <source>XML Files (*.xml)</source>
         <translation>XML Files (*.xml)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="607"/>
-        <location filename="../mainwindow.cpp" line="2276"/>
+        <location filename="../mainwindow.cpp" line="638"/>
+        <location filename="../mainwindow.cpp" line="2309"/>
         <source>Ouverture du fichier des objets</source>
         <translation>Open the objects file</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="421"/>
+        <location filename="../mainwindow.cpp" line="326"/>
+        <source>Ce programme est utilisé pour gérer graphiquement les plantations d&apos;un potager.
+il utilise des fichier XML pour la configuration des plans
+et une base sqlite pour les données de culture
+version 1.06.067 license GNU GPL version 3</source>
+        <translation>This program is used to manage graphically the plantations of a garden.
+He uses file XML for the configuration of the maps
+And a database sqlite for the data of crops
+Version1.06.067  license LPG GNU version 3 </translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="452"/>
         <source>OPENJARDIN - Mise à jour de la base de données</source>
         <translation>Updating of the database </translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="422"/>
+        <location filename="../mainwindow.cpp" line="453"/>
         <source>La base de données est en version 1.05.
 Confirmer la mise à jour en version 1.06 ?</source>
         <translation>The database is in version 1.05. 
 Confirm the update in version 1.06?</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="579"/>
+        <location filename="../mainwindow.cpp" line="610"/>
         <source>Base de données </source>
         <translation>Data base</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="580"/>
+        <location filename="../mainwindow.cpp" line="611"/>
         <source>La base de données a été mise à jour en version 1.06</source>
         <translation>The database has been updated to version 1.06</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="585"/>
+        <location filename="../mainwindow.cpp" line="616"/>
         <source>Erreur de mise à jour</source>
         <translation>Update error</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="586"/>
+        <location filename="../mainwindow.cpp" line="617"/>
         <source>La base de données n&apos;a pas pu être mise à jour en version 1.06</source>
         <translation>The database could not be updated in version 1.06</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="609"/>
+        <location filename="../mainwindow.cpp" line="640"/>
         <source>XML Files (*.xml);; All files (*.*)</source>
         <translation>XML Files (*.xml);; All files (*.*)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1289"/>
+        <location filename="../mainwindow.cpp" line="1322"/>
         <source>Sauvegarde du plan sous ...</source>
         <translation>Save the plan as ...</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1414"/>
-        <location filename="../mainwindow.cpp" line="1642"/>
-        <location filename="../mainwindow.cpp" line="1644"/>
+        <location filename="../mainwindow.cpp" line="1447"/>
+        <location filename="../mainwindow.cpp" line="1675"/>
+        <location filename="../mainwindow.cpp" line="1677"/>
         <source>Janvier</source>
         <translation>January</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1419"/>
-        <location filename="../mainwindow.cpp" line="1642"/>
+        <location filename="../mainwindow.cpp" line="1452"/>
+        <location filename="../mainwindow.cpp" line="1675"/>
         <source>Février</source>
         <translation>February</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1424"/>
-        <location filename="../mainwindow.cpp" line="1642"/>
+        <location filename="../mainwindow.cpp" line="1457"/>
+        <location filename="../mainwindow.cpp" line="1675"/>
         <source>Mars</source>
         <translation>March</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1429"/>
-        <location filename="../mainwindow.cpp" line="1642"/>
+        <location filename="../mainwindow.cpp" line="1462"/>
+        <location filename="../mainwindow.cpp" line="1675"/>
         <source>Avril</source>
         <translation>April</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1434"/>
-        <location filename="../mainwindow.cpp" line="1642"/>
+        <location filename="../mainwindow.cpp" line="1467"/>
+        <location filename="../mainwindow.cpp" line="1675"/>
         <source>Mai</source>
         <translation>May</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1439"/>
-        <location filename="../mainwindow.cpp" line="1642"/>
+        <location filename="../mainwindow.cpp" line="1472"/>
+        <location filename="../mainwindow.cpp" line="1675"/>
         <source>Juin</source>
         <translation>June</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1444"/>
-        <location filename="../mainwindow.cpp" line="1642"/>
+        <location filename="../mainwindow.cpp" line="1477"/>
+        <location filename="../mainwindow.cpp" line="1675"/>
         <source>Juillet</source>
         <translation>July</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1449"/>
-        <location filename="../mainwindow.cpp" line="1642"/>
+        <location filename="../mainwindow.cpp" line="1482"/>
+        <location filename="../mainwindow.cpp" line="1675"/>
         <source>Aout</source>
         <translation>August</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1454"/>
-        <location filename="../mainwindow.cpp" line="1643"/>
+        <location filename="../mainwindow.cpp" line="1487"/>
+        <location filename="../mainwindow.cpp" line="1676"/>
         <source>Septembre</source>
         <translation>september</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1459"/>
-        <location filename="../mainwindow.cpp" line="1644"/>
+        <location filename="../mainwindow.cpp" line="1492"/>
+        <location filename="../mainwindow.cpp" line="1677"/>
         <source>Octobre</source>
         <translation>October</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1464"/>
-        <location filename="../mainwindow.cpp" line="1644"/>
+        <location filename="../mainwindow.cpp" line="1497"/>
+        <location filename="../mainwindow.cpp" line="1677"/>
         <source>Novembre</source>
         <translation>November</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1469"/>
-        <location filename="../mainwindow.cpp" line="1644"/>
-        <location filename="../mainwindow.cpp" line="1658"/>
+        <location filename="../mainwindow.cpp" line="1502"/>
+        <location filename="../mainwindow.cpp" line="1677"/>
+        <location filename="../mainwindow.cpp" line="1691"/>
         <source>Décembre</source>
         <translation>December</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1574"/>
+        <location filename="../mainwindow.cpp" line="1607"/>
         <source>L</source>
         <translation>M</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1574"/>
+        <location filename="../mainwindow.cpp" line="1607"/>
         <source>M</source>
         <translation>T</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1574"/>
-        <location filename="../mainwindow.cpp" line="1576"/>
+        <location filename="../mainwindow.cpp" line="1607"/>
+        <location filename="../mainwindow.cpp" line="1609"/>
         <source>J</source>
         <translation>T</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1574"/>
-        <location filename="../mainwindow.cpp" line="1576"/>
+        <location filename="../mainwindow.cpp" line="1607"/>
+        <location filename="../mainwindow.cpp" line="1609"/>
         <source>V</source>
         <translation>F</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1574"/>
-        <location filename="../mainwindow.cpp" line="1576"/>
+        <location filename="../mainwindow.cpp" line="1607"/>
+        <location filename="../mainwindow.cpp" line="1609"/>
         <source>S</source>
         <translation>S</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1574"/>
-        <location filename="../mainwindow.cpp" line="1576"/>
+        <location filename="../mainwindow.cpp" line="1607"/>
+        <location filename="../mainwindow.cpp" line="1609"/>
         <source>D</source>
         <translation>S</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1574"/>
-        <location filename="../mainwindow.cpp" line="1575"/>
+        <location filename="../mainwindow.cpp" line="1607"/>
+        <location filename="../mainwindow.cpp" line="1608"/>
         <source>M.</source>
         <translation>W.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1611"/>
+        <location filename="../mainwindow.cpp" line="1644"/>
         <source>semaine </source>
         <translation>week </translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1968"/>
-        <location filename="../mainwindow.cpp" line="2487"/>
+        <location filename="../mainwindow.cpp" line="2001"/>
+        <location filename="../mainwindow.cpp" line="2520"/>
         <source>Ouverture du fichier image</source>
         <translation>Open the image file</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1970"/>
-        <location filename="../mainwindow.cpp" line="2278"/>
-        <location filename="../mainwindow.cpp" line="2489"/>
+        <location filename="../mainwindow.cpp" line="2003"/>
+        <location filename="../mainwindow.cpp" line="2311"/>
+        <location filename="../mainwindow.cpp" line="2522"/>
         <source>Image Files (*.png *.jpg *.bmp)</source>
         <translation>Image Files (*.png *.jpg *.bmp)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="2420"/>
+        <location filename="../mainwindow.cpp" line="2453"/>
         <source>Suppression</source>
         <translation>Deleting </translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="2421"/>
+        <location filename="../mainwindow.cpp" line="2454"/>
         <source>Cet objet peut être supprimer.
 Confirmer la suppression de l&apos;objet ?</source>
         <translation>This form can be deleted. 
 Confirm deletion of the form?</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="2556"/>
         <source>Ce programme est utilisé pour gérer graphiquement les plantations d&apos;un potager.
 il utilise des fichier XML pour la configuration des plans
 et une base sqlite pour les données de culture
 version 1.06.002 license GNU GPL version 3</source>
-        <translation>This program is used to graphically manage the plantings of a garden. 
+        <translation type="vanished">This program is used to graphically manage the plantings of a garden. 
 It uses XML files for the configuration of plans and a base sqlite for the data of culture version 1.06.002 license GNU LPG version 3</translation>
     </message>
     <message>
@@ -7970,7 +7998,7 @@ Version 2017.001 license LPG GNU version 3 {1.06.001 ?}</translation>
         <translation type="vanished">Open the background file</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="2555"/>
+        <location filename="../mainwindow.cpp" line="325"/>
         <source>A propos de Open_jardin</source>
         <translation>About openjardin</translation>
     </message>
@@ -8041,165 +8069,174 @@ Version 2017.001 license LPG GNU version 3</translation>
         <translation>Gantt chart of the growing process</translation>
     </message>
     <message>
-        <location filename="../dialogs/planner.ui" line="41"/>
+        <location filename="../dialogs/planner.ui" line="39"/>
         <source> dd/MM/yyyy</source>
         <translation> dd/MM/yyyy</translation>
     </message>
     <message>
-        <location filename="../dialogs/planner.ui" line="61"/>
+        <location filename="../dialogs/planner.ui" line="59"/>
         <source>2017</source>
         <translation>2017</translation>
     </message>
     <message>
-        <location filename="../dialogs/planner.ui" line="66"/>
+        <location filename="../dialogs/planner.ui" line="64"/>
         <source>2018</source>
         <translation>2018</translation>
     </message>
     <message>
-        <location filename="../dialogs/planner.ui" line="71"/>
+        <location filename="../dialogs/planner.ui" line="69"/>
         <source>2019</source>
         <translation>2019</translation>
     </message>
     <message>
-        <location filename="../dialogs/planner.ui" line="76"/>
+        <location filename="../dialogs/planner.ui" line="74"/>
         <source>2020</source>
         <translation>2020</translation>
     </message>
     <message>
-        <location filename="../dialogs/planner.ui" line="81"/>
+        <location filename="../dialogs/planner.ui" line="79"/>
         <source>2021</source>
         <translation>2021</translation>
     </message>
     <message>
-        <location filename="../dialogs/planner.ui" line="86"/>
+        <location filename="../dialogs/planner.ui" line="84"/>
         <source>2022</source>
         <translation>2022</translation>
     </message>
     <message>
-        <location filename="../dialogs/planner.ui" line="91"/>
+        <location filename="../dialogs/planner.ui" line="89"/>
         <source>2023</source>
         <translation>2023</translation>
     </message>
     <message>
-        <location filename="../dialogs/planner.ui" line="96"/>
+        <location filename="../dialogs/planner.ui" line="94"/>
         <source>2024</source>
         <translation>2024</translation>
     </message>
     <message>
-        <location filename="../dialogs/planner.ui" line="101"/>
+        <location filename="../dialogs/planner.ui" line="99"/>
         <source>2025</source>
         <translation>2025</translation>
     </message>
     <message>
-        <location filename="../dialogs/planner.ui" line="106"/>
+        <location filename="../dialogs/planner.ui" line="104"/>
         <source>2026</source>
         <translation>2026</translation>
     </message>
     <message>
-        <location filename="../dialogs/planner.ui" line="111"/>
+        <location filename="../dialogs/planner.ui" line="109"/>
         <source>2027</source>
         <translation>2027</translation>
     </message>
     <message>
-        <location filename="../dialogs/planner.ui" line="116"/>
+        <location filename="../dialogs/planner.ui" line="114"/>
         <source>2028</source>
         <translation>2028</translation>
     </message>
     <message>
-        <location filename="../dialogs/planner.ui" line="121"/>
+        <location filename="../dialogs/planner.ui" line="119"/>
         <source>2029</source>
         <translation>2029</translation>
     </message>
     <message>
-        <location filename="../dialogs/planner.ui" line="126"/>
+        <location filename="../dialogs/planner.ui" line="124"/>
         <source>2030</source>
         <translation>2030</translation>
     </message>
     <message>
-        <location filename="../dialogs/planner.ui" line="144"/>
+        <location filename="../dialogs/planner.ui" line="142"/>
         <source>Fiche des tâches</source>
         <translation>Tasks form</translation>
     </message>
     <message>
-        <location filename="../dialogs/planner.ui" line="147"/>
-        <location filename="../dialogs/planner.ui" line="167"/>
-        <location filename="../dialogs/planner.ui" line="187"/>
-        <location filename="../dialogs/planner.ui" line="207"/>
-        <location filename="../dialogs/planner.ui" line="227"/>
-        <location filename="../dialogs/planner.ui" line="247"/>
-        <location filename="../dialogs/planner.ui" line="277"/>
-        <location filename="../dialogs/planner.ui" line="620"/>
+        <location filename="../dialogs/planner.ui" line="145"/>
+        <location filename="../dialogs/planner.ui" line="165"/>
+        <location filename="../dialogs/planner.ui" line="185"/>
+        <location filename="../dialogs/planner.ui" line="205"/>
+        <location filename="../dialogs/planner.ui" line="225"/>
+        <location filename="../dialogs/planner.ui" line="245"/>
+        <location filename="../dialogs/planner.ui" line="275"/>
+        <location filename="../dialogs/planner.ui" line="625"/>
         <source>...</source>
         <translation>...</translation>
     </message>
     <message>
-        <location filename="../dialogs/planner.ui" line="164"/>
+        <location filename="../dialogs/planner.ui" line="162"/>
         <source>Fiche des ressources</source>
         <translation>Resources form</translation>
     </message>
     <message>
-        <location filename="../dialogs/planner.ui" line="184"/>
+        <location filename="../dialogs/planner.ui" line="182"/>
         <source>Fiche des moyens</source>
         <translation>Means form</translation>
     </message>
     <message>
-        <location filename="../dialogs/planner.ui" line="204"/>
         <source>Types de ressources</source>
-        <translation>Type of resources</translation>
+        <translation type="vanished">Type of resources</translation>
     </message>
     <message>
-        <location filename="../dialogs/planner.ui" line="224"/>
+        <location filename="../dialogs/planner.ui" line="242"/>
         <source>Coordonnées</source>
         <translation>Contact info</translation>
     </message>
     <message>
-        <location filename="../dialogs/planner.ui" line="244"/>
+        <location filename="../dialogs/planner.ui" line="222"/>
         <source>Types de tâches</source>
         <translation>Type of tasks</translation>
     </message>
     <message>
-        <location filename="../dialogs/planner.ui" line="323"/>
+        <location filename="../dialogs/planner.ui" line="202"/>
+        <source>Types de moyen</source>
+        <translation>Type of means</translation>
+    </message>
+    <message>
+        <location filename="../dialogs/planner.ui" line="321"/>
         <source>Désignation</source>
         <translation>Designation</translation>
     </message>
     <message>
-        <location filename="../dialogs/planner.ui" line="346"/>
+        <location filename="../dialogs/planner.ui" line="344"/>
         <source>Date de  départ</source>
         <translation>Starting date</translation>
     </message>
     <message>
-        <location filename="../dialogs/planner.ui" line="372"/>
-        <location filename="../dialogs/planner.ui" line="414"/>
+        <location filename="../dialogs/planner.ui" line="370"/>
+        <location filename="../dialogs/planner.ui" line="412"/>
         <source>dd-MM-yyyy</source>
         <translation> dd/MM/yyyy</translation>
     </message>
     <message>
-        <location filename="../dialogs/planner.ui" line="388"/>
+        <location filename="../dialogs/planner.ui" line="386"/>
         <source>Date de fin</source>
         <translation>End date</translation>
     </message>
     <message>
-        <location filename="../dialogs/planner.ui" line="430"/>
+        <location filename="../dialogs/planner.ui" line="428"/>
         <source>Durée</source>
         <translation>Duration</translation>
     </message>
     <message>
-        <location filename="../dialogs/planner.ui" line="453"/>
+        <location filename="../dialogs/planner.ui" line="445"/>
+        <source>Contrainte de date</source>
+        <translation>Date constraint</translation>
+    </message>
+    <message>
+        <location filename="../dialogs/planner.ui" line="458"/>
         <source>Valider les modifications</source>
         <translation>Save changes</translation>
     </message>
     <message>
-        <location filename="../dialogs/planner.ui" line="572"/>
+        <location filename="../dialogs/planner.ui" line="577"/>
         <source>Arborescence des tâches</source>
         <translation>Tree of Tasks</translation>
     </message>
     <message>
-        <location filename="../dialogs/planner.ui" line="597"/>
+        <location filename="../dialogs/planner.ui" line="602"/>
         <source>Ajouter une nouvelle tache </source>
         <translation>Add new task</translation>
     </message>
     <message>
-        <location filename="../dialogs/planner.ui" line="643"/>
+        <location filename="../dialogs/planner.ui" line="648"/>
         <source>Editer la fiche de la tâche</source>
         <translation>Edit the task form</translation>
     </message>
@@ -8310,30 +8347,38 @@ Version 2017.001 license LPG GNU version 3</translation>
         <translation>December</translation>
     </message>
     <message>
-        <location filename="../dialogs/planner.cpp" line="479"/>
-        <location filename="../dialogs/planner.cpp" line="593"/>
+        <location filename="../dialogs/planner.cpp" line="492"/>
+        <location filename="../dialogs/planner.cpp" line="613"/>
+        <location filename="../dialogs/planner.cpp" line="1070"/>
         <source>Erreur d&apos;enregistrement</source>
         <translation>Error of recording</translation>
     </message>
     <message>
-        <location filename="../dialogs/planner.cpp" line="480"/>
-        <location filename="../dialogs/planner.cpp" line="594"/>
+        <location filename="../dialogs/planner.cpp" line="493"/>
+        <location filename="../dialogs/planner.cpp" line="614"/>
+        <location filename="../dialogs/planner.cpp" line="1071"/>
         <source>Veuillez vérifier que tous les champs soient bien remplis</source>
         <translation>Please check that all fields are full</translation>
     </message>
     <message>
-        <location filename="../dialogs/planner.cpp" line="1011"/>
-        <location filename="../dialogs/planner.cpp" line="1130"/>
+        <location filename="../dialogs/planner.cpp" line="505"/>
+        <location filename="../dialogs/planner.cpp" line="1082"/>
+        <location filename="../dialogs/planner.cpp" line="1201"/>
         <source>Erreur </source>
         <translation>Error</translation>
     </message>
     <message>
-        <location filename="../dialogs/planner.cpp" line="1012"/>
-        <source>Veuillez sélectionner une phase de culture svp</source>
-        <translation>Please select a phase of culture please </translation>
+        <location filename="../dialogs/planner.cpp" line="1083"/>
+        <source>Veuillez sélectionner la tache précédente svp</source>
+        <translation>Please select the previous task</translation>
     </message>
     <message>
-        <location filename="../dialogs/planner.cpp" line="1131"/>
+        <source>Veuillez sélectionner une phase de culture svp</source>
+        <translation type="vanished">Please select a phase of culture please </translation>
+    </message>
+    <message>
+        <location filename="../dialogs/planner.cpp" line="506"/>
+        <location filename="../dialogs/planner.cpp" line="1202"/>
         <source>Veuillez sélectionner une tâche svp</source>
         <translation>Please select a task please</translation>
     </message>
@@ -8342,9 +8387,9 @@ Version 2017.001 license LPG GNU version 3</translation>
     <name>QObject</name>
     <message>
         <location filename="../dialogs/configuration.cpp" line="87"/>
-        <location filename="../dialogs/configuration.cpp" line="597"/>
-        <location filename="../dialogs/configuration.cpp" line="633"/>
-        <location filename="../dialogs/configuration.cpp" line="670"/>
+        <location filename="../dialogs/configuration.cpp" line="595"/>
+        <location filename="../dialogs/configuration.cpp" line="631"/>
+        <location filename="../dialogs/configuration.cpp" line="668"/>
         <location filename="../dialogs/cultures.cpp" line="98"/>
         <location filename="../dialogs/cultures.cpp" line="106"/>
         <location filename="../dialogs/cultures.cpp" line="116"/>
@@ -8369,15 +8414,15 @@ Version 2017.001 license LPG GNU version 3</translation>
         <location filename="../dialogs/fiche_plantes.cpp" line="958"/>
         <location filename="../dialogs/fiche_plantes.cpp" line="1000"/>
         <location filename="../dialogs/planner.cpp" line="108"/>
-        <location filename="../mainwindow.cpp" line="2881"/>
+        <location filename="../mainwindow.cpp" line="2898"/>
         <source>id</source>
         <translation>id</translation>
     </message>
     <message>
         <location filename="../dialogs/configuration.cpp" line="88"/>
-        <location filename="../dialogs/configuration.cpp" line="598"/>
-        <location filename="../dialogs/configuration.cpp" line="634"/>
-        <location filename="../dialogs/configuration.cpp" line="671"/>
+        <location filename="../dialogs/configuration.cpp" line="596"/>
+        <location filename="../dialogs/configuration.cpp" line="632"/>
+        <location filename="../dialogs/configuration.cpp" line="669"/>
         <location filename="../dialogs/cultures.cpp" line="99"/>
         <location filename="../dialogs/cultures.cpp" line="107"/>
         <location filename="../dialogs/cultures.cpp" line="117"/>
@@ -8402,7 +8447,7 @@ Version 2017.001 license LPG GNU version 3</translation>
         <location filename="../dialogs/fiche_plantes.cpp" line="959"/>
         <location filename="../dialogs/fiche_plantes.cpp" line="1001"/>
         <location filename="../dialogs/planner.cpp" line="109"/>
-        <location filename="../mainwindow.cpp" line="2882"/>
+        <location filename="../mainwindow.cpp" line="2899"/>
         <source>designation</source>
         <translation>designation</translation>
     </message>
@@ -8412,7 +8457,7 @@ Version 2017.001 license LPG GNU version 3</translation>
         <location filename="../dialogs/cultures.cpp" line="213"/>
         <location filename="../dialogs/cultures.cpp" line="404"/>
         <location filename="../dialogs/cultures.cpp" line="710"/>
-        <location filename="../mainwindow.cpp" line="2883"/>
+        <location filename="../mainwindow.cpp" line="2900"/>
         <source>parcelle</source>
         <translation>plot</translation>
     </message>
@@ -8701,42 +8746,52 @@ Version 2017.001 license LPG GNU version 3</translation>
         <translation>Zoom -</translation>
     </message>
     <message>
-        <location filename="../dialogs/detail_parcelle.ui" line="897"/>
+        <location filename="../dialogs/detail_parcelle.ui" line="880"/>
+        <source>Afficher la fiche culture correspondante à la parcelle</source>
+        <translation>Display the corresponding crop sheet for the plot of land</translation>
+    </message>
+    <message>
+        <location filename="../dialogs/detail_parcelle.ui" line="883"/>
+        <source>Fiche culture</source>
+        <translation>Crop sheet</translation>
+    </message>
+    <message>
+        <location filename="../dialogs/detail_parcelle.ui" line="923"/>
         <source> OBSERVATIONS</source>
         <translation>Observations</translation>
     </message>
     <message>
-        <location filename="../dialogs/detail_parcelle.ui" line="916"/>
+        <location filename="../dialogs/detail_parcelle.ui" line="942"/>
         <source>Observations sur la parcelle sélectionnée</source>
         <translation>observations for the selected parcel</translation>
     </message>
     <message>
-        <location filename="../dialogs/detail_parcelle.cpp" line="236"/>
+        <location filename="../dialogs/detail_parcelle.cpp" line="237"/>
         <source>Ouverture du fichier des objets</source>
         <translation>Open the objects file</translation>
     </message>
     <message>
-        <location filename="../dialogs/detail_parcelle.cpp" line="238"/>
+        <location filename="../dialogs/detail_parcelle.cpp" line="239"/>
         <source>XML Files (*.xml);; All files (*.*)</source>
         <translation>XML Files (*.xml);; All files (*.*)</translation>
     </message>
     <message>
-        <location filename="../dialogs/detail_parcelle.cpp" line="501"/>
+        <location filename="../dialogs/detail_parcelle.cpp" line="503"/>
         <source>Sauvegarde du plan de détail</source>
         <translation>Save detail map of the parcel</translation>
     </message>
     <message>
-        <location filename="../dialogs/detail_parcelle.cpp" line="503"/>
+        <location filename="../dialogs/detail_parcelle.cpp" line="505"/>
         <source>XML Files (*.xml)</source>
         <translation>XML Files (*.xml)</translation>
     </message>
     <message>
-        <location filename="../dialogs/detail_parcelle.cpp" line="1075"/>
+        <location filename="../dialogs/detail_parcelle.cpp" line="1081"/>
         <source>Suppression</source>
         <translation>Deleting </translation>
     </message>
     <message>
-        <location filename="../dialogs/detail_parcelle.cpp" line="1076"/>
+        <location filename="../dialogs/detail_parcelle.cpp" line="1082"/>
         <source>Cet objet peut être supprimer.
 Confirmer la suppression de l&apos;objet ?</source>
         <translation>This form can be deleted. 
@@ -8861,7 +8916,7 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:12pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Export de la base de donnée active:&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;La base de données est sauvegardée sous un nouveau nom dans un fichier texte de requête sql de type .sql. ce fichier peut être importé en tant que nouvele base de données.&lt;br /&gt;  &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished">&lt;!DOCTYPE html&gt;
+        <translation>&lt;!DOCTYPE html&gt;
 &lt;html&gt;
   &lt;head&gt;
     &lt;meta http-equiv=&quot;content-type&quot; content=&quot;text/html; charset=UTF-8&quot;&gt;

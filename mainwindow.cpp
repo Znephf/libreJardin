@@ -318,6 +318,23 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+/**************************a propos de **********************************/
+
+void MainWindow::on_actionA_propos_de_triggered()
+{
+    QMessageBox::about(this, tr("A propos de Open_jardin"),
+                       tr("Ce programme est utilisé pour gérer graphiquement les plantations d'un potager.\n"
+                          "il utilise des fichier XML pour la configuration des plans\n"
+                          "et une base sqlite pour les données de culture\n"
+                          "version 1.06.067 license GNU GPL version 3"));
+}
+
+void MainWindow::on_actionQuitter_triggered()
+{   //quitter l'application
+    close();
+}
+
+/*************************************************************************/
 void MainWindow::resizeEvent(QResizeEvent *event)
 {   //redimensionne la zone principale du planning et des rotations selon la taille de la fenêtre principale
     int WidthMainWindow = event->size().width();
@@ -1332,7 +1349,7 @@ void MainWindow::on_actionEnregistrer_sous_triggered()
 /*************************************************************************************************/
 void MainWindow::mousePressEvent(QMouseEvent *event)
 {
-    Q_UNUSED(event);
+    Q_UNUSED(event)
 }
 
 // **********************GRILLE **************************//
@@ -1527,7 +1544,7 @@ void MainWindow::affiche_rotation(int year)
 /****************************************************************/
 void MainWindow::on_comboBox_Etat_currentIndexChanged(int index)
 {   // affichage ou non de la parcelle dans le planning
-    Q_UNUSED(index);
+    Q_UNUSED(index)
     if (ui->comboBox_Etat->currentIndex() != 0)
     {
         int etat = 1;
@@ -2093,9 +2110,9 @@ void MainWindow::ajouter_repere_haut_rotation(QString titre, int ligne, int colo
     item->setPos(col + (sizeW / 2) + 2, (lg - (sizeH / 2)));
     item->setNom(titre);
     item->setEtat(1);
-    item->setMode(2);               //déplacements possibles
+    item->setMode(2);              //déplacements possibles
     item->setTypeShape(MyItem::Rectangle);
-    scene_rotation->addItem(item);; // bandeau haut horizontal
+    scene_rotation->addItem(item); // bandeau haut horizontal
 }
 
 void MainWindow::ajouter_repere_jour_rotation(QString titre, int colonne, int ligne, int width, int height, QColor couleur)
@@ -2564,22 +2581,6 @@ void MainWindow::on_actionAfficher_le_fond_triggered()
     }
 }
 
-/**************************a propos de **********************************/
-
-void MainWindow::on_actionA_propos_de_triggered()
-{
-    QMessageBox::about(this, tr("A propos de Open_jardin"),
-                       tr("Ce programme est utilisé pour gérer graphiquement les plantations d'un potager.\n"
-                          "il utilise des fichier XML pour la configuration des plans\n"
-                          "et une base sqlite pour les données de culture\n"
-                          "version 1.06.064 license GNU GPL version 3"));
-}
-
-void MainWindow::on_actionQuitter_triggered()
-{   //quitter l'application
-    close();
-}
-
 /************************************************************************************************/
 //******************** GESTION DES MODES CREATION-MODIFICATION DU PLAN ET UTILISATION************/
 /************************************************************************************************/
@@ -2824,7 +2825,7 @@ void MainWindow::on_pushButton_Affiches_fiche_clicked()
 
 void MainWindow::on_lineEdit_Nom_item_textChanged(const QString&arg1)
 {
-    Q_UNUSED(arg1);
+    Q_UNUSED(arg1)
     // on_pushButton_Enregistrer_modif_item_clicked();
     //ui->pushButton_Enregistrer_modif_item->setStyleSheet("background-color : #ffff00");
 }
@@ -3624,8 +3625,8 @@ void MainWindow::on_toolButton_modifierPolygon_toggled(bool checked)
 
 void MainWindow::on_toolButton_newPolygon_toggled(bool checked)
 {
-    Q_UNUSED(checked);
-    MyGraphicsScene *scene2 = dynamic_cast <MyGraphicsScene *> (scene);
+    Q_UNUSED(checked)
+    MyGraphicsScene * scene2 = dynamic_cast <MyGraphicsScene *> (scene);
 
     if (ui->toolButton_newPolygon->isChecked() && m_mode == 0)
     {

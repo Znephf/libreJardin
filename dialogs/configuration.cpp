@@ -564,8 +564,6 @@ void Configuration::on_pushButton_export_clicked()
                     }
                 }
                 insert = "INSERT INTO `" + table + "` (" + columns + ") VALUES (" + values + ");\n";
-
-                //        qDebug().noquote() <<insert.toUtf8().constData();
                 stream << insert;
             }
         }

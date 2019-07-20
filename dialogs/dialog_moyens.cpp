@@ -328,7 +328,7 @@ void Dialog_moyens::on_comboBox_coordonnees_currentTextChanged(const QString&arg
 {
     QSqlQuery query;
 
-    query.exec(QString("select id from coordonnees where societe ='" + arg1 + "'"));
+    query.exec(QString("select id from coordonnees where societe ='" + util::apos(arg1) + "'"));
 
     if (query.first())
     {
@@ -341,7 +341,7 @@ void Dialog_moyens::on_comboBox_Type_moyen_currentTextChanged(const QString&arg1
 {
     QSqlQuery query;
 
-    query.exec(QString("select id from type_de_moyen where designation ='" + arg1 + "'"));
+    query.exec(QString("select id from type_de_moyen where designation ='" + util::apos(arg1) + "'"));
 
     if (query.first())
     {
@@ -354,7 +354,7 @@ void Dialog_moyens::on_comboBox_unite_currentTextChanged(const QString&arg1)
 {
     QSqlQuery query;
 
-    query.exec(QString("select id from unites where designation ='" + arg1 + "'"));
+    query.exec(QString("select id from unites where designation ='" + util::apos(arg1) + "'"));
 
     if (query.first())
     {

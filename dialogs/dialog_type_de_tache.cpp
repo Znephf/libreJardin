@@ -117,6 +117,7 @@ void Dialog_type_de_tache::on_pushButton_Valider_clicked()
 
 void Dialog_type_de_tache::on_pushButton_Annuler_clicked()
 {
+    close();
 }
 
 void Dialog_type_de_tache::on_comboBox_Type_de_tache_currentIndexChanged(const QString&arg1)

@@ -170,7 +170,7 @@ void Cultures::on_pushButton_nouvelleOperation_clicked()
 void Cultures::on_pushButton_validerData_clicked()
 {   //ajouter un enregistrement de la table "cultures" valider les données et enregistrer dans la base
     QSqlQuery query;
-    QString   nom_plante = ui->comboBox_plante->currentText();
+    QString   nom_plante = util::apos(ui->comboBox_plante->currentText());
     QString   id_plante;
 
     query.exec(QString("select id from plantes where designation ='" + nom_plante + "'"));
@@ -262,7 +262,7 @@ void Cultures::on_comboBox_plante_currentIndexChanged(const QString&arg1)
     QString   id_famille;
     QString   design_famille;
 
-    query.exec(QString("select id from plantes where designation ='" + arg1 + "'"));
+    query.exec(QString("select id from plantes where designation ='" + util::apos(arg1) + "'"));
     if (query.first())
     {
         id_plante = query.value(0).toString();
@@ -354,7 +354,7 @@ void Cultures::on_pushButton_modifier_clicked()
 {
     //enregister la fiche modifiée
     QSqlQuery query;
-    QString   nom_plante = ui->comboBox_plante->currentText();
+    QString   nom_plante = util::apos(ui->comboBox_plante->currentText());
     QString   id_plante;
 
     query.exec(QString("select id from plantes where designation ='" + nom_plante + "'"));
@@ -849,26 +849,71 @@ void Cultures::creer_phase()
     QString   id_precedent    = "0";
     QString   id_PhaseParent;
 
-    query.exec(QString("SELECT id FROM tasks WHERE NOT EXISTS  (SELECT id FROM tasks WHERE id_culture = " + id_culture + ")"));
+    query.exec(QString("SELECT COUNT(*) FROM tasks"));
     if (query.first())
     {
-        int id = query.value(0).toInt();
-
-        if (id > 0)
+        int NbRowTable = query.value(0).toInt();
+        if (NbRowTable > 0)
         {
-            query.exec(QString("SELECT MAX(id) FROM tasks "));
+            query.exec(QString("SELECT id FROM tasks WHERE NOT EXISTS  (SELECT id FROM tasks WHERE id_culture = " + id_culture +
+                               ")"));
             if (query.first())
             {
-                int id_MAX = query.value(0).toInt();
-                id_PhaseParent = QString::number(id_MAX + 1);
-                qDebug() << "query 1:" << query.lastQuery();
+                int id = query.value(0).toInt();
+
+                if (id > 0)
+                {
+                    query.exec(QString("SELECT MAX(id) FROM tasks "));
+                    if (query.first())
+                    {
+                        int id_MAX = query.value(0).toInt();
+                        id_PhaseParent = QString::number(id_MAX + 1);
+                        qDebug() << "query 1:" << query.lastQuery();
+                    }
+                    else
+                    {
+                        qDebug() << "erreur query 1:" << query.lastError().text() << "  " << query.lastError().databaseText() <<
+                            query.driver() << query.lastQuery();
+                    }
+
+                    QString str =
+                        "insert into tasks (designation,commentaires, depart, fin, duree,precedent, avancement,type,contrainte_date,phase_parent,id_culture)"
+                        "values('" + designation + "','" + commentaires + "','" + depart + "','" + fin +
+                        "'," + duree + "," + id_precedent + "," + avancement + "," + type + "," + contrainte_date + "," +
+                        id_PhaseParent +
+                        "," +
+                        id_culture + ")";
+                    query.exec(str);
+                    if (!query.isActive())
+                    {
+                        qDebug() << "erreur query valider:" << query.lastError().text() << "  " <<
+                            query.lastError().databaseText() <<
+                            query.lastQuery().toUtf8();
+                        QMessageBox::information(this, tr("Erreur d'enregistrement"),
+                                                 tr("Veuillez vérifier que tous les champs soient bien remplis"));
+                    }
+                    else
+                    {
+                        QMessageBox::information(this, tr("Enregistrement de la phase culture "),
+                                                 tr("La phase de culture a été crée avec succès !"));
+                    }
+                }
+                else
+                {
+                    qDebug() << "query 2:" << query.lastQuery();
+                }
             }
             else
             {
-                qDebug() << "erreur query 1:" << query.lastError().text() << "  " << query.lastError().databaseText() <<
+                QMessageBox::warning(this, tr("Erreur "),
+                                     tr("Cette phase de culture est existante !"));
+                qDebug() << "erreur query 3:" << query.lastError().text() << "  " << query.lastError().databaseText() <<
                     query.driver() << query.lastQuery();
             }
-
+        }
+        else
+        {
+            id_PhaseParent = QString::number(1);
             QString str =
                 "insert into tasks (designation,commentaires, depart, fin, duree,precedent, avancement,type,contrainte_date,phase_parent,id_culture)"
                 "values('" + designation + "','" + commentaires + "','" + depart + "','" + fin +
@@ -889,17 +934,6 @@ void Cultures::creer_phase()
                                          tr("La phase de culture a été crée avec succès !"));
             }
         }
-        else
-        {
-            qDebug() << "query 2:" << query.lastQuery();
-        }
-    }
-    else
-    {
-        QMessageBox::warning(this, tr("Erreur "),
-                             tr("Cette phase de culture est existante !"));
-        qDebug() << "erreur query 3:" << query.lastError().text() << "  " << query.lastError().databaseText() <<
-            query.driver() << query.lastQuery();
     }
 }
 
