@@ -1,5 +1,5 @@
-#include "planner.h"
-#include "ui_planner.h"
+#include "planning.h"
+#include "ui_planning.h"
 #include "mainwindow.h"
 
 #include <QMessageBox>
@@ -26,21 +26,14 @@
 #include "graphic/mygrilleitem.h"
 #include "graphic/tache_item.h"
 #include "graphic/mypolyline.h"
-#include "dialogs/dialog_taches.h"
-#include "dialogs/dialog_type_de_tache.h"
-#include "dialogs/dialog_type_de_moyen.h"
-#include "dialogs/dialog_ressources.h"
-#include "dialogs/dialog_coordonnees.h"
-#include "dialogs/dialog_moyens.h"
 #include "utilitaires/util.h"
+#include "dialogs/cultures.h"
 
 #include "consts.h"
 
-
-
-Planner::Planner(QWidget *parent) :
+Planning::Planning(const int&IdParcelle, QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::Planner)
+    ui(new Ui::Planning)
 {
     // translator
     QTranslator translator;
@@ -48,13 +41,13 @@ Planner::Planner(QWidget *parent) :
 
     translator.load(fichier);
     qApp->installTranslator(&translator);
-
+    set_idparcelle(IdParcelle);
     ui->setupUi(this);
-    scene_planning = new QGraphicsScene(this);
+    scene_planning = new QGraphicsScene();
     scene_planning->setSceneRect(0, 0, 5205, 800);//5320
     scene_planning->setItemIndexMethod(QGraphicsScene::BspTreeIndex);
 
-    scene_planning3 = new QGraphicsScene(this);
+    scene_planning3 = new QGraphicsScene();
     scene_planning3->setSceneRect(0, 0, 5320, 100);
     scene_planning3->setItemIndexMethod(QGraphicsScene::BspTreeIndex);
 
@@ -67,10 +60,11 @@ Planner::Planner(QWidget *parent) :
                                                                          int)),
             ui->graphicsView_planning3->horizontalScrollBar(), SLOT(setValue(int)));
 
-    connect(scene_planning, SIGNAL(selectionChanged()), this, SLOT(ItemPlanning_clicked()));
+    //   connect(scene_planning, SIGNAL(selectionChanged()), this, SLOT(ItemPlanning_clicked()));
 
     connect(ui->treeView_taches->verticalScrollBar(), SIGNAL(valueChanged(int)),
             this, SLOT(update_planningslider(int)));
+    connect(scene_planning, SIGNAL(selectionChanged()), this, SLOT(ItemPlanning_clicked()));
 
 
     // affichage du planning
@@ -86,39 +80,46 @@ Planner::Planner(QWidget *parent) :
     affiche_planning(jour, NbJourFevrier);
     set_drapEndExpanded(0); //initialisation flag pour bloquer treeexpanded
     init_base();
+    QSqlQuery queryComboPhase;
+    QString   Designation_parcelle;
+    queryComboPhase.exec(QString("select designation from parcelles where id = " + QString::number(get_idparcelle())));
+    if (queryComboPhase.first())
+    {
+        Designation_parcelle = queryComboPhase.value(0).toString();
+    }
+    if (Designation_parcelle != "")
+    {
+        ui->comboBox_phases->setCurrentText(Designation_parcelle);
+    }
 }
 
-Planner::~Planner()
+Planning::~Planning()
 {
     delete ui;
 }
 
-void Planner::update_planningslider(int position)
+void Planning::update_planningslider(int position)
 {
     ui->graphicsView_planning->verticalScrollBar()->setValue(position * 28);
 }
 
-void Planner::init_base()
+void Planning::init_base()
 {
     /********************initialisation des bases de données sqlite******************/
-    QSqlQueryModel *modelTaches = new QSqlQueryModel;
 
-    modelTaches->setQuery(
-        "SELECT id, designation, depart, fin, duree,commentaires,precedent, avancement,projet,type FROM tasks ORDER BY id ASC");
-    modelTaches->setHeaderData(0, Qt::Vertical, QObject::tr("id"));
-    modelTaches->setHeaderData(1, Qt::Vertical, QObject::tr("designation"));
+    QSqlQueryModel *modelComboParcelles = new QSqlQueryModel;
 
-    QSqlQueryModel *modelComboTaches = new QSqlQueryModel;
-    modelComboTaches->setQuery(
-        "SELECT designation FROM tasks WHERE type=1 ORDER BY id ASC");
-    ui->comboBox_phases->setModel(modelComboTaches);
+    modelComboParcelles->setQuery(
+        "SELECT designation FROM parcelles ORDER BY id ASC");
+    qDebug() << modelComboParcelles->lastError();
+    ui->comboBox_phases->setModel(modelComboParcelles);
     populate_treeview();
 }
 
 /*********************************************************************************/
 /************************  dessin du tableau planning  ***************************/
 /*********************************************************************************/
-void Planner::affiche_planning(int day, int bis)
+void Planning::affiche_planning(int day, int bis)
 {
     QTranslator translator;
     QString     fichier = ":/translations/open-jardin_" + util::getLocale();
@@ -263,7 +264,7 @@ void Planner::affiche_planning(int day, int bis)
     ui->graphicsView_planning->horizontalScrollBar()->setValue(int(5200 / 365 * (Posjour - 20)));
 }
 
-void Planner::ajouter_vignette_mois(QString titre, int colonne, int nb_jours, QColor couleur)
+void Planning::ajouter_vignette_mois(QString titre, int colonne, int nb_jours, QColor couleur)
 {
     planning_item *item = new planning_item(nb_jours * 14, 20);
 
@@ -279,7 +280,7 @@ void Planner::ajouter_vignette_mois(QString titre, int colonne, int nb_jours, QC
     scene_planning3->addItem(item);
 }
 
-void Planner::ajouter_vignette_jour(QString titre, int colonne, int ligne, int width, int height, QColor couleur)
+void Planning::ajouter_vignette_jour(QString titre, int colonne, int ligne, int width, int height, QColor couleur)
 {   // semaines
     mygrilleitem *item = new mygrilleitem(width, height);
 
@@ -292,8 +293,8 @@ void Planner::ajouter_vignette_jour(QString titre, int colonne, int ligne, int w
     scene_planning3->addItem(item);
 }
 
-void Planner::ajouter_vignette_planning(int id_tache, QString titre, int ligne, int colonne, int nbCases, int forme,
-                                        QColor couleur)
+void Planning::ajouter_vignette_planning(int id_tache, QString titre, int ligne, int colonne, int nbCases, int forme,
+                                         QColor couleur)
 {   //titre,nb lignes,colonne de depart,nb cases,couleur
     int    spaceCase = Consts::SPACE_CASE;
     double lg        = ceil((ligne) * (spaceCase * 2));
@@ -348,13 +349,13 @@ void Planner::ajouter_vignette_planning(int id_tache, QString titre, int ligne, 
         item->setPos(posX, posY);
         item->setNom(titre);
         item->setEtat(1);
-        item->setMode(2);  //2 déplacements possibles
+        item->setMode(1);  //1 pas de déplacements possibles
         item->setTypeShape(forme);
         scene_planning->addItem(item);
     }
 }
 
-void Planner::ajouter_intitule_planning(int id_tache, QString titre, int ligne, int colonne, int nbCases, QColor couleur)
+void Planning::ajouter_intitule_planning(int id_tache, QString titre, int ligne, int colonne, int nbCases, QColor couleur)
 {
     Q_UNUSED(colonne)
     int spaceCase = Consts::SPACE_CASE;
@@ -373,7 +374,7 @@ void Planner::ajouter_intitule_planning(int id_tache, QString titre, int ligne, 
     item->setTypeShape(MyItem::Rectangle);
 }
 
-void Planner::ajouter_vignette_semaine(QString titre, int colonne, int ligne, int width, int height, QColor couleur)
+void Planning::ajouter_vignette_semaine(QString titre, int colonne, int ligne, int width, int height, QColor couleur)
 {   // semaines
     planning_item *item = new planning_item(width, height);
 
@@ -389,7 +390,7 @@ void Planner::ajouter_vignette_semaine(QString titre, int colonne, int ligne, in
     scene_planning3->addItem(item);
 }
 
-void Planner::ajouter_vignette_horizontale(QString titre, int ligne, int width, int height, QColor couleur)
+void Planning::ajouter_vignette_horizontale(QString titre, int ligne, int width, int height, QColor couleur)
 {
     MyItem *item2 = new MyItem(width, height);
 
@@ -405,7 +406,7 @@ void Planner::ajouter_vignette_horizontale(QString titre, int ligne, int width, 
     item2->setMode(1);//mode utilisation
 }
 
-void Planner::ajouter_repere_jour(QString titre, int colonne, int ligne, int width, int height, QColor couleur)
+void Planning::ajouter_repere_jour(QString titre, int colonne, int ligne, int width, int height, QColor couleur)
 {   // repére du jour courant
     mygrilleitem *item = new mygrilleitem(width, height);
 
@@ -418,7 +419,7 @@ void Planner::ajouter_repere_jour(QString titre, int colonne, int ligne, int wid
     scene_planning->addItem(item);
 }
 
-void Planner::on_comboBox_AnneeEnCours_currentIndexChanged(const QString&arg1)
+void Planning::on_comboBox_AnneeEnCours_currentIndexChanged(const QString&arg1)
 {
     //le changement de l'année du combobox entraine l'affichage du planning calé au 1er janvier
     QString strDate       = "01/01/" + arg1;
@@ -432,83 +433,7 @@ void Planner::on_comboBox_AnneeEnCours_currentIndexChanged(const QString&arg1)
     populate_treeview();
 }
 
-void Planner::ItemPlanning_clicked()
-{   //si l'item est sélectionné (scene_planning selection changed)
-    QList <QGraphicsItem *> itemList = scene_planning->items();
-    int     nbJours;
-    int     dateDepart;
-    QString strDateAn = ui->comboBox_AnneeEnCours->currentText() + ".01.01";
-    QDate   dateAn    = QDate::fromString(strDateAn, "yyyy.MM.dd");
-    for (int i = 0; i < itemList.size(); i++)
-    {
-        if (itemList[i]->isSelected())
-        {
-            if (itemList[i]->type() == 65537) // type tache_item
-            {
-                tache_item *item = dynamic_cast <tache_item *> (itemList[i]);
-                ui->lineEdit_id_tache->setText(QString::number(item->getId()));
-                nbJours    = (item->getWidth() / Consts::SPACE_CASE);
-                dateDepart = int((((item->pos().x()) / Consts::SPACE_CASE) - nbJours / 2) - 7);
-                QDate date_depart = dateAn.addDays(dateDepart);
-                QDate date_fin    = date_depart.addDays(nbJours - 1);
-                ui->dateEdit_depart->setDate(date_depart);
-                ui->dateEdit_fin->setDate(date_fin);
-                ui->lineEdit_duree->setText(QString::number(nbJours));
-            }
-        }
-    }
-}
-
-void Planner::on_pushButton_validerDates_clicked()
-{   // bouton valider les dates suite à click sur item tâche dans le planning
-    if (ui->lineEdit_id_tache->text() != "")
-    {
-        QSqlQuery query;
-        QString   designation = util::apos(ui->lineEdit_designation->text());
-        QString   id_tache    = ui->lineEdit_id_tache->text();
-        QString   depart      = ui->dateEdit_depart->date().toString("dd-MM-yyyy");
-        QString   fin         = ui->dateEdit_fin->date().toString("dd-MM-yyyy");
-        QString   duree       = ui->lineEdit_duree->text();
-        QString   contrainte_date;
-
-        if (ui->checkBox_ContrainteDate->isChecked())
-        {
-            contrainte_date = "1";
-        }
-        else
-        {
-            contrainte_date = "0";
-        }
-        QString strQuery = "update tasks set designation='" + designation + "',depart= '" + depart +
-                           "',fin= '" + fin + "',duree=" + duree + ",contrainte_date=" + contrainte_date +
-                           " where id=" + id_tache;
-
-        query.exec(strQuery);
-        qDebug() << "PREPARE: " << query.lastQuery().toUtf8();
-
-        if (!query.isActive())
-        {
-            qDebug() << "erreur query :" << query.lastError().text() << "  " << query.lastError().databaseText() <<
-                query.driver();
-            QMessageBox::information(this, tr("Erreur d'enregistrement"),
-                                     tr("Veuillez vérifier que tous les champs soient bien remplis"));
-        }
-        else
-        {
-            qDebug() << "enregistrement terminé";
-        }
-        init_base();
-        mise_a_jour_phases();
-        init_base();
-    }
-    else
-    {
-        QMessageBox::information(this, tr("Erreur "),
-                                 tr("Veuillez sélectionner une tâche svp"));
-    }
-}
-
-void Planner::mise_a_jour_phases()
+void Planning::mise_a_jour_phases()
 {
     QSqlQuery query;
 
@@ -622,7 +547,7 @@ void Planner::mise_a_jour_phases()
     }
 }
 
-void Planner::maj_planning()
+void Planning::maj_planning()
 {   // mise à jour de l'affichage du planning basé sur année en cours du combobox
     QString strDate       = "01/01/" + ui->comboBox_AnneeEnCours->currentText();
     QDate   date          = QDate::fromString(strDate, "dd/MM/yyyy");
@@ -637,65 +562,81 @@ void Planner::maj_planning()
 /*********************************************************************************/
 /*********************************  TREEVIEW  ************************************/
 /*********************************************************************************/
-void Planner::on_comboBox_phases_currentTextChanged(const QString&arg1)
+void Planning::on_comboBox_phases_currentTextChanged(const QString&arg1)
 {
     Q_UNUSED(arg1)
-    ui->lineEdit_id_tache->setText("");
-    ui->dateEdit_depart->clear();
-    ui->dateEdit_fin->clear();
-    ui->lineEdit_duree->setText("");
-    ui->lineEdit_designation->setText("");
-    ui->checkBox_ContrainteDate->setChecked(false);
     populate_treeview();
 }
 
-void Planner::populate_treeview()
+void Planning::populate_treeview()
 {   // remplissage de l'arborescence de l'arbre
     set_drapEndExpanded(0);
+
+    QString strDate = "01-01-" + ui->comboBox_AnneeEnCours->currentText();
+    QDate   date    = QDate::fromString(strDate, "dd-MM-yyyy");
+
+
     //selection plante dans combobox
     QSqlQuery queryComboPhase;
-    QString   phase_parent;
+    QString   parcelle;
     QString   designation_combo_phases = util::apos(ui->comboBox_phases->currentText());
-    queryComboPhase.exec(QString("select phase_parent from tasks where designation ='" + designation_combo_phases + "'"));
+    queryComboPhase.exec(QString("select id from parcelles where designation ='" + designation_combo_phases + "'"));
     if (queryComboPhase.first())
     {
-        phase_parent = queryComboPhase.value(0).toString();
+        parcelle = queryComboPhase.value(0).toString();
     }
     else
     {
-        qDebug() << "erreur query 664:" << queryComboPhase.lastError().text() << "  " <<
+        qDebug() << "erreur query :" << queryComboPhase.lastError().text() << "  " <<
             queryComboPhase.lastError().databaseText() << queryComboPhase.lastQuery().toUtf8();
     }
     standardModel = new QStandardItemModel(this);
+    QStandardItem *prtitre = new QStandardItem(designation_combo_phases);
+    prtitre->setData(parcelle, RelationRoles::CodeRole);
+    standardModel->invisibleRootItem()->appendRow(prtitre);
     QSqlQuery query(
-        "SELECT id, designation, depart, fin, duree,commentaires,precedent, avancement,type FROM tasks WHERE phase_parent=" + phase_parent +
-        " ORDER BY precedent ASC");
+        "SELECT id, designation, date_semis, duree,commentaires FROM cultures WHERE parcelle =" + parcelle +
+        " ORDER BY parcelle ASC");
     const QSqlRecord rec = query.record();
     while (query.next())
     {
-        QString        designation = query.value(rec.indexOf("designation")).toString();
-        int            precedent   = query.value(rec.indexOf("precedent")).toInt();
-        int            id          = query.value(rec.indexOf("id")).toInt();
-        QStandardItem *pr          = new QStandardItem(designation);
-        pr->setData(id, RelationRoles::CodeRole);
+        QString designation = query.value(rec.indexOf("designation")).toString();
+        int     precedent   = parcelle.toInt();
+        int     id          = query.value(rec.indexOf("id")).toInt();
 
-        if (precedent == 0)
+        QString strDepart   = query.value(rec.indexOf("date_semis")).toString();
+        qint64  Duree       = query.value(rec.indexOf("duree")).toInt();
+        QDate   date_depart = QDate::fromString(strDepart, "yyyy.MM.dd");
+        QDate   date_fin    = date_depart.addDays(Duree);
+        if (date_fin.year() == date.year() || date_depart.year() == date.year())
         {
-            standardModel->invisibleRootItem()->appendRow(pr);
-        }
-        else
-        {
-            QModelIndexList inds = standardModel->match(standardModel->index(0, 0),
-                                                        RelationRoles::CodeRole,
-                                                        precedent,
-                                                        1,
-                                                        Qt::MatchExactly | Qt::MatchRecursive);
-            if (inds.size() > 0)
+            qDebug() << " designation parcelle id " << designation << " " << precedent << " " << id;
+            QStandardItem *pr = new QStandardItem(designation);
+            pr->setData(id, RelationRoles::CodeRole);
+
+            if (precedent == 0)
             {
-                QStandardItem *parent = standardModel->itemFromIndex(inds.first());
-                parent->appendRow(pr);
+                standardModel->invisibleRootItem()->appendRow(pr);
+            }
+            else
+            {
+                QModelIndexList inds = standardModel->match(standardModel->index(0, 0),
+                                                            RelationRoles::CodeRole,
+                                                            precedent,
+                                                            1,
+                                                            Qt::MatchExactly | Qt::MatchRecursive);
+                if (inds.size() > 0)
+                {
+                    QStandardItem *parent = standardModel->itemFromIndex(inds.first());
+                    parent->appendRow(pr);
+                }
             }
         }
+    }
+    if (!query.isActive())
+    {
+        qDebug() << "erreur query recherche cultures :" << query.lastError().text() << "  " <<
+            query.lastError().databaseText() << query.lastQuery();
     }
 
     //remplir la treeview
@@ -740,16 +681,15 @@ void Planner::populate_treeview()
     {
         modelIndex = ui->treeView_taches->indexBelow(modelIndex);
 
-        QString strposition = ui->treeView_taches->model()->data(modelIndex, RelationRoles::CodeRole).toString();
+        QString idCulture = ui->treeView_taches->model()->data(modelIndex, RelationRoles::CodeRole).toString();
         rowTree++;
-        afficher_item_planning(rowTree, strposition);
+        qDebug() << "rowtree =" << rowTree << "idCulture " << idCulture;
+        afficher_item_planning(rowTree, idCulture);
     }
-    remplir_liste_lien_planning();
-    afficher_les_liens_planning();
     set_drapEndExpanded(1);
 }
 
-void Planner::resize_planning(int nb_taches)
+void Planning::resize_planning(int nb_taches)
 {
     int hauteur = (nb_taches) * 28;
 
@@ -757,116 +697,78 @@ void Planner::resize_planning(int nb_taches)
     maj_planning();
 }
 
-void Planner::afficher_item_planning(const int position, const QString id_item)
-{
-    int       decalagejour = 8;
-    QString   strDate      = "01-01-" + ui->comboBox_AnneeEnCours->currentText();
-    QDate     date         = QDate::fromString(strDate, "dd-MM-yyyy");
-    QSqlQuery query;
-
-    query.exec(QString("SELECT id, designation, depart, fin, avancement,type FROM tasks  where id=" +
-                       id_item));
-    if (query.first())
+void Planning::afficher_item_planning(const int position, const QString id_item)
+{   // position = ligne    id_item = idculture
+    if (position > 0)
     {
-        QString strDesignation  = query.value(1).toString();
-        QString strDepart       = query.value(2).toString();
-        QString strFin          = query.value(3).toString();
-        QString strAvancement   = query.value(4).toString();
-        QString strType         = query.value(5).toString();
-        QDate   date_depart     = QDate::fromString(strDepart, "dd-MM-yyyy");
-        QDate   date_fin        = QDate::fromString(strFin, "dd-MM-yyyy");
-        double  jour            = date.daysTo(date_depart);
-        double  duree           = ((date.daysTo(date_fin)) - jour);
-        double  avancement_jour = (duree + 1) * strAvancement.toInt() / 100;
-        QString couleur;
-        QString forme;
-        query.exec(QString("select couleur from type_de_tache where id=" + strType));
+        int       decalagejour = 8;
+        QString   strDate      = "01-01-" + ui->comboBox_AnneeEnCours->currentText();
+        QDate     date         = QDate::fromString(strDate, "dd-MM-yyyy");
+        QSqlQuery query;
+
+        query.exec(QString("SELECT id, designation, date_semis, duree, type_plante FROM cultures  where id=" +
+                           id_item));
         if (query.first())
         {
-            couleur = query.value(0).toString();
-        }
-        query.exec(QString("select forme from type_de_tache where id=" + strType));
-        if (query.first())
-        {
-            forme = query.value(0).toString();
-        }
-        int id_tache = id_item.toInt();
+            QString strDesignation = query.value(1).toString();
+            QString strDepart      = query.value(2).toString();
+            QString strDuree       = query.value(3).toString();
+            QString strPlante      = query.value(4).toString();
+            QDate   date_depart    = QDate::fromString(strDepart, "yyyy.MM.dd");
+            QString strType        = "2";
+            double  jour           = date.daysTo(date_depart);
+            double  duree          = strDuree.toDouble();
+            qDebug() << " designation " << strDesignation << " " << id_item;
+            QString couleur = recherche_couleur_famille(strPlante);
 
-        // etiquettes horinzontales des taches
-
-        ajouter_vignette_planning(id_tache, " ", position + 1, decalagejour + jour, duree + 1, forme.toInt(), couleur);  // ajout  7 colonne
-
-        if (avancement_jour > 0)
-        {
-            ajouter_vignette_planning(id_tache, " ", position + 1, decalagejour + jour, avancement_jour, 7, Qt::blue);
+            /*  QString forme;
+             * query.exec(QString("select couleur from type_de_tache where id=" + strType));
+             * if (query.first())
+             * {
+             *    couleur = query.value(0).toString();
+             * }
+             * query.exec(QString("select forme from type_de_tache where id=" + strType));
+             * if (query.first())
+             * {
+             *    forme = query.value(0).toString();
+             * }*/
+            int id_tache = id_item.toInt();
+            qDebug() << " id_item " << id_item << " strDepart =" << strDepart << "date depart " << date_depart;
+            // etiquettes horinzontales des taches
+            qDebug() << " id_item " << id_item << " position =" << position << "jour " << jour << " duree " << duree;
+            ajouter_vignette_planning(id_tache, strDesignation, position + 1, decalagejour + jour, duree + 1, 1, couleur); // ajout  7 colonnes
+            //  ajouter_vignette_planning(id_tache, " ", position + 1, decalagejour + jour, duree + 1, forme.toInt(), couleur); // ajout  7 colonnes
         }
         ui->graphicsView_planning->verticalScrollBar()->setValue(1);
     }
 }
 
-void Planner::on_treeView_taches_clicked(const QModelIndex&index)
-{
+QString Planning::recherche_couleur_famille(const QString id_plante)
+{   // recherche la couleur de la famille de la plante
     QSqlQuery query;
-    QString   strposition    = ui->treeView_taches->model()->data(index, RelationRoles::CodeRole).toString();
-    QString   strDesignation = index.data(Qt::DisplayRole).toString();
+    QString   num_espece;
 
-    ui->treeView_taches->model()->data(index);
-    ui->lineEdit_id_tache->setText(strposition);
-    query.exec(QString("select depart,fin, duree,contrainte_date from tasks where id=" + strposition));
+    query.exec(QString("select espece from plantes where id =" + id_plante));
     if (query.first())
     {
-        QString strDepart       = query.value(0).toString();
-        QString strFin          = query.value(1).toString();
-        QString strDuree        = query.value(2).toString();
-        int     contrainte_date = query.value(3).toInt();
-        QDate   date_depart     = QDate::fromString(strDepart, "dd-MM-yyyy");
-        QDate   date_fin        = QDate::fromString(strFin, "dd-MM-yyyy");
-        int     duree           = int((date_depart.daysTo(date_fin)));
-        ui->dateEdit_depart->setDate(date_depart);
-        ui->dateEdit_fin->setDate(date_fin);
-        ui->lineEdit_duree->setText(QString::number(duree + 1));
-        ui->lineEdit_designation->setText(strDesignation);
-        if (contrainte_date == 0)
-        {
-            ui->checkBox_ContrainteDate->setChecked(false);
-        }
-        else
-        {
-            ui->checkBox_ContrainteDate->setChecked(true);
-        }
+        num_espece = query.value(0).toString();
     }
-    else
-    {
-        qWarning("ne peut récupérer la valeur  ");
-    }
-}
-
-void Planner::on_lineEdit_id_tache_textChanged(const QString&arg1)
-{
-    QSqlQuery query;
-
-    query.exec(QString("select designation,depart,fin, duree from tasks where id=" + arg1));
+    QString num_famille;
+    query.exec(QString("select famille from especes where id =" + num_espece));
     if (query.first())
     {
-        QString strDesignation = query.value(0).toString();
-        QString strDepart      = query.value(1).toString();
-        QString strFin         = query.value(2).toString();
-        QString strDuree       = query.value(3).toString();
-        QDate   date_depart    = QDate::fromString(strDepart, "dd-MM-yyyy");
-        QDate   date_fin       = QDate::fromString(strFin, "dd-MM-yyyy");
-        int     duree          = int((date_depart.daysTo(date_fin)));
-        ui->dateEdit_depart->setDate(date_depart);
-        ui->dateEdit_fin->setDate(date_fin);
-        ui->lineEdit_duree->setText(QString::number(duree + 1));
-        ui->lineEdit_designation->setText(strDesignation);
+        num_famille = query.value(0).toString();
     }
-    else
+    QString couleur;
+    query.exec(QString("select couleur from familles where id =" + num_famille));
+    if (query.first())
     {
-        qWarning("ne peut récupérer la valeur ");
+        couleur = query.value(0).toString();
     }
+    return couleur;
 }
 
-void Planner::on_treeView_taches_collapsed(const QModelIndex&index)
+void Planning::on_treeView_taches_collapsed(const QModelIndex&index)
 {
     Q_UNUSED(index)
     effacer_item_planning();
@@ -896,7 +798,7 @@ void Planner::on_treeView_taches_collapsed(const QModelIndex&index)
     afficher_les_liens_planning();
 }
 
-void Planner::on_treeView_taches_expanded(const QModelIndex&index)
+void Planning::on_treeView_taches_expanded(const QModelIndex&index)
 {
     Q_UNUSED(index)
     if (get_drapEndExpanded() == 1)
@@ -929,7 +831,7 @@ void Planner::on_treeView_taches_expanded(const QModelIndex&index)
     }
 }
 
-void Planner::effacer_item_planning()
+void Planning::effacer_item_planning()
 {   //effacement des items planning
     QList <QGraphicsItem *> itemList = scene_planning->items();
     for (int i = 0; i < itemList.size(); i++)
@@ -944,7 +846,7 @@ void Planner::effacer_item_planning()
     ListPositions.clear();
 }
 
-void Planner::creer_lien_planning(int row_origin, int col_origin, int row_dest, int col_dest)
+void Planning::creer_lien_planning(int row_origin, int col_origin, int row_dest, int col_dest)
 {   //dessiner un lien entre tâches dans le planning
     int      spaceCase = Consts::SPACE_CASE;
     QPolygon poly;
@@ -963,7 +865,7 @@ void Planner::creer_lien_planning(int row_origin, int col_origin, int row_dest, 
     scene_planning->addItem(polyline);
 }
 
-void Planner::remplir_liste_lien_planning()
+void Planning::remplir_liste_lien_planning()
 {   // remplir la liste des paires index - ligne du treeview
     ListPositions.clear();
     QSqlQuery   query;
@@ -979,7 +881,7 @@ void Planner::remplir_liste_lien_planning()
     }
 }
 
-void Planner::afficher_les_liens_planning()
+void Planning::afficher_les_liens_planning()
 {   // afficher les liens entre tâches dans le planning
     int       decalagejour = 8;
     QString   strDate      = "01-01-" + ui->comboBox_AnneeEnCours->currentText();
@@ -1023,191 +925,45 @@ void Planner::afficher_les_liens_planning()
     }
 }
 
-void Planner::on_pushButton_AjouterTache_clicked()
+void Planning::on_pushButton_ficheCulture_clicked()
 {
-    // créer une nouvelle tâche
+    QSqlQuery queryComboPhase;
+    QString   parcelle;
+    QString   designation_combo_phases = util::apos(ui->comboBox_phases->currentText());
 
-    if (ui->lineEdit_id_tache->text().toInt() > 0)
+    queryComboPhase.exec(QString("select id from parcelles where designation ='" + designation_combo_phases + "'"));
+    if (queryComboPhase.first())
     {
-        QString designation  = "nouvelle tache";
-        QString commentaires = " ";
-        QString depart       = ui->dateEdit_depart->date().toString("dd-MM-yyyy");
-        QString fin          = ui->dateEdit_depart->date().toString("dd-MM-yyyy");
-        QString duree        = "1";
-        QString id_culture;
-        QString precedent       = ui->lineEdit_id_tache->text();
-        QString contrainte_date = "0";
-        QString phase_parent;
-        QString avancement = "0";
-        QString type       = "2";
+        parcelle = queryComboPhase.value(0).toString();
+    }
+    int Id = ui->lineEdit_id_culture->text().toInt();
 
-        QSqlQuery queryComboPhase;
+    if (Id >= 0)
+    {
+        Cultures *fiche_Cultures = new Cultures(parcelle.toInt(), Id);
+        fiche_Cultures->show();
+    }
+}
 
-        QString designation_combo_phases = util::apos(ui->comboBox_phases->currentText());
-        queryComboPhase.exec(QString("select phase_parent,id_culture from tasks where designation ='" + designation_combo_phases +
-                                     "'"));
-        if (queryComboPhase.first())
+void Planning::ItemPlanning_clicked()
+{   //si l'item est sélectionné (scene_planning selection changed)
+    QList <QGraphicsItem *> itemList = scene_planning->items();
+    int     nbJours;
+    int     dateDepart;
+    QString strDateAn = ui->comboBox_AnneeEnCours->currentText() + ".01.01";
+    QDate   dateAn    = QDate::fromString(strDateAn, "yyyy.MM.dd");
+    for (int i = 0; i < itemList.size(); i++)
+    {
+        if (itemList[i]->isSelected())
         {
-            phase_parent = queryComboPhase.value(0).toString();
-            id_culture   = queryComboPhase.value(1).toString();
-            qDebug() << "phase parent " << phase_parent << " id_culture " << id_culture << "designation " <<
-                designation_combo_phases;
+            tache_item *item = dynamic_cast <tache_item *> (itemList[i]);
+            nbJours = (item->getWidth() / 14) + 1;
+            ui->lineEdit_width->setText(QString::number(nbJours));
+            dateDepart = (int(((item->pos().x()) / 14) - nbJours / 2)) - 6;
+            QDate date_depart = dateAn.addDays(dateDepart);
+            ui->lineEdit_dateDepart->setText(date_depart.toString("yyyy.MM.dd"));
+            ui->lineEdit_id_culture->setText(QString::number(item->getId()));
+            ui->lineEdit_texte_culture->setText(item->getNom());
         }
-        else
-        {
-            qDebug() << "erreur query recherche phase_parent :" << queryComboPhase.lastError().text() << "  " <<
-                queryComboPhase.lastError().databaseText() << queryComboPhase.lastQuery().toUtf8();
-        }
-
-        QSqlQuery query;
-
-        QString str =
-            "insert into tasks (designation,commentaires, depart, fin, duree,precedent, avancement,type,contrainte_date,phase_parent,id_culture)"
-            "values('" + designation + "','" + commentaires + "','" + depart + "','" + fin +
-            "'," + duree + "," + precedent + "," + avancement + "," + type + "," + contrainte_date + "," + phase_parent + "," +
-            id_culture + ")";
-        query.exec(str);
-        if (!query.isActive())
-        {
-            qDebug() << "erreur query valider:" << query.lastError().text() << "  " << query.lastError().databaseText() <<
-                query.lastQuery().toUtf8();
-            QMessageBox::information(this, tr("Erreur d'enregistrement"),
-                                     tr("Veuillez vérifier que tous les champs soient bien remplis"));
-        }
-        else
-        {
-            qDebug() << "enregistrement terminé avec succès";
-        }
-        maj_planning();
-        populate_treeview();
     }
-    else
-    {
-        QMessageBox::information(this, tr("Erreur "),
-                                 tr("Veuillez sélectionner la tache précédente svp"));
-    }
-}
-
-void Planner::on_pushButton_editTache_clicked()
-{   // editer une fiche de tache
-    int            idtache     = ui->lineEdit_id_tache->text().toInt();
-    Dialog_taches *FicheTaches = new Dialog_taches(idtache, this);
-    int            resultat    = FicheTaches->exec();
-
-    if (resultat == QDialog::Accepted)
-    {
-        mise_a_jour_phases();
-        maj_planning();
-        populate_treeview();
-    }
-}
-
-void Planner::on_toolButton_ficheTaches_clicked()
-{
-    Dialog_taches *FicheTaches = new Dialog_taches(0, this);
-    int            resultat    = FicheTaches->exec();
-
-    if (resultat == QDialog::Accepted)
-    {
-        maj_planning();
-        populate_treeview();
-    }
-}
-
-void Planner::on_toolButton_ficheRessources_clicked()
-{
-    // editer une fiche de ressource
-    Dialog_ressources *Fiche = new Dialog_ressources(0, 0, this);
-    int resultat             = Fiche->exec();
-
-    if (resultat == QDialog::Accepted)
-    {
-    }
-}
-
-void Planner::on_toolButton_type_de_Moyens_clicked()
-{
-    // editer une fiche de type de ressource
-    Dialog_type_de_moyen *Fiche = new Dialog_type_de_moyen(0, this);
-    int resultat = Fiche->exec();
-
-    if (resultat == QDialog::Accepted)
-    {
-    }
-}
-
-void Planner::on_toolButton_Coordonnees_clicked()
-{
-    // editer une fiche de coordonnées
-    Dialog_coordonnees *Fiche = new Dialog_coordonnees(0, this);
-    int resultat = Fiche->exec();
-
-    if (resultat == QDialog::Accepted)
-    {
-    }
-}
-
-void Planner::on_toolButton_fiche_typeTaches_clicked()
-{
-    // editer une fiche de type de tâche
-    Dialog_type_de_tache *Fiche = new Dialog_type_de_tache(1, this);
-    int resultat = Fiche->exec();
-
-    if (resultat == QDialog::Accepted)
-    {
-    }
-}
-
-void Planner::on_toolButton_ficheMoyens_clicked()
-{
-    // editer une fiche des moyens
-    Dialog_moyens *Fiche    = new Dialog_moyens(1, this);
-    int            resultat = Fiche->exec();
-
-    if (resultat == QDialog::Accepted)
-    {
-    }
-}
-
-void Planner::on_toolButton_supprimerTache_clicked()
-{   // supprimer une tâche
-    if (ui->lineEdit_id_tache->text() != "")
-    {
-        QSqlQuery query;
-        //remplacement de l'id de la tache precedente de la tâche à supprimer dans les tâches qui la suivent
-        QString tacheActive = ui->lineEdit_id_tache->text();
-        QString designation = util::apos(ui->lineEdit_designation->text());
-        QString id_precedent;
-        query.exec(QString("select precedent from tasks where id=" + tacheActive));
-        if (query.first())
-        {
-            id_precedent = query.value(0).toString();
-        }
-        QString strQuery = "update tasks set precedent= " + id_precedent + " where precedent=" + tacheActive;
-        query.exec(strQuery);
-
-        // suppression de la tâche
-        query.exec(QString("delete from tasks where designation='" + designation + "'"));
-        if (!query.isActive())
-        {
-            qDebug() << "erreur query :" << query.lastError().text() << "  " << query.lastError().databaseText() <<
-                query.lastQuery();
-        }
-        else
-        {
-            qDebug() << "suppression terminée";
-        }
-        maj_planning();
-        populate_treeview();
-    }
-    else
-    {
-        QMessageBox::information(this, tr("Erreur "),
-                                 tr("Veuillez sélectionner une tâche svp"));
-    }
-}
-
-void Planner::on_toolButton_close_clicked()
-{
-    close();
 }

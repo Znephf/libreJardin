@@ -5,6 +5,7 @@
 #include "cultures.h"
 #include <QMainWindow>
 #include <QDialog>
+#include <QColorDialog>
 #include <QLabel>
 #include <QMessageBox>
 #include <QSqlDatabase>
@@ -70,12 +71,14 @@ void Fiche_plantes::init_base()
 
     //FAMILLES
     QSqlQueryModel *model2 = new QSqlQueryModel;
-    model2->setQuery("SELECT id, designation FROM FAMILLES ORDER BY designation ASC");
+    model2->setQuery("SELECT id, designation,couleur FROM FAMILLES ORDER BY designation ASC");
     model2->setHeaderData(0, Qt::Vertical, QObject::tr("id"));
     model2->setHeaderData(1, Qt::Vertical, QObject::tr("designation"));
+    model2->setHeaderData(2, Qt::Vertical, QObject::tr("couleur"));
     ui->tableView_familles->setModel(model2);
     ui->tableView_familles->setColumnWidth(0, 30);
     ui->tableView_familles->setColumnWidth(1, 200);
+    ui->tableView_familles->setColumnWidth(2, 50);
     //PLANTES
     QSqlQueryModel *model3 = new QSqlQueryModel;
     model3->setQuery(
@@ -259,9 +262,12 @@ void Fiche_plantes::on_tableView_familles_clicked(const QModelIndex&index)
     int     row        = index.row();
     QString id_famille = ui->tableView_familles->model()->data(ui->tableView_familles->model()->index(row, 0)).toString();
     QString str        = ui->tableView_familles->model()->data(ui->tableView_familles->model()->index(row, 1)).toString();
+    QString couleur    = ui->tableView_familles->model()->data(ui->tableView_familles->model()->index(row, 2)).toString();
 
     ui->lineEdit_Designation_famille->setText(str);
     ui->lineEdit_Id_familles->setText(id_famille);
+    ui->label_couleur->setText(couleur);
+    ui->label_couleur->setStyleSheet("QLabel { background-color : " + couleur + "}");
 }
 
 void Fiche_plantes::on_pushButton_Modifier_plantes_clicked()
@@ -912,8 +918,9 @@ void Fiche_plantes::on_pushButton_enregistrer_familles_clicked()
 {
     QSqlQuery query;
     QString   famille = util::apos(ui->lineEdit_Designation_famille->text());
-    QString   str     = "insert into familles (designation)"
-                        "values('" + famille + "')";
+    QString   couleur = ui->label_couleur->text();
+    QString   str     = "insert into familles (designation,couleur)"
+                        "values('" + famille + "','" + couleur + "')";
 
     query.exec(str);
     qDebug() << "PREPARE: " << query.lastQuery().toUtf8();
@@ -939,7 +946,9 @@ void Fiche_plantes::on_pushButton_Modifier_familles_clicked()
 {
     QSqlQuery query;
     QString   famille = util::apos(ui->lineEdit_Designation_famille->text());
-    QString   str     = "update familles set designation = '" + famille + "' where id=" + ui->lineEdit_Id_familles->text();
+    QString   couleur = ui->label_couleur->text();
+    QString   str     = "update familles set designation = '" + famille + "',couleur='" + couleur + "' where id=" +
+                        ui->lineEdit_Id_familles->text();
 
     query.exec(str);
     qDebug() << "PREPARE: " << query.lastQuery().toUtf8();
@@ -1142,4 +1151,20 @@ void Fiche_plantes::on_toolButton_clicked()
 {
     setIdPlante(ui->lineEdit_Id_plantes->text().toInt());
     close();
+}
+
+void Fiche_plantes::on_toolButton_CouleurFond_clicked()
+{
+    QColorDialog *dialog = new QColorDialog(this);
+
+    dialog->show();
+    int resultCode = dialog->exec();
+    if (resultCode == QDialog::Accepted)
+    {
+        QColor   color   = dialog->currentColor();
+        QVariant variant = color;
+        QString  rgb     = variant.toString();
+        ui->label_couleur->setText(rgb);
+        ui->label_couleur->setStyleSheet("QLabel { background-color : " + rgb + "}");
+    }
 }

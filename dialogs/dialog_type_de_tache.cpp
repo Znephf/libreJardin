@@ -91,7 +91,7 @@ void Dialog_type_de_tache::on_pushButton_Valider_clicked()
         }
         else
         {
-            //mode modification²
+            //mode modification
 
             QString strQuery = "update type_de_tache set designation = '" + designation + "',couleur='" + couleur +
                                "',forme= " +

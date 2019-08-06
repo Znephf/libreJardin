@@ -86,6 +86,8 @@ private slots:
 
 
 
+    void on_toolButton_CouleurFond_clicked();
+
 protected:
     void closeEvent(QCloseEvent *event) override;
 

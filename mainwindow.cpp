@@ -52,6 +52,7 @@
 #include "dialogs/dialog_moyens.h"
 #include "dialogs/detail_parcelle.h"
 #include "dialogs/nouveau_projet.h"
+#include "dialogs/planning.h"
 #include "graphic/myitem.h"
 #include "graphic/vignette.h"
 #include "graphic/mygrilleitem.h"
@@ -326,7 +327,7 @@ void MainWindow::on_actionA_propos_de_triggered()
                        tr("Ce programme est utilisé pour gérer graphiquement les plantations d'un potager.\n"
                           "il utilise des fichier XML pour la configuration des plans\n"
                           "et une base sqlite pour les données de culture\n"
-                          "version 1.06.067 license GNU GPL version 3"));
+                          "version 1.07.001 license GNU GPL version 3"));
 }
 
 void MainWindow::on_actionQuitter_triggered()
@@ -400,7 +401,7 @@ void MainWindow::createConnection(QString fileName)
 
     if (!file.open(QFile::ReadOnly | QFile::Text))
     {
-        return;
+        fileName = QDir::homePath() + "/openjardin/jardin.sqli";
     }
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
     db.setHostName("localhost");
@@ -428,8 +429,9 @@ void MainWindow::mise_a_jour_Titre()
 
     if (!getFileNameXML().isEmpty())
     {
-        titre = titre + " 1.06 - " + fichier;
+        titre = titre + " 1.07 - " + fichier;
     }
+
 
     setWindowTitle(titre);
 }
@@ -450,7 +452,7 @@ void MainWindow::testVersion()
     {
         qDebug() << "ancienne version";
         int ret = QMessageBox::warning(this, tr("OPENJARDIN - Mise à jour de la base de données"),
-                                       tr("La base de données est en version 1.05.\n"
+                                       tr("La base de données doit être mise à jour.\n"
                                           "Confirmer la mise à jour en version 1.06 ?"),
                                        QMessageBox::Ok | QMessageBox::Cancel,
                                        QMessageBox::Cancel);
@@ -461,7 +463,6 @@ void MainWindow::testVersion()
         {
             // backup du fichier de la base de données
             backup_base();
-            //mise à jour
             mise_a_jour_DB();
             break;
         }
@@ -567,7 +568,7 @@ void MainWindow::mise_a_jour_DB()
                 query.exec(s);                             //<== executer les requêtes normales
                 if (query.lastError().type() != QSqlError::NoError)
                 {
-                    qDebug() << "erreur 292 " << query.lastError().text() << query.lastQuery();
+                    qDebug() << "erreur 571 " << query.lastError().text() << query.lastQuery();
 
                     drap_erreur = 1;
                     db.rollback();                         //<== rollback la transaction s'il y a un probême
@@ -598,6 +599,8 @@ void MainWindow::mise_a_jour_DB()
             if (query.lastError().type() != QSqlError::NoError)
             {
                 drap_erreur = 1;
+                qDebug() << "erreur mise à jour :" << query.lastError().text() << "  " <<
+                    query.lastError().databaseText() << query.lastQuery();
             }
             else
             {
@@ -659,7 +662,7 @@ void MainWindow::ouvrir_FichierXML(QString fileName)
     int          row_parcelles = 0;
 
     ui->tableWidget_parcelles->setRowCount(0);
-    parcelleList.clear();
+
 
     if (nomFichier.exists())
     {
@@ -912,11 +915,110 @@ void MainWindow::ouvrir_FichierXML(QString fileName)
     }
     resize_planning(row_parcelles); //redimensionner la hauteur du planning et rotation selon nombre de parcelles
     get_MaxId();
+
+    // tester si la table des parcelles est vide
+    tester_table_parcelles();
 }
 
-// sauver les données de la table dans un fichier XML
-void MainWindow::on_actionSauver_triggered()
+void MainWindow::tester_table_parcelles()
 {
+    //vérifier l'existance de la table des parcelles
+    QSqlQuery query;
+    QString   strQuery = "SELECT name FROM sqlite_master WHERE name='parcelles'";
+
+    query.exec(strQuery);
+    if (query.first())
+    {
+        QString resultat = query.value(0).toString();
+        qDebug() << "version 1.07";
+    }
+    else
+    {
+        remplir_table_parcelles();
+    }
+    // vérifier si la table des parcelles est remplie
+    strQuery = "SELECT COUNT(*) FROM parcelles";
+    query.exec(strQuery);
+    if (query.first())
+    {
+        QString resultat = query.value(0).toString();
+        qDebug() << " nombre de parcelles " << resultat;
+        if (resultat.toInt() == 0)
+        {
+            qDebug() << "remplir table 947";
+            remplir_table_parcelles();
+        }
+    }
+}
+
+void MainWindow::remplir_table_parcelles()
+{
+    QSqlQuery query;
+    QString   strQuery =
+        "CREATE TABLE IF NOT EXISTS parcelles (id INTEGER UNIQUE PRIMARY KEY,designation TEXT, type INTEGER)";
+
+    query.exec(strQuery);
+    qDebug() << "passage en version 1.07 effectué";
+    if (!query.isActive())
+    {
+        qDebug() << "erreur query création table parcelles:" << query.lastError().text() << "  " <<
+            query.lastError().databaseText() << query.lastQuery();
+    }
+
+
+    qDebug() << " debut remplissage table des parcelles";
+    query.exec(QString("DELETE FROM parcelles"));
+    QString designation;
+    QString idparcelle;
+    //remplir la table des parcelles
+    for (int h = 0; h < ui->tableWidget_parcelles->rowCount(); h++)
+    {
+        if (ui->tableWidget_parcelles->rowCount() > -1)
+        {
+            idparcelle  = ui->tableWidget_parcelles->item(h, 0)->text();
+            designation = ui->tableWidget_parcelles->item(h, 1)->text();
+            query.exec(QString("INSERT INTO parcelles (id, designation) VALUES (" + idparcelle + ",'" +
+                               designation + "')"));
+            if (!query.isActive())
+            {
+                qDebug() << "erreur query parcelles:" << query.lastError().text() << "  " <<
+                    query.lastError().databaseText() << query.lastQuery();
+            }
+        }
+    }
+    qDebug() << " fin remplissage table des parcelles";
+}
+
+void MainWindow::ajouter_parcelle(QString id, QString designation)
+{
+    QSqlQuery query;
+    QString   strQuery = "INSERT OR REPLACE INTO parcelles (id, designation) VALUES (" + id + ",'" + designation + "')";
+
+    //"INSERT INTO parcelles(id,designation) SELECT "+id+",'"+designation+"' WHERE NOT EXISTS(SELECT 1 FROM parcelles WHERE id = "+id+" AND designation = '"+ designation+"'";
+    query.exec(strQuery);
+
+    if (!query.isActive())
+    {
+        qDebug() << "erreur query ajout parcelle:" << query.lastError().text() << "  " <<
+            query.lastError().databaseText() << query.lastQuery();
+    }
+}
+
+void MainWindow::supprimer_parcelle(QString id)
+{
+    QSqlQuery query;
+    QString   strQuery = "DELETE FROM parcelles WHERE id=" + id;
+
+    query.exec(strQuery);
+    if (!query.isActive())
+    {
+        qDebug() << "erreur query suppression parcelle:" << query.lastError().text() << "  " <<
+            query.lastError().databaseText() << query.lastQuery();
+    }
+}
+
+void MainWindow::on_actionSauver_triggered()
+{   // sauver les données de la table dans un fichier XML
     QString cellvalue;
     QString champ;
 
@@ -1565,13 +1667,32 @@ void MainWindow::on_comboBox_Etat_currentIndexChanged(int index)
                 {
                     MyItem *item = dynamic_cast <MyItem *> (itemList[i]);
                     item->setEtat(etat);
+                    QString designation = item->getNom();
+                    QString id          = QString::number(item->getId());
+                    if (etat == 1)
+                    {
+                        ajouter_parcelle(id, designation);
+                    }
+                    else
+                    {
+                        supprimer_parcelle(id);
+                    }
                 }
                 if (itemList[i]->type() == 65537)  // MyPolygone
                 {
                     MyPolygone *item = dynamic_cast <MyPolygone *> (itemList[i]);
                     item->setEtat(etat);
+                    QString designation = item->getNom();
+                    QString id          = QString::number(item->getId());
+                    if (etat == 1)
+                    {
+                        ajouter_parcelle(id, designation);
+                    }
+                    else
+                    {
+                        supprimer_parcelle(id);
+                    }
                 }
-                // items_vers_listeparcelles();
             }
         }
         ui->pushButton_recorPlan->show();
@@ -1933,7 +2054,7 @@ void MainWindow::on_actionAjouterRectangle_triggered()
     ui->graphicsView->verticalScrollBar()->setValue(int(zero.y()));
     QList <QGraphicsItem *> itemList = scene->items();
     //  items_vers_listeparcelles();
-
+    ajouter_parcelle(QString::number(item->getId()), item->getNom());
     ui->pushButton_recorPlan->show();
 }
 
@@ -1960,7 +2081,7 @@ void MainWindow::on_actionAjouter_Rectangle_arrondi_triggered()
     ui->graphicsView->verticalScrollBar()->setValue(int(zero.y()));
     QList <QGraphicsItem *> itemList = scene->items();
     //  items_vers_listeparcelles();
-
+    ajouter_parcelle(QString::number(item->getId()), item->getNom());
     ui->pushButton_recorPlan->show();
 }
 
@@ -1988,7 +2109,7 @@ void MainWindow::on_actionAjouterCercle_triggered()
     ui->graphicsView->verticalScrollBar()->setValue(int(zero.y()));
     QList <QGraphicsItem *> itemList = scene->items();
     // items_vers_listeparcelles();
-
+    ajouter_parcelle(QString::number(item->getId()), item->getNom());
     ui->pushButton_recorPlan->show();
 }
 
@@ -2468,11 +2589,13 @@ void MainWindow::on_actionSupprimer_triggered()
                 if (itemList[i]->type() == 65536)  // MyItem
                 {
                     MyItem *item = dynamic_cast <MyItem *> (itemList[i]);
+                    supprimer_parcelle(QString::number(item->getId()));
                     scene->removeItem(item);
                 }
                 if (itemList[i]->type() == 65537)  // MyPolygone
                 {
                     MyPolygone *item = dynamic_cast <MyPolygone *> (itemList[i]);
+                    supprimer_parcelle(QString::number(item->getId()));
                     scene->removeItem(item);
                 }
                 if (itemList[i]->type() == 65539)  // MyPolyline
@@ -2842,12 +2965,14 @@ void MainWindow::on_pushButton_Enregistrer_modif_item_clicked()
                 MyItem *item = dynamic_cast <MyItem *> (itemList[i]);
                 item->setNom(util::apos(ui->lineEdit_Nom_item->text()));
                 item->setTexte(util::apos(ui->textEdit_plan_commentaires->document()->toPlainText()));
+                ajouter_parcelle(QString::number(item->getId()), item->getNom());
             }
             if (itemList[i]->type() == 65537) // MyPolygone
             {
                 MyPolygone *item = dynamic_cast <MyPolygone *> (itemList[i]);
                 item->setNom(util::apos(ui->lineEdit_Nom_item->text()));
                 item->setTexte(util::apos(ui->textEdit_plan_commentaires->document()->toPlainText()));
+                ajouter_parcelle(QString::number(item->getId()), item->getNom());
             }
             if (itemList[i]->type() == 65539) // MyPolyline
             {
@@ -2980,11 +3105,7 @@ void MainWindow::mise_a_jour_table_cultures(int choix)
                     {
                         nom_plante = query.value(0).toString();
                     }
-                    else
-                    {
-                        qDebug() << "erreur query num plante:" << query.lastError().text() << "  " <<
-                            query.lastError().databaseText() << query.driver();
-                    }
+
 
                     QString num_espece;
                     query.exec(QString("select espece from plantes where id =" + num_plante));
@@ -2992,11 +3113,7 @@ void MainWindow::mise_a_jour_table_cultures(int choix)
                     {
                         num_espece = query.value(0).toString();
                     }
-                    else
-                    {
-                        qDebug() << "erreur query num plante:" << query.lastError().text() << "  " <<
-                            query.lastError().databaseText() << query.driver();
-                    }
+
 
                     QString num_famille;
                     query.exec(QString("select famille from especes where id =" + num_espece));
@@ -3004,11 +3121,7 @@ void MainWindow::mise_a_jour_table_cultures(int choix)
                     {
                         num_famille = query.value(0).toString();
                     }
-                    else
-                    {
-                        qDebug() << "erreur query num espece :" << query.lastError().text() << "  " <<
-                            query.lastError().databaseText() << query.driver();
-                    }
+
 
                     QString nom_famille;
                     query.exec(QString("select designation from familles where id =" + num_famille));
@@ -3019,7 +3132,7 @@ void MainWindow::mise_a_jour_table_cultures(int choix)
                     else
                     {
                         qDebug() << "erreur query :" << query.lastError().text() << "  " << query.lastError().databaseText() <<
-                            query.driver();
+                            query.lastQuery();
                     }
 
                     QDate date_tache = QDate::fromString(texte_date, "yyyy.MM.dd");
@@ -3028,105 +3141,47 @@ void MainWindow::mise_a_jour_table_cultures(int choix)
                     int   famille    = num_famille.toInt();
 
                     QColor couleur_famille;
-                    int    red;
-                    int    green;
-                    int    blue;
-                    red   = ui->tableWidget_rotation_3->horizontalHeaderItem(10)->backgroundColor().red();
-                    green = ui->tableWidget_rotation_3->horizontalHeaderItem(10)->backgroundColor().green();
-                    blue  = ui->tableWidget_rotation_3->horizontalHeaderItem(10)->backgroundColor().blue();
-                    couleur_famille.setBlue(blue);
-                    couleur_famille.setGreen(green);
-                    couleur_famille.setRed(red);
+                    couleur_famille = "#ded8d7";
 
-                    if (famille == 3)//apiacées
+                    if (famille == 3)                  //apiacées
                     {
-                        red   = ui->tableWidget_rotation_3->horizontalHeaderItem(0)->backgroundColor().red();
-                        green = ui->tableWidget_rotation_3->horizontalHeaderItem(0)->backgroundColor().green();
-                        blue  = ui->tableWidget_rotation_3->horizontalHeaderItem(0)->backgroundColor().blue();
-                        couleur_famille.setBlue(blue);
-                        couleur_famille.setGreen(green);
-                        couleur_famille.setRed(red);
+                        couleur_famille = "#ff5500";
                     }
-                    if (famille == 4)//astéracées
+                    if (famille == 4)                  //astéracées
                     {
-                        red   = ui->tableWidget_rotation_3->horizontalHeaderItem(1)->backgroundColor().red();
-                        green = ui->tableWidget_rotation_3->horizontalHeaderItem(1)->backgroundColor().green();
-                        blue  = ui->tableWidget_rotation_3->horizontalHeaderItem(1)->backgroundColor().blue();
-                        couleur_famille.setBlue(blue);
-                        couleur_famille.setGreen(green);
-                        couleur_famille.setRed(red);
+                        couleur_famille = "#aaaa7f";
                     }
-                    if (famille == 7)//brassicacées
+                    if (famille == 7)                  //brassicacées
                     {
-                        red   = ui->tableWidget_rotation_3->horizontalHeaderItem(2)->backgroundColor().red();
-                        green = ui->tableWidget_rotation_3->horizontalHeaderItem(2)->backgroundColor().green();
-                        blue  = ui->tableWidget_rotation_3->horizontalHeaderItem(2)->backgroundColor().blue();
-                        couleur_famille.setBlue(blue);
-                        couleur_famille.setGreen(green);
-                        couleur_famille.setRed(red);
+                        couleur_famille = "#aaffff";
                     }
-                    if (famille == 8)//chenopodacées
+                    if (famille == 8)                  //chenopodacées
                     {
-                        red   = ui->tableWidget_rotation_3->horizontalHeaderItem(3)->backgroundColor().red();
-                        green = ui->tableWidget_rotation_3->horizontalHeaderItem(3)->backgroundColor().green();
-                        blue  = ui->tableWidget_rotation_3->horizontalHeaderItem(3)->backgroundColor().blue();
-                        couleur_famille.setBlue(blue);
-                        couleur_famille.setGreen(green);
-                        couleur_famille.setRed(red);
+                        couleur_famille = "#ff5500";
                     }
-                    if (famille == 10)//cucurbitacées
+                    if (famille == 10)                  //cucurbitacées
                     {
-                        red   = ui->tableWidget_rotation_3->horizontalHeaderItem(4)->backgroundColor().red();
-                        green = ui->tableWidget_rotation_3->horizontalHeaderItem(4)->backgroundColor().green();
-                        blue  = ui->tableWidget_rotation_3->horizontalHeaderItem(4)->backgroundColor().blue();
-                        couleur_famille.setBlue(blue);
-                        couleur_famille.setGreen(green);
-                        couleur_famille.setRed(red);
+                        couleur_famille = "#ff557f";
                     }
-                    if (famille == 12)//fabacées
+                    if (famille == 12)                  //fabacées
                     {
-                        red   = ui->tableWidget_rotation_3->horizontalHeaderItem(5)->backgroundColor().red();
-                        green = ui->tableWidget_rotation_3->horizontalHeaderItem(5)->backgroundColor().green();
-                        blue  = ui->tableWidget_rotation_3->horizontalHeaderItem(5)->backgroundColor().blue();
-                        couleur_famille.setBlue(blue);
-                        couleur_famille.setGreen(green);
-                        couleur_famille.setRed(red);
+                        couleur_famille = "#00ff00";
                     }
-                    if (famille == 15)//alliacées
+                    if (famille == 15)                  //alliacées
                     {
-                        red   = ui->tableWidget_rotation_3->horizontalHeaderItem(6)->backgroundColor().red();
-                        green = ui->tableWidget_rotation_3->horizontalHeaderItem(6)->backgroundColor().green();
-                        blue  = ui->tableWidget_rotation_3->horizontalHeaderItem(6)->backgroundColor().blue();
-                        couleur_famille.setBlue(blue);
-                        couleur_famille.setGreen(green);
-                        couleur_famille.setRed(red);
+                        couleur_famille = "#ffff7f";
                     }
-                    if (famille == 17)//poacées
+                    if (famille == 17)                  //poacées
                     {
-                        red   = ui->tableWidget_rotation_3->horizontalHeaderItem(7)->backgroundColor().red();
-                        green = ui->tableWidget_rotation_3->horizontalHeaderItem(7)->backgroundColor().green();
-                        blue  = ui->tableWidget_rotation_3->horizontalHeaderItem(7)->backgroundColor().blue();
-                        couleur_famille.setBlue(blue);
-                        couleur_famille.setGreen(green);
-                        couleur_famille.setRed(red);
+                        couleur_famille = "#aaaaff";
                     }
-                    if (famille == 21)//solanacées
+                    if (famille == 21)                  //solanacées
                     {
-                        red   = ui->tableWidget_rotation_3->horizontalHeaderItem(8)->backgroundColor().red();
-                        green = ui->tableWidget_rotation_3->horizontalHeaderItem(8)->backgroundColor().green();
-                        blue  = ui->tableWidget_rotation_3->horizontalHeaderItem(8)->backgroundColor().blue();
-                        couleur_famille.setBlue(blue);
-                        couleur_famille.setGreen(green);
-                        couleur_famille.setRed(red);
+                        couleur_famille = "#ff00ff";
                     }
-                    if (famille == 22)//valerianacées
+                    if (famille == 22)                  //valerianacées
                     {
-                        red   = ui->tableWidget_rotation_3->horizontalHeaderItem(9)->backgroundColor().red();
-                        green = ui->tableWidget_rotation_3->horizontalHeaderItem(9)->backgroundColor().green();
-                        blue  = ui->tableWidget_rotation_3->horizontalHeaderItem(9)->backgroundColor().blue();
-                        couleur_famille.setBlue(blue);
-                        couleur_famille.setGreen(green);
-                        couleur_famille.setRed(red);
+                        couleur_famille = "#55ff7f";
                     }
                     if (choix == 0)
                     {
@@ -3374,6 +3429,7 @@ void MainWindow::validerPolygone()
     scene2->setMode(MyGraphicsScene::Utilisation);
     on_actionUtilisation_triggered();
     mode_modifier = false;
+    ajouter_parcelle(QString::number(polygon->getId()), polygon->getNom());
 }
 
 void MainWindow::validerPolyline()
@@ -3799,6 +3855,7 @@ void MainWindow::on_actionFiches_plantes_triggered()
 
 void MainWindow::on_actionConfiguration_triggered()
 {
+    QString oldSqlFileName = getfileNameSQL();
     //ouvrir la fenêtre configuration
     Configuration *fenetre_configuration = new Configuration(getFileNameXML(), getfileNameSQL(), this);
     int            resultat = fenetre_configuration->exec();
@@ -3809,6 +3866,12 @@ void MainWindow::on_actionConfiguration_triggered()
         setfileNameSQL(fenetre_configuration->getSqlFileName());
 
         qDebug() << " base de données ouverte " << getfileNameSQL() << " XML " << getFileNameXML();
+        if (getfileNameSQL() != oldSqlFileName)
+        {   // si la base de données change tester la version et remplir la table des parcelles selon le fichier XML en cours
+            createConnection(getfileNameSQL());
+            testVersion();
+            remplir_table_parcelles();
+        }
     }
 }
 
@@ -3935,4 +3998,25 @@ void MainWindow::on_actionAide_PDF_triggered()
     QProcess *process = new QProcess(this);
 
     process->start("/etc/alternatives/x-www-browser /usr/share/openjardin/notice_openJardin_1-06.pdf");
+}
+
+void MainWindow::on_actionAfficherPlanning_triggered()
+{   // Afficher le planning
+    Planning *Fiche = new Planning(0);
+
+    Fiche->show();
+}
+
+void MainWindow::on_toolButton_DeleteObjet_triggered(QAction *arg1)
+{
+}
+
+void MainWindow::on_pushButton_clicked()
+{   // ouvrir le planning de la parcelle
+    int id_parcelle = ui->lineEdit_Id_Item->text().toInt();
+
+
+    Planning *Fiche = new Planning(id_parcelle);
+
+    Fiche->show();
 }

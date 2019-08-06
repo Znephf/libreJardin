@@ -29,6 +29,7 @@ Dialog_taches::~Dialog_taches()
 
 void Dialog_taches::on_lineEdit_Designation_textChanged(const QString&arg1)
 {
+    Q_UNUSED(arg1)
     if (ui->lineEdit_Designation->text() == "")
     {
         ui->lineEdit_Designation->setStyleSheet(
@@ -835,6 +836,7 @@ void Dialog_taches::on_pushButton_Edit_Type_clicked()
 
 void Dialog_taches::on_checkBox_ContrainteDate_stateChanged(int arg1)
 {
+    Q_UNUSED(arg1)
     if (ui->checkBox_ContrainteDate->isChecked())
     {
         QDate date_precedent = ui->dateEdit_fin_precedente->date();

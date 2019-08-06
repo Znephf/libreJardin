@@ -322,6 +322,7 @@ void Dialog_moyens::on_pushButton_Add_coord_moyen_clicked()
 
 void Dialog_moyens::on_comboBox_coordonnees_currentIndexChanged(const QString&arg1)
 {
+    Q_UNUSED(arg1)
 }
 
 void Dialog_moyens::on_comboBox_coordonnees_currentTextChanged(const QString&arg1)

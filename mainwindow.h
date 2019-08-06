@@ -123,6 +123,10 @@ public:
     void mise_a_jour_DB();
     void backup_base();
     void mise_a_jour_Titre();
+    void tester_table_parcelles();
+    void remplir_table_parcelles();
+    void ajouter_parcelle(QString id, QString designation);
+    void supprimer_parcelle(QString id);
 
 public slots:
 
@@ -263,6 +267,12 @@ private slots:
 
     void on_actionAide_PDF_triggered();
 
+    void on_actionAfficherPlanning_triggered();
+
+    void on_toolButton_DeleteObjet_triggered(QAction *arg1);
+
+    void on_pushButton_clicked();
+
 protected:
     QPoint mousePressPt;
     void mousePressEvent(QMouseEvent *event);
@@ -289,7 +299,6 @@ private:
     QString m_fileName_XML;
     QString m_fileName_SQL;
     QString m_fileNameBackGround;
-    QList <Parcelle *> parcelleList;
     QString m_locale = "fr_FR";
 
     QSqlTableModel model1; //especes

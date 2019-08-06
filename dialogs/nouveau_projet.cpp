@@ -35,7 +35,7 @@ nouveau_Projet::~nouveau_Projet()
 
 void nouveau_Projet::closeEvent(QCloseEvent *event)
 {
-    Q_UNUSED(event);
+    Q_UNUSED(event)
     accept();
     close();
 }
@@ -235,6 +235,7 @@ void nouveau_Projet::on_pushButton_clicked()
 
 void nouveau_Projet::on_lineEdit_filename_textChanged(const QString&arg1)
 {
+    Q_UNUSED(arg1)
     if (ui->lineEdit_filename->text() == "")
     {
         ui->lineEdit_filename->setStyleSheet(

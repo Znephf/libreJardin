@@ -29,6 +29,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += main.cpp\
     dialogs/nouveau_projet.cpp \
+    dialogs/planning.cpp \
     graphic/background.cpp \
     graphic/myitem.cpp \
     graphic/mybutton.cpp \
@@ -65,6 +66,7 @@ SOURCES += main.cpp\
 
 HEADERS  += mainwindow.h \
     dialogs/nouveau_projet.h \
+    dialogs/planning.h \
     graphic/background.h \
     graphic/myitem.h \
     graphic/mybutton.h \
@@ -114,7 +116,8 @@ FORMS    += mainwindow.ui \
     dialogs/dialog_ajout_moyen.ui \
     dialogs/dialog_ajout_ressource.ui \
     dialogs/dialog_type_de_moyen.ui \
-    dialogs/detail_parcelle.ui
+    dialogs/detail_parcelle.ui \
+    dialogs/planning.ui
 
 RESOURCES += \
     openjardin.qrc

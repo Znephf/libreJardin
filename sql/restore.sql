@@ -73,31 +73,39 @@ CREATE TABLE "familles" (
         `designation`	varchar(30),
         `couleur`    varchar(10)
 );
-INSERT INTO `familles` (id,designation) VALUES (1,'Actinidiacées');
-INSERT INTO `familles` (id,designation) VALUES (2,'Amaranthacées');
-INSERT INTO `familles` (id,designation) VALUES (3,'Apiacées (Ombellifères)');
-INSERT INTO `familles` (id,designation) VALUES (4,'Astéracées (composées)');
-INSERT INTO `familles` (id,designation) VALUES (5,'Aizoaceae');
-INSERT INTO `familles` (id,designation) VALUES (6,'Basellacées');
-INSERT INTO `familles` (id,designation) VALUES (7,'Brassicacées (Crucifères)');
-INSERT INTO `familles` (id,designation) VALUES (8,'Chénopodiacées');
-INSERT INTO `familles` (id,designation) VALUES (9,'Convolvulacées');
-INSERT INTO `familles` (id,designation) VALUES (10,'Cucurbitacées');
-INSERT INTO `familles` (id,designation) VALUES (11,'Ericaceae');
-INSERT INTO `familles` (id,designation) VALUES (12,'Fabacées (Papilionacées)');
-INSERT INTO `familles` (id,designation) VALUES (13,'Grossulariacées');
-INSERT INTO `familles` (id,designation) VALUES (14,'Lamiacées (Labiées)');
-INSERT INTO `familles` (id,designation) VALUES (15,'Alliacées');
-INSERT INTO `familles` (id,designation) VALUES (16,'Asparagacées (Liliacées)');
-INSERT INTO `familles` (id,designation) VALUES (17,'Poacées (Graminées)');
-INSERT INTO `familles` (id,designation) VALUES (18,'Polygonacées');
-INSERT INTO `familles` (id,designation) VALUES (19,'Portulacacées');
-INSERT INTO `familles` (id,designation) VALUES (20,'Rosacées');
-INSERT INTO `familles` (id,designation) VALUES (21,'Solanacées');
-INSERT INTO `familles` (id,designation) VALUES (22,'Valérianacées');
-INSERT INTO `familles` (id,designation) VALUES (23,'Iridacée');
-INSERT INTO `familles` (id,designation) VALUES (24,'-');
-INSERT INTO `familles` (id,designation) VALUES (25,'Amaryllidacées');
+INSERT INTO `familles` (id,designation,couleur) VALUES (1,'Actinidiacées','#ded8d7'),
+ (2,'Amaranthacées','#ded8d7'),
+ (3,'Apiacées
+(Ombellifères)','#ff5500'),
+ (4,'Astéracées (composées)','#aaaa7f'),
+ (5,'Aizoaceae','#ded8d7'),
+ (6,'Basellacées','#ded8d7'),
+ (7,'Brassicacées
+(Crucifères)','#aaffff'),
+ (8,'Chénopodiacées','#ff557f'),
+ (9,'Convolvulacées','#ded8d7'),
+ (10,'Cucurbitacées','#ffaa7f'),
+ (11,'Ericaceae','#ded8d7'),
+ (12,'Fabacées
+(Papilionacées)','#00ff00'),
+ (13,'Grossulariacées','#ded8d7'),
+ (14,'Lamiacées (Labiées)','#ded8d7'),
+ (15,'Alliacées','#ffff7f'),
+ (16,'Asparagacées
+(Liliacées)','#ded8d7'),
+ (17,'Poacées
+(Graminées)','#aaaaff'),
+ (18,'Polygonacées','#ded8d7'),
+ (19,'Portulacacées','#ded8d7'),
+ (20,'Rosacées','#ded8d7'),
+ (21,'Solanacées','#ff00ff'),
+ (22,'Valérianacées','#55ff7f'),
+ (23,'Iridacée','#ded8d7'),
+ (24,'-','#ded8d7'),
+ (25,'Amaryllidaceae','#ded8d7'),
+ (26,'Malvacées','#ded8d7'),
+ (27,'Buxaceae','#ded8d7');
+
 CREATE TABLE "especes" (
         `id`	INTEGER PRIMARY KEY AUTOINCREMENT,
         `designation`	varchar(30),
@@ -334,4 +342,11 @@ INSERT INTO "type_de_moyen" (id,designation,commentaires) VALUES (1,'Personnel',
  (2,'Matériel',' '),
  (3,'Prestations extérieures',' '),
  (4,'Fournitures',' ');
+
+CREATE TABLE `parcelles` (
+         `id`	INTEGER UNIQUE,
+         `designation`	TEXT PRIMARY KEY,
+         `mode_affichage` INTEGER
+ );
 COMMIT;
+CREATE TABLE "parcelles" ( `id` INTEGER UNIQUE, `designation` TEXT, `type` INTEGER, PRIMARY KEY(`id`) )

@@ -74,5 +74,6 @@
         <file>images/add_image.png</file>
         <file>images/cultures.png</file>
         <file>images/type_moyen.png</file>
+        <file>images/planning.png</file>
     </qresource>
 </RCC>
