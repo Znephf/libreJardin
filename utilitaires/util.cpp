@@ -9,8 +9,8 @@ util::util()
 
 QString util::apos(QString texte)
 {
-    texte.replace(QString("'"), QString("''")); //remplacement des apostrophes
-    QString texteModif = texte.toUtf8();        //conversion
+    texte.replace(QString("'"), QString("''")); //replacement of apostrophes
+    QString texteModif = texte.toUtf8();        //convert
     return texteModif;
 }
 

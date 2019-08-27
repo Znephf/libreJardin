@@ -145,7 +145,7 @@
           <string>...</string>
          </property>
          <property name="icon">
-          <iconset resource="../openjardin.qrc">
+          <iconset resource="../libreJardin.qrc">
            <normaloff>:/images/service.png</normaloff>:/images/service.png</iconset>
          </property>
          <property name="iconSize">
@@ -165,7 +165,7 @@
           <string>...</string>
          </property>
          <property name="icon">
-          <iconset resource="../openjardin.qrc">
+          <iconset resource="../libreJardin.qrc">
            <normaloff>:/images/ressources.png</normaloff>:/images/ressources.png</iconset>
          </property>
          <property name="iconSize">
@@ -185,7 +185,7 @@
           <string>...</string>
          </property>
          <property name="icon">
-          <iconset resource="../openjardin.qrc">
+          <iconset resource="../libreJardin.qrc">
            <normaloff>:/images/motoculteur.png</normaloff>:/images/motoculteur.png</iconset>
          </property>
          <property name="iconSize">
@@ -205,7 +205,7 @@
           <string>...</string>
          </property>
          <property name="icon">
-          <iconset resource="../openjardin.qrc">
+          <iconset resource="../libreJardin.qrc">
            <normaloff>:/images/type_moyen.png</normaloff>:/images/type_moyen.png</iconset>
          </property>
          <property name="iconSize">
@@ -225,7 +225,7 @@
           <string>...</string>
          </property>
          <property name="icon">
-          <iconset resource="../openjardin.qrc">
+          <iconset resource="../libreJardin.qrc">
            <normaloff>:/images/settings_48.png</normaloff>:/images/settings_48.png</iconset>
          </property>
          <property name="iconSize">
@@ -245,7 +245,7 @@
           <string>...</string>
          </property>
          <property name="icon">
-          <iconset resource="../openjardin.qrc">
+          <iconset resource="../libreJardin.qrc">
            <normaloff>:/images/adresses.png</normaloff>:/images/adresses.png</iconset>
          </property>
          <property name="iconSize">
@@ -275,7 +275,7 @@
           <string>...</string>
          </property>
          <property name="icon">
-          <iconset resource="../openjardin.qrc">
+          <iconset resource="../libreJardin.qrc">
            <normaloff>:/images/icones/quitter.png</normaloff>:/images/icones/quitter.png</iconset>
          </property>
          <property name="iconSize">
@@ -605,7 +605,7 @@
                      <string/>
                     </property>
                     <property name="icon">
-                     <iconset resource="../openjardin.qrc">
+                     <iconset resource="../libreJardin.qrc">
                       <normaloff>:/images/add_48.png</normaloff>:/images/add_48.png</iconset>
                     </property>
                     <property name="iconSize">
@@ -625,7 +625,7 @@
                      <string>...</string>
                     </property>
                     <property name="icon">
-                     <iconset resource="../openjardin.qrc">
+                     <iconset resource="../libreJardin.qrc">
                       <normaloff>:/images/remove_48.png</normaloff>:/images/remove_48.png</iconset>
                     </property>
                     <property name="iconSize">
@@ -651,7 +651,7 @@
                      <string/>
                     </property>
                     <property name="icon">
-                     <iconset resource="../openjardin.qrc">
+                     <iconset resource="../libreJardin.qrc">
                       <normaloff>:/images/pen_48.png</normaloff>:/images/pen_48.png</iconset>
                     </property>
                     <property name="iconSize">
@@ -850,7 +850,7 @@ QTreeView::item:selected:!active {
   </layout>
  </widget>
  <resources>
-  <include location="../openjardin.qrc"/>
+  <include location="../libreJardin.qrc"/>
  </resources>
  <connections/>
 </ui>

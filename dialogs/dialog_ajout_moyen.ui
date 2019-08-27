@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>329</width>
+    <width>338</width>
     <height>338</height>
    </rect>
   </property>
@@ -23,7 +23,7 @@
          <item>
           <widget class="QLabel" name="label">
            <property name="text">
-            <string>Moyen</string>
+            <string>Ways</string>
            </property>
           </widget>
          </item>
@@ -46,7 +46,7 @@
             <string>...</string>
            </property>
            <property name="icon">
-            <iconset resource="../openjardin.qrc">
+            <iconset resource="../libreJardin.qrc">
              <normaloff>:/images/edit.png</normaloff>:/images/edit.png</iconset>
            </property>
            <property name="iconSize">
@@ -69,10 +69,10 @@
        <item>
         <widget class="QPushButton" name="pushButton_addMoyen">
          <property name="text">
-          <string>Nouveau moyen</string>
+          <string>New Ways</string>
          </property>
          <property name="icon">
-          <iconset resource="../openjardin.qrc">
+          <iconset resource="../libreJardin.qrc">
            <normaloff>:/images/add_48.png</normaloff>:/images/add_48.png</iconset>
          </property>
         </widget>
@@ -94,7 +94,7 @@
   </layout>
  </widget>
  <resources>
-  <include location="../openjardin.qrc"/>
+  <include location="../libreJardin.qrc"/>
  </resources>
  <connections>
   <connection>

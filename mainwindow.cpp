@@ -1,7 +1,7 @@
 ﻿/****************************************************************************
 **
-** Copyright (C) 2017 openjardin.eu.
-** Contact: https://openjardin.eu
+** Copyright (C) 2017 libreJardin.eu.
+** Contact: https://libreJardin.eu
 **
 ** You may use this file under the terms of the GNU GENERAL PUBLIC LICENSE
 ** Version 3, 29 June 2007  as follows:
@@ -100,13 +100,13 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     mode_modifier = false;
-    QCoreApplication::setOrganizationName("openjardin");
-    QCoreApplication::setOrganizationDomain("openjardin.eu");
-    QCoreApplication::setApplicationName("openjardin");
+    QCoreApplication::setOrganizationName("libreJardin");
+    QCoreApplication::setOrganizationDomain("libreJardin.eu");
+    QCoreApplication::setApplicationName("libreJardin");
     QSettings settings;
     //connexion à la base de données
-    QString fileName     = QDir::homePath() + "/openjardin/jardin.sqli"; //emplacement de la base de données utilisée
-    QString fileName_usr = "/usr/share/openjardin/jardin.sqli";          //emplacement base de données copiées à l'installation
+    QString fileName     = QDir::homePath() + "/libreJardin/jardin.sqli"; //emplacement de la base de données utilisée
+    QString fileName_usr = "/usr/share/libreJardin/jardin.sqli";          //emplacement base de données copiées à l'installation
 
     // translator
     QTranslator translator;
@@ -115,25 +115,25 @@ MainWindow::MainWindow(QWidget *parent) :
     qApp->installTranslator(&translator);
 
 
-    //test existance du fichier de la base dans homePath()/openjardin pour la première utilisation
+    //test existance du fichier de la base dans homePath()/libreJardin pour la première utilisation
 
     QFile file(fileName);
     //   if (!file.exists())
     if (!file.open(QFile::ReadOnly | QFile::Text))
     {
-        qDebug() << "création du dossier openJardin en cours";
-        QString path = QDir::homePath() + "/openjardin";
+        qDebug() << "création du dossier libreJardin en cours";
+        QString path = QDir::homePath() + "/libreJardin";
         QDir    dir(path);
         dir.mkdir(path);
         //copie des fichiers dans le repertoire personnel
         QFile::copy(fileName_usr, fileName);
-        QFile::copy("/usr/share/openjardin/jardin.xml", path + "/jardin.xml");
-        QFile::copy("/usr/share/openjardin/message.png", path + "/message.png");
-        QFile::copy("/usr/share/openjardin/jardin_type.png", path + "/jardin_type.png");
-        QFile::copy("/usr/share/openjardin/notice_openJardin.pdf", path + "/notice_openJardin.pdf");
-        QFile::copy("/usr/share/openjardin/jardinDemo.xml", path + "/jardinDemo.xml");
-        QFile::copy("/usr/share/openjardin/jardinDemo.sqli", path + "/jardinDemo.sqli");
-        QFile::copy("/usr/share/openjardin/jardin.sqli", path + "/jardin.sqli");
+        QFile::copy("/usr/share/libreJardin/jardin.xml", path + "/jardin.xml");
+        QFile::copy("/usr/share/libreJardin/message.png", path + "/message.png");
+        QFile::copy("/usr/share/libreJardin/jardin_type.png", path + "/jardin_type.png");
+        QFile::copy("/usr/share/libreJardin/notice_libreJardin.pdf", path + "/notice_libreJardin.pdf");
+        QFile::copy("/usr/share/libreJardin/jardinDemo.xml", path + "/jardinDemo.xml");
+        QFile::copy("/usr/share/libreJardin/jardinDemo.sqli", path + "/jardinDemo.sqli");
+        QFile::copy("/usr/share/libreJardin/jardin.sqli", path + "/jardin.sqli");
     }
 
     ui->setupUi(this);
@@ -253,7 +253,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
 
     /**********************fond d'écran standard**************************************/
-    QString     fileName2 = QDir::homePath() + "/openjardin/message.png";
+    QString     fileName2 = QDir::homePath() + "/libreJardin/message.png";
     QPixmap     pim(fileName2);
     background *pixmap = new background();
     pixmap->setPixmap(pim);
@@ -388,9 +388,9 @@ void MainWindow::loadIniSettings()
     }
     else
     {
-        QString fileNameXML = QDir::homePath() + "/openjardin/jardin.xml";
+        QString fileNameXML = QDir::homePath() + "/libreJardin/jardin.xml";
         ouvrir_FichierXML(fileNameXML);
-        QString fileName = QDir::homePath() + "/openjardin/jardin.sqli";
+        QString fileName = QDir::homePath() + "/libreJardin/jardin.sqli";
         createConnection(fileName);
     }
 }
@@ -401,7 +401,7 @@ void MainWindow::createConnection(QString fileName)
 
     if (!file.open(QFile::ReadOnly | QFile::Text))
     {
-        fileName = QDir::homePath() + "/openjardin/jardin.sqli";
+        fileName = QDir::homePath() + "/libreJardin/jardin.sqli";
     }
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
     db.setHostName("localhost");
@@ -451,7 +451,7 @@ void MainWindow::testVersion()
     else
     {
         qDebug() << "ancienne version";
-        int ret = QMessageBox::warning(this, tr("OPENJARDIN - Mise à jour de la base de données"),
+        int ret = QMessageBox::warning(this, tr("libreJardin - Mise à jour de la base de données"),
                                        tr("La base de données doit être mise à jour.\n"
                                           "Confirmer la mise à jour en version 1.06 ?"),
                                        QMessageBox::Ok | QMessageBox::Cancel,
@@ -635,7 +635,7 @@ void MainWindow::on_actionOuvrir_triggered()
     QDomDocument document;
 
     // ouverture du fichier pour lecture
-    QString repertoire = QDir::homePath() + "/openjardin/";
+    QString repertoire = QDir::homePath() + "/libreJardin/";
 
     QString fileName =
         QFileDialog::getOpenFileName(this, tr("Ouverture du fichier des objets"),
@@ -712,7 +712,7 @@ void MainWindow::ouvrir_FichierXML(QString fileName)
                     QFile   filefond(fileNameFond);
                     if (!filefond.exists())
                     {
-                        fileNameFond = QDir::homePath() + "/openjardin/message.png";
+                        fileNameFond = QDir::homePath() + "/libreJardin/message.png";
                     }
                     background *pixmap = new background();
                     QPixmap     pim(fileNameFond);
@@ -2424,7 +2424,7 @@ int MainWindow::get_MaxId()
 void MainWindow::on_actionFondEcran_triggered()
 {   // choix fond d-ecran
     // ouverture du fichier pour lecture
-    QString repertoire = QDir::homePath() + "/openjardin/";
+    QString repertoire = QDir::homePath() + "/libreJardin/";
 
     QString fileName =
         QFileDialog::getOpenFileName(this, tr("Ouverture du fichier des objets"),
@@ -3997,7 +3997,7 @@ void MainWindow::on_actionAide_PDF_triggered()
 {
     QProcess *process = new QProcess(this);
 
-    process->start("/etc/alternatives/x-www-browser /usr/share/openjardin/notice_openJardin_1-06.pdf");
+    process->start("/etc/alternatives/x-www-browser /usr/share/libreJardin/notice_libreJardin_1-06.pdf");
 }
 
 void MainWindow::on_actionAfficherPlanning_triggered()

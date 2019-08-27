@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>457</width>
-    <height>155</height>
+    <height>160</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -41,7 +41,7 @@
           <string>...</string>
          </property>
          <property name="icon">
-          <iconset resource="../openjardin.qrc">
+          <iconset resource="../libreJardin.qrc">
            <normaloff>:/images/icones/quitter.png</normaloff>:/images/icones/quitter.png</iconset>
          </property>
          <property name="iconSize">
@@ -86,7 +86,7 @@
           <string>...</string>
          </property>
          <property name="icon">
-          <iconset resource="../openjardin.qrc">
+          <iconset resource="../libreJardin.qrc">
            <normaloff>:/images/open_48.png</normaloff>:/images/open_48.png</iconset>
          </property>
          <property name="iconSize">
@@ -120,7 +120,7 @@
           <string>Créer le nouveau projet</string>
          </property>
          <property name="icon">
-          <iconset resource="../openjardin.qrc">
+          <iconset resource="../libreJardin.qrc">
            <normaloff>:/images/Valider.png</normaloff>:/images/Valider.png</iconset>
          </property>
         </widget>
@@ -132,7 +132,7 @@
   </layout>
  </widget>
  <resources>
-  <include location="../openjardin.qrc"/>
+  <include location="../libreJardin.qrc"/>
  </resources>
  <connections/>
 </ui>

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
  <class>MainWindow</class>
  <widget class="QMainWindow" name="MainWindow">
@@ -69,7 +69,7 @@
        </size>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="tab_plan">
        <attribute name="title">
@@ -3092,79 +3092,6 @@
     </item>
    </layout>
   </widget>
-  <widget class="QMenuBar" name="menuBar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>1114</width>
-     <height>30</height>
-    </rect>
-   </property>
-   <widget class="QMenu" name="menuFichier">
-    <property name="title">
-     <string>Fichier</string>
-    </property>
-    <addaction name="actionOuvrir"/>
-    <addaction name="actionNouveau_projet"/>
-    <addaction name="actionSauver"/>
-    <addaction name="actionEnregistrer_sous"/>
-    <addaction name="actionImprimer_le_plan"/>
-    <addaction name="actionQuitter"/>
-   </widget>
-   <widget class="QMenu" name="menuObjets">
-    <property name="title">
-     <string>Gestion du plan</string>
-    </property>
-    <addaction name="actionAjouterRectangle"/>
-    <addaction name="actionAjouter_Rectangle_arrondi"/>
-    <addaction name="actionAjouterCercle"/>
-    <addaction name="actionUtilisation"/>
-    <addaction name="actionModification_plan"/>
-    <addaction name="actionAjouterImage"/>
-    <addaction name="separator"/>
-    <addaction name="actionFondEcran"/>
-    <addaction name="separator"/>
-    <addaction name="actionChoisir_la_couleur"/>
-    <addaction name="actionChoisir_le_type_de_crayon"/>
-    <addaction name="actionModifier"/>
-    <addaction name="actionBringToFront"/>
-    <addaction name="actionOuvrir_fiche_culture"/>
-    <addaction name="separator"/>
-   </widget>
-   <widget class="QMenu" name="menuAide">
-    <property name="title">
-     <string>Aide</string>
-    </property>
-    <addaction name="actionA_propos_de"/>
-    <addaction name="actionAide"/>
-    <addaction name="actionAide_PDF"/>
-    <addaction name="action_Licenses"/>
-   </widget>
-   <widget class="QMenu" name="menuConfiguration">
-    <property name="title">
-     <string>Configuration</string>
-    </property>
-    <addaction name="actionFiches_plantes"/>
-    <addaction name="actionConfiguration"/>
-   </widget>
-   <widget class="QMenu" name="menuGantt">
-    <property name="title">
-     <string>Gestion des tâches</string>
-    </property>
-    <addaction name="actionAfficher_Gantt"/>
-    <addaction name="actionOuvrir_fiche_taches"/>
-    <addaction name="actionOuvrir_fiche_ressources"/>
-    <addaction name="actionOuvrir_fiche_Moyens"/>
-    <addaction name="actionOuvrir_fiche_Coordonnees"/>
-    <addaction name="actionOuvrir_fiche_Type_de_Moyens"/>
-   </widget>
-   <addaction name="menuFichier"/>
-   <addaction name="menuObjets"/>
-   <addaction name="menuGantt"/>
-   <addaction name="menuConfiguration"/>
-   <addaction name="menuAide"/>
-  </widget>
   <widget class="QToolBar" name="mainToolBar">
    <property name="toolTip">
     <string>Passer l'objet devant</string>
@@ -3211,19 +3138,70 @@
    <addaction name="separator"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1114</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuFichier">
+    <property name="title">
+     <string>File</string>
+    </property>
+    <addaction name="actionOuvrir"/>
+    <addaction name="actionNouveau_projet"/>
+    <addaction name="actionSauver"/>
+    <addaction name="actionEnregistrer_sous"/>
+    <addaction name="actionImprimer_le_plan"/>
+    <addaction name="actionQuitter"/>
+   </widget>
+   <widget class="QMenu" name="menuAide">
+    <property name="title">
+     <string>Help</string>
+    </property>
+    <addaction name="actionA_propos_de"/>
+    <addaction name="actionAide"/>
+    <addaction name="action_Licenses"/>
+   </widget>
+   <widget class="QMenu" name="menuConfiguration">
+    <property name="title">
+     <string>Configuration</string>
+    </property>
+    <addaction name="actionFiches_plantes"/>
+    <addaction name="actionConfiguration"/>
+   </widget>
+   <widget class="QMenu" name="menuGantt">
+    <property name="title">
+     <string>Task Management</string>
+    </property>
+    <addaction name="actionAfficher_Gantt"/>
+    <addaction name="actionOuvrir_fiche_taches"/>
+    <addaction name="actionOuvrir_fiche_ressources"/>
+    <addaction name="actionOuvrir_fiche_Moyens"/>
+    <addaction name="actionOuvrir_fiche_Coordonnees"/>
+    <addaction name="actionOuvrir_fiche_Type_de_Moyens"/>
+   </widget>
+   <addaction name="menuFichier"/>
+   <addaction name="menuGantt"/>
+   <addaction name="menuConfiguration"/>
+   <addaction name="menuAide"/>
+  </widget>
   <action name="actionOuvrir">
    <property name="icon">
     <iconset resource="libreJardin.qrc">
      <normaloff>:/images/open_48.png</normaloff>:/images/open_48.png</iconset>
    </property>
    <property name="text">
-    <string>Ouvrir</string>
+    <string>Open</string>
    </property>
    <property name="iconText">
     <string>Ouvrir</string>
    </property>
    <property name="toolTip">
-    <string>Ouvrir</string>
+    <string>Open</string>
    </property>
   </action>
   <action name="actionSauver">
@@ -3232,24 +3210,24 @@
      <normaloff>:/images/save_48.png</normaloff>:/images/save_48.png</iconset>
    </property>
    <property name="text">
-    <string>Enregistrer</string>
+    <string>Save</string>
    </property>
    <property name="iconText">
-    <string>Enregistrer</string>
+    <string>Save</string>
    </property>
    <property name="toolTip">
-    <string>Enregistrer</string>
+    <string>Save</string>
    </property>
   </action>
   <action name="actionQuitter">
    <property name="text">
-    <string>Quitter</string>
+    <string>Quit</string>
    </property>
    <property name="iconText">
-    <string>Quitter</string>
+    <string>Quit</string>
    </property>
    <property name="toolTip">
-    <string>Quitter</string>
+    <string>Quit</string>
    </property>
   </action>
   <action name="actionAjouterRectangle">
@@ -3438,7 +3416,7 @@
   </action>
   <action name="actionAide">
    <property name="text">
-    <string>Aide</string>
+    <string>Help</string>
    </property>
   </action>
   <action name="actionChoisir_le_type_de_crayon">
@@ -3520,7 +3498,7 @@
      <normaloff>:/images/print_48.png</normaloff>:/images/print_48.png</iconset>
    </property>
    <property name="text">
-    <string>Imprimer le plan</string>
+    <string>Print the map</string>
    </property>
   </action>
   <action name="actionAfficher_grille">
@@ -3556,7 +3534,7 @@
      <normaloff>:/images/variete.png</normaloff>:/images/variete.png</iconset>
    </property>
    <property name="text">
-    <string>Fiches plantes</string>
+    <string>Plant Sheets</string>
    </property>
   </action>
   <action name="actionConfiguration">
@@ -3575,17 +3553,17 @@
      <normaloff>:/images/gantt.png</normaloff>:/images/gantt.png</iconset>
    </property>
    <property name="text">
-    <string>Gestion des tâches</string>
+    <string>Task Management</string>
    </property>
   </action>
   <action name="actionOuvrir_fiche_taches">
    <property name="text">
-    <string>Ouvrir fiche Taches</string>
+    <string>Open Spots</string>
    </property>
   </action>
   <action name="actionOuvrir_fiche_ressources">
    <property name="text">
-    <string>Ouvrir fiche Ressources</string>
+    <string>Open Resourcesheet   </string>
    </property>
   </action>
   <action name="actionOuvrir_fiche_Moyens">
@@ -3595,12 +3573,12 @@
   </action>
   <action name="actionOuvrir_fiche_Coordonnees">
    <property name="text">
-    <string>Ouvrir fiche Coordonnées</string>
+    <string>Open contact details</string>
    </property>
   </action>
   <action name="actionOuvrir_fiche_Type_de_Moyens">
    <property name="text">
-    <string>Ouvrir fiche Type de Moyens</string>
+    <string>Open fiche Type de Moyens</string>
    </property>
   </action>
   <action name="actionEnregistrer_sous">
@@ -3609,12 +3587,15 @@
      <normaloff>:/images/save_as_48.png</normaloff>:/images/save_as_48.png</iconset>
    </property>
    <property name="text">
-    <string>Enregistrer sous</string>
+    <string>Save as</string>
    </property>
   </action>
   <action name="actionNouveau_projet">
    <property name="text">
-    <string>Nouveau projet</string>
+    <string>New Project</string>
+   </property>
+   <property name="toolTip">
+    <string>New Project</string>
    </property>
   </action>
   <action name="actionAide_PDF">

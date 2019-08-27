@@ -203,10 +203,10 @@
              <string>Afficher la fiche culture correspondante à la parcelle</string>
             </property>
             <property name="text">
-             <string>Fiche culture</string>
+             <string>Culture sheet</string>
             </property>
             <property name="icon">
-             <iconset resource="../openjardin.qrc">
+             <iconset resource="../libreJardin.qrc">
               <normaloff>:/images/cultures.png</normaloff>:/images/cultures.png</iconset>
             </property>
             <property name="iconSize">
@@ -245,7 +245,7 @@
              </size>
             </property>
             <property name="text">
-             <string>Date démarrage</string>
+             <string>Start date</string>
             </property>
            </widget>
           </item>
@@ -1021,7 +1021,7 @@ QTreeView::item:selected:!active {
   </layout>
  </widget>
  <resources>
-  <include location="../openjardin.qrc"/>
+  <include location="../libreJardin.qrc"/>
  </resources>
  <connections/>
 </ui>

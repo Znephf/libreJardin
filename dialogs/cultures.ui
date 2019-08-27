@@ -26,7 +26,7 @@
    <string>FICHE CULTURE</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="../openjardin.qrc">
+   <iconset resource="../libreJardin.qrc">
     <normaloff>:/images/icones/champ.png</normaloff>:/images/icones/champ.png</iconset>
   </property>
   <property name="autoFillBackground">
@@ -60,7 +60,7 @@
           <string>...</string>
          </property>
          <property name="icon">
-          <iconset resource="../openjardin.qrc">
+          <iconset resource="../libreJardin.qrc">
            <normaloff>:/images/icones/quitter.png</normaloff>:/images/icones/quitter.png</iconset>
          </property>
          <property name="iconSize">
@@ -182,7 +182,7 @@
                    <string>...</string>
                   </property>
                   <property name="icon">
-                   <iconset resource="../openjardin.qrc">
+                   <iconset resource="../libreJardin.qrc">
                     <normaloff>:/images/variete.png</normaloff>:/images/variete.png</iconset>
                   </property>
                   <property name="iconSize">
@@ -204,7 +204,7 @@
                  <string>...</string>
                 </property>
                 <property name="icon">
-                 <iconset resource="../openjardin.qrc">
+                 <iconset resource="../libreJardin.qrc">
                   <normaloff>:/images/add_48.png</normaloff>:/images/add_48.png</iconset>
                 </property>
                 <property name="iconSize">
@@ -896,7 +896,7 @@
   </layout>
  </widget>
  <resources>
-  <include location="../openjardin.qrc"/>
+  <include location="../libreJardin.qrc"/>
  </resources>
  <connections/>
 </ui>

@@ -120,7 +120,8 @@ FORMS    += mainwindow.ui \
     dialogs/planning.ui
 
 RESOURCES += \
-    libreJardin.qrc
+    libreJardin.qrc \
+    openjardin.qrc
 
 TRANSLATIONS = translations/open-jardin_fr.ts \
                translations/open-jardin_en.ts

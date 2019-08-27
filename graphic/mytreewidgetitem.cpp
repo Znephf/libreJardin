@@ -2,5 +2,5 @@
 
 mytreewidgetitem::mytreewidgetitem(QTreeWidget *parent)
 {
-    Q_UNUSED(parent);
+    Q_UNUSED(parent)
 }

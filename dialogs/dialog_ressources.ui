@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>504</width>
-    <height>454</height>
+    <width>574</width>
+    <height>502</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -30,7 +30,7 @@
           <string/>
          </property>
          <property name="pixmap">
-          <pixmap resource="../openjardin.qrc">:/images/ressources.png</pixmap>
+          <pixmap resource="../libreJardin.qrc">:/images/ressources.png</pixmap>
          </property>
          <property name="scaledContents">
           <bool>true</bool>
@@ -84,7 +84,7 @@
             <string/>
            </property>
            <property name="icon">
-            <iconset resource="../openjardin.qrc">
+            <iconset resource="../libreJardin.qrc">
              <normaloff>:/images/edit.png</normaloff>:/images/edit.png</iconset>
            </property>
            <property name="iconSize">
@@ -174,7 +174,7 @@
             <string>...</string>
            </property>
            <property name="icon">
-            <iconset resource="../openjardin.qrc">
+            <iconset resource="../libreJardin.qrc">
              <normaloff>:/images/Valider.png</normaloff>:/images/Valider.png</iconset>
            </property>
            <property name="iconSize">
@@ -215,7 +215,7 @@
             <string>...</string>
            </property>
            <property name="icon">
-            <iconset resource="../openjardin.qrc">
+            <iconset resource="../libreJardin.qrc">
              <normaloff>:/images/add_48.png</normaloff>:/images/add_48.png</iconset>
            </property>
            <property name="iconSize">
@@ -235,7 +235,7 @@
             <string>...</string>
            </property>
            <property name="icon">
-            <iconset resource="../openjardin.qrc">
+            <iconset resource="../libreJardin.qrc">
              <normaloff>:/images/remove_48.png</normaloff>:/images/remove_48.png</iconset>
            </property>
            <property name="iconSize">
@@ -357,7 +357,7 @@
           <string>Supprimer</string>
          </property>
          <property name="icon">
-          <iconset resource="../openjardin.qrc">
+          <iconset resource="../libreJardin.qrc">
            <normaloff>:/images/remove_48.png</normaloff>:/images/remove_48.png</iconset>
          </property>
         </widget>
@@ -371,7 +371,7 @@
           <string>Valider et Ajouter à la tâche</string>
          </property>
          <property name="icon">
-          <iconset resource="../openjardin.qrc">
+          <iconset resource="../libreJardin.qrc">
            <normaloff>:/images/Valider.png</normaloff>:/images/Valider.png</iconset>
          </property>
         </widget>
@@ -382,7 +382,7 @@
           <string>Fermer</string>
          </property>
          <property name="icon">
-          <iconset resource="../openjardin.qrc">
+          <iconset resource="../libreJardin.qrc">
            <normaloff>:/images/icones/quitter.png</normaloff>:/images/icones/quitter.png</iconset>
          </property>
         </widget>
@@ -394,7 +394,7 @@
   </layout>
  </widget>
  <resources>
-  <include location="../openjardin.qrc"/>
+  <include location="../libreJardin.qrc"/>
  </resources>
  <connections/>
 </ui>

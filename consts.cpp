@@ -4,10 +4,10 @@
 
 #include <QString>
 
-const QString Consts::APP_NAME                = "OpenJardin";
+const QString Consts::APP_NAME                = "LibreJardin";
 const int     Consts::SPACE_CASE              = 14;
 const int     Consts::SPACE_SNAP              = 14;
-const QString Consts::APP_DIR                 = "openjardin/";
+const QString Consts::APP_DIR                 = "libreJardin/";
 const QString Consts::SHARE_DIR               = "/usr/share/" + Consts::APP_DIR;
 const QString Consts:: FILE_NAMEXML           = "jardin.xml";
 const QString Consts:: FILE_NAMESQL           = "jardin.sqli";
