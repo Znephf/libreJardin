@@ -9,7 +9,7 @@ unix:!mac {
 target.path = /usr/bin
 target.files = app_name qt.conf
 INSTALLS += target
-data.path = /usr/share/openjardin/lib
+data.path = /run/media/iceage/Daten/GIT/librejardin/libreJardin/
 data.files = lib/*
 INSTALLS += data
 unix:QMAKE_RPATHDIR += /usr/lib/x86_64-linux-gnu
@@ -23,7 +23,7 @@ QT  += core
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-TARGET = openjardin
+TARGET = libreJadin
 TEMPLATE = app
 DEFINES += QT_DEPRECATED_WARNINGS
 
@@ -120,7 +120,7 @@ FORMS    += mainwindow.ui \
     dialogs/planning.ui
 
 RESOURCES += \
-    openjardin.qrc
+    libreJardin.qrc
 
 TRANSLATIONS = translations/open-jardin_fr.ts \
                translations/open-jardin_en.ts

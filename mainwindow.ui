@@ -28,7 +28,7 @@
    <string>Open Jardin version 1.07</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="openjardin.qrc">
+   <iconset resource="libreJardin.qrc">
     <normaloff>:/images/icones/champ.png</normaloff>:/images/icones/champ.png</iconset>
   </property>
   <property name="iconSize">
@@ -171,7 +171,7 @@
                <string/>
               </property>
               <property name="icon">
-               <iconset resource="openjardin.qrc">
+               <iconset resource="libreJardin.qrc">
                 <normaloff>:/images/Valider.png</normaloff>:/images/Valider.png</iconset>
               </property>
               <property name="iconSize">
@@ -191,7 +191,7 @@
                <string/>
               </property>
               <property name="icon">
-               <iconset resource="openjardin.qrc">
+               <iconset resource="libreJardin.qrc">
                 <normaloff>:/images/forms.png</normaloff>:/images/forms.png</iconset>
               </property>
               <property name="iconSize">
@@ -211,7 +211,7 @@
                <string/>
               </property>
               <property name="icon">
-               <iconset resource="openjardin.qrc">
+               <iconset resource="libreJardin.qrc">
                 <normaloff>:/images/planning.png</normaloff>:/images/planning.png</iconset>
               </property>
               <property name="iconSize">
@@ -237,7 +237,7 @@
                <string>Fiche culture</string>
               </property>
               <property name="icon">
-               <iconset resource="openjardin.qrc">
+               <iconset resource="libreJardin.qrc">
                 <normaloff>:/images/cultures.png</normaloff>:/images/cultures.png</iconset>
               </property>
               <property name="iconSize">
@@ -257,7 +257,7 @@
                <string>...</string>
               </property>
               <property name="icon">
-               <iconset resource="openjardin.qrc">
+               <iconset resource="libreJardin.qrc">
                 <normaloff>:/images/planner_hide.png</normaloff>
                 <normalon>:/images/planner_Valider.png</normalon>:/images/planner_hide.png</iconset>
               </property>
@@ -312,7 +312,7 @@
                <string/>
               </property>
               <property name="icon">
-               <iconset resource="openjardin.qrc">
+               <iconset resource="libreJardin.qrc">
                 <normaloff>:/images/print_48.png</normaloff>:/images/print_48.png</iconset>
               </property>
               <property name="iconSize">
@@ -530,7 +530,7 @@
                  <string>...</string>
                 </property>
                 <property name="icon">
-                 <iconset resource="openjardin.qrc">
+                 <iconset resource="libreJardin.qrc">
                   <normaloff>:/images/textcolor.png</normaloff>:/images/textcolor.png</iconset>
                 </property>
                 <property name="iconSize">
@@ -606,7 +606,7 @@
                  <string>...</string>
                 </property>
                 <property name="icon">
-                 <iconset resource="openjardin.qrc">
+                 <iconset resource="libreJardin.qrc">
                   <normaloff>:/images/colorpalette.png</normaloff>:/images/colorpalette.png</iconset>
                 </property>
                 <property name="iconSize">
@@ -715,7 +715,7 @@
                <x>0</x>
                <y>0</y>
                <width>500</width>
-               <height>40</height>
+               <height>41</height>
               </rect>
              </property>
              <layout class="QHBoxLayout" name="horizontalLayout_4">
@@ -767,7 +767,7 @@
                  <string/>
                 </property>
                 <property name="icon">
-                 <iconset resource="openjardin.qrc">
+                 <iconset resource="libreJardin.qrc">
                   <normaloff>:/images/zoomin.png</normaloff>:/images/zoomin.png</iconset>
                 </property>
                 <property name="iconSize">
@@ -851,7 +851,7 @@
                  <string/>
                 </property>
                 <property name="icon">
-                 <iconset resource="openjardin.qrc">
+                 <iconset resource="libreJardin.qrc">
                   <normaloff>:/images/zoomout.png</normaloff>:/images/zoomout.png</iconset>
                 </property>
                 <property name="iconSize">
@@ -897,7 +897,7 @@
                  <string/>
                 </property>
                 <property name="icon">
-                 <iconset resource="openjardin.qrc">
+                 <iconset resource="libreJardin.qrc">
                   <normaloff>:/images/icones/fleche.png</normaloff>:/images/icones/fleche.png</iconset>
                 </property>
                 <property name="iconSize">
@@ -929,7 +929,7 @@
                  <string/>
                 </property>
                 <property name="icon">
-                 <iconset resource="openjardin.qrc">
+                 <iconset resource="libreJardin.qrc">
                   <normaloff>:/images/icones/deplace.png</normaloff>:/images/icones/deplace.png</iconset>
                 </property>
                 <property name="iconSize">
@@ -1005,7 +1005,7 @@
                     <string>...</string>
                    </property>
                    <property name="icon">
-                    <iconset resource="openjardin.qrc">
+                    <iconset resource="libreJardin.qrc">
                      <normaloff>:/images/polylineValider.png</normaloff>:/images/polylineValider.png</iconset>
                    </property>
                    <property name="iconSize">
@@ -1025,7 +1025,7 @@
                     <string>...</string>
                    </property>
                    <property name="icon">
-                    <iconset resource="openjardin.qrc">
+                    <iconset resource="libreJardin.qrc">
                      <normaloff>:/images/delete.png</normaloff>:/images/delete.png</iconset>
                    </property>
                    <property name="iconSize">
@@ -1060,7 +1060,7 @@
                     <string>...</string>
                    </property>
                    <property name="icon">
-                    <iconset resource="openjardin.qrc">
+                    <iconset resource="libreJardin.qrc">
                      <normaloff>:/images/polynew.png</normaloff>:/images/polynew.png</iconset>
                    </property>
                    <property name="iconSize">
@@ -1086,7 +1086,7 @@
                     <string>...</string>
                    </property>
                    <property name="icon">
-                    <iconset resource="openjardin.qrc">
+                    <iconset resource="libreJardin.qrc">
                      <normaloff>:/images/polylinemodifier.png</normaloff>:/images/polylinemodifier.png</iconset>
                    </property>
                    <property name="iconSize">
@@ -1129,7 +1129,7 @@
                     <string>...</string>
                    </property>
                    <property name="icon">
-                    <iconset resource="openjardin.qrc">
+                    <iconset resource="libreJardin.qrc">
                      <normaloff>:/images/add_image.png</normaloff>:/images/add_image.png</iconset>
                    </property>
                    <property name="iconSize">
@@ -1172,7 +1172,7 @@
                     <string>...</string>
                    </property>
                    <property name="icon">
-                    <iconset resource="openjardin.qrc">
+                    <iconset resource="libreJardin.qrc">
                      <normaloff>:/images/polyValider.png</normaloff>:/images/polyValider.png</iconset>
                    </property>
                    <property name="iconSize">
@@ -1195,7 +1195,7 @@
                     <string>...</string>
                    </property>
                    <property name="icon">
-                    <iconset resource="openjardin.qrc">
+                    <iconset resource="libreJardin.qrc">
                      <normaloff>:/images/1474941845_Rounded_rectangle.png</normaloff>:/images/1474941845_Rounded_rectangle.png</iconset>
                    </property>
                    <property name="iconSize">
@@ -1248,7 +1248,7 @@
                     <string>...</string>
                    </property>
                    <property name="icon">
-                    <iconset resource="openjardin.qrc">
+                    <iconset resource="libreJardin.qrc">
                      <normaloff>:/images/1474941749_Restangle.png</normaloff>:/images/1474941749_Restangle.png</iconset>
                    </property>
                    <property name="iconSize">
@@ -1274,7 +1274,7 @@
                     <string>...</string>
                    </property>
                    <property name="icon">
-                    <iconset resource="openjardin.qrc">
+                    <iconset resource="libreJardin.qrc">
                      <normaloff>:/images/1474941775_Ellipse.png</normaloff>:/images/1474941775_Ellipse.png</iconset>
                    </property>
                    <property name="iconSize">
@@ -1372,7 +1372,7 @@
                <x>0</x>
                <y>0</y>
                <width>1418</width>
-               <height>32</height>
+               <height>38</height>
               </rect>
              </property>
              <layout class="QHBoxLayout" name="horizontalLayout_21">
@@ -1513,7 +1513,7 @@
                  <string>Fiche culture</string>
                 </property>
                 <property name="icon">
-                 <iconset resource="openjardin.qrc">
+                 <iconset resource="libreJardin.qrc">
                   <normaloff>:/images/cultures.png</normaloff>:/images/cultures.png</iconset>
                 </property>
                 <property name="iconSize">
@@ -1628,7 +1628,7 @@
               </item>
              </layout>
             </widget>
-            <widget class="QWidget" name="">
+            <widget class="QWidget" name="layoutWidget">
              <property name="geometry">
               <rect>
                <x>0</x>
@@ -1659,7 +1659,7 @@
                  </font>
                 </property>
                 <property name="autoFillBackground">
-                 <bool>true</bool>
+                 <bool>false</bool>
                 </property>
                 <property name="styleSheet">
                  <string notr="true">background-color : #ff5500</string>
@@ -1696,7 +1696,7 @@
                  </font>
                 </property>
                 <property name="autoFillBackground">
-                 <bool>true</bool>
+                 <bool>false</bool>
                 </property>
                 <property name="styleSheet">
                  <string notr="true">background-color  :#aaaa7f</string>
@@ -1733,7 +1733,7 @@
                  </font>
                 </property>
                 <property name="autoFillBackground">
-                 <bool>true</bool>
+                 <bool>false</bool>
                 </property>
                 <property name="styleSheet">
                  <string notr="true">background-color : #aaffff</string>
@@ -1770,7 +1770,7 @@
                  </font>
                 </property>
                 <property name="autoFillBackground">
-                 <bool>true</bool>
+                 <bool>false</bool>
                 </property>
                 <property name="styleSheet">
                  <string notr="true">background-color : #ff557f</string>
@@ -1807,7 +1807,7 @@
                  </font>
                 </property>
                 <property name="autoFillBackground">
-                 <bool>true</bool>
+                 <bool>false</bool>
                 </property>
                 <property name="styleSheet">
                  <string notr="true">background-color : #ffaa7f</string>
@@ -1844,7 +1844,7 @@
                  </font>
                 </property>
                 <property name="autoFillBackground">
-                 <bool>true</bool>
+                 <bool>false</bool>
                 </property>
                 <property name="styleSheet">
                  <string notr="true">background-color : #00ff00</string>
@@ -1881,7 +1881,7 @@
                  </font>
                 </property>
                 <property name="autoFillBackground">
-                 <bool>true</bool>
+                 <bool>false</bool>
                 </property>
                 <property name="styleSheet">
                  <string notr="true">background-color : #ffff7f</string>
@@ -1918,7 +1918,7 @@
                  </font>
                 </property>
                 <property name="autoFillBackground">
-                 <bool>true</bool>
+                 <bool>false</bool>
                 </property>
                 <property name="styleSheet">
                  <string notr="true">background-color : #aaaaff</string>
@@ -1955,7 +1955,7 @@
                  </font>
                 </property>
                 <property name="autoFillBackground">
-                 <bool>true</bool>
+                 <bool>false</bool>
                 </property>
                 <property name="styleSheet">
                  <string notr="true">background-color : #ff00ff</string>
@@ -1992,7 +1992,7 @@
                  </font>
                 </property>
                 <property name="autoFillBackground">
-                 <bool>true</bool>
+                 <bool>false</bool>
                 </property>
                 <property name="styleSheet">
                  <string notr="true">background-color : #55ff7f</string>
@@ -2029,7 +2029,7 @@
                  </font>
                 </property>
                 <property name="autoFillBackground">
-                 <bool>true</bool>
+                 <bool>false</bool>
                 </property>
                 <property name="styleSheet">
                  <string notr="true">background-color : #ded8d7</string>
@@ -2374,7 +2374,7 @@
                <x>10</x>
                <y>0</y>
                <width>208</width>
-               <height>27</height>
+               <height>34</height>
               </rect>
              </property>
              <layout class="QHBoxLayout" name="horizontalLayout_17">
@@ -3098,7 +3098,7 @@
      <x>0</x>
      <y>0</y>
      <width>1114</width>
-     <height>21</height>
+     <height>30</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFichier">
@@ -3213,7 +3213,7 @@
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionOuvrir">
    <property name="icon">
-    <iconset resource="openjardin.qrc">
+    <iconset resource="libreJardin.qrc">
      <normaloff>:/images/open_48.png</normaloff>:/images/open_48.png</iconset>
    </property>
    <property name="text">
@@ -3228,7 +3228,7 @@
   </action>
   <action name="actionSauver">
    <property name="icon">
-    <iconset resource="openjardin.qrc">
+    <iconset resource="libreJardin.qrc">
      <normaloff>:/images/save_48.png</normaloff>:/images/save_48.png</iconset>
    </property>
    <property name="text">
@@ -3260,7 +3260,7 @@
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset resource="openjardin.qrc">
+    <iconset resource="libreJardin.qrc">
      <normaloff>:/images/1474941749_Restangle.png</normaloff>:/images/1474941749_Restangle.png</iconset>
    </property>
    <property name="text">
@@ -3286,7 +3286,7 @@
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset resource="openjardin.qrc">
+    <iconset resource="libreJardin.qrc">
      <normaloff>:/images/1474941775_Ellipse.png</normaloff>:/images/1474941775_Ellipse.png</iconset>
    </property>
    <property name="text">
@@ -3319,7 +3319,7 @@
   </action>
   <action name="actionFondEcran">
    <property name="icon">
-    <iconset resource="openjardin.qrc">
+    <iconset resource="libreJardin.qrc">
      <normaloff>:/images/1474942189_Picture.png</normaloff>:/images/1474942189_Picture.png</iconset>
    </property>
    <property name="text">
@@ -3338,7 +3338,7 @@
   </action>
   <action name="actionChoisir_la_couleur">
    <property name="icon">
-    <iconset resource="openjardin.qrc">
+    <iconset resource="libreJardin.qrc">
      <normaloff>:/images/colorpalette.png</normaloff>:/images/colorpalette.png</iconset>
    </property>
    <property name="text">
@@ -3350,7 +3350,7 @@
   </action>
   <action name="actionSupprimer">
    <property name="icon">
-    <iconset resource="openjardin.qrc">
+    <iconset resource="libreJardin.qrc">
      <normaloff>:/images/delete.png</normaloff>:/images/delete.png</iconset>
    </property>
    <property name="text">
@@ -3362,7 +3362,7 @@
   </action>
   <action name="actionSelectionner_tout">
    <property name="icon">
-    <iconset resource="openjardin.qrc">
+    <iconset resource="libreJardin.qrc">
      <normaloff>:/images/1474941953_Selection.png</normaloff>:/images/1474941953_Selection.png</iconset>
    </property>
    <property name="text">
@@ -3371,7 +3371,7 @@
   </action>
   <action name="actionDeselectionner_tout">
    <property name="icon">
-    <iconset resource="openjardin.qrc">
+    <iconset resource="libreJardin.qrc">
      <normaloff>:/images/1474941954_Deselection.png</normaloff>:/images/1474941954_Deselection.png</iconset>
    </property>
    <property name="text">
@@ -3409,7 +3409,7 @@
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset resource="openjardin.qrc">
+    <iconset resource="libreJardin.qrc">
      <normaloff>:/images/1474941845_Rounded_rectangle.png</normaloff>:/images/1474941845_Rounded_rectangle.png</iconset>
    </property>
    <property name="text">
@@ -3424,7 +3424,7 @@
   </action>
   <action name="actionBringToFront">
    <property name="icon">
-    <iconset resource="openjardin.qrc">
+    <iconset resource="libreJardin.qrc">
      <normaloff>:/images/bringToFront.png</normaloff>:/images/bringToFront.png</iconset>
    </property>
    <property name="text">
@@ -3443,7 +3443,7 @@
   </action>
   <action name="actionChoisir_le_type_de_crayon">
    <property name="icon">
-    <iconset resource="openjardin.qrc">
+    <iconset resource="libreJardin.qrc">
      <normaloff>:/images/1474942846_Text_color.png</normaloff>:/images/1474942846_Text_color.png</iconset>
    </property>
    <property name="text">
@@ -3461,7 +3461,7 @@
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset resource="openjardin.qrc">
+    <iconset resource="libreJardin.qrc">
      <normaloff>:/images/edit.png</normaloff>:/images/edit.png</iconset>
    </property>
    <property name="text">
@@ -3476,7 +3476,7 @@
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset resource="openjardin.qrc">
+    <iconset resource="libreJardin.qrc">
      <normaloff>:/images/icones/utilisation.png</normaloff>:/images/icones/utilisation.png</iconset>
    </property>
    <property name="text">
@@ -3485,7 +3485,7 @@
   </action>
   <action name="actionCacher_le_fond">
    <property name="icon">
-    <iconset resource="openjardin.qrc">
+    <iconset resource="libreJardin.qrc">
      <normaloff>:/images/cacher_Picture.png</normaloff>:/images/cacher_Picture.png</iconset>
    </property>
    <property name="text">
@@ -3494,7 +3494,7 @@
   </action>
   <action name="actionAfficher_le_fond">
    <property name="icon">
-    <iconset resource="openjardin.qrc">
+    <iconset resource="libreJardin.qrc">
      <normaloff>:/images/show_Picture.png</normaloff>:/images/show_Picture.png</iconset>
    </property>
    <property name="text">
@@ -3516,7 +3516,7 @@
   </action>
   <action name="actionImprimer_le_plan">
    <property name="icon">
-    <iconset resource="openjardin.qrc">
+    <iconset resource="libreJardin.qrc">
      <normaloff>:/images/print_48.png</normaloff>:/images/print_48.png</iconset>
    </property>
    <property name="text">
@@ -3531,7 +3531,7 @@
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset resource="openjardin.qrc">
+    <iconset resource="libreJardin.qrc">
      <normaloff>:/images/1474942892_Grid.png</normaloff>:/images/1474942892_Grid.png</iconset>
    </property>
    <property name="text">
@@ -3543,7 +3543,7 @@
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset resource="openjardin.qrc">
+    <iconset resource="libreJardin.qrc">
      <normaloff>:/images/noGrid.png</normaloff>:/images/noGrid.png</iconset>
    </property>
    <property name="text">
@@ -3552,7 +3552,7 @@
   </action>
   <action name="actionFiches_plantes">
    <property name="icon">
-    <iconset resource="openjardin.qrc">
+    <iconset resource="libreJardin.qrc">
      <normaloff>:/images/variete.png</normaloff>:/images/variete.png</iconset>
    </property>
    <property name="text">
@@ -3571,7 +3571,7 @@
   </action>
   <action name="actionAfficher_Gantt">
    <property name="icon">
-    <iconset resource="openjardin.qrc">
+    <iconset resource="libreJardin.qrc">
      <normaloff>:/images/gantt.png</normaloff>:/images/gantt.png</iconset>
    </property>
    <property name="text">
@@ -3605,7 +3605,7 @@
   </action>
   <action name="actionEnregistrer_sous">
    <property name="icon">
-    <iconset resource="openjardin.qrc">
+    <iconset resource="libreJardin.qrc">
      <normaloff>:/images/save_as_48.png</normaloff>:/images/save_as_48.png</iconset>
    </property>
    <property name="text">
@@ -3633,7 +3633,7 @@
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources>
-  <include location="openjardin.qrc"/>
+  <include location="libreJardin.qrc"/>
  </resources>
  <connections/>
 </ui>

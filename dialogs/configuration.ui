@@ -25,7 +25,7 @@
      <x>10</x>
      <y>30</y>
      <width>781</width>
-     <height>71</height>
+     <height>76</height>
     </rect>
    </property>
    <layout class="QGridLayout" name="gridLayout_3">
@@ -42,7 +42,7 @@
     <item row="0" column="0">
      <widget class="QLabel" name="label_23">
       <property name="text">
-       <string>Nom du fichier de configuration actif (.XML)</string>
+       <string>Name of the active configuration file (.XML)</string>
       </property>
      </widget>
     </item>
@@ -185,7 +185,7 @@
      <rect>
       <x>260</x>
       <y>30</y>
-      <width>501</width>
+      <width>523</width>
       <height>111</height>
      </rect>
     </property>
@@ -337,7 +337,7 @@
     </font>
    </property>
    <property name="text">
-    <string>NOMS DES FICHIERS EN COURS</string>
+    <string>Names of Files in Progress</string>
    </property>
   </widget>
   <widget class="QWidget" name="layoutWidget">
@@ -346,7 +346,7 @@
      <x>10</x>
      <y>130</y>
      <width>781</width>
-     <height>184</height>
+     <height>198</height>
     </rect>
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout_25">
@@ -483,7 +483,7 @@ La base de données est sauvegardée sous un nouveau nom dans un fichier texte d
     <string>Fermer </string>
    </property>
    <property name="icon">
-    <iconset resource="../openjardin.qrc">
+    <iconset resource="../libreJardin.qrc">
      <normaloff>:/images/icones/quitter.png</normaloff>:/images/icones/quitter.png</iconset>
    </property>
   </widget>
@@ -517,7 +517,7 @@ La base de données est sauvegardée sous un nouveau nom dans un fichier texte d
      <rect>
       <x>280</x>
       <y>0</y>
-      <width>501</width>
+      <width>523</width>
       <height>101</height>
      </rect>
     </property>
@@ -678,7 +678,7 @@ La base de données est sauvegardée sous un nouveau nom dans un fichier texte d
   </widget>
  </widget>
  <resources>
-  <include location="../openjardin.qrc"/>
+  <include location="../libreJardin.qrc"/>
  </resources>
  <connections/>
 </ui>
