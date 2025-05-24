@@ -55,42 +55,42 @@ public:
     }
 
     void init_models(int idculture);
-    void creer_phase();
+    void create_phase();
 
 private slots:
-    void on_pushButton_validerData_clicked();
+    void on_pushButton_validateData_clicked();
 
     void on_tableViewCultures_clicked(const QModelIndex&index);
 
     void on_lineEditTypeLune_textChanged(const QString&arg1);
 
-    void on_pushButton_modifier_clicked();
+    void on_pushButton_modify_clicked();
 
-    void on_pushButton_nouvelleOperation_clicked();
+    void on_pushButton_newOperation_clicked();
 
-    void on_pushButton_print_fiche_clicked();
+    void on_pushButton_print_sheet_clicked();
 
-    void on_comboBox_plante_currentIndexChanged(const QString&arg1);
+    void on_comboBox_plant_currentIndexChanged(const QString&arg1);
 
-    void on_pushButton_creer_tache_clicked();
+    void on_pushButton_create_task_clicked();
 
-    void on_tableView_taches_clicked(const QModelIndex&index);
+    void on_tableView_tasks_clicked(const QModelIndex&index);
 
-    void on_pushButton_modifier_tache_clicked();
+    void on_pushButton_modify_task_clicked();
 
     void on_lineEdit_id_cultures_textChanged(const QString&arg1);
 
-    void on_pushButton_supprimer_culture_clicked();
+    void on_pushButton_delete_crop_clicked();
 
-    void on_pushButton_supprimer_tache_clicked();
+    void on_pushButton_delete_task_clicked();
 
-    void on_lineEdit_duree_textChanged(const QString&arg1);
+    void on_lineEdit_duration_textChanged(const QString&arg1);
 
 
 
-    void on_toolButton_FichePlantes_clicked();
+    void on_toolButton_PlantSheets_clicked();
 
-    void on_toolButton_NouvellePlante_clicked();
+    void on_toolButton_NewPlant_clicked();
 
     void on_pushButton_Gantt_clicked();
 

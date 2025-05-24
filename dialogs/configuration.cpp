@@ -17,9 +17,9 @@ Configuration::Configuration(const QString&fileNameXML, const QString&fileNameSQ
 {
     // translator
     QTranslator translator;
-    QString     fichier = ":/translations/open-jardin_" + util::getLocale();
+    QString     fileContent = ":/translations/open-jardin_" + util::getLocale();
 
-    translator.load(fichier);
+    translator.load(fileContent);
     qApp->installTranslator(&translator);
 
     ui->setupUi(this);
@@ -47,7 +47,7 @@ void Configuration::on_pushButton_fermer_clicked()
     close();
 }
 
-/****************remplacement des apostrophes dans les QString pour les requêtes sql*************/
+/****************replacement of apostrophes in QStrings for sql queries*************/
 
 
 void Configuration::createConnection(QString fileName)
@@ -56,8 +56,8 @@ void Configuration::createConnection(QString fileName)
 
     if (!file.open(QFile::ReadOnly | QFile::Text))
     {
-        ui->plainTextMessages->insertPlainText("Erreur de lecture du fichier : " + fileName + "\n");
-        ui->plainTextMessages->insertPlainText("Vérifier le chemin d'accès au fichier !!\n");
+        ui->plainTextMessages->insertPlainText("Error reading file: " + fileName + "\n");
+        ui->plainTextMessages->insertPlainText("Check the file path!!\n");
         return;
     }
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
@@ -67,20 +67,20 @@ void Configuration::createConnection(QString fileName)
     db.setDatabaseName(fileName);
     if (!db.open())
     {
-        qDebug() << "connection database erreur " << fileName;
+        qDebug() << "database connection error " << fileName;
     }
     else
     {
         qDebug() << "database open " << fileName;
         ui->lineEdit_config_nom_base->setText(fileName);
-        ui->plainTextMessages->insertPlainText("Base de données ouverte : " + fileName + "\n");
+        ui->plainTextMessages->insertPlainText("Database opened: " + fileName + "\n");
     }
     setSqlFileName(fileName);
 }
 
 void Configuration::init_base()
-{   /***********************initialisation des bases de données sqlite******************/
-    //TACHES
+{   /***********************initialization of sqlite databases******************/
+    //TASKS
     QSqlQueryModel *model4 = new QSqlQueryModel;
 
     model4->setQuery("SELECT id,designation FROM taches ORDER BY designation ASC");
@@ -91,13 +91,13 @@ void Configuration::init_base()
 
 void Configuration::on_pushButton_changeDataBase_clicked()
 {
-    // changer la base de données active
+    // change the active database
     QSqlQuery query;
-    QString   repertoire = QDir::homePath() + "/openjardin/";
+    QString   directory = QDir::homePath() + "/openjardin/";
 
     QString fileName =
-        QFileDialog::getOpenFileName(this, tr("Ouverture d'une base de données"),
-                                     repertoire,
+        QFileDialog::getOpenFileName(this, tr("Open a database"),
+                                     directory,
                                      tr("SQLI files (*.sqli *.db);; All files (*.*) "));
 
     // tr("SQLI Files (*.sqli *.db)"));
@@ -110,43 +110,43 @@ void Configuration::on_pushButton_changeDataBase_clicked()
     QFile file(fileName);
     if (!file.open(QFile::ReadOnly | QFile::Text))
     {
-        ui->plainTextMessages->insertPlainText("Erreur de lecture du fichier : " + fileName + "\n");
+        ui->plainTextMessages->insertPlainText("Error reading file: " + fileName + "\n");
         return;
     }
     else
     {
-        ui->plainTextMessages->insertPlainText("Base de données ouverte :" + fileName + "\n");
+        ui->plainTextMessages->insertPlainText("Database opened:" + fileName + "\n");
         createConnection(fileName);
     }
 }
 
 void Configuration::enregistrerDataBase()
 {
-    // enregistrer le nom de la base de données dans le fichier XML
+    // save the name of the database in the XML file
     QString      cellvalue;
-    QString      champ;
+    QString      field;
     QDomDocument document;
     QDomNode     xmlNode = document.createProcessingInstruction("xml", "version=\"1.0\" encoding=\"UTF-8\"");
 
     document.insertBefore(xmlNode, document.firstChild());
     QDomElement root = document.createElement("root");
     document.appendChild(root);
-    // Création de l'élément <base>
+    // Create the <base> element
     QDomElement base = document.createElement("base");
 
-    // On ajoute l'élément <background> en tant que premier enfant de l'élément <root>
+    // Add the <background> element as the first child of the <root> element
     root.appendChild(base);
-    //Ecriture du nom du fichier de la base de données sqlite
-    QDomElement fichier_base = document.createElement("fichier_base");
+    //Write the name of the sqlite database file
+    QDomElement file_base = document.createElement("file_base");
     cellvalue = ui->lineEdit_config_nom_base->text();
-    champ     = "fichier";
-    fichier_base.setAttribute(champ, cellvalue);
-    base.appendChild(fichier_base);
-    // Ecriture dans le fichier
-    QString repertoire = QDir::homePath() + "/openjardin";
+    field     = "file";
+    file_base.setAttribute(field, cellvalue);
+    base.appendChild(file_base);
+    // Write to file
+    QString directory = QDir::homePath() + "/openjardin";
     QString fileName   =
-        QFileDialog::getSaveFileName(this, tr("Sauvegarde du tableau des objets"),
-                                     repertoire,
+        QFileDialog::getSaveFileName(this, tr("Save object table"),
+                                     directory,
                                      tr("XML Files (*.xml)"));
     if (fileName.isEmpty())
     {
@@ -157,7 +157,7 @@ void Configuration::enregistrerDataBase()
     if (!file.open(QFile::WriteOnly | QFile::Text))
     {
         QMessageBox msgBox;
-        msgBox.setText("ERREUR D'ÉCRITURE");
+        msgBox.setText("WRITE ERROR");
         return;
     }
     else
@@ -170,12 +170,12 @@ void Configuration::enregistrerDataBase()
 
 void Configuration::on_pushButton_NewdatabaseFull_clicked()
 {
-    //  créer une base vide et importer les données dans cette base de données
-    ui->plainTextMessages->insertPlainText("Début de l'importation des données\n");
-    QString repertoire = QDir::homePath() + "/openjardin";
+    //  create an empty database and import data into this database
+    ui->plainTextMessages->insertPlainText("Starting data import\n");
+    QString directory = QDir::homePath() + "/openjardin";
     QString fileName   =
-        QFileDialog::getSaveFileName(this, tr("Créer une nouvelle base de données préremplie"),
-                                     repertoire,
+        QFileDialog::getSaveFileName(this, tr("Create a new pre-filled database"),
+                                     directory,
                                      tr("SQLI Files (*.sqli *.db)"));
     if (fileName.isEmpty())
     {
@@ -186,7 +186,7 @@ void Configuration::on_pushButton_NewdatabaseFull_clicked()
     if (!file.open(QFile::WriteOnly | QFile::Text))
     {
         QMessageBox msgBox;
-        msgBox.setText("ERREUR D'ÉCRITURE");
+        msgBox.setText("WRITE ERROR");
         return;
     }
     else
@@ -198,19 +198,19 @@ void Configuration::on_pushButton_NewdatabaseFull_clicked()
         db.setDatabaseName(fileName);
         if (!db.open())
         {
-            qDebug() << "connection database erreur " << fileName;
+            qDebug() << "database connection error " << fileName;
         }
         else
         {
             qDebug() << "database open " << fileName;
-            ui->plainTextMessages->insertPlainText("Base de données ouverte :" + fileName + "\n");
+            ui->plainTextMessages->insertPlainText("Database opened:" + fileName + "\n");
         }
         QString queryStr;
         QFile   file(":/sql/restore.sql");
         if (!file.open(QFile::ReadOnly | QFile::Text))
         {
             QMessageBox msgBox;
-            msgBox.setText("ERREUR D'ÉCRITURE");
+            msgBox.setText("WRITE ERROR");
             return;
         }
         else
@@ -226,21 +226,21 @@ void Configuration::on_pushButton_NewdatabaseFull_clicked()
 
 
 
-        ui->plainTextMessages->insertPlainText("Données importée dans la nouvelle base \n");
-        //Vérifier si le driver SQL supporte les Transactions
+        ui->plainTextMessages->insertPlainText("Data imported into the new database \n");
+        //Check if the SQL driver supports Transactions
         if (db.driver()->hasFeature(QSqlDriver::Transactions))
         {
-            //Remplace les commentaires, tabulations et nouvelles lignes avec des espaces
+            //Replace comments, tabs and newlines with spaces
             queryStr =
                 queryStr.replace(QRegularExpression("(\\/\\*(.|\\n)*?\\*\\/|^--.*\\n|\\t|\\n)",
                                                     QRegularExpression::CaseInsensitiveOption |
                                                     QRegularExpression::MultilineOption), " ");
-            //Supprimer les espaces inutiles
+            //Remove unnecessary spaces
             queryStr = queryStr.trimmed();
 
-            //Extraction des requêtes
+            //Extract queries
             QStringList qList = queryStr.split(';', QString::SkipEmptyParts);
-            //Initialise les expressions pour détecter les requêts spéciales(`begin transaction` and `commit`).
+            //Initialize expressions to detect special queries (`begin transaction` and `commit`).
             QRegularExpression re_transaction("\\bbegin.transaction.*", QRegularExpression::CaseInsensitiveOption);
             QRegularExpression re_commit("\\bcommit.*", QRegularExpression::CaseInsensitiveOption);
 
@@ -249,26 +249,26 @@ void Configuration::on_pushButton_NewdatabaseFull_clicked()
             {
                 db.transaction();
             }
-            //Executer chaque requête individuellement
+            //Execute each query individually
 
             foreach(const QString &s, qList)
             {
-                if (re_transaction.match(s).hasMatch())        //<== detection des requêtes spéciales
+                if (re_transaction.match(s).hasMatch())        //<== detect special queries
                 {
                     db.transaction();
                 }
-                else if (re_commit.match(s).hasMatch())        //<== detection des requêtes spéciales
+                else if (re_commit.match(s).hasMatch())        //<== detect special queries
                 {
                     db.commit();
                 }
                 else
                 {
-                    query.exec(s);                             //<== executer les requêtes normales
+                    query.exec(s);                             //<== execute normal queries
                     if (query.lastError().type() != QSqlError::NoError)
                     {
-                        // qDebug() << "erreur 262 " << query.lastError().text() << query.lastQuery();
+                        // qDebug() << "error 262 " << query.lastError().text() << query.lastQuery();
 
-                        db.rollback();                         //<== rollback la transaction s'il y a un probême
+                        db.rollback();                         //<== rollback the transaction if there is a problem
                         ui->plainTextMessages->insertPlainText(query.lastError().databaseText() + " \n");
                     }
                     else
@@ -277,7 +277,7 @@ void Configuration::on_pushButton_NewdatabaseFull_clicked()
                     }
                 }
             }
-            ui->plainTextMessages->insertPlainText("Importation des données terminée \n");
+            ui->plainTextMessages->insertPlainText("Data import finished \n");
 
             if (!isStartedWithTransaction)
             {
@@ -285,8 +285,8 @@ void Configuration::on_pushButton_NewdatabaseFull_clicked()
             }
         }
         else
-        {         //si le driver sql ne support pas les transactions
-                  //...il est nécessaire de supprimer les requêtes spéciales(`begin transaction` and `commit`)
+        {         //if the sql driver does not support transactions
+                  //...it is necessary to delete special queries (`begin transaction` and `commit`)
             queryStr =
                 queryStr.replace(QRegularExpression(
                                      "(\\bbegin.transaction.*;|\\bcommit.*;|\\/\\*(.|\\n)*?\\*\\/|^--.*\\n|\\t|\\n)",
@@ -294,7 +294,7 @@ void Configuration::on_pushButton_NewdatabaseFull_clicked()
                                      QRegularExpression::MultilineOption), " ");
             queryStr = queryStr.trimmed();
 
-            //Executer chaque requête individuellement
+            //Execute each query individually
             QStringList qList = queryStr.split(';', QString::SkipEmptyParts);
             foreach(const QString &s, qList)
             {
@@ -306,7 +306,7 @@ void Configuration::on_pushButton_NewdatabaseFull_clicked()
                 else
                 {
                 }
-                ui->plainTextMessages->insertPlainText("Importation des données terminée \n");
+                ui->plainTextMessages->insertPlainText("Data import finished \n");
             }
         }
     }
@@ -314,12 +314,12 @@ void Configuration::on_pushButton_NewdatabaseFull_clicked()
 
 void Configuration::on_pushButton_import_clicked()
 {
-    //  créer une base vide et importer les données dans cette base de données
-    ui->plainTextMessages->insertPlainText("Début de l'importation des données\n");
-    QString repertoire = QDir::homePath() + "/openjardin";
+    //  create an empty database and import data into this database
+    ui->plainTextMessages->insertPlainText("Starting data import\n");
+    QString directory = QDir::homePath() + "/openjardin";
     QString fileName   =
-        QFileDialog::getSaveFileName(this, tr("Nom de la nouvelle base de données"),
-                                     repertoire,
+        QFileDialog::getSaveFileName(this, tr("New database name"),
+                                     directory,
                                      tr("SQLI Files (*.sqli *.db)"));
     if (fileName.isEmpty())
     {
@@ -330,7 +330,7 @@ void Configuration::on_pushButton_import_clicked()
     if (!file.open(QFile::WriteOnly | QFile::Text))
     {
         QMessageBox msgBox;
-        msgBox.setText("ERREUR D'ÉCRITURE");
+        msgBox.setText("WRITE ERROR");
         return;
     }
     else
@@ -342,21 +342,21 @@ void Configuration::on_pushButton_import_clicked()
         db.setDatabaseName(fileName);
         if (!db.open())
         {
-            qDebug() << "connection database erreur " << fileName;
+            qDebug() << "database connection error " << fileName;
         }
         else
         {
             qDebug() << "database open " << fileName;
-            ui->plainTextMessages->insertPlainText("Base de données ouverte :" + fileName + "\n");
+            ui->plainTextMessages->insertPlainText("Database opened:" + fileName + "\n");
         }
 
         QSqlQuery query;
-        QString   repertoire = QDir::homePath() + "/openjardin/";
+        QString   directory = QDir::homePath() + "/openjardin/";
 
         QString fileNameImport =
-            QFileDialog::getOpenFileName(this, tr("Choisir le fichier .sql à importer dans la base de données"),
-                                         repertoire,
-                                         tr("fichier SQL (*.sql)"));
+            QFileDialog::getOpenFileName(this, tr("Choose the .sql file to import into the database"),
+                                         directory,
+                                         tr("SQL file (*.sql)"));
         if (fileNameImport.isEmpty())
         {
             return;
@@ -366,31 +366,31 @@ void Configuration::on_pushButton_import_clicked()
         if (!fileImport.open(QFile::ReadOnly | QFile::Text))
         {
             QMessageBox msgBox;
-            msgBox.setText("ERREUR DE LECTURE");
+            msgBox.setText("READ ERROR");
             return;
         }
         else
         {
-            //lecture du fichier .sql
+            //read the .sql file
             QTextStream Str(&fileImport);
             QString     queryStr;
             queryStr = Str.readAll();
             fileImport.close();
-            ui->plainTextMessages->insertPlainText("Fichier importé :" + fileNameImport + "\n");
-            //Vérifier si le driver SQL supporte les Transactions
+            ui->plainTextMessages->insertPlainText("File imported:" + fileNameImport + "\n");
+            //Check if the SQL driver supports Transactions
             if (db.driver()->hasFeature(QSqlDriver::Transactions))
             {
-                //Remplace les commentaires, tabulations et nouvelles lignes avec des espaces
+                //Replace comments, tabs and newlines with spaces
                 queryStr =
                     queryStr.replace(QRegularExpression("(\\/\\*(.|\\n)*?\\*\\/|^--.*\\n|\\t|\\n)",
                                                         QRegularExpression::CaseInsensitiveOption |
                                                         QRegularExpression::MultilineOption), " ");
-                //Supprimer les espaces inutiles
+                //Remove unnecessary spaces
                 queryStr = queryStr.trimmed();
 
-                //Extraction des requêtes
+                //Extract queries
                 QStringList qList = queryStr.split(';', QString::SkipEmptyParts);
-                //Initialise les expressions pour détecter les requêts spéciales(`begin transaction` and `commit`).
+                //Initialize expressions to detect special queries (`begin transaction` and `commit`).
                 QRegularExpression re_transaction("\\bbegin.transaction.*", QRegularExpression::CaseInsensitiveOption);
                 QRegularExpression re_commit("\\bcommit.*", QRegularExpression::CaseInsensitiveOption);
 
@@ -399,39 +399,39 @@ void Configuration::on_pushButton_import_clicked()
                 {
                     db.transaction();
                 }
-                //Executer chaque requête individuellement
+                //Execute each query individually
                 foreach(const QString &s, qList)
                 {
-                    if (re_transaction.match(s).hasMatch())    //<== detection des requêtes spéciales
+                    if (re_transaction.match(s).hasMatch())    //<== detect special queries
                     {
                         db.transaction();
                     }
-                    else if (re_commit.match(s).hasMatch())    //<== detection des requêtes spéciales
+                    else if (re_commit.match(s).hasMatch())    //<== detect special queries
                     {
                         db.commit();
                     }
                     else
                     {
-                        query.exec(s);                        //<== executer les requêtes normales
+                        query.exec(s);                        //<== execute normal queries
                         if (query.lastError().type() != QSqlError::NoError)
                         {
                             qDebug() << query.lastError().text();
                             qDebug() << s;
-                            db.rollback();                    //<== rollback la transaction s'il y a un probême
+                            db.rollback();                    //<== rollback the transaction if there is a problem
                             ui->plainTextMessages->insertPlainText(query.lastError().databaseText() + " \n");
                         }
                     }
                 }
-                ui->plainTextMessages->insertPlainText("Importation des données terminée \n");
+                ui->plainTextMessages->insertPlainText("Data import finished \n");
 
                 if (!isStartedWithTransaction)
                 {
                     db.commit();
                 }
             }
-            else  //si le driver sql ne support pas les transactions
+            else  //if the sql driver does not support transactions
 
-            {     //...il est nécessaire de supprimer les requêtes spéciales(`begin transaction` and `commit`)
+            {     //...it is necessary to delete special queries (`begin transaction` and `commit`)
                 queryStr =
                     queryStr.replace(QRegularExpression(
                                          "(\\bbegin.transaction.*;|\\bcommit.*;|\\/\\*(.|\\n)*?\\*\\/|^--.*\\n|\\t|\\n)",
@@ -439,7 +439,7 @@ void Configuration::on_pushButton_import_clicked()
                                          QRegularExpression::MultilineOption), " ");
                 queryStr = queryStr.trimmed();
 
-                //Executer chaque requête individuellement
+                //Execute each query individually
                 QStringList qList = queryStr.split(';', QString::SkipEmptyParts);
                 foreach(const QString &s, qList)
                 {
@@ -452,22 +452,22 @@ void Configuration::on_pushButton_import_clicked()
                     else
                     {
                     }
-                    ui->plainTextMessages->insertPlainText("Importation des données terminée \n");
+                    ui->plainTextMessages->insertPlainText("Data import finished \n");
                 }
             }
         }
     }
 }
 
-/**********************************EXPORT VERS UN FICHIER TEXTE DES REQUETTES SQL************************/
+/**********************************EXPORT TO A TEXT FILE OF SQL QUERIES************************/
 void Configuration::on_pushButton_export_clicked()
 {
-    // export des données dans un fichier de requêtes .sql
-    QString repertoire = QDir::homePath() + "/openjardin";
+    // export data to a .sql query file
+    QString directory = QDir::homePath() + "/openjardin";
     QString fileName   =
-        QFileDialog::getSaveFileName(this, tr("Création d'un export de la base de données"),
-                                     repertoire,
-                                     tr("Fichier SQL (*.sql)"));
+        QFileDialog::getSaveFileName(this, tr("Create a database export"),
+                                     directory,
+                                     tr("SQL File (*.sql)"));
 
     if (fileName.isEmpty())
     {
@@ -478,7 +478,7 @@ void Configuration::on_pushButton_export_clicked()
     if (!file.open(QFile::WriteOnly | QFile::Text))
     {
         QMessageBox msgBox;
-        msgBox.setText("ERREUR D'ÉCRITURE");
+        msgBox.setText("WRITE ERROR");
         return;
     }
     else
@@ -489,8 +489,8 @@ void Configuration::on_pushButton_export_clicked()
         QStringList tables;
         query.exec("SELECT * FROM sqlite_master ");
         int     i2 = 0;
-        QString valeur_tables;
-        //requêtes CREATE des tables
+        QString table_values;
+        //CREATE table queries
         while (query.next())
         {
             if (i2 > 0)
@@ -499,16 +499,16 @@ void Configuration::on_pushButton_export_clicked()
                 {
                     tables << query.value("name").toString();
                 }
-                valeur_tables = query.value("sql").toString();
-                valeur_tables.replace(QString("\""), QString("`"));
-                valeur_tables.replace(QString("\n"), QString(""));
-                valeur_tables.replace(QString("\t"), QString(" "));
-                qDebug().noquote() << valeur_tables.toUtf8() << ";\n";;
-                stream << valeur_tables.toUtf8().constData() << ";\n";
+                table_values = query.value("sql").toString();
+                table_values.replace(QString("\""), QString("`"));
+                table_values.replace(QString("\n"), QString(""));
+                table_values.replace(QString("\t"), QString(" "));
+                qDebug().noquote() << table_values.toUtf8() << ";\n";;
+                stream << table_values.toUtf8().constData() << ";\n";
             }
             i2++;
         }
-        //requêtes INSERT des données
+        //INSERT data queries
         QString    values;
         QString    columns;
         QString    insert;
@@ -583,11 +583,11 @@ void Configuration::on_pushButton_Modifier_operations_clicked()
 
     if (!query.isActive())
     {
-        qDebug() << "erreur query :" << query.lastError().text() << "  " << query.lastError().databaseText() << query.driver();
+        qDebug() << "query error :" << query.lastError().text() << "  " << query.lastError().databaseText() << query.driver();
     }
     else
     {
-        qDebug() << "enregistrement terminé";
+        qDebug() << "record finished";
     }
 
     QSqlQueryModel *model4 = new QSqlQueryModel;
@@ -603,7 +603,7 @@ void Configuration::on_pushButton_Supprimer_operations_clicked()
 {
     QMessageBox msgBox;
 
-    msgBox.setInformativeText("Voulez-vous supprimer cette opération ?");
+    msgBox.setInformativeText("Do you want to delete this operation?");
     msgBox.setStandardButtons(QMessageBox::Ok | QMessageBox::Cancel);
     msgBox.setDefaultButton(QMessageBox::Ok);
     msgBox.setIcon(QMessageBox::Question);
@@ -619,12 +619,12 @@ void Configuration::on_pushButton_Supprimer_operations_clicked()
 
         if (!query.isActive())
         {
-            qDebug() << "erreur query :" << query.lastError().text() << "  " << query.lastError().databaseText() <<
+            qDebug() << "query error :" << query.lastError().text() << "  " << query.lastError().databaseText() <<
                 query.driver();
         }
         else
         {
-            qDebug() << "suppression terminée";
+            qDebug() << "delete finished";
         }
         QSqlQueryModel *model4 = new QSqlQueryModel;
         model4->setQuery("SELECT id, designation FROM taches");
@@ -656,11 +656,11 @@ void Configuration::on_pushButton_enregistrer_operations_clicked()
 
     if (!query.isActive())
     {
-        qDebug() << "erreur query :" << query.lastError().text() << "  " << query.lastError().databaseText() << query.driver();
+        qDebug() << "query error :" << query.lastError().text() << "  " << query.lastError().databaseText() << query.driver();
     }
     else
     {
-        qDebug() << "enregistrement terminé";
+        qDebug() << "record finished";
     }
 
     QSqlQueryModel *model4 = new QSqlQueryModel;
@@ -683,7 +683,7 @@ void Configuration::on_tableView_taches_clicked(const QModelIndex&index)
 }
 
 void Configuration::on_pushButton_mise_a_jour_clicked()
-{   // Mise à jour d'une ancienne base de données vers la version 1.06
+{   // Update an old database to version 1.06
     QString      fileName(getSqlFileName());
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
 
@@ -693,12 +693,12 @@ void Configuration::on_pushButton_mise_a_jour_clicked()
     db.setDatabaseName(fileName);
     if (!db.open())
     {
-        qDebug() << "connection database erreur " << fileName;
+        qDebug() << "database connection error " << fileName;
     }
     else
     {
         qDebug() << "database open " << fileName;
-        ui->plainTextMessages->insertPlainText("Base de données ouverte :" + fileName + "\n");
+        ui->plainTextMessages->insertPlainText("Database opened:" + fileName + "\n");
     }
 
     QString queryStr;
@@ -706,7 +706,7 @@ void Configuration::on_pushButton_mise_a_jour_clicked()
     if (!file.open(QFile::ReadOnly | QFile::Text))
     {
         QMessageBox msgBox;
-        msgBox.setText("ERREUR D'ÉCRITURE");
+        msgBox.setText("WRITE ERROR");
         return;
     }
     else
@@ -722,21 +722,21 @@ void Configuration::on_pushButton_mise_a_jour_clicked()
 
 
 
-    ui->plainTextMessages->insertPlainText("Données importée dans la nouvelle base \n");
-    //Vérifier si le driver SQL supporte les Transactions
+    ui->plainTextMessages->insertPlainText("Data imported into the new database \n");
+    //Check if the SQL driver supports Transactions
     if (db.driver()->hasFeature(QSqlDriver::Transactions))
     {
-        //Remplace les commentaires, tabulations et nouvelles lignes avec des espaces
+        //Replace comments, tabs and newlines with spaces
         queryStr =
             queryStr.replace(QRegularExpression("(\\/\\*(.|\\n)*?\\*\\/|^--.*\\n|\\t|\\n)",
                                                 QRegularExpression::CaseInsensitiveOption |
                                                 QRegularExpression::MultilineOption), " ");
-        //Supprimer les espaces inutiles
+        //Remove unnecessary spaces
         queryStr = queryStr.trimmed();
 
-        //Extraction des requêtes
+        //Extract queries
         QStringList qList = queryStr.split(';', QString::SkipEmptyParts);
-        //Initialise les expressions pour détecter les requêts spéciales(`begin transaction` and `commit`).
+        //Initialize expressions to detect special queries (`begin transaction` and `commit`).
         QRegularExpression re_transaction("\\bbegin.transaction.*", QRegularExpression::CaseInsensitiveOption);
         QRegularExpression re_commit("\\bcommit.*", QRegularExpression::CaseInsensitiveOption);
 
@@ -745,26 +745,26 @@ void Configuration::on_pushButton_mise_a_jour_clicked()
         {
             db.transaction();
         }
-        //Executer chaque requête individuellement
+        //Execute each query individually
 
         foreach(const QString &s, qList)
         {
-            if (re_transaction.match(s).hasMatch())        //<== detection des requêtes spéciales
+            if (re_transaction.match(s).hasMatch())        //<== detect special queries
             {
                 db.transaction();
             }
-            else if (re_commit.match(s).hasMatch())        //<== detection des requêtes spéciales
+            else if (re_commit.match(s).hasMatch())        //<== detect special queries
             {
                 db.commit();
             }
             else
             {
-                query.exec(s);                             //<== executer les requêtes normales
+                query.exec(s);                             //<== execute normal queries
                 if (query.lastError().type() != QSqlError::NoError)
                 {
-                    qDebug() << "erreur 292 " << query.lastError().text() << query.lastQuery();
+                    qDebug() << "error 292 " << query.lastError().text() << query.lastQuery();
 
-                    db.rollback();                         //<== rollback la transaction s'il y a un probême
+                    db.rollback();                         //<== rollback the transaction if there is a problem
                     ui->plainTextMessages->insertPlainText(query.lastError().databaseText() + " \n");
                 }
                 else
@@ -773,7 +773,7 @@ void Configuration::on_pushButton_mise_a_jour_clicked()
                 }
             }
         }
-        ui->plainTextMessages->insertPlainText("Mise à jour de la base de données terminée \n");
+        ui->plainTextMessages->insertPlainText("Database update finished \n");
 
         if (!isStartedWithTransaction)
         {
@@ -781,8 +781,8 @@ void Configuration::on_pushButton_mise_a_jour_clicked()
         }
     }
     else
-    {         //si le driver sql ne support pas les transactions
-              //...il est nécessaire de supprimer les requêtes spéciales(`begin transaction` and `commit`)
+    {         //if the sql driver does not support transactions
+              //...it is necessary to delete special queries (`begin transaction` and `commit`)
         queryStr =
             queryStr.replace(QRegularExpression(
                                  "(\\bbegin.transaction.*;|\\bcommit.*;|\\/\\*(.|\\n)*?\\*\\/|^--.*\\n|\\t|\\n)",
@@ -790,7 +790,7 @@ void Configuration::on_pushButton_mise_a_jour_clicked()
                                  QRegularExpression::MultilineOption), " ");
         queryStr = queryStr.trimmed();
 
-        //Executer chaque requête individuellement
+        //Execute each query individually
         QStringList qList = queryStr.split(';', QString::SkipEmptyParts);
         foreach(const QString &s, qList)
         {
@@ -802,7 +802,7 @@ void Configuration::on_pushButton_mise_a_jour_clicked()
             else
             {
             }
-            ui->plainTextMessages->insertPlainText("Mise à jour de la base de données terminée \n");
+            ui->plainTextMessages->insertPlainText("Database update finished \n");
         }
     }
 }

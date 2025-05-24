@@ -23,14 +23,14 @@ public:
     void createConnection(QString fileName);
     void init_base();
 
-    void setXmlFilName(const QString&xmlFileName)
+    void setXmlFileName(const QString&xmlFileName)
     {
-        m_xmlFilName = xmlFileName;
+        m_xmlFileName = xmlFileName;
     }
 
-    QString getXmlFilName()
+    QString getXmlFileName()
     {
-        return m_xmlFilName;
+        return m_xmlFileName;
     }
 
     void setSqlFileName(const QString&sqlFileName)
@@ -43,7 +43,7 @@ public:
         return m_sqlFileName;
     }
 
-    void enregistrerDataBase();
+    void saveDataBase();
 
 private slots:
     void on_pushButton_changeDataBase_clicked();
@@ -54,27 +54,27 @@ private slots:
 
     void on_pushButton_export_clicked();
 
-    void on_pushButton_Modifier_operations_clicked();
+    void on_pushButton_Modify_operations_clicked();
 
-    void on_pushButton_Supprimer_operations_clicked();
+    void on_pushButton_Delete_operations_clicked();
 
-    void on_pushButton_Nouveau_operations_clicked();
+    void on_pushButton_New_operations_clicked();
 
-    void on_pushButton_enregistrer_operations_clicked();
+    void on_pushButton_save_operations_clicked();
 
-    void on_tableView_taches_clicked(const QModelIndex&index);
+    void on_tableView_tasks_clicked(const QModelIndex&index);
 
-    void on_pushButton_fermer_clicked();
+    void on_pushButton_close_clicked();
 
 
-    void on_pushButton_mise_a_jour_clicked();
+    void on_pushButton_update_clicked();
 
 protected:
     void closeEvent(QCloseEvent *event) override;
 
 private:
     Ui::Configuration *ui;
-    QString m_xmlFilName;
+    QString m_xmlFileName;
     QString m_sqlFileName;
 };
 
