@@ -17,24 +17,24 @@ QString util::apos(QString texte)
 QString util::afficheZeros(QString texte)
 {
     texte.replace(QString(","), QString("."));
-    int index    = texte.indexOf(".");
-    int longueur = texte.length();
-    int position = longueur - index;
-
-    if (index > 0)
+    int index = texte.indexOf('.');
+    if (index >= 0)
     {
-        if (position == 1)
+        int digits = texte.length() - index - 1;
+
+        if (digits == 0)
         {
-            texte = texte + "00";
+            texte += "00";
         }
-        if (position >= 2)
+        else if (digits == 1)
         {
-            texte = texte + "0";
+            texte += '0';
         }
+        // if digits >= 2 do nothing
     }
     else
     {
-        texte = texte + ".00";
+        texte += ".00";
     }
     return texte;
 }
