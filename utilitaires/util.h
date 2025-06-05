@@ -6,9 +6,9 @@ class util
 {
 public:
     util();
-    static QString apos(const QString texte);   //remplacement des apostrophes pour requetes sql
-    static QString afficheZeros(QString texte); // remplissage des zéros en fin de chaine
+    static QString apos(const QString texte);   // replace apostrophes for SQL queries
+    static QString afficheZeros(QString texte); // zero-fill at the end of the string
     static QString getLocale();
 };
 
-#endif // UTILITAIRES_H
+#endif // UTIL_H

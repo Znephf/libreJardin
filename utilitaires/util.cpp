@@ -41,7 +41,7 @@ QString util::afficheZeros(QString texte)
 
 QString util::getLocale()
 {
-    // translator
+    // retrieve system locale
     QString locale = QLocale::system().name();
 
     // QString locale = "en_EN";

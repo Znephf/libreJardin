@@ -20,7 +20,7 @@ public:
         Image
     };
     enum { Type = UserType + 2 }; //65538
-    // userType = 65536 valeur par défaut
+    // userType = 65536 default value
 
     MyVertex(qreal wid, qreal hgt);
 
@@ -33,7 +33,7 @@ public:
     QPainterPath shape() const override;
 
     int type() const
-    {    // type d'item
+    {    // item type
         return Type;
     }
 
@@ -153,7 +153,7 @@ private:
     qreal m_oldX;
     qreal m_oldY;
     int typeShape;
-    int m_mode;     //0 modification - 1 utilisation
+    int m_mode;     //0 editing - 1 usage
     QPointF offset;
     QPointF getSnap(const QPointF&pointP);
 };

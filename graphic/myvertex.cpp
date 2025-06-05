@@ -49,10 +49,10 @@
 
 MyVertex::MyVertex(qreal wid, qreal hgt)
 {
-    m_width    = wid; m_height = hgt; //initialisation des valeurs largeur - hauteur
+    m_width    = wid; m_height = hgt; // initialize width and height values
     brushColor = Qt::blue;
     penColor   = Qt::black;
-    m_opacity  = 1.0; //transparence
+    m_opacity  = 1.0; // item transparency
     // setFlag(QGraphicsItem::ItemIsFocusable);
     setFlag(QGraphicsPathItem::ItemIsMovable);
     setFlag(QGraphicsItem::ItemIsSelectable);
@@ -94,7 +94,7 @@ void MyVertex::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, 
         break;
 
     case MyVertex::Circle:
-        painter->drawEllipse(QRectF(-m_width / 2, -m_height / 2, m_width, m_height));        //à verifier
+        painter->drawEllipse(QRectF(-m_width / 2, -m_height / 2, m_width, m_height));        // to check
         break;
     }
 }
@@ -132,11 +132,11 @@ void MyVertex::mousePressEvent(QGraphicsSceneMouseEvent *event)
     {
         scene()->clearSelection();
         setSelected(true);
-        // mode utilisation
+        // usage mode
     }
     else
     {
-        if (getMode() == 2) //mode modification planning
+        if (getMode() == 2) // planning edit mode
         {
             scene()->clearSelection();
             setSelected(true);
@@ -154,7 +154,7 @@ void MyVertex::mousePressEvent(QGraphicsSceneMouseEvent *event)
             }
             update();
         }
-        else //mode modification plan
+        else // plan editing mode
         {
             scene()->clearSelection();
             setSelected(true);
@@ -172,12 +172,12 @@ void MyVertex::mousePressEvent(QGraphicsSceneMouseEvent *event)
             }
             if (int(ObjetHeight) % 2 != 0)
             {
-                double oldy = floor((pos().x() - (m_height / 2)) / gridSize) * gridSize;
+                double oldy = floor((pos().y() - (m_height / 2)) / gridSize) * gridSize;
                 setOldY(oldy);
             }
             else
             {
-                double oldy = ceil((pos().x() - (m_height / 2)) / gridSize) * gridSize;
+                double oldy = ceil((pos().y() - (m_height / 2)) / gridSize) * gridSize;
                 setOldY(oldy);
             }
             setOldY(pos().y() - (m_height / 2));
@@ -199,11 +199,11 @@ void MyVertex::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 
     if (getMode() == 1)
     {
-        //mode utilisation
+        // usage mode
     }
     else
     {
-        if (getMode() == 2) //mode modification planning
+        if (getMode() == 2) // planning edit mode
         {
             if (cursor().shape() == Qt::ClosedHandCursor)
             {
@@ -212,7 +212,7 @@ void MyVertex::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
             event->accept();
             update();
         }
-        else   //mode modification plan
+        else   // plan editing mode
         {
             double ObjetWidth  = offset.x() - pos().x();
             double ObjetHeight = m_height;
@@ -242,11 +242,11 @@ void MyVertex::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 {
     if (getMode() == 1)
     {
-        // mode utilisation
+        // usage mode
     }
     else
     {
-        if (getMode() == 2) //mode modification planning
+        if (getMode() == 2) // planning edit mode
         {
             if (cursor().shape() == Qt::ClosedHandCursor)
             {
@@ -256,7 +256,7 @@ void MyVertex::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
             setSelected(true);
             update();
         }
-        else //mode modification plan
+        else // plan editing mode
         {
             if (cursor().shape() == Qt::ClosedHandCursor)
             {
