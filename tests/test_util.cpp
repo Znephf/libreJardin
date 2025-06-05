@@ -11,6 +11,8 @@ class TestUtil : public QObject
 private slots:
     void afficheZeros_data();
     void afficheZeros();
+    void afficheZerosDigits_data();
+    void afficheZerosDigits();
     void apos_data();
     void apos();
     void getLocale();
@@ -32,6 +34,25 @@ void TestUtil::afficheZeros()
     QFETCH(QString, input);
     QFETCH(QString, expected);
     QCOMPARE(util::afficheZeros(input), expected);
+}
+
+void TestUtil::afficheZerosDigits_data()
+{
+    QTest::addColumn<QString>("input");
+    QTest::addColumn<int>("digits");
+    QTest::addColumn<QString>("expected");
+
+    QTest::newRow("three digits with decimal") << QString("1.2") << 3 << QString("1.200");
+    QTest::newRow("three digits integer") << QString("3") << 3 << QString("3.000");
+    QTest::newRow("one digit existing") << QString("2.34") << 1 << QString("2.34");
+}
+
+void TestUtil::afficheZerosDigits()
+{
+    QFETCH(QString, input);
+    QFETCH(int, digits);
+    QFETCH(QString, expected);
+    QCOMPARE(util::afficheZeros(input, digits), expected);
 }
 
 void TestUtil::apos_data()

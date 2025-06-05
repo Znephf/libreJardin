@@ -14,27 +14,26 @@ QString util::apos(QString texte)
     return texteModif;
 }
 
-QString util::afficheZeros(QString texte)
+QString util::afficheZeros(QString texte, int digits)
 {
+    // replace comma with dot for decimal separator
     texte.replace(QString(","), QString("."));
     int index = texte.indexOf('.');
+
     if (index >= 0)
     {
-        int digits = texte.length() - index - 1;
-
-        if (digits == 0)
-        {
-            texte += "00";
-        }
-        else if (digits == 1)
+        int currentDigits = texte.length() - index - 1;
+        while (currentDigits < digits)
         {
             texte += '0';
+            ++currentDigits;
         }
-        // if digits >= 2 do nothing
+        // keep existing digits if there are more than requested
     }
     else
     {
-        texte += ".00";
+        // no decimal part - add one filled with zeros
+        texte += '.' + QString(digits, '0');
     }
     return texte;
 }
