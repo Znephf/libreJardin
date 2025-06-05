@@ -1,2 +1,18 @@
 .vscode/launch.json
 .vscode/c_cpp_properties.json
+# Build artifacts
+Makefile
+.qmake.stash
+*.o
+libreJardin
+moc_*.cpp
+moc_*.o
+qrc_*.cpp
+qrc_*.o
+ui_*.h
+# Test build artifacts
+/tests/Makefile
+/tests/test_util
+/tests/test_util.moc
+/tests/*.o
+/tests/moc_*.h
