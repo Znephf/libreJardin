@@ -59,39 +59,6 @@ void detail_parcelle::closeEvent(QCloseEvent *event)
 {
     Q_UNUSED(event);
     accept();
-    // translator
-    QTranslator translator;
-    QString     fileContent = ":/translations/open-jardin_" + util::getLocale();
-
-    translator.load(fileContent);
-    qApp->installTranslator(&translator);
-
-    ui->setupUi(this);
-    setFileNameXML(fileName); //name of the detail plan file
-    scene = new QGraphicsScene(this);
-    scene->setSceneRect(0, 0, 1900, 1200);
-    scene->setItemIndexMethod(QGraphicsScene::BspTreeIndex);
-    ui->graphicsView->setScene(scene);
-    // if the item selection changes, launch the command
-    connect(scene, SIGNAL(selectionChanged()), this, SLOT(Item_clicked()));
-    m_ZoomRatio = 1;  //zoom factor variable (actual size =1 )
-    ui->label_parcelle->setText(QString::number(IdParcelle));
-    setIdParcelle(IdParcelle);
-    if (fileName != "")
-    {
-        open_XMLFile(fileName);
-    }
-}
-
-detail_parcelle::~detail_parcelle()
-{
-    delete ui;
-}
-
-void detail_parcelle::closeEvent(QCloseEvent *event)
-{
-    Q_UNUSED(event);
-    accept();
     close();
 }
 
@@ -101,7 +68,8 @@ void detail_parcelle::open_XMLFile(QString fileName)
     QString      field;
     QFile        fileHandle(fileName);
 
-    parcelleList.clear();
+    // clear existing plots list
+    plotList.clear();
     qDebug() << " xml file " << fileName;
     if (fileHandle.exists())
     {

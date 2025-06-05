@@ -3862,7 +3862,8 @@ void MainWindow::on_actionConfiguration_triggered()
 
     if (resultat == QDialog::Accepted)
     {
-        setFileNameXML(fenetre_configuration->getXmlFilName());
+        // use the correct accessor to retrieve the XML file name
+        setFileNameXML(fenetre_configuration->getXmlFileName());
         setfileNameSQL(fenetre_configuration->getSqlFileName());
 
         qDebug() << " base de données ouverte " << getfileNameSQL() << " XML " << getFileNameXML();

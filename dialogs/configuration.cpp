@@ -26,7 +26,8 @@ Configuration::Configuration(const QString&fileNameXML, const QString&fileNameSQ
     init_base();
     ui->lineEdit_config_nom_Xml->setText(fileNameXML);
     ui->lineEdit_config_nom_base->setText(fileNameSQL);
-    setXmlFilName(fileNameXML);
+    // store filenames for later use
+    setXmlFileName(fileNameXML);
     setSqlFileName(fileNameSQL);
 }
 
@@ -120,7 +121,8 @@ void Configuration::on_pushButton_changeDataBase_clicked()
     }
 }
 
-void Configuration::enregistrerDataBase()
+// save database filename to a new XML file
+void Configuration::saveDataBase()
 {
     // save the name of the database in the XML file
     QString      cellvalue;
