@@ -23,7 +23,7 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>FICHE CULTURE</string>
+   <string>CROP SHEET</string>
   </property>
   <property name="windowIcon">
    <iconset resource="../libreJardin.qrc">
@@ -47,7 +47,7 @@
           </font>
          </property>
          <property name="text">
-          <string>FICHE CULTURE DE LA PARCELLE</string>
+          <string>PLOT CROP SHEET</string>
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>
@@ -116,7 +116,7 @@
                </size>
               </property>
               <property name="text">
-               <string>Type lune : </string>
+               <string>Moon type : </string>
               </property>
               <property name="alignment">
                <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -126,14 +126,14 @@
             <item row="1" column="2">
              <widget class="QLabel" name="label_3">
               <property name="text">
-               <string>Date de fin de culture</string>
+               <string>End of cultivation date</string>
               </property>
              </widget>
             </item>
             <item row="1" column="0">
              <widget class="QLabel" name="label_10">
               <property name="text">
-               <string>Id culture</string>
+               <string>Crop Id</string>
               </property>
              </widget>
             </item>
@@ -176,7 +176,7 @@
                 <item>
                  <widget class="QToolButton" name="toolButton_FichePlantes">
                   <property name="toolTip">
-                   <string>Visualiser la fiche de la variété</string>
+                   <string>View variety sheet</string>
                   </property>
                   <property name="text">
                    <string>...</string>
@@ -198,7 +198,7 @@
               <item>
                <widget class="QToolButton" name="toolButton_NouvellePlante">
                 <property name="toolTip">
-                 <string>Ajouter une nouvelle variété</string>
+                 <string>Add a new variety</string>
                 </property>
                 <property name="text">
                  <string>...</string>
@@ -241,7 +241,7 @@
               <item>
                <widget class="QPushButton" name="pushButton_print_fiche">
                 <property name="text">
-                 <string>Imprimer la fiche</string>
+                 <string>Print Sheet</string>
                 </property>
                </widget>
               </item>
@@ -273,21 +273,21 @@
                  </size>
                 </property>
                 <property name="text">
-                 <string>Enregistrer modifications</string>
+                 <string>Save Changes</string>
                 </property>
                </widget>
               </item>
               <item>
                <widget class="QPushButton" name="pushButton_supprimer_culture">
                 <property name="text">
-                 <string>Supprimer</string>
+                 <string>Delete</string>
                 </property>
                </widget>
               </item>
               <item>
                <widget class="QPushButton" name="pushButton_nouvelleOperation">
                 <property name="text">
-                 <string>Nouvelle fiche vierge</string>
+                 <string>New Blank Sheet</string>
                 </property>
                </widget>
               </item>
@@ -306,7 +306,7 @@
                  </size>
                 </property>
                 <property name="text">
-                 <string>Créer nouvelle culture</string>
+                 <string>Create New Crop</string>
                 </property>
                </widget>
               </item>
@@ -351,7 +351,7 @@
                </size>
               </property>
               <property name="text">
-               <string>Date de mise en culture </string>
+               <string>Cultivation start date</string>
               </property>
              </widget>
             </item>
@@ -406,7 +406,7 @@
                </size>
               </property>
               <property name="text">
-               <string>Commentaires</string>
+               <string>Comments</string>
               </property>
              </widget>
             </item>
@@ -442,14 +442,14 @@
                </size>
               </property>
               <property name="text">
-               <string>Durée prévisionelle (en jours)</string>
+               <string>Estimated duration (in days)</string>
               </property>
              </widget>
             </item>
             <item row="7" column="0">
              <widget class="QLabel" name="label_18">
               <property name="text">
-               <string>Espèce :</string>
+               <string>Species:</string>
               </property>
              </widget>
             </item>
@@ -462,14 +462,14 @@
                </size>
               </property>
               <property name="text">
-               <string>Parcelle</string>
+               <string>Plot</string>
               </property>
              </widget>
             </item>
             <item row="7" column="3">
              <widget class="QLabel" name="label_19">
               <property name="text">
-               <string>Famille :</string>
+               <string>Family:</string>
               </property>
               <property name="alignment">
                <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -480,22 +480,22 @@
              <widget class="QComboBox" name="comboBox_etat_culture">
               <item>
                <property name="text">
-                <string>Parcelle en simple culture </string>
+                <string>Plot in single crop</string>
                </property>
               </item>
               <item>
                <property name="text">
-                <string>Parcelle en double culture (ligne haute)</string>
+                <string>Plot in double crop (high line)</string>
                </property>
               </item>
               <item>
                <property name="text">
-                <string>Parcelle en double culture (ligne basse)</string>
+                <string>Plot in double crop (low line)</string>
                </property>
               </item>
               <item>
                <property name="text">
-                <string>Parcelle en attente</string>
+                <string>Plot on hold</string>
                </property>
               </item>
              </widget>
@@ -515,7 +515,7 @@
                <number>9</number>
               </property>
               <property name="text">
-               <string>Variété  : </string>
+               <string>Variety : </string>
               </property>
              </widget>
             </item>
@@ -551,7 +551,7 @@
             <item row="2" column="4" colspan="2">
              <widget class="QPushButton" name="pushButton_Gantt">
               <property name="text">
-               <string>Intégrer cette culture dans Gantt</string>
+               <string>Integrate this crop into Gantt</string>
               </property>
              </widget>
             </item>
@@ -578,7 +578,7 @@
             </font>
            </property>
            <property name="text">
-            <string>Liste des cultures  réalisées sur cette parcelle</string>
+            <string>List of crops grown on this plot</string>
            </property>
           </widget>
          </item>
@@ -653,7 +653,7 @@
                  </font>
                 </property>
                 <property name="text">
-                 <string>Observations concernant cette culture</string>
+                 <string>Observations concerning this crop</string>
                 </property>
                 <property name="alignment">
                  <set>Qt::AlignCenter</set>
@@ -715,7 +715,7 @@
                  <enum>Qt::LeftToRight</enum>
                 </property>
                 <property name="text">
-                 <string>Type d'observation. : </string>
+                 <string>Observation type. : </string>
                 </property>
                 <property name="alignment">
                  <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -812,14 +812,14 @@
               </size>
              </property>
              <property name="text">
-              <string>Enregistrer modifications</string>
+              <string>Save Changes</string>
              </property>
             </widget>
            </item>
            <item>
             <widget class="QPushButton" name="pushButton_supprimer_tache">
              <property name="text">
-              <string>Supprimer</string>
+              <string>Delete</string>
              </property>
             </widget>
            </item>
@@ -838,7 +838,7 @@
               </size>
              </property>
              <property name="text">
-              <string>Créer nouvelle observation</string>
+              <string>Create New Observation</string>
              </property>
             </widget>
            </item>
@@ -867,7 +867,7 @@
             </font>
            </property>
            <property name="text">
-            <string>Liste des observations  concernant  cette culture</string>
+            <string>List of observations concerning this crop</string>
            </property>
           </widget>
          </item>

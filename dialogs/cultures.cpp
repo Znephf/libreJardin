@@ -54,34 +54,34 @@ Cultures::Cultures(const int&IdItem, const int&IdCulture, QWidget *parent) :
 {
     // translator
     QTranslator translator;
-    QString     fichier = ":/translations/open-jardin_" + util::getLocale();
+    QString     fileContent = ":/translations/open-jardin_" + util::getLocale();
 
-    translator.load(fichier);
+    translator.load(fileContent);
     qApp->installTranslator(&translator);
 
     ui->setupUi(this);
-    setIdItem(IdItem);     // id de la parcelle
+    setIdItem(IdItem);     // id of the plot
     setIdCulture(IdCulture);
     ui->lineEditIdParcelle->setText(QString::number(m_idItem));
     ui->lineEdit_id_cultures->setText(QString::number(m_idCulture));
 
-    // mise à la date du jour du dateEdit de la fiche
-    QDate dateDuJour;
-    dateDuJour = dateDuJour.currentDate();
-    ui->dateEdit->setDate(dateDuJour);
-    ui->dateEdit_tache->setDate(dateDuJour);
-    // mise à jour date de récolte selon durée prévisionnelle
+    // set the dateEdit of the sheet to today's date
+    QDate currentDate;
+    currentDate = currentDate.currentDate();
+    ui->dateEdit->setDate(currentDate);
+    ui->dateEdit_tache->setDate(currentDate);
+    // update harvest date according to estimated duration
     QString str1  = ui->dateEdit->date().toString("yyyy.MM.dd");
     QDate   dateS = QDate::fromString(str1, "yyyy.MM.dd");
     QDate   dateR = dateS.addDays(ui->lineEdit_duree->text().toInt());
     ui->dateEdit_fin_culture->setDate(dateR);
 
-    //remplissage combobox espèces type de plantes
+    //fill combobox species plant type
     QSqlQueryModel *modelM = new QSqlQueryModel;
     modelM->setQuery("SELECT designation,type_lune FROM plantes ORDER BY designation ASC");
     ui->comboBox_plante->setModel(modelM);
 
-    //remplissage combobox type taches
+    //fill combobox task type
     QSqlQueryModel *modelTache = new QSqlQueryModel;
     modelTache->setQuery("SELECT designation FROM taches ORDER BY designation ASC");
     ui->comboBox_type_tache->setModel(modelTache);
@@ -97,7 +97,7 @@ void Cultures::init_models(int idculture)
                             m_idItem));
         model->setHeaderData(0, Qt::Vertical, QObject::tr("id"));
         model->setHeaderData(1, Qt::Vertical, QObject::tr("designation"));
-        model->setHeaderData(3, Qt::Vertical, QObject::tr("parcelle"));
+        model->setHeaderData(3, Qt::Vertical, QObject::tr("plot"));
         ui->tableViewCultures->setModel(model);
 
         QSqlQueryModel *modelObs = new QSqlQueryModel;
@@ -115,7 +115,7 @@ void Cultures::init_models(int idculture)
                             idculture));
         model->setHeaderData(0, Qt::Vertical, QObject::tr("id"));
         model->setHeaderData(1, Qt::Vertical, QObject::tr("designation"));
-        model->setHeaderData(3, Qt::Vertical, QObject::tr("parcelle"));
+        model->setHeaderData(3, Qt::Vertical, QObject::tr("plot"));
         ui->tableViewCultures->setModel(model);
         QSqlQueryModel *modelObs = new QSqlQueryModel;
         modelObs->setQuery("SELECT id, designation, date,type , commentaires,id_culture FROM observations where id_culture= " + QString::number(
@@ -139,15 +139,15 @@ void Cultures::init_models(int idculture)
         QDate date2 = QDate::fromString(str6, "yyyy.MM.dd");
         ui->dateEdit_fin_culture->setDate(date2);
         ui->lineEdit_duree->setText(str5);
-        //selection plante dans combobox
+        //select plant in combobox
         QSqlQuery query;
-        QString   resultat;
+        QString   result;
         query.exec(QString("select designation from plantes where id =" + str2));
         if (query.first())
         {
-            resultat = query.value(0).toString();
+            result = query.value(0).toString();
 
-            ui->comboBox_plante->setCurrentIndex(ui->comboBox_plante->findText(resultat));
+            ui->comboBox_plante->setCurrentIndex(ui->comboBox_plante->findText(result));
         }
         ui->comboBox_etat_culture->setCurrentIndex(str4.toInt() - 1);
         ui->plainTextEdit_commentaires->setPlainText(str3);
@@ -160,7 +160,7 @@ Cultures::~Cultures()
 }
 
 void Cultures::on_pushButton_nouvelleOperation_clicked()
-{   //création d'une fiche de culture vierge
+{   //create a blank crop record
     ui->lineEditDesignation->setText("");
     ui->plainTextEdit_commentaires->setPlainText("");
     ui->comboBox_plante->setCurrentIndex(0);
@@ -168,24 +168,24 @@ void Cultures::on_pushButton_nouvelleOperation_clicked()
 }
 
 void Cultures::on_pushButton_validerData_clicked()
-{   //ajouter un enregistrement de la table "cultures" valider les données et enregistrer dans la base
+{   //add a record to the "cultures" table, validate the data and save to the database
     QSqlQuery query;
-    QString   nom_plante = util::apos(ui->comboBox_plante->currentText());
-    QString   id_plante;
+    QString   plant_name = util::apos(ui->comboBox_plante->currentText());
+    QString   id_plant;
 
-    query.exec(QString("select id from plantes where designation ='" + nom_plante + "'"));
+    query.exec(QString("select id from plantes where designation ='" + plant_name + "'"));
     if (query.first())
     {
-        id_plante = query.value(0).toString();
+        id_plant = query.value(0).toString();
     }
     else
     {
-        qDebug() << "erreur query :" << query.lastError().text() << "  " << query.lastError().databaseText() << query.driver();
-        QMessageBox::information(this, tr("Erreur d'enregistrement"),
-                                 tr("Veuillez vérifier que tous les champs soient bien remplis"));
+        qDebug() << "query error :" << query.lastError().text() << "  " << query.lastError().databaseText() << query.driver();
+        QMessageBox::information(this, tr("Recording error"),
+                                 tr("Please check that all fields are filled in correctly"));
     }
     QString str1 = ui->dateEdit->date().toString("yyyy.MM.dd");
-    QString str2 = id_plante;
+    QString str2 = id_plant;
     QString str3 = util::apos(ui->plainTextEdit_commentaires->document()->toPlainText());
     QString str4 = QString::number(ui->comboBox_etat_culture->currentIndex() + 1);
     QString str5 = ui->lineEdit_duree->text();
@@ -197,20 +197,20 @@ void Cultures::on_pushButton_validerData_clicked()
     query.exec(str);
     if (!query.isActive())
     {
-        qDebug() << "erreur query :" << query.lastError().text() << "  " << query.lastError().databaseText() << query.driver();
-        QMessageBox::information(this, tr("Erreur d'enregistrement"),
-                                 tr("Veuillez vérifier que tous les champs soient bien remplis"));
+        qDebug() << "query error :" << query.lastError().text() << "  " << query.lastError().databaseText() << query.driver();
+        QMessageBox::information(this, tr("Recording error"),
+                                 tr("Please check that all fields are filled in correctly"));
     }
     else
     {
-        qDebug() << "enregistrement terminé";
+        qDebug() << "record finished";
     }
     QSqlQueryModel *model = new QSqlQueryModel;
     model->setQuery("SELECT id, designation, parcelle, date_semis, type_plante , commentaires,etat,duree,date_recolte FROM cultures WHERE parcelle=" + QString::number(
                         m_idItem));
     model->setHeaderData(0, Qt::Vertical, QObject::tr("id"));
     model->setHeaderData(1, Qt::Vertical, QObject::tr("designation"));
-    model->setHeaderData(3, Qt::Vertical, QObject::tr("parcelle"));
+    model->setHeaderData(3, Qt::Vertical, QObject::tr("plot"));
     ui->tableViewCultures->setModel(model);
 }
 
@@ -232,20 +232,20 @@ void Cultures::on_tableViewCultures_clicked(const QModelIndex&index)
     QDate date2 = QDate::fromString(str6, "yyyy.MM.dd");
     ui->dateEdit_fin_culture->setDate(date2);
     ui->lineEdit_duree->setText(str5);
-    //selection plante dans combobox
+    //select plant in combobox
     QSqlQuery query;
-    QString   resultat;
+    QString   result;
     query.exec(QString("select designation from plantes where id =" + str2));
     if (query.first())
     {
-        resultat = query.value(0).toString();
-        ui->comboBox_plante->setCurrentIndex(ui->comboBox_plante->findText(resultat));
+        result = query.value(0).toString();
+        ui->comboBox_plante->setCurrentIndex(ui->comboBox_plante->findText(result));
     }
     else
     {
-        qDebug() << "erreur query :" << query.lastError().text() << "  " << query.lastError().databaseText() << query.driver();
-        QMessageBox::information(this, tr("Erreur d'enregistrement"),
-                                 tr("Veuillez vérifier que tous les champs soient bien remplis"));
+        qDebug() << "query error :" << query.lastError().text() << "  " << query.lastError().databaseText() << query.driver();
+        QMessageBox::information(this, tr("Recording error"),
+                                 tr("Please check that all fields are filled in correctly"));
     }
     ui->comboBox_etat_culture->setCurrentIndex(str4.toInt() - 1);
     ui->plainTextEdit_commentaires->setPlainText(str3);
@@ -255,122 +255,122 @@ void Cultures::on_tableViewCultures_clicked(const QModelIndex&index)
 void Cultures::on_comboBox_plante_currentIndexChanged(const QString&arg1)
 {
     QSqlQuery query;
-    QString   id_plante;
-    QString   resultat;
-    QString   id_espece;
-    QString   design_espece;
-    QString   id_famille;
-    QString   design_famille;
+    QString   id_plant;
+    QString   result;
+    QString   id_species;
+    QString   design_species;
+    QString   id_family;
+    QString   design_family;
 
     query.exec(QString("select id from plantes where designation ='" + util::apos(arg1) + "'"));
     if (query.first())
     {
-        id_plante = query.value(0).toString();
-        ui->lineEditTypeLune->clear(); //effacer
-        query.exec(QString("select type_lune from plantes where id=" + id_plante));
+        id_plant = query.value(0).toString();
+        ui->lineEditTypeLune->clear(); //clear
+        query.exec(QString("select type_lune from plantes where id=" + id_plant));
         if (query.first())
         {
-            resultat = query.value(0).toString();
+            result = query.value(0).toString();
         }
         else
         {
-            qWarning("ne peut récupérer la valeur type lune");
+            qWarning("cannot retrieve moon type value");
         }
 
-        ui->lineEditTypeLune->setText(resultat);
+        ui->lineEditTypeLune->setText(result);
 
-        query.exec(QString("select espece from plantes where id=" + id_plante));
+        query.exec(QString("select espece from plantes where id=" + id_plant));
         if (query.first())
         {
-            id_espece = query.value(0).toString();
+            id_species = query.value(0).toString();
         }
         else
         {
-            qWarning("ne peut récupérer la valeur espece");
+            qWarning("cannot retrieve species value");
         }
 
-        query.exec(QString("select designation from especes where id=" + id_espece));
+        query.exec(QString("select designation from especes where id=" + id_species));
         if (query.first())
         {
-            design_espece = query.value(0).toString();
+            design_species = query.value(0).toString();
         }
         else
         {
-            qWarning("ne peut récupérer la valeur designation espece");
+            qWarning("cannot retrieve species designation value");
         }
 
-        query.exec(QString("select famille from especes where id=" + id_espece));
+        query.exec(QString("select famille from especes where id=" + id_species));
         if (query.first())
         {
-            id_famille = query.value(0).toString();
+            id_family = query.value(0).toString();
         }
         else
         {
-            qWarning("ne peut récupérer la valeur famille espece");
+            qWarning("cannot retrieve species family value");
         }
 
-        query.exec(QString("select designation from familles where id=" + id_famille));
+        query.exec(QString("select designation from familles where id=" + id_family));
         if (query.first())
         {
-            design_famille = query.value(0).toString();
+            design_family = query.value(0).toString();
         }
         else
         {
-            qWarning("ne peut récupérer la valeur designation famille");
+            qWarning("cannot retrieve family designation value");
         }
 
-        ui->lineEdit_Fiche_culture_espece->setText(design_espece);
-        ui->lineEdit_Fiche_culture_famille->setText(design_famille);
+        ui->lineEdit_Fiche_culture_espece->setText(design_species);
+        ui->lineEdit_Fiche_culture_famille->setText(design_family);
     }
     else
     {
-        qDebug() << "erreur query :" << query.lastError().text() << "  " << query.lastError().databaseText() << query.driver();
+        qDebug() << "query error :" << query.lastError().text() << "  " << query.lastError().databaseText() << query.driver();
     }
 }
 
 void Cultures::on_lineEditTypeLune_textChanged(const QString&arg1)
 {
     QSqlQuery query;
-    QString   resultat;
+    QString   result;
     int       row = arg1.toInt();
 
-    ui->lineEditDesign_Lune->clear(); //effacer
+    ui->lineEditDesign_Lune->clear(); //clear
     query.exec(QString("select designation from lune where id=" + QString::number(row)));
     if (query.first())
     {
-        resultat = query.value(0).toString();
+        result = query.value(0).toString();
     }
 
 
-    ui->lineEditDesign_Lune->setText(resultat);
+    ui->lineEditDesign_Lune->setText(result);
 
     if (!query.isActive())
     {
-        qDebug() << "erreur query :" << query.lastError().text() << "  " << query.lastError().databaseText() << query.driver();
+        qDebug() << "query error :" << query.lastError().text() << "  " << query.lastError().databaseText() << query.driver();
     }
 }
 
 void Cultures::on_pushButton_modifier_clicked()
 {
-    //enregister la fiche modifiée
+    //save the modified sheet
     QSqlQuery query;
-    QString   nom_plante = util::apos(ui->comboBox_plante->currentText());
-    QString   id_plante;
+    QString   plant_name = util::apos(ui->comboBox_plante->currentText());
+    QString   id_plant;
 
-    query.exec(QString("select id from plantes where designation ='" + nom_plante + "'"));
+    query.exec(QString("select id from plantes where designation ='" + plant_name + "'"));
     if (query.first())
     {
-        id_plante = query.value(0).toString();
+        id_plant = query.value(0).toString();
     }
     else
     {
-        qDebug() << "erreur query :" << query.lastError().text() << "  " << query.lastError().databaseText() << query.driver();
-        QMessageBox::information(this, tr("Erreur d'enregistrement"),
-                                 tr("Veuillez vérifier que tous les champs soient bien remplis"));
+        qDebug() << "query error :" << query.lastError().text() << "  " << query.lastError().databaseText() << query.driver();
+        QMessageBox::information(this, tr("Recording error"),
+                                 tr("Please check that all fields are filled in correctly"));
     }
     QString str1 = ui->dateEdit->date().toString("yyyy.MM.dd");
     QString str  = util::apos(ui->lineEditDesignation->text());
-    QString str2 = id_plante;
+    QString str2 = id_plant;
     QString str3 = util::apos(ui->plainTextEdit_commentaires->document()->toPlainText());
     QString str4 = ui->lineEdit_id_cultures->text();
     QString str5 = ui->lineEditIdParcelle->text();
@@ -387,13 +387,13 @@ void Cultures::on_pushButton_modifier_clicked()
 
     if (!query.isActive())
     {
-        qDebug() << "erreur query :" << query.lastError().text() << "  " << query.lastError().databaseText() << query.driver();
-        QMessageBox::information(this, tr("Erreur d'enregistrement"),
-                                 tr("Veuillez vérifier que tous les champs soient bien remplis"));
+        qDebug() << "query error :" << query.lastError().text() << "  " << query.lastError().databaseText() << query.driver();
+        QMessageBox::information(this, tr("Recording error"),
+                                 tr("Please check that all fields are filled in correctly"));
     }
     else
     {
-        qDebug() << "enregistrement terminé";
+        qDebug() << "record finished";
     }
 
     QSqlQueryModel *model = new QSqlQueryModel;
@@ -401,35 +401,35 @@ void Cultures::on_pushButton_modifier_clicked()
                         m_idItem));
     model->setHeaderData(0, Qt::Vertical, QObject::tr("id"));
     model->setHeaderData(1, Qt::Vertical, QObject::tr("designation"));
-    model->setHeaderData(3, Qt::Vertical, QObject::tr("parcelle"));
+    model->setHeaderData(3, Qt::Vertical, QObject::tr("plot"));
     ui->tableViewCultures->setModel(model);
 }
 
-/*************** base de données des taches et observations*************************/
+/*************** database of tasks and observations*************************/
 
 void Cultures::on_pushButton_modifier_tache_clicked()
 {
-    //enregister la fiche modifiée
+    //save the modified sheet
     QSqlQuery query;
-    QString   nom_type_tache = ui->comboBox_type_tache->currentText();
-    QString   id_type_tache;
+    QString   task_type_name = ui->comboBox_type_tache->currentText();
+    QString   id_task_type;
 
-    query.exec(QString("select id from taches where designation ='" + nom_type_tache + "'"));
+    query.exec(QString("select id from taches where designation ='" + task_type_name + "'"));
     if (query.first())
     {
-        id_type_tache = query.value(0).toString();
-        qDebug() << nom_type_tache << " id " << id_type_tache;
+        id_task_type = query.value(0).toString();
+        qDebug() << task_type_name << " id " << id_task_type;
     }
     else
     {
-        qDebug() << "erreur query :" << query.lastError().text() << "  " << query.lastError().databaseText() << query.driver();
-        QMessageBox::information(this, tr("Erreur d'enregistrement"),
-                                 tr("Veuillez vérifier que tous les champs soient bien remplis"));
+        qDebug() << "query error :" << query.lastError().text() << "  " << query.lastError().databaseText() << query.driver();
+        QMessageBox::information(this, tr("Recording error"),
+                                 tr("Please check that all fields are filled in correctly"));
     }
 
-    QString str1     = ui->dateEdit_tache->date().toString("yyyy.MM.dd");                            //date tache
-    QString str      = util::apos(ui->lineEdit_designation_tache->text());                           //designation tache
-    QString str2     = id_type_tache;                                                                // id du type de tache
+    QString str1     = ui->dateEdit_tache->date().toString("yyyy.MM.dd");                            //task date
+    QString str      = util::apos(ui->lineEdit_designation_tache->text());                           //task designation
+    QString str2     = id_task_type;                                                                // id of task type
     QString str3     = util::apos(ui->plainTextEdit_observations_taches->document()->toPlainText()); //observations
     QString str4     = ui->lineEdit_id_tache->text();                                                //id
     QString str5     = ui->lineEdit_id_cultures->text();                                             // id culture
@@ -439,13 +439,13 @@ void Cultures::on_pushButton_modifier_tache_clicked()
     query.exec(strQuery);
     if (!query.isActive())
     {
-        qDebug() << "erreur query :" << query.lastError().text() << "  " << query.lastError().databaseText() << query.driver();
-        QMessageBox::information(this, tr("Erreur d'enregistrement"),
-                                 tr("Veuillez vérifier que tous les champs soient bien remplis"));
+        qDebug() << "query error :" << query.lastError().text() << "  " << query.lastError().databaseText() << query.driver();
+        QMessageBox::information(this, tr("Recording error"),
+                                 tr("Please check that all fields are filled in correctly"));
     }
     else
     {
-        qDebug() << "enregistrement terminé";
+        qDebug() << "record finished";
     }
     QSqlQueryModel *modelObs = new QSqlQueryModel;
     modelObs->setQuery("SELECT id, designation, date,type , commentaires,id_culture FROM observations where id_culture= " + str5);
@@ -457,26 +457,26 @@ void Cultures::on_pushButton_modifier_tache_clicked()
 
 void Cultures::on_pushButton_creer_tache_clicked()
 {
-    //ajouter un enregistrement de la table "OBSERVATIONS" valider les données et enregistrer dans la base
+    //add a record to the "OBSERVATIONS" table, validate the data and save to the database
 
     QSqlQuery query;
-    QString   nom_type_tache = ui->comboBox_type_tache->currentText();
-    QString   id_type_tache;
+    QString   task_type_name = ui->comboBox_type_tache->currentText();
+    QString   id_task_type;
 
-    query.exec(QString("select id from taches where designation ='" + nom_type_tache + "'"));
+    query.exec(QString("select id from taches where designation ='" + task_type_name + "'"));
     if (query.first())
     {
-        id_type_tache = query.value(0).toString();
+        id_task_type = query.value(0).toString();
     }
     else
     {
-        qDebug() << "erreur query :" << query.lastError().text() << "  " << query.lastError().databaseText() << query.driver();
-        QMessageBox::information(this, tr("Erreur d'enregistrement"),
-                                 tr("Veuillez vérifier que tous les champs soient bien remplis"));
+        qDebug() << "query error :" << query.lastError().text() << "  " << query.lastError().databaseText() << query.driver();
+        QMessageBox::information(this, tr("Recording error"),
+                                 tr("Please check that all fields are filled in correctly"));
     }
-    QString str1 = ui->dateEdit_tache->date().toString("yyyy.MM.dd");                            //date tache
-    QString str  = util::apos(ui->lineEdit_designation_tache->text());                           //designation tache
-    QString str2 = id_type_tache;                                                                // id du type de tache
+    QString str1 = ui->dateEdit_tache->date().toString("yyyy.MM.dd");                            //task date
+    QString str  = util::apos(ui->lineEdit_designation_tache->text());                           //task designation
+    QString str2 = id_task_type;                                                                // id of task type
     QString str3 = util::apos(ui->plainTextEdit_observations_taches->document()->toPlainText()); //observations
     QString str4 = ui->lineEdit_id_tache->text();                                                //id
     QString str5 = ui->lineEdit_id_cultures->text();                                             // id culture
@@ -487,13 +487,13 @@ void Cultures::on_pushButton_creer_tache_clicked()
 
     if (!query.isActive())
     {
-        qDebug() << "erreur query :" << query.lastError().text() << "  " << query.lastError().databaseText() << query.driver();
-        QMessageBox::information(this, tr("Erreur d'enregistrement"),
-                                 tr("Veuillez vérifier que tous les champs soient bien remplis"));
+        qDebug() << "query error :" << query.lastError().text() << "  " << query.lastError().databaseText() << query.driver();
+        QMessageBox::information(this, tr("Recording error"),
+                                 tr("Please check that all fields are filled in correctly"));
     }
     else
     {
-        qDebug() << "enregistrement terminé";
+        qDebug() << "record finished";
     }
     QSqlQueryModel *modelObs = new QSqlQueryModel;
     modelObs->setQuery("SELECT id, designation, date,type , commentaires,id_culture FROM observations where id_culture= " + str5);
@@ -518,18 +518,18 @@ void Cultures::on_tableView_taches_clicked(const QModelIndex&index)
     QDate date = QDate::fromString(str1, "yyyy.MM.dd");
     ui->dateEdit_tache->setDate(date);
 
-    //calage combo_type_tache sur valeur id
+    //set combo_type_tache to id value
     QSqlQuery query;
-    QString   resultat;
+    QString   result;
     query.exec(QString("select designation from taches where id =" + str2));
     if (query.first())
     {
-        resultat = query.value(0).toString();
-        ui->comboBox_type_tache->setCurrentIndex(ui->comboBox_type_tache->findText(resultat));
+        result = query.value(0).toString();
+        ui->comboBox_type_tache->setCurrentIndex(ui->comboBox_type_tache->findText(result));
     }
     else
     {
-        qDebug() << "erreur query :" << query.lastError().text() << "  " << query.lastError().databaseText() << query.driver();
+        qDebug() << "query error :" << query.lastError().text() << "  " << query.lastError().databaseText() << query.driver();
     }
 }
 
@@ -544,11 +544,11 @@ void Cultures::on_lineEdit_id_cultures_textChanged(const QString&arg1)
     ui->tableView_taches->setModel(modelObs);
 }
 
-/*******************************IMPRESSION FICHE***********************/
+/*******************************PRINT SHEET***********************/
 
 void Cultures::on_pushButton_print_fiche_clicked()
 {
-    QString   titre   = " FICHE DE CULTURE ";
+    QString   title   = " CROP SHEET ";
     QPrinter *printer = new QPrinter(QPrinter::HighResolution);
 
     printer->setPaperSize(QPrinter::A4);
@@ -561,49 +561,49 @@ void Cultures::on_pushButton_print_fiche_clicked()
     if (printDialog.exec() == 1)
     {
         QTextBrowser *editor = new QTextBrowser;
-        //creation de formats d'écriture
+        //create writing formats
         QTextCharFormat NormalFormat;
 
         QTextCharFormat ItalicFormat;
         ItalicFormat.setFontItalic(true);
 
-        //On insere la date et l'heure actuelle au début de la premiere page
+        //Insert the current date and time at the beginning of the first page
         QDate date;
         QTime time;
         date = date.currentDate();
         time = time.currentTime();
-        QString modif = "Fait le : " + date.toString("dddd dd MMMM yyyy") + " à " + time.toString();
+        QString modif = "Done on : " + date.toString("dddd dd MMMM yyyy") + " at " + time.toString();
 
-        //changement du format d'ecriture
+        //change writing format
         editor->setCurrentCharFormat(ItalicFormat);
         editor->setAlignment(Qt::AlignLeft);
 
-        //ajout de la QString a l'endroit du curseur
+        //add the QString at the cursor position
         editor->append(modif);
         editor->setCurrentCharFormat(NormalFormat);
 
-        //on insere le titre du tableau
-        QTextCharFormat format_gros_titre;
-        format_gros_titre.setFontPointSize(20);
-        format_gros_titre.setFontWeight(QFont::Bold);
-        format_gros_titre.setVerticalAlignment(QTextCharFormat::AlignMiddle);
-        //  format_gros_titre.setUnderlineStyle(QTextCharFormat::SingleUnderline);
+        //insert the table title
+        QTextCharFormat format_large_title;
+        format_large_title.setFontPointSize(20);
+        format_large_title.setFontWeight(QFont::Bold);
+        format_large_title.setVerticalAlignment(QTextCharFormat::AlignMiddle);
+        //  format_large_title.setUnderlineStyle(QTextCharFormat::SingleUnderline);
 
-        QString title = QString::fromUtf8(titre.toStdString().c_str());
-        editor->setCurrentCharFormat(format_gros_titre);
+        QString titleStr = QString::fromUtf8(title.toStdString().c_str());
+        editor->setCurrentCharFormat(format_large_title);
         editor->setAlignment(Qt::AlignCenter);
 
-        editor->append(title);
+        editor->append(titleStr);
 
-        QString parcelle = "Parcelle N° : " + ui->lineEditIdParcelle->text() + " \n";
-        editor->append(parcelle);
+        QString plot = "Plot N° : " + ui->lineEditIdParcelle->text() + " \n";
+        editor->append(plot);
 
         editor->setCurrentCharFormat(NormalFormat);
-        //on crée un curseur a l'endroit du curseur actuel
+        //create a cursor at the current cursor position
         QTextCursor cursor = editor->textCursor();
         cursor.beginEditBlock();
 
-        //Creation du format du tableau qui sera imprimer
+        //Creation of the format of the table to be printed
         QTextTableFormat tableFormat;
         tableFormat.setAlignment(Qt::AlignHCenter);
         tableFormat.setAlignment(Qt::AlignLeft);
@@ -611,9 +611,9 @@ void Cultures::on_pushButton_print_fiche_clicked()
         tableFormat.setCellPadding(1);
         tableFormat.setCellSpacing(1);
 
-        //Creation du tableau qui sera imprimé avec le nombre de colonne
-        //et de ligne que contient le tableau mis en parametre
-        QTextTable *tableau = cursor.insertTable(ui->tableViewCultures->model()->rowCount() + 3,
+        //Creation of the table to be printed with the number of columns
+        //and rows contained in the table passed as parameter
+        QTextTable *table = cursor.insertTable(ui->tableViewCultures->model()->rowCount() + 3,
                                                  ui->tableViewCultures->model()->columnCount(), tableFormat);
 
         QTextFrame *     frame       = cursor.currentFrame();
@@ -621,66 +621,66 @@ void Cultures::on_pushButton_print_fiche_clicked()
         frameFormat.setBorder(0);
         frame->setFrameFormat(frameFormat);
 
-        //Format des HEADER du tableau
-        QTextCharFormat format_entete_tableau;
-        format_entete_tableau.setFontPointSize(10);
-        format_entete_tableau.setFontWeight(QFont::Bold);
+        //Format of the table HEADERS
+        QTextCharFormat format_table_header;
+        format_table_header.setFontPointSize(10);
+        format_table_header.setFontWeight(QFont::Bold);
 
-        //Format du texte des cellules du tableau
-        QTextCharFormat format_cellule;
-        format_cellule.setFontPointSize(10);
+        //Format of the text in the table cells
+        QTextCharFormat format_cell;
+        format_cell.setFontPointSize(10);
 
 
         QTextTableCell cell;
         QTextCursor    cellCursor;
-        //on ecrit les HEADERS du tableaux dans le tableau a imprimer
-        for (int col = 0; col < tableau->columns(); col++)
+        //write the table HEADERS in the table to be printed
+        for (int col = 0; col < table->columns(); col++)
         {
-            QString texte = ui->tableViewCultures->model()->headerData(col, Qt::Horizontal).toString();
-            cell       = tableau->cellAt(0, col);
+            QString text = ui->tableViewCultures->model()->headerData(col, Qt::Horizontal).toString();
+            cell       = table->cellAt(0, col);
             cellCursor = cell.firstCursorPosition();
-            cellCursor.insertText(texte, format_cellule);
+            cellCursor.insertText(text, format_cell);
         }
 
-        for (int row = 1; row < tableau->rows() - 2; row++)
+        for (int row = 1; row < table->rows() - 2; row++)
         {
-            for (int col = 0; col < tableau->columns(); col++)
+            for (int col = 0; col < table->columns(); col++)
             {
-                QString texte1 = "";
+                QString text1 = "";
                 if (col == 1 || col == 2)
                 {
-                    texte1 = ui->tableViewCultures->model()->index(row - 1, col).data().toString();
+                    text1 = ui->tableViewCultures->model()->index(row - 1, col).data().toString();
                 }
                 else
                 {
-                    texte1 = QString::number(ui->tableViewCultures->model()->index(row - 1, col).data().toDouble());
+                    text1 = QString::number(ui->tableViewCultures->model()->index(row - 1, col).data().toDouble());
                 }
                 if (col == 3)
                 {
-                    texte1 = ui->tableViewCultures->model()->index(row - 1, col).data().toDate().toString("dd/MM/yyyy");
+                    text1 = ui->tableViewCultures->model()->index(row - 1, col).data().toDate().toString("dd/MM/yyyy");
                 }
                 if (col == 5)
                 {
-                    texte1 = ui->tableViewCultures->model()->index(row - 1, col).data().toString();
+                    text1 = ui->tableViewCultures->model()->index(row - 1, col).data().toString();
                 }
-                cell       = tableau->cellAt(row, col);
+                cell       = table->cellAt(row, col);
                 cellCursor = cell.firstCursorPosition();
-                cellCursor.insertText(texte1, format_cellule);
+                cellCursor.insertText(text1, format_cell);
             }
         }
 
-        //fin de l'edition
+        //end of editing
         cursor.endEditBlock();
-        //impression de editor dans le QPrinter initialisé au début de la fonction
+        //print editor to QPrinter initialized at the beginning of the function
         editor->print(printer);
     }
 }
 
 void Cultures::on_pushButton_supprimer_culture_clicked()
-{   // suppression d'une fiche de culture
-    int ret = QMessageBox::warning(this, tr("Suppression d'une culture"),
-                                   tr("Cette culture peut être supprimer.\n"
-                                      "Confirmer la suppression de la culture"),
+{   // delete a crop record
+    int ret = QMessageBox::warning(this, tr("Delete a crop"),
+                                   tr("This crop can be deleted.\n"
+                                      "Confirm crop deletion"),
                                    QMessageBox::Ok | QMessageBox::Cancel,
                                    QMessageBox::Cancel);
 
@@ -695,19 +695,19 @@ void Cultures::on_pushButton_supprimer_culture_clicked()
         query.exec(str);
         if (!query.isActive())
         {
-            qDebug() << "erreur query :" << query.lastError().text() << "  " << query.lastError().databaseText() <<
+            qDebug() << "query error :" << query.lastError().text() << "  " << query.lastError().databaseText() <<
                 query.driver();
         }
         else
         {
-            qDebug() << "suppression terminée";
+            qDebug() << "delete finished";
         }
         QSqlQueryModel *model = new QSqlQueryModel;
         model->setQuery("SELECT id, designation, parcelle, date_semis, type_plante , commentaires,etat,duree,date_recolte FROM cultures WHERE parcelle=" + QString::number(
                             m_idItem));
         model->setHeaderData(0, Qt::Vertical, QObject::tr("id"));
         model->setHeaderData(1, Qt::Vertical, QObject::tr("designation"));
-        model->setHeaderData(3, Qt::Vertical, QObject::tr("parcelle"));
+        model->setHeaderData(3, Qt::Vertical, QObject::tr("plot"));
         ui->tableViewCultures->setModel(model);
     }
 
@@ -722,7 +722,7 @@ void Cultures::on_pushButton_supprimer_culture_clicked()
 }
 
 void Cultures::on_pushButton_supprimer_tache_clicked()
-{   //suppression d'une fiche de taches et observations
+{   //delete a task and observation sheet
     QString   strId = ui->lineEdit_id_tache->text();
     QString   str   = "delete from observations where id=" + strId;
     QString   str5  = ui->lineEdit_id_cultures->text();  // id culture
@@ -732,11 +732,11 @@ void Cultures::on_pushButton_supprimer_tache_clicked()
 
     if (!query.isActive())
     {
-        qDebug() << "erreur query :" << query.lastError().text() << "  " << query.lastError().databaseText() << query.driver();
+        qDebug() << "query error :" << query.lastError().text() << "  " << query.lastError().databaseText() << query.driver();
     }
     else
     {
-        qDebug() << "suppression terminée";
+        qDebug() << "delete finished";
     }
 
     QSqlQueryModel *modelObs = new QSqlQueryModel;
@@ -757,16 +757,16 @@ void Cultures::on_lineEdit_duree_textChanged(const QString&arg1)
 }
 
 void Cultures::on_toolButton_FichePlantes_clicked()
-{   // affichage de la fiche des variétés de plantes
+{   // display the plant varieties sheet
     int Id          = ui->comboBox_plante->currentIndex();
     int Num_culture = ui->lineEdit_id_cultures->text().toInt();
 
     if (Id >= 0)
     {
-        Fiche_plantes *fenetre_plante = new Fiche_plantes(Id);
-        int            resultat       = fenetre_plante->exec();
+        Fiche_plantes *plant_sheet = new Fiche_plantes(Id);
+        int            result       = plant_sheet->exec();
 
-        if (resultat == QDialog::Accepted)
+        if (result == QDialog::Accepted)
         {
             QSqlQueryModel *modelM = new QSqlQueryModel;
             modelM->setQuery("SELECT designation,type_lune FROM plantes ORDER BY designation ASC");
@@ -777,17 +777,17 @@ void Cultures::on_toolButton_FichePlantes_clicked()
 }
 
 void Cultures::on_toolButton_NouvellePlante_clicked()
-{   //ajouter une nouvelle variété
-    // affichage de la fiche des variétés de plantes
+{   //add a new variety
+    // display the plant varieties sheet
     int Id          = 0;
     int Num_culture = ui->lineEdit_id_cultures->text().toInt();
 
-    Fiche_plantes *fenetre_plante = new Fiche_plantes(Id);
-    int            resultat       = fenetre_plante->exec();
+    Fiche_plantes *plant_sheet = new Fiche_plantes(Id);
+    int            result       = plant_sheet->exec();
 
-    if (resultat == QDialog::Accepted)
+    if (result == QDialog::Accepted)
     {
-        Id = fenetre_plante->getIdPlante();
+        Id = plant_sheet->getIdPlante();
 
         QSqlQueryModel *modelM = new QSqlQueryModel;
         modelM->setQuery("SELECT designation,type_lune FROM plantes ORDER BY designation ASC");
@@ -795,59 +795,59 @@ void Cultures::on_toolButton_NouvellePlante_clicked()
         init_models(Num_culture);
 
         QSqlQuery query;
-        QString   nom_plante;
-        QString   id_plante = QString::number(Id);
+        QString   plant_name;
+        QString   id_plant = QString::number(Id);
 
-        query.exec(QString("select designation from plantes where id =" + id_plante));
+        query.exec(QString("select designation from plantes where id =" + id_plant));
         if (query.first())
         {
-            nom_plante = query.value(0).toString();
+            plant_name = query.value(0).toString();
 
-            ui->comboBox_plante->setCurrentText(nom_plante);
+            ui->comboBox_plante->setCurrentText(plant_name);
         }
         else
         {
-            qDebug() << "erreur query :" << query.lastError().text() << "  " << query.lastError().databaseText() <<
+            qDebug() << "query error :" << query.lastError().text() << "  " << query.lastError().databaseText() <<
                 query.driver();
-            QMessageBox::information(this, tr("Erreur d'enregistrement"),
-                                     tr("Veuillez vérifier que tous les champs soient bien remplis"));
+            QMessageBox::information(this, tr("Recording error"),
+                                     tr("Please check that all fields are filled in correctly"));
         }
     }
 }
 
 void Cultures::on_pushButton_Gantt_clicked()
-{   // ouvrir la fiche des tâches du diagramme gantt
-    Dialog_taches *FicheTaches = new Dialog_taches(0, this);
+{   // open the Gantt chart tasks sheet
+    Dialog_taches *TaskSheet = new Dialog_taches(0, this);
 
     connect(this, SIGNAL(sendText(const QString&)),
-            FicheTaches, SLOT(getIdCulture(const QString&)));
+            TaskSheet, SLOT(getIdCulture(const QString&)));
     if (ui->lineEdit_id_cultures->text() != "0")
     {
         //  emit sendText(ui->lineEdit_id_cultures->text());
-        //  FicheTaches->exec();
-        creer_phase();
+        //  TaskSheet->exec();
+        create_phase();
     }
     else
     {
-        QMessageBox::warning(this, tr("Erreur "),
-                             tr("Veuillez sélectionner une culture svp"));
+        QMessageBox::warning(this, tr("Error"),
+                             tr("Please select a crop"));
     }
 }
 
-void Cultures::creer_phase()
+void Cultures::create_phase()
 {
     QSqlQuery query;
     QString   designation     = util::apos(ui->lineEditDesignation->text());
-    QString   commentaires    = "";
-    QString   depart          = ui->dateEdit->date().toString("dd-MM-yyyy");
-    QString   fin             = ui->dateEdit->date().toString("dd-MM-yyyy");
-    QString   duree           = "1";
-    QString   id_culture      = ui->lineEdit_id_cultures->text();
-    QString   contrainte_date = "0";
-    QString   avancement      = "0";
+    QString   comments    = "";
+    QString   start          = ui->dateEdit->date().toString("dd-MM-yyyy");
+    QString   end             = ui->dateEdit->date().toString("dd-MM-yyyy");
+    QString   duration           = "1";
+    QString   id_crop      = ui->lineEdit_id_cultures->text();
+    QString   date_constraint = "0";
+    QString   progress      = "0";
     QString   type            = "1";
-    QString   id_precedent    = "0";
-    QString   id_PhaseParent;
+    QString   id_previous    = "0";
+    QString   id_ParentPhase;
 
     query.exec(QString("SELECT COUNT(*) FROM tasks"));
     if (query.first())
@@ -855,7 +855,7 @@ void Cultures::creer_phase()
         int NbRowTable = query.value(0).toInt();
         if (NbRowTable > 0)
         {
-            query.exec(QString("SELECT id FROM tasks WHERE NOT EXISTS  (SELECT id FROM tasks WHERE id_culture = " + id_culture +
+            query.exec(QString("SELECT id FROM tasks WHERE NOT EXISTS  (SELECT id FROM tasks WHERE id_culture = " + id_crop +
                                ")"));
             if (query.first())
             {
@@ -867,35 +867,35 @@ void Cultures::creer_phase()
                     if (query.first())
                     {
                         int id_MAX = query.value(0).toInt();
-                        id_PhaseParent = QString::number(id_MAX + 1);
+                        id_ParentPhase = QString::number(id_MAX + 1);
                         qDebug() << "query 1:" << query.lastQuery();
                     }
                     else
                     {
-                        qDebug() << "erreur query 1:" << query.lastError().text() << "  " << query.lastError().databaseText() <<
+                        qDebug() << "query error 1:" << query.lastError().text() << "  " << query.lastError().databaseText() <<
                             query.driver() << query.lastQuery();
                     }
 
                     QString str =
                         "insert into tasks (designation,commentaires, depart, fin, duree,precedent, avancement,type,contrainte_date,phase_parent,id_culture)"
-                        "values('" + designation + "','" + commentaires + "','" + depart + "','" + fin +
-                        "'," + duree + "," + id_precedent + "," + avancement + "," + type + "," + contrainte_date + "," +
-                        id_PhaseParent +
+                        "values('" + designation + "','" + comments + "','" + start + "','" + end +
+                        "'," + duration + "," + id_previous + "," + progress + "," + type + "," + date_constraint + "," +
+                        id_ParentPhase +
                         "," +
-                        id_culture + ")";
+                        id_crop + ")";
                     query.exec(str);
                     if (!query.isActive())
                     {
-                        qDebug() << "erreur query valider:" << query.lastError().text() << "  " <<
+                        qDebug() << "validate query error:" << query.lastError().text() << "  " <<
                             query.lastError().databaseText() <<
                             query.lastQuery().toUtf8();
-                        QMessageBox::information(this, tr("Erreur d'enregistrement"),
-                                                 tr("Veuillez vérifier que tous les champs soient bien remplis"));
+                        QMessageBox::information(this, tr("Recording error"),
+                                                 tr("Please check that all fields are filled in correctly"));
                     }
                     else
                     {
-                        QMessageBox::information(this, tr("Enregistrement de la phase culture "),
-                                                 tr("La phase de culture a été crée avec succès !"));
+                        QMessageBox::information(this, tr("Crop phase recording"),
+                                                 tr("The crop phase has been successfully created!"));
                     }
                 }
                 else
@@ -905,33 +905,33 @@ void Cultures::creer_phase()
             }
             else
             {
-                QMessageBox::warning(this, tr("Erreur "),
-                                     tr("Cette phase de culture est existante !"));
-                qDebug() << "erreur query 3:" << query.lastError().text() << "  " << query.lastError().databaseText() <<
+                QMessageBox::warning(this, tr("Error"),
+                                     tr("This crop phase already exists!"));
+                qDebug() << "query error 3:" << query.lastError().text() << "  " << query.lastError().databaseText() <<
                     query.driver() << query.lastQuery();
             }
         }
         else
         {
-            id_PhaseParent = QString::number(1);
+            id_ParentPhase = QString::number(1);
             QString str =
                 "insert into tasks (designation,commentaires, depart, fin, duree,precedent, avancement,type,contrainte_date,phase_parent,id_culture)"
-                "values('" + designation + "','" + commentaires + "','" + depart + "','" + fin +
-                "'," + duree + "," + id_precedent + "," + avancement + "," + type + "," + contrainte_date + "," + id_PhaseParent +
+                "values('" + designation + "','" + comments + "','" + start + "','" + end +
+                "'," + duration + "," + id_previous + "," + progress + "," + type + "," + date_constraint + "," + id_ParentPhase +
                 "," +
-                id_culture + ")";
+                id_crop + ")";
             query.exec(str);
             if (!query.isActive())
             {
-                qDebug() << "erreur query valider:" << query.lastError().text() << "  " << query.lastError().databaseText() <<
+                qDebug() << "validate query error:" << query.lastError().text() << "  " << query.lastError().databaseText() <<
                     query.lastQuery().toUtf8();
-                QMessageBox::information(this, tr("Erreur d'enregistrement"),
-                                         tr("Veuillez vérifier que tous les champs soient bien remplis"));
+                QMessageBox::information(this, tr("Recording error"),
+                                         tr("Please check that all fields are filled in correctly"));
             }
             else
             {
-                QMessageBox::information(this, tr("Enregistrement de la phase culture "),
-                                         tr("La phase de culture a été crée avec succès !"));
+                QMessageBox::information(this, tr("Crop phase recording"),
+                                         tr("The crop phase has been successfully created!"));
             }
         }
     }

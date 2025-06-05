@@ -28,25 +28,58 @@ detail_parcelle::detail_parcelle(const int&IdParcelle, const QString&fileName, Q
 {
     // translator
     QTranslator translator;
-    QString     fichier = ":/translations/open-jardin_" + util::getLocale();
+    QString     fileContent = ":/translations/open-jardin_" + util::getLocale();
 
-    translator.load(fichier);
+    translator.load(fileContent);
     qApp->installTranslator(&translator);
 
     ui->setupUi(this);
-    setFileNameXML(fileName); //nom du fichier du plan de détail
+    setFileNameXML(fileName); //name of the detail plan file
     scene = new QGraphicsScene(this);
     scene->setSceneRect(0, 0, 1900, 1200);
     scene->setItemIndexMethod(QGraphicsScene::BspTreeIndex);
     ui->graphicsView->setScene(scene);
-    // si la selection de l'item change lancer la commande
+    // if the item selection changes, launch the command
     connect(scene, SIGNAL(selectionChanged()), this, SLOT(Item_clicked()));
-    m_ZoomRatio = 1;  //variable du facteur de zoom (actual size =1 )
+    m_ZoomRatio = 1;  //zoom factor variable (actual size =1 )
     ui->label_parcelle->setText(QString::number(IdParcelle));
     setIdParcelle(IdParcelle);
     if (fileName != "")
     {
-        ouvrir_FichierXML(fileName);
+        open_XMLFile(fileName);
+    }
+}
+
+detail_parcelle::~detail_parcelle()
+{
+    delete ui;
+}
+
+void detail_parcelle::closeEvent(QCloseEvent *event)
+{
+    Q_UNUSED(event);
+    accept();
+    // translator
+    QTranslator translator;
+    QString     fileContent = ":/translations/open-jardin_" + util::getLocale();
+
+    translator.load(fileContent);
+    qApp->installTranslator(&translator);
+
+    ui->setupUi(this);
+    setFileNameXML(fileName); //name of the detail plan file
+    scene = new QGraphicsScene(this);
+    scene->setSceneRect(0, 0, 1900, 1200);
+    scene->setItemIndexMethod(QGraphicsScene::BspTreeIndex);
+    ui->graphicsView->setScene(scene);
+    // if the item selection changes, launch the command
+    connect(scene, SIGNAL(selectionChanged()), this, SLOT(Item_clicked()));
+    m_ZoomRatio = 1;  //zoom factor variable (actual size =1 )
+    ui->label_parcelle->setText(QString::number(IdParcelle));
+    setIdParcelle(IdParcelle);
+    if (fileName != "")
+    {
+        open_XMLFile(fileName);
     }
 }
 
@@ -62,29 +95,29 @@ void detail_parcelle::closeEvent(QCloseEvent *event)
     close();
 }
 
-void detail_parcelle::ouvrir_FichierXML(QString fileName)
+void detail_parcelle::open_XMLFile(QString fileName)
 {
     QDomDocument document;
-    QString      champ;
-    QFile        nomFichier(fileName);
+    QString      field;
+    QFile        fileHandle(fileName);
 
     parcelleList.clear();
-    qDebug() << " fichier xml " << fileName;
-    if (nomFichier.exists())
+    qDebug() << " xml file " << fileName;
+    if (fileHandle.exists())
     {
-        QFile file(nomFichier.fileName());
-        setFileNameXML(fileName);  //nom du fichier du plan de détail
+        QFile file(fileHandle.fileName());
+        setFileNameXML(fileName);  //name of the detail plan file
         if (!file.open(QFile::ReadOnly | QFile::Text))
         {
             QMessageBox msgBox;
-            msgBox.setText("ERREUR DE LECTURE");
+            msgBox.setText("READ ERROR");
             return;
         }
         else
         {
             if (!document.setContent(&file))
             {
-                //Erreur de lecture du fichier";
+                //Error reading file";
             }
             else
             {
@@ -92,130 +125,130 @@ void detail_parcelle::ouvrir_FichierXML(QString fileName)
                 setFileNameXML(fileName);
                 QDomElement  root  = document.firstChildElement();
                 QDomNodeList base  = root.elementsByTagName("fichier_base");
-                QDomNodeList fond  = root.elementsByTagName("fond");
-                QDomNodeList objet = root.elementsByTagName("Objet");
+                QDomNodeList background_node  = root.elementsByTagName("fond");
+                QDomNodeList object_node_list = root.elementsByTagName("Objet");
 
-                // écriture dans le tableau de l'objet fond d'écran
-                QDomNode fondnode = fond.at(0);
+                // write the background object to the array
+                QDomNode fondnode = background_node.at(0);
                 if (fondnode.isElement())
                 {
-                    // qDebug() << "boucle fond element";
-                    QDomElement fond = fondnode.toElement();
-                    setFileNameBackGround(fond.attribute("chemin"));
-                    QString     fileName = getFileNameBackGround();
-                    QPixmap     pim(fileName);
+                    // qDebug() << "background element loop";
+                    QDomElement fond_element = fondnode.toElement();
+                    setFileNameBackGround(fond_element.attribute("chemin"));
+                    QString     currentFileName = getFileNameBackGround();
+                    QPixmap     pim(currentFileName);
                     background *pixmap = new background();
 
                     scene->clear();
                     pixmap->setPixmap(pim);
                     scene->addItem(pixmap);
-                    pixmap->setPixFile(fileName);
+                    pixmap->setPixFile(currentFileName);
                     double sizeW = pixmap->boundingRect().width();
                     double sizeH = pixmap->boundingRect().height();
                     scene->setSceneRect(0, 0, sizeW, sizeH);
                 }
-                // boucle d'écriture de chaque objet dans le tableau
-                for (int i = 0; i < objet.count(); i++)
+                // loop to write each object to the array
+                for (int i = 0; i < object_node_list.count(); i++)
                 {
-                    QDomNode objetnode = objet.at(i);
+                    QDomNode objetnode = object_node_list.at(i);
                     if (objetnode.isElement())
                     {
-                        QDomElement objet = objetnode.toElement();
-                        if (objet.attribute("Type").toInt() == 65536) //parcelleItem
+                        QDomElement objet_element = objetnode.toElement();
+                        if (objet_element.attribute("Type").toInt() == 65536) //parcelleItem
                         {
-                            QColor        couleurfond = QRgb(objet.attribute("Brush").toDouble());
-                            QColor        couleurpen  = QRgb(objet.attribute("Pen").toDouble());
-                            parcelleItem *item        = new parcelleItem(objet.attribute("SizeX").toInt(), objet.attribute(
+                            QColor        backgroundColor = QRgb(objet_element.attribute("Brush").toDouble());
+                            QColor        penColor  = QRgb(objet_element.attribute("Pen").toDouble());
+                            parcelleItem *item        = new parcelleItem(objet_element.attribute("SizeX").toInt(), objet_element.attribute(
                                                                              "SizeY").toInt());
                             QPen pen(Qt::blue, 1);
-                            item->setColor(QColor(couleurfond));
+                            item->setColor(QColor(backgroundColor));
                             item->setPenColor(QColor(Qt::black));
                             item->setOpac(0.8);
-                            item->setPos(objet.attribute("PositionX").toInt(), objet.attribute("PositionY").toInt());
-                            item->setTexte(objet.attribute("Texte"));
-                            item->setTypeShape(objet.attribute("Forme").toInt());// type de shape 1 rectangle - 2 rectangle  rounded - 3 circle
-                            item->setComment(objet.attribute("Commentaire"));
-                            item->setPenColor(QColor(couleurpen));
-                            item->setPixFile(objet.attribute("Chemin"));
-                            item->setId(objet.attribute("Id").toInt());
-                            item->setNom(objet.attribute("Nom"));
-                            item->setEtat(objet.attribute("Etat").toInt());
-                            item->setMode(objet.attribute("Mode").toInt());
-                            item->setTypeLine(objet.attribute("TypeLine").toInt());
-                            item->setWidthLine(objet.attribute("WidthLine").toInt());
-                            item->setZValue(objet.attribute("ZValue").toDouble());
-                            if (objet.attribute("Uuid") == "")
+                            item->setPos(objet_element.attribute("PositionX").toInt(), objet_element.attribute("PositionY").toInt());
+                            item->setTexte(objet_element.attribute("Texte"));
+                            item->setTypeShape(objet_element.attribute("Forme").toInt());// type de shape 1 rectangle - 2 rectangle  rounded - 3 circle
+                            item->setComment(objet_element.attribute("Commentaire"));
+                            item->setPenColor(QColor(penColor));
+                            item->setPixFile(objet_element.attribute("Chemin"));
+                            item->setId(objet_element.attribute("Id").toInt());
+                            item->setNom(objet_element.attribute("Nom"));
+                            item->setEtat(objet_element.attribute("Etat").toInt());
+                            item->setMode(objet_element.attribute("Mode").toInt());
+                            item->setTypeLine(objet_element.attribute("TypeLine").toInt());
+                            item->setWidthLine(objet_element.attribute("WidthLine").toInt());
+                            item->setZValue(objet_element.attribute("ZValue").toDouble());
+                            if (objet_element.attribute("Uuid") == "")
                             {
                                 item->setUuid(QUuid::createUuid());
                             }
                             else
                             {
-                                item->setUuid(objet.attribute("Uuid"));
+                                item->setUuid(objet_element.attribute("Uuid"));
                             }
                             scene->addItem(item);
                         }
-                        if (objet.attribute("Type").toInt() == 65537) // MyPolygone
+                        if (objet_element.attribute("Type").toInt() == 65537) // MyPolygone
                         {
-                            MyPolygone *item = new MyPolygone(convertStrToPoly(objet.attribute("Chemin")));
+                            MyPolygone *item = new MyPolygone(convertStrToPoly(objet_element.attribute("Chemin")));
                             QPen        pen(Qt::blue, 1);
-                            QColor      couleurfond = QRgb(objet.attribute("Brush").toDouble());
-                            QColor      couleurpen  = QRgb(objet.attribute("Pen").toDouble());
-                            item->setColor(QColor(couleurfond));
+                            QColor      backgroundColor = QRgb(objet_element.attribute("Brush").toDouble());
+                            QColor      penColor  = QRgb(objet_element.attribute("Pen").toDouble());
+                            item->setColor(QColor(backgroundColor));
                             item->setPenColor(QColor(Qt::black));
                             item->setOpac(0.8);
-                            item->setPos(objet.attribute("PositionX").toInt(), objet.attribute("PositionY").toInt());
-                            item->setTexte(objet.attribute("Texte"));
-                            item->setTypeShape(objet.attribute("Forme").toInt());// type de shape 1 rectangle - 2 rectangle  rounded - 3 circle
-                            item->setComment(objet.attribute("Commentaire"));
-                            item->setPenColor(QColor(couleurpen));
-                            item->setStrPoly(objet.attribute("Chemin"));
-                            item->setId(objet.attribute("Id").toInt());
-                            item->setNom(objet.attribute("Nom"));
-                            item->setEtat(objet.attribute("Etat").toInt());
-                            item->setMode(objet.attribute("Mode").toInt());
-                            item->setTypeLine(objet.attribute("TypeLine").toInt());
-                            item->setWidthLine(objet.attribute("WidthLine").toInt());
-                            item->setZValue(objet.attribute("ZValue").toDouble());
-                            item->setUuid(objet.attribute("Uuid"));
-                            if (objet.attribute("Uuid") == "")
+                            item->setPos(objet_element.attribute("PositionX").toInt(), objet_element.attribute("PositionY").toInt());
+                            item->setTexte(objet_element.attribute("Texte"));
+                            item->setTypeShape(objet_element.attribute("Forme").toInt());// type de shape 1 rectangle - 2 rectangle  rounded - 3 circle
+                            item->setComment(objet_element.attribute("Commentaire"));
+                            item->setPenColor(QColor(penColor));
+                            item->setStrPoly(objet_element.attribute("Chemin"));
+                            item->setId(objet_element.attribute("Id").toInt());
+                            item->setNom(objet_element.attribute("Nom"));
+                            item->setEtat(objet_element.attribute("Etat").toInt());
+                            item->setMode(objet_element.attribute("Mode").toInt());
+                            item->setTypeLine(objet_element.attribute("TypeLine").toInt());
+                            item->setWidthLine(objet_element.attribute("WidthLine").toInt());
+                            item->setZValue(objet_element.attribute("ZValue").toDouble());
+                            item->setUuid(objet_element.attribute("Uuid"));
+                            if (objet_element.attribute("Uuid") == "")
                             {
                                 item->setUuid(QUuid::createUuid());
                             }
                             else
                             {
-                                item->setUuid(objet.attribute("Uuid"));
+                                item->setUuid(objet_element.attribute("Uuid"));
                             }
                             scene->addItem(item);
                         }
-                        if (objet.attribute("Type").toInt() == 65539) // MyPolyline
+                        if (objet_element.attribute("Type").toInt() == 65539) // MyPolyline
                         {
-                            MyPolyline *item = new MyPolyline(convertStrToPoly(objet.attribute("Chemin")));
+                            MyPolyline *item = new MyPolyline(convertStrToPoly(objet_element.attribute("Chemin")));
                             QPen        pen(Qt::blue, 1);
-                            QColor      couleurfond = QRgb(objet.attribute("Brush").toDouble());
-                            QColor      couleurpen  = QRgb(objet.attribute("Pen").toDouble());
-                            item->setColor(QColor(couleurfond));
+                            QColor      backgroundColor = QRgb(objet_element.attribute("Brush").toDouble());
+                            QColor      penColor  = QRgb(objet_element.attribute("Pen").toDouble());
+                            item->setColor(QColor(backgroundColor));
                             item->setPenColor(QColor(Qt::black));
                             item->setOpac(0.8);
-                            item->setPos(objet.attribute("PositionX").toInt(), objet.attribute("PositionY").toInt());
-                            item->setTexte(objet.attribute("Texte"));
-                            item->setTypeShape(objet.attribute("Forme").toInt());// type de shape 1 rectangle - 2 rectangle  rounded - 3 circle
-                            item->setComment(objet.attribute("Commentaire"));
-                            item->setPenColor(QColor(couleurpen));
-                            item->setStrPoly(objet.attribute("Chemin"));
-                            item->setId(objet.attribute("Id").toInt());
-                            item->setNom(objet.attribute("Nom"));
-                            item->setEtat(objet.attribute("Etat").toInt());
-                            item->setMode(objet.attribute("Mode").toInt());
-                            item->setTypeLine(objet.attribute("TypeLine").toInt());
-                            item->setWidthLine(objet.attribute("WidthLine").toInt());
-                            item->setZValue(objet.attribute("ZValue").toDouble());
-                            if (objet.attribute("Uuid") == "")
+                            item->setPos(objet_element.attribute("PositionX").toInt(), objet_element.attribute("PositionY").toInt());
+                            item->setTexte(objet_element.attribute("Texte"));
+                            item->setTypeShape(objet_element.attribute("Forme").toInt());// type de shape 1 rectangle - 2 rectangle  rounded - 3 circle
+                            item->setComment(objet_element.attribute("Commentaire"));
+                            item->setPenColor(QColor(penColor));
+                            item->setStrPoly(objet_element.attribute("Chemin"));
+                            item->setId(objet_element.attribute("Id").toInt());
+                            item->setNom(objet_element.attribute("Nom"));
+                            item->setEtat(objet_element.attribute("Etat").toInt());
+                            item->setMode(objet_element.attribute("Mode").toInt());
+                            item->setTypeLine(objet_element.attribute("TypeLine").toInt());
+                            item->setWidthLine(objet_element.attribute("WidthLine").toInt());
+                            item->setZValue(objet_element.attribute("ZValue").toDouble());
+                            if (objet_element.attribute("Uuid") == "")
                             {
                                 item->setUuid(QUuid::createUuid());
                             }
                             else
                             {
-                                item->setUuid(objet.attribute("Uuid"));
+                                item->setUuid(objet_element.attribute("Uuid"));
                             }
                             scene->addItem(item);
                         }
@@ -225,17 +258,17 @@ void detail_parcelle::ouvrir_FichierXML(QString fileName)
         }
         file.close();
     }
-    on_toolButtonUtilisation_clicked();
+    on_toolButton_Usage_clicked();
 }
 
-void detail_parcelle::on_pushButton_ouvrir_clicked()
+void detail_parcelle::on_pushButton_open_clicked()
 {
-    // ouverture du fichier pour lecture
-    QString repertoire = QDir::homePath() + "/openjardin/";
+    // open file for reading
+    QString directory = QDir::homePath() + "/openjardin/";
 
     QString fileName =
-        QFileDialog::getOpenFileName(this, tr("Ouverture du fichier des objets"),
-                                     repertoire,
+        QFileDialog::getOpenFileName(this, tr("Open object file"),
+                                     directory,
                                      tr("XML Files (*.xml);; All files (*.*)"));
 
     if (fileName.isEmpty())
@@ -244,23 +277,23 @@ void detail_parcelle::on_pushButton_ouvrir_clicked()
     }
     else
     {
-        ouvrir_FichierXML(fileName);
+        open_XMLFile(fileName);
     }
 }
 
 QPolygon detail_parcelle::convertStrToPoly(const QString MyString)
 {
-    //conversion d'une chaine de caractères avec séparateur des QPoints avec ; en QPolygon
+    //conversion of a string with QPoints separated by ; into QPolygon
 
-    QStringList liste = MyString.split(';', QString::SkipEmptyParts);
-    QPolygon    poly(liste.count());
+    QStringList list_str = MyString.split(';', QString::SkipEmptyParts);
+    QPolygon    poly(list_str.count());
 
-    for (int i = 0; i < liste.count(); i++)
+    for (int i = 0; i < list_str.count(); i++)
     {
-        QString     valeur_point = liste[i];
-        QStringList liste_point  = valeur_point.split(',', QString::SkipEmptyParts);
-        QString     strX         = liste_point[0];
-        QString     strY         = liste_point[1];
+        QString     point_value = list_str[i];
+        QStringList point_list  = point_value.split(',', QString::SkipEmptyParts);
+        QString     strX         = point_list[0];
+        QString     strY         = point_list[1];
         int         x            = strX.toInt();
         int         y            = strY.toInt();
         poly.setPoint(i, x, y);
@@ -269,7 +302,7 @@ QPolygon detail_parcelle::convertStrToPoly(const QString MyString)
 }
 
 void detail_parcelle::Item_clicked()
-{   //si l'item est sélectionné (selection changed)
+{   //if the item is selected (selection changed)
     QList <QGraphicsItem *> itemList = scene->items();
     for (int i = 0; i < itemList.size(); i++)
     {
@@ -317,9 +350,9 @@ void detail_parcelle::Item_clicked()
 
 void detail_parcelle::on_toolButton_save_as_clicked()
 {
-    //sauvegarder le plan
+    //save the plan
     QString cellvalue;
-    QString champ;
+    QString field;
 
     // XML
     QDomDocument document;
@@ -330,51 +363,51 @@ void detail_parcelle::on_toolButton_save_as_clicked()
     document.appendChild(root);
     QDomElement base = document.createElement("base");
     root.appendChild(base);
-    QDomElement background = document.createElement("background");
-    root.appendChild(background);
-    QDomElement objets = document.createElement("objets");
-    root.appendChild(objets);
-    QDomElement fichier_base = document.createElement("fichier_base");
+    QDomElement background_element = document.createElement("background");
+    root.appendChild(background_element);
+    QDomElement objects_element = document.createElement("objets");
+    root.appendChild(objects_element);
+    QDomElement file_base_element = document.createElement("fichier_base");
     cellvalue = getfileNameSQL();
-    champ     = "fichier";
-    fichier_base.setAttribute(champ, cellvalue);
-    base.appendChild(fichier_base);
+    field     = "fichier";
+    file_base_element.setAttribute(field, cellvalue);
+    base.appendChild(file_base_element);
     //background
-    QDomElement fond = document.createElement("fond");
+    QDomElement fond_element_xml = document.createElement("fond");
 
-    fond.setAttribute("chemin", getFileNameBackGround());
-    fond.setAttribute("Type", "7");
-    fond.setAttribute("PositionX", "0");
-    fond.setAttribute("PositionY", "0");
-    background.appendChild(fond);
+    fond_element_xml.setAttribute("chemin", getFileNameBackGround());
+    fond_element_xml.setAttribute("Type", "7");
+    fond_element_xml.setAttribute("PositionX", "0");
+    fond_element_xml.setAttribute("PositionY", "0");
+    background_element.appendChild(fond_element_xml);
 
-    //Ecriture des objets
-    QString ObjetId;
-    QString ObjetNom;
-    QString ObjetType;
-    QString ObjetForme;
-    QString ObjetPosX;
-    QString ObjetPosY;
-    QString ObjetWidth;
-    QString Objetheight;
-    QString ObjetBrush;
-    QString ObjetPen;
-    QString ObjetComment;
-    QString ObjetTexte;
-    QString ObjetChemin;
-    QString ObjetEtat;
-    QString ObjetMode;
-    QString ObjetTypeLine;
-    QString ObjetWidthLine;
-    QString ObjetZValue;
-    QString ObjetUuid;
+    //Write objects
+    QString ObjectId;
+    QString ObjectName;
+    QString ObjectType;
+    QString ObjectShape;
+    QString ObjectPosX;
+    QString ObjectPosY;
+    QString ObjectWidth;
+    QString ObjectHeight;
+    QString ObjectBrush;
+    QString ObjectPen;
+    QString ObjectComment;
+    QString ObjectText;
+    QString ObjectPath;
+    QString ObjectState;
+    QString ObjectMode;
+    QString ObjectTypeLine;
+    QString ObjectWidthLine;
+    QString ObjectZValue;
+    QString ObjectUuid;
 
     QList <QGraphicsItem *> itemList = scene->items();
     for (int i = 0; i < itemList.size(); i++)
     {
         if (itemList[i]->pos().x() > 0)
         {
-            QDomElement objet = document.createElement("Objet");
+            QDomElement objet_xml_element = document.createElement("Objet");
 
             if (itemList[i]->type() == 65536)       // MyItem
             {
@@ -387,25 +420,25 @@ void detail_parcelle::on_toolButton_save_as_clicked()
                 QColor        clr      = item->getColor();
                 QColor        clrPen   = item->getPenColor();
 
-                ObjetId        = QString::number(item->getId());
-                ObjetNom       = item->getNom();
-                ObjetType      = QString::number(65536);
-                ObjetForme     = QString::number(item->getTypeShape());
-                ObjetPosX      = QString::number(valX);
-                ObjetPosY      = QString::number(valY);
-                ObjetWidth     = QString::number(sizeW);
-                Objetheight    = QString::number(sizeH);
-                ObjetBrush     = QString::number(clr.rgb());
-                ObjetPen       = QString::number(clrPen.rgb());
-                ObjetComment   = item->getComment();
-                ObjetTexte     = item->getTexte();
-                ObjetChemin    = item->getPixFile();
-                ObjetEtat      = QString::number(item->getEtat());
-                ObjetMode      = QString::number(item->getMode());
-                ObjetTypeLine  = QString::number(item->getTypeLine());
-                ObjetWidthLine = QString::number(item->getWidthLine());
-                ObjetZValue    = QString::number(item->zValue());
-                ObjetUuid      = item->getUuid().toString();
+                ObjectId        = QString::number(item->getId());
+                ObjectName       = item->getNom();
+                ObjectType      = QString::number(65536);
+                ObjectShape     = QString::number(item->getTypeShape());
+                ObjectPosX      = QString::number(valX);
+                ObjectPosY      = QString::number(valY);
+                ObjectWidth     = QString::number(sizeW);
+                ObjectHeight    = QString::number(sizeH);
+                ObjectBrush     = QString::number(clr.rgb());
+                ObjectPen       = QString::number(clrPen.rgb());
+                ObjectComment   = item->getComment();
+                ObjectText     = item->getTexte();
+                ObjectPath    = item->getPixFile();
+                ObjectState      = QString::number(item->getEtat());
+                ObjectMode      = QString::number(item->getMode());
+                ObjectTypeLine  = QString::number(item->getTypeLine());
+                ObjectWidthLine = QString::number(item->getWidthLine());
+                ObjectZValue    = QString::number(item->zValue());
+                ObjectUuid      = item->getUuid().toString();
             }
             if (itemList[i]->type() == 65537)       // MyPolygone
             {
@@ -418,25 +451,25 @@ void detail_parcelle::on_toolButton_save_as_clicked()
                 QColor      clr      = item->getColor();
                 QColor      clrPen   = item->getPenColor();
 
-                ObjetId        = QString::number(item->getId());
-                ObjetNom       = item->getNom();
-                ObjetType      = QString::number(65537);
-                ObjetForme     = QString::number(item->getTypeShape());
-                ObjetPosX      = QString::number(valX);
-                ObjetPosY      = QString::number(valY);
-                ObjetWidth     = QString::number(sizeW);
-                Objetheight    = QString::number(sizeH);
-                ObjetBrush     = QString::number(clr.rgb());
-                ObjetPen       = QString::number(clrPen.rgb());
-                ObjetComment   = item->getComment();
-                ObjetTexte     = item->getTexte();
-                ObjetChemin    = item->getStrPoly();
-                ObjetEtat      = QString::number(item->getEtat());
-                ObjetMode      = QString::number(item->getMode());
-                ObjetTypeLine  = QString::number(item->getTypeLine());
-                ObjetWidthLine = QString::number(item->getWidthLine());
-                ObjetZValue    = QString::number(item->zValue());
-                ObjetUuid      = item->getUuid().toString();
+                ObjectId        = QString::number(item->getId());
+                ObjectName       = item->getNom();
+                ObjectType      = QString::number(65537);
+                ObjectShape     = QString::number(item->getTypeShape());
+                ObjectPosX      = QString::number(valX);
+                ObjectPosY      = QString::number(valY);
+                ObjectWidth     = QString::number(sizeW);
+                ObjectHeight    = QString::number(sizeH);
+                ObjectBrush     = QString::number(clr.rgb());
+                ObjectPen       = QString::number(clrPen.rgb());
+                ObjectComment   = item->getComment();
+                ObjectText     = item->getTexte();
+                ObjectPath    = item->getStrPoly();
+                ObjectState      = QString::number(item->getEtat());
+                ObjectMode      = QString::number(item->getMode());
+                ObjectTypeLine  = QString::number(item->getTypeLine());
+                ObjectWidthLine = QString::number(item->getWidthLine());
+                ObjectZValue    = QString::number(item->zValue());
+                ObjectUuid      = item->getUuid().toString();
             }
             if (itemList[i]->type() == 65539)       // MyPolyline
             {
@@ -449,59 +482,59 @@ void detail_parcelle::on_toolButton_save_as_clicked()
                 QColor      clr      = item->getColor();
                 QColor      clrPen   = item->getPenColor();
 
-                ObjetId        = QString::number(item->getId());
-                ObjetNom       = item->getNom();
-                ObjetType      = QString::number(65539);
-                ObjetForme     = QString::number(item->getTypeShape());
-                ObjetPosX      = QString::number(valX);
-                ObjetPosY      = QString::number(valY);
-                ObjetWidth     = QString::number(sizeW);
-                Objetheight    = QString::number(sizeH);
-                ObjetBrush     = QString::number(clr.rgb());
-                ObjetPen       = QString::number(clrPen.rgb());
-                ObjetComment   = item->getComment();
-                ObjetTexte     = item->getTexte();
-                ObjetChemin    = item->getStrPoly();
-                ObjetEtat      = QString::number(item->getEtat());
-                ObjetMode      = QString::number(item->getMode());
-                ObjetTypeLine  = QString::number(item->getTypeLine());
-                ObjetWidthLine = QString::number(item->getWidthLine());
-                ObjetZValue    = QString::number(item->zValue());
-                ObjetUuid      = item->getUuid().toString();
+                ObjectId        = QString::number(item->getId());
+                ObjectName       = item->getNom();
+                ObjectType      = QString::number(65539);
+                ObjectShape     = QString::number(item->getTypeShape());
+                ObjectPosX      = QString::number(valX);
+                ObjectPosY      = QString::number(valY);
+                ObjectWidth     = QString::number(sizeW);
+                ObjectHeight    = QString::number(sizeH);
+                ObjectBrush     = QString::number(clr.rgb());
+                ObjectPen       = QString::number(clrPen.rgb());
+                ObjectComment   = item->getComment();
+                ObjectText     = item->getTexte();
+                ObjectPath    = item->getStrPoly();
+                ObjectState      = QString::number(item->getEtat());
+                ObjectMode      = QString::number(item->getMode());
+                ObjectTypeLine  = QString::number(item->getTypeLine());
+                ObjectWidthLine = QString::number(item->getWidthLine());
+                ObjectZValue    = QString::number(item->zValue());
+                ObjectUuid      = item->getUuid().toString();
             }
 
 
 
-            objet.setAttribute("Id", ObjetId);
-            objet.setAttribute("Nom", ObjetNom);
-            objet.setAttribute("Type", ObjetType);
-            objet.setAttribute("PositionX", ObjetPosX);
-            objet.setAttribute("PositionY", ObjetPosY);
-            objet.setAttribute("SizeX", ObjetWidth);
-            objet.setAttribute("SizeY", Objetheight);
-            objet.setAttribute("Brush", ObjetBrush);
-            objet.setAttribute("Pen", ObjetPen);
-            objet.setAttribute("Forme", ObjetForme);
-            objet.setAttribute("Commentaire", ObjetComment);
-            objet.setAttribute("Texte", ObjetTexte);
-            objet.setAttribute("Chemin", ObjetChemin);
-            objet.setAttribute("Mode", ObjetMode);
-            objet.setAttribute("Etat", ObjetEtat);
-            objet.setAttribute("TypeLine", ObjetTypeLine);
-            objet.setAttribute("WidthLine", ObjetWidthLine);
-            objet.setAttribute("ZValue", ObjetZValue);
-            objet.setAttribute("Uuid", ObjetUuid);
-            objets.appendChild(objet);
+            objet_xml_element.setAttribute("Id", ObjectId);
+            objet_xml_element.setAttribute("Nom", ObjectName);
+            objet_xml_element.setAttribute("Type", ObjectType);
+            objet_xml_element.setAttribute("PositionX", ObjectPosX);
+            objet_xml_element.setAttribute("PositionY", ObjectPosY);
+            objet_xml_element.setAttribute("SizeX", ObjectWidth);
+            objet_xml_element.setAttribute("SizeY", ObjectHeight);
+            objet_xml_element.setAttribute("Brush", ObjectBrush);
+            objet_xml_element.setAttribute("Pen", ObjectPen);
+            objet_xml_element.setAttribute("Forme", ObjectShape);
+            objet_xml_element.setAttribute("Commentaire", ObjectComment);
+            objet_xml_element.setAttribute("Texte", ObjectText);
+            objet_xml_element.setAttribute("Chemin", ObjectPath);
+            objet_xml_element.setAttribute("Mode", ObjectMode);
+            objet_xml_element.setAttribute("Etat", ObjectState);
+            objet_xml_element.setAttribute("TypeLine", ObjectTypeLine);
+            objet_xml_element.setAttribute("WidthLine", ObjectWidthLine);
+            objet_xml_element.setAttribute("ZValue", ObjectZValue);
+            objet_xml_element.setAttribute("Uuid", ObjectUuid);
+            objects_element.appendChild(objet_xml_element);
         }
     }
-    // Ecriture dans le fichier
+    // Write to file
 
-    QFileInfo FichierXML(getFileNameXML());
-    QDir      repertoireXML = FichierXML.absoluteDir();
-    QString   repertoire    = QDir::homePath() + "/openjardin/";
+    QFileInfo fileInfoXML(getFileNameXML());
+    QDir      directoryXML = fileInfoXML.absoluteDir();
+    QString   directory    = QDir::homePath() + "/openjardin/";
     QString   fileName      =
-        QFileDialog::getSaveFileName(this, tr("Sauvegarde du plan de détail"),
-                                     repertoire,
+        QFileDialog::getSaveFileName(this, tr("Save detail plan"),
+                                     directory,
                                      tr("XML Files (*.xml)"));
     if (fileName.isEmpty())
     {
@@ -512,7 +545,7 @@ void detail_parcelle::on_toolButton_save_as_clicked()
     if (!file.open(QFile::WriteOnly | QFile::Text))
     {
         QMessageBox msgBox;
-        msgBox.setText("ERREUR D'ÉCRITURE");
+        msgBox.setText("WRITE ERROR");
         return;
     }
     else
@@ -525,10 +558,10 @@ void detail_parcelle::on_toolButton_save_as_clicked()
     close();
 }
 
-void detail_parcelle::on_toolButton_Sauver_clicked()
-{   //sauvegarder le plan
+void detail_parcelle::on_toolButton_Save_clicked()
+{   //save the plan
     QString cellvalue;
-    QString champ;
+    QString field;
 
     // XML
     QDomDocument document;
@@ -539,51 +572,51 @@ void detail_parcelle::on_toolButton_Sauver_clicked()
     document.appendChild(root);
     QDomElement base = document.createElement("base");
     root.appendChild(base);
-    QDomElement background = document.createElement("background");
-    root.appendChild(background);
-    QDomElement objets = document.createElement("objets");
-    root.appendChild(objets);
-    QDomElement fichier_base = document.createElement("fichier_base");
+    QDomElement background_element = document.createElement("background");
+    root.appendChild(background_element);
+    QDomElement objects_element = document.createElement("objets");
+    root.appendChild(objects_element);
+    QDomElement file_base_element = document.createElement("fichier_base");
     cellvalue = getfileNameSQL();
-    champ     = "fichier";
-    fichier_base.setAttribute(champ, cellvalue);
-    base.appendChild(fichier_base);
+    field     = "fichier";
+    file_base_element.setAttribute(field, cellvalue);
+    base.appendChild(file_base_element);
     //background
-    QDomElement fond = document.createElement("fond");
+    QDomElement fond_element_xml = document.createElement("fond");
 
-    fond.setAttribute("chemin", getFileNameBackGround());
-    fond.setAttribute("Type", "7");
-    fond.setAttribute("PositionX", "0");
-    fond.setAttribute("PositionY", "0");
-    background.appendChild(fond);
+    fond_element_xml.setAttribute("chemin", getFileNameBackGround());
+    fond_element_xml.setAttribute("Type", "7");
+    fond_element_xml.setAttribute("PositionX", "0");
+    fond_element_xml.setAttribute("PositionY", "0");
+    background_element.appendChild(fond_element_xml);
 
-//Ecriture des objets
-    QString ObjetId;
-    QString ObjetNom;
-    QString ObjetType;
-    QString ObjetForme;
-    QString ObjetPosX;
-    QString ObjetPosY;
-    QString ObjetWidth;
-    QString Objetheight;
-    QString ObjetBrush;
-    QString ObjetPen;
-    QString ObjetComment;
-    QString ObjetTexte;
-    QString ObjetChemin;
-    QString ObjetEtat;
-    QString ObjetMode;
-    QString ObjetTypeLine;
-    QString ObjetWidthLine;
-    QString ObjetZValue;
-    QString ObjetUuid;
+//Write objects
+    QString ObjectId;
+    QString ObjectName;
+    QString ObjectType;
+    QString ObjectShape;
+    QString ObjectPosX;
+    QString ObjectPosY;
+    QString ObjectWidth;
+    QString ObjectHeight;
+    QString ObjectBrush;
+    QString ObjectPen;
+    QString ObjectComment;
+    QString ObjectText;
+    QString ObjectPath;
+    QString ObjectState;
+    QString ObjectMode;
+    QString ObjectTypeLine;
+    QString ObjectWidthLine;
+    QString ObjectZValue;
+    QString ObjectUuid;
 
     QList <QGraphicsItem *> itemList = scene->items();
     for (int i = 0; i < itemList.size(); i++)
     {
         if (itemList[i]->pos().x() > 0)
         {
-            QDomElement objet = document.createElement("Objet");
+            QDomElement objet_xml_element = document.createElement("Objet");
 
             if (itemList[i]->type() == 65536)   // MyItem
             {
@@ -596,25 +629,25 @@ void detail_parcelle::on_toolButton_Sauver_clicked()
                 QColor        clr      = item->getColor();
                 QColor        clrPen   = item->getPenColor();
 
-                ObjetId        = QString::number(item->getId());
-                ObjetNom       = item->getNom();
-                ObjetType      = QString::number(65536);
-                ObjetForme     = QString::number(item->getTypeShape());
-                ObjetPosX      = QString::number(valX);
-                ObjetPosY      = QString::number(valY);
-                ObjetWidth     = QString::number(sizeW);
-                Objetheight    = QString::number(sizeH);
-                ObjetBrush     = QString::number(clr.rgb());
-                ObjetPen       = QString::number(clrPen.rgb());
-                ObjetComment   = item->getComment();
-                ObjetTexte     = item->getTexte();
-                ObjetChemin    = item->getPixFile();
-                ObjetEtat      = QString::number(item->getEtat());
-                ObjetMode      = QString::number(item->getMode());
-                ObjetTypeLine  = QString::number(item->getTypeLine());
-                ObjetWidthLine = QString::number(item->getWidthLine());
-                ObjetZValue    = QString::number(item->zValue());
-                ObjetUuid      = item->getUuid().toString();
+                ObjectId        = QString::number(item->getId());
+                ObjectName       = item->getNom();
+                ObjectType      = QString::number(65536);
+                ObjectShape     = QString::number(item->getTypeShape());
+                ObjectPosX      = QString::number(valX);
+                ObjectPosY      = QString::number(valY);
+                ObjectWidth     = QString::number(sizeW);
+                ObjectHeight    = QString::number(sizeH);
+                ObjectBrush     = QString::number(clr.rgb());
+                ObjectPen       = QString::number(clrPen.rgb());
+                ObjectComment   = item->getComment();
+                ObjectText     = item->getTexte();
+                ObjectPath    = item->getPixFile();
+                ObjectState      = QString::number(item->getEtat());
+                ObjectMode      = QString::number(item->getMode());
+                ObjectTypeLine  = QString::number(item->getTypeLine());
+                ObjectWidthLine = QString::number(item->getWidthLine());
+                ObjectZValue    = QString::number(item->zValue());
+                ObjectUuid      = item->getUuid().toString();
             }
             if (itemList[i]->type() == 65537)   // MyPolygone
             {
@@ -627,25 +660,25 @@ void detail_parcelle::on_toolButton_Sauver_clicked()
                 QColor      clr      = item->getColor();
                 QColor      clrPen   = item->getPenColor();
 
-                ObjetId        = QString::number(item->getId());
-                ObjetNom       = item->getNom();
-                ObjetType      = QString::number(65537);
-                ObjetForme     = QString::number(item->getTypeShape());
-                ObjetPosX      = QString::number(valX);
-                ObjetPosY      = QString::number(valY);
-                ObjetWidth     = QString::number(sizeW);
-                Objetheight    = QString::number(sizeH);
-                ObjetBrush     = QString::number(clr.rgb());
-                ObjetPen       = QString::number(clrPen.rgb());
-                ObjetComment   = item->getComment();
-                ObjetTexte     = item->getTexte();
-                ObjetChemin    = item->getStrPoly();
-                ObjetEtat      = QString::number(item->getEtat());
-                ObjetMode      = QString::number(item->getMode());
-                ObjetTypeLine  = QString::number(item->getTypeLine());
-                ObjetWidthLine = QString::number(item->getWidthLine());
-                ObjetZValue    = QString::number(item->zValue());
-                ObjetUuid      = item->getUuid().toString();
+                ObjectId        = QString::number(item->getId());
+                ObjectName       = item->getNom();
+                ObjectType      = QString::number(65537);
+                ObjectShape     = QString::number(item->getTypeShape());
+                ObjectPosX      = QString::number(valX);
+                ObjectPosY      = QString::number(valY);
+                ObjectWidth     = QString::number(sizeW);
+                ObjectHeight    = QString::number(sizeH);
+                ObjectBrush     = QString::number(clr.rgb());
+                ObjectPen       = QString::number(clrPen.rgb());
+                ObjectComment   = item->getComment();
+                ObjectText     = item->getTexte();
+                ObjectPath    = item->getStrPoly();
+                ObjectState      = QString::number(item->getEtat());
+                ObjectMode      = QString::number(item->getMode());
+                ObjectTypeLine  = QString::number(item->getTypeLine());
+                ObjectWidthLine = QString::number(item->getWidthLine());
+                ObjectZValue    = QString::number(item->zValue());
+                ObjectUuid      = item->getUuid().toString();
             }
             if (itemList[i]->type() == 65539)   // MyPolyline
             {
@@ -658,52 +691,52 @@ void detail_parcelle::on_toolButton_Sauver_clicked()
                 QColor      clr      = item->getColor();
                 QColor      clrPen   = item->getPenColor();
 
-                ObjetId        = QString::number(item->getId());
-                ObjetNom       = item->getNom();
-                ObjetType      = QString::number(65539);
-                ObjetForme     = QString::number(item->getTypeShape());
-                ObjetPosX      = QString::number(valX);
-                ObjetPosY      = QString::number(valY);
-                ObjetWidth     = QString::number(sizeW);
-                Objetheight    = QString::number(sizeH);
-                ObjetBrush     = QString::number(clr.rgb());
-                ObjetPen       = QString::number(clrPen.rgb());
-                ObjetComment   = item->getComment();
-                ObjetTexte     = item->getTexte();
-                ObjetChemin    = item->getStrPoly();
-                ObjetEtat      = QString::number(item->getEtat());
-                ObjetMode      = QString::number(item->getMode());
-                ObjetTypeLine  = QString::number(item->getTypeLine());
-                ObjetWidthLine = QString::number(item->getWidthLine());
-                ObjetZValue    = QString::number(item->zValue());
-                ObjetUuid      = item->getUuid().toString();
+                ObjectId        = QString::number(item->getId());
+                ObjectName       = item->getNom();
+                ObjectType      = QString::number(65539);
+                ObjectShape     = QString::number(item->getTypeShape());
+                ObjectPosX      = QString::number(valX);
+                ObjectPosY      = QString::number(valY);
+                ObjectWidth     = QString::number(sizeW);
+                ObjectHeight    = QString::number(sizeH);
+                ObjectBrush     = QString::number(clr.rgb());
+                ObjectPen       = QString::number(clrPen.rgb());
+                ObjectComment   = item->getComment();
+                ObjectText     = item->getTexte();
+                ObjectPath    = item->getStrPoly();
+                ObjectState      = QString::number(item->getEtat());
+                ObjectMode      = QString::number(item->getMode());
+                ObjectTypeLine  = QString::number(item->getTypeLine());
+                ObjectWidthLine = QString::number(item->getWidthLine());
+                ObjectZValue    = QString::number(item->zValue());
+                ObjectUuid      = item->getUuid().toString();
             }
 
 
 
-            objet.setAttribute("Id", ObjetId);
-            objet.setAttribute("Nom", ObjetNom);
-            objet.setAttribute("Type", ObjetType);
-            objet.setAttribute("PositionX", ObjetPosX);
-            objet.setAttribute("PositionY", ObjetPosY);
-            objet.setAttribute("SizeX", ObjetWidth);
-            objet.setAttribute("SizeY", Objetheight);
-            objet.setAttribute("Brush", ObjetBrush);
-            objet.setAttribute("Pen", ObjetPen);
-            objet.setAttribute("Forme", ObjetForme);
-            objet.setAttribute("Commentaire", ObjetComment);
-            objet.setAttribute("Texte", ObjetTexte);
-            objet.setAttribute("Chemin", ObjetChemin);
-            objet.setAttribute("Mode", ObjetMode);
-            objet.setAttribute("Etat", ObjetEtat);
-            objet.setAttribute("TypeLine", ObjetTypeLine);
-            objet.setAttribute("WidthLine", ObjetWidthLine);
-            objet.setAttribute("ZValue", ObjetZValue);
-            objet.setAttribute("Uuid", ObjetUuid);
-            objets.appendChild(objet);
+            objet_xml_element.setAttribute("Id", ObjectId);
+            objet_xml_element.setAttribute("Nom", ObjectName);
+            objet_xml_element.setAttribute("Type", ObjectType);
+            objet_xml_element.setAttribute("PositionX", ObjectPosX);
+            objet_xml_element.setAttribute("PositionY", ObjectPosY);
+            objet_xml_element.setAttribute("SizeX", ObjectWidth);
+            objet_xml_element.setAttribute("SizeY", ObjectHeight);
+            objet_xml_element.setAttribute("Brush", ObjectBrush);
+            objet_xml_element.setAttribute("Pen", ObjectPen);
+            objet_xml_element.setAttribute("Forme", ObjectShape);
+            objet_xml_element.setAttribute("Commentaire", ObjectComment);
+            objet_xml_element.setAttribute("Texte", ObjectText);
+            objet_xml_element.setAttribute("Chemin", ObjectPath);
+            objet_xml_element.setAttribute("Mode", ObjectMode);
+            objet_xml_element.setAttribute("Etat", ObjectState);
+            objet_xml_element.setAttribute("TypeLine", ObjectTypeLine);
+            objet_xml_element.setAttribute("WidthLine", ObjectWidthLine);
+            objet_xml_element.setAttribute("ZValue", ObjectZValue);
+            objet_xml_element.setAttribute("Uuid", ObjectUuid);
+            objects_element.appendChild(objet_xml_element);
         }
     }
-    // Ecriture dans le fichier
+    // Write to file
 
 
     QString fileName = getFileNameXML();
@@ -717,7 +750,7 @@ void detail_parcelle::on_toolButton_Sauver_clicked()
     if (!file.open(QFile::WriteOnly | QFile::Text))
     {
         QMessageBox msgBox;
-        msgBox.setText("ERREUR D'ÉCRITURE");
+        msgBox.setText("WRITE ERROR");
         return;
     }
     else
@@ -730,22 +763,22 @@ void detail_parcelle::on_toolButton_Sauver_clicked()
     close();
 }
 
-void detail_parcelle::on_toolButton_AjoutRectangle_clicked()
-{   //créer un rectangle
+void detail_parcelle::on_toolButton_AddRectangle_clicked()
+{   //create a rectangle
     parcelleItem *item = new parcelleItem(50, 50);
 
     item->setPenColor(QColor(ui->label_couleurPolyline_Pen->text()));
     item->setColor(QColor(ui->label_couleurPolyline_P_background->text()));
     item->setWidthLine(ui->comboBox_epaisseurLignes_P->currentText().toInt());
     item->setTypeLine(ui->comboBox_typeLigne_P->currentIndex() + 1);
-    item->setOpac(0.8);       //opacité de l'item
-    item->setId(get_MaxId()); // valeur id en dernière position dans la table
+    item->setOpac(0.8);       //item opacity
+    item->setId(get_MaxId()); // id value in last position in the table
     item->setUuid(QUuid::createUuid());
     double sizeW = item->boundingRect().width();
     double sizeH = item->boundingRect().height();
     item->setPos(sizeW / 2, sizeH / 2);
-    item->setTexte("Parcelle");
-    item->setNom("Parcelle " + QString::number(get_MaxId()));
+    item->setTexte("Plot");
+    item->setNom("Plot " + QString::number(get_MaxId()));
     item->setEtat(1);
     item->setMode(0);
     item->setTypeShape(parcelleItem::Rectangle);
@@ -757,15 +790,15 @@ void detail_parcelle::on_toolButton_AjoutRectangle_clicked()
     ui->lineEdit_Id_Item->setText(QString::number(item->getId()));
 }
 
-void detail_parcelle::on_toolButton_AjoutCercle_clicked()
-{   // créer un cercle
+void detail_parcelle::on_toolButton_AddCircle_clicked()
+{   // create a circle
     parcelleItem *item = new parcelleItem(50, 50);
 
     item->setPenColor(QColor(ui->label_couleurPolyline_Pen->text()));
     item->setColor(QColor(ui->label_couleurPolyline_P_background->text()));
     item->setWidthLine(ui->comboBox_epaisseurLignes_P->currentText().toInt());
     item->setTypeLine(ui->comboBox_typeLigne_P->currentIndex() + 1);
-    item->setOpac(0.8);                               //opacité de l'item
+    item->setOpac(0.8);                               //item opacity
     item->setId(get_MaxId());
     item->setUuid(QUuid::createUuid());
     double sizeW = item->boundingRect().width();
@@ -785,7 +818,7 @@ void detail_parcelle::on_toolButton_AjoutCercle_clicked()
 }
 
 int detail_parcelle::get_MaxId()
-{   // recherche de la valeur du dernier Id
+{   // search for the value of the last Id
     int Max = 0;
 
     QList <QGraphicsItem *> itemList = scene->items();
@@ -820,7 +853,7 @@ int detail_parcelle::get_MaxId()
     return m_MaxId;
 }
 
-void detail_parcelle::on_comboBox_epaisseurLignes_P_currentIndexChanged(const QString&arg1)
+void detail_parcelle::on_comboBox_lineWidth_P_currentIndexChanged(const QString&arg1)
 {
     QList <QGraphicsItem *> itemList = scene->items();
     for (int i = 0; i < itemList.size(); i++)
@@ -849,7 +882,7 @@ void detail_parcelle::on_comboBox_epaisseurLignes_P_currentIndexChanged(const QS
     scene->update();
 }
 
-void detail_parcelle::on_comboBox_typeLigne_P_currentIndexChanged(int index)
+void detail_parcelle::on_comboBox_lineType_P_currentIndexChanged(int index)
 {
     QList <QGraphicsItem *> itemList = scene->items();
     for (int i = 0; i < itemList.size(); i++)
@@ -880,9 +913,9 @@ void detail_parcelle::on_comboBox_typeLigne_P_currentIndexChanged(int index)
     scene->update();
 }
 
-void detail_parcelle::on_toolButton_CouleurCrayon_clicked()
+void detail_parcelle::on_toolButton_PenColor_clicked()
 {
-    // choisir la couleur du crayon
+    // choose pen color
     QColorDialog *dialog = new QColorDialog(this);
 
     dialog->show();
@@ -926,14 +959,14 @@ void detail_parcelle::on_toolButton_CouleurCrayon_clicked()
             }
         }
     }
-    //items_vers_listeparcelles();
+    //items_to_plotlist();
 
     delete dialog;
 
     scene->update();
 }
 
-void detail_parcelle::on_toolButton_CouleurFond_clicked()
+void detail_parcelle::on_toolButton_BackgroundColor_clicked()
 {
     QColorDialog *dialog = new QColorDialog(this);
 
@@ -986,7 +1019,7 @@ void detail_parcelle::on_pushButton_ZoomOut_clicked()
 }
 
 void detail_parcelle::zoomGraphicsView(int ratio)
-{   // valeur ratio in-> 2  out-> 3)
+{   // ratio value in-> 2  out-> 3)
     if (ratio == 3 && m_ZoomRatio > 0.5)
     {
         m_ZoomRatio = m_ZoomRatio * 0.8;
@@ -1026,7 +1059,7 @@ void detail_parcelle::on_toolButton_modification_clicked()
     }
 }
 
-void detail_parcelle::on_toolButtonUtilisation_clicked()
+void detail_parcelle::on_toolButton_Usage_clicked()
 {
     m_mode = 1;
 
@@ -1076,11 +1109,11 @@ void detail_parcelle::on_toolButton_2_clicked()
     close();
 }
 
-void detail_parcelle::on_toolButton_supprimer_clicked()
-{   // supprimer objet
-    int ret = QMessageBox::warning(this, tr("Suppression"),
-                                   tr("Cet objet peut être supprimer.\n"
-                                      "Confirmer la suppression de l'objet ?"),
+void detail_parcelle::on_toolButton_delete_clicked()
+{   // delete object
+    int ret = QMessageBox::warning(this, tr("Delete"),
+                                   tr("This object can be deleted.\n"
+                                      "Confirm object deletion?"),
                                    QMessageBox::Ok | QMessageBox::Cancel,
                                    QMessageBox::Cancel);
 
@@ -1114,8 +1147,8 @@ void detail_parcelle::on_toolButton_supprimer_clicked()
     }
 }
 
-void detail_parcelle::on_toolButton_devant_clicked()
-{   // mettre devant
+void detail_parcelle::on_toolButton_front_clicked()
+{   // bring to front
     if (scene->selectedItems().isEmpty())
     {
         return;
@@ -1134,7 +1167,7 @@ void detail_parcelle::on_toolButton_devant_clicked()
     selectedItem->setZValue(zValue);
 }
 
-void detail_parcelle::on_pushButton_Affiches_fiche_clicked()
+void detail_parcelle::on_pushButton_DisplaySheet_clicked()
 {
     int Id = ui->lineEdit_Id_Item->text().toInt();
 
@@ -1143,7 +1176,7 @@ void detail_parcelle::on_pushButton_Affiches_fiche_clicked()
     if (Id >= 0)
     {
         QString   fileName       = getfileNameSQL();
-        Cultures *fiche_Cultures = new Cultures(Id, 0);
-        fiche_Cultures->show();
+        Cultures *cropSheet = new Cultures(Id, 0);
+        cropSheet->show();
     }
 }
