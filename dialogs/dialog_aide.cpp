@@ -12,7 +12,7 @@ dialog_Aide::dialog_Aide(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::dialog_Aide)
 {
-    // translator
+    // load translator
     QTranslator translator;
     QString     fichier = ":/translations/open-jardin_" + util::getLocale();
 
@@ -30,7 +30,7 @@ dialog_Aide::~dialog_Aide()
 }
 
 void dialog_Aide::populate(QStringList linkNames)
-{   //test remplissage du treewidget avec les liens ou ancres du texte html
+{   // fill the tree widget with links or anchors from the HTML text
     for (int i = 0; i < linkNames.count(); i++)
     {
         QString     linkName      = linkNames[i];
@@ -76,14 +76,14 @@ void dialog_Aide::populate(QStringList linkNames)
 
 void dialog_Aide::parse_html()
 {
-    // extraction des liens du texte html
+    // extract links from the HTML text
     QString     texte_html = ui->textBrowser_aide->toHtml();
     QStringList qList      = texte_html.split(';', QString::SkipEmptyParts);
     QStringList linkNames;
 
     foreach(const QString &s, qList)
     {
-        // récupération des ancres
+        // retrieve anchors
         if (s.contains("<a name="))
         {
             int        pos    = s.indexOf("<a name=");
@@ -94,11 +94,11 @@ void dialog_Aide::parse_html()
             linkNames << s3.toString();
         }
     }
-    populate(linkNames); // remplissage du treewidget
+    populate(linkNames); // populate the tree widget
 }
 
 void dialog_Aide::on_treeWidget_aide_itemClicked(QTreeWidgetItem *item, int column)
-{   //aller sur le lien choisi
+{   // jump to the selected link
     Q_UNUSED(item);
     Q_UNUSED(column);
     QList <QTreeWidgetItem *> itemList;

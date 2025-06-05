@@ -1,17 +1,7 @@
-A LIRE
+READ ME
 
-En cas de compilation il faut que certains fichiers soient copiés dans des répertoires spécifiques (qui sont créés automatiquement avec le .deb) :
+If you compile the project, some files need to be copied to specific directories which are automatically created by the .deb package:
 
-- la base de données SQLite jardin.sqli doit être copiée dans le répertoire suivant pour Linux /home/votre user name/libreJardin/
+- The SQLite database `jardin.sqli` must be copied to the directory `/home/<your user name>/libreJardin/` on Linux.
 
-- le fichier de configuration exemple : jardin_exemple.xml et jardin_type.png seront copiés également dans le même répertoire.
-
---------
-
-TO READ
-
-In case of compilation some files have to be copied to specific directories (which are created automatically with the .deb):
-
-- the SQLite garden.sqli database must be copied to the following directory for Linux / home / your user name / libreJardin /
-
-- the example configuration file: jardin_exemple.xml and jardin_type.png will also be copied to the same directory.
+- The example configuration files `jardin_exemple.xml` and `jardin_type.png` will also be copied to the same directory.
